@@ -1,0 +1,59 @@
+syntax = "proto3"; 
+package protos;
+option go_package = "protos/;protos"; 
+
+enum card_name {
+	ZHUAN_YI = 0;
+	SUO_DING = 1;
+	SHI_PO = 2;
+	JIE_HUO = 3;
+	DIAO_HU_LI_SHAN = 4;
+	WEI_XIAN_QING_BAO = 5;
+	GONG_KAI_WEN_BEN = 6;
+	ZENG_YUAN = 7;
+	SHAO_HUI = 8;
+	PO_YI = 9;
+	DIAO_BAO = 10;
+	LI_JIAN = 11;
+	JI_MI_WEN_JIAN = 12;
+}
+
+enum fengsheng_color {
+	BLACK_OR_GREAN = 0;
+	RED = 1;
+	BLUE = 2;
+}
+
+enum card_transmit_type {
+	TEXT = 0;
+	SECRET = 1;
+	NONSTOP = 2;
+}
+
+enum action {
+	DISCARD_1 = 0;
+	DRAW_1 = 1;
+	DRAW_2 = 2;
+	BE_TAKEN_AWAY_1 = 3;
+	I_AM_SPY = 4;
+	I_AM_GOOD_MAN = 5;
+	I_AM_UNDERCOVER = 6;
+	LISTEN_TO_WIND = 7; // 秘密下达-听风
+	WATCH_RAIN = 8; // 秘密下达-看雨
+	SUNSET = 9; // 秘密下达-日落
+}
+
+// 用于试探、公开文本、秘密下达
+message card_param {
+	fengsheng_color param1 = 1; 
+	repeated action param2 = 2;
+}
+
+// 卡牌的结构体
+message fengsheng_card {
+	uint32 card_id = 1; // 卡牌ID
+	card_name name = 2;
+	repeated card_param card_param_list = 3;
+	fengsheng_color color = 4;
+	card_transmit_type transmit_type = 5;
+}
