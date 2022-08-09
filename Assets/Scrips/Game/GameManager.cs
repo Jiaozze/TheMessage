@@ -40,7 +40,7 @@ public class GameManager
 
     public void Init()
     {
-        GameObject windowGo = GameObject.Find("gameUI");
+        GameObject windowGo = GameObject.Find("GameUI");
         if (gameUI == null && windowGo != null)
         {
             gameUI = windowGo.GetComponent<GameUI>();
@@ -199,7 +199,7 @@ public class GameManager
         //}
         //DeckNum = DeckNum - 1;
         //SetDeckNum(DeckNum);
-
+        gameUI.DrawCards(cards);
         gameUI.AddMsg(string.Format("ƒ„√˛¡À{0}’≈≈∆; {1}", cards.Count, cardInfo));
 
     }
@@ -254,16 +254,16 @@ public class GameManager
 
         if (IsCardAvailable(card.id, card.id))
         {
-            if (card.color == 0 && wantColor == 0)
-            {
-                return;
-                //ProtoHelper.SendDiscardMessage(card.id, UnityEngine.Random.Range(1, 5));
-            }
-            else
-            {
-                ProtoHelper.SendDiscardMessage(card.id, wantColor);
-                wantColor = 0;
-            }
+            //if (card.color == 0 && wantColor == 0)
+            //{
+            //    return;
+            //    //ProtoHelper.SendDiscardMessage(card.id, UnityEngine.Random.Range(1, 5));
+            //}
+            //else
+            //{
+            //    ProtoHelper.SendDiscardMessage(card.id, wantColor);
+            //    wantColor = 0;
+            //}
         }
         selectCard = -1;
         //TODO

@@ -15,7 +15,7 @@ public class GameUI : MonoBehaviour
     public GridLayoutGroup leftPlayerGrid;
     public GridLayoutGroup rightPlayerGrid;
 
-    private List<CardUI> cards = new List<CardUI>();
+    private List<CardUI> UICards = new List<CardUI>();
     public void InitPlayers(int num)
     {
         int leftNum = (num - 1) / 3;
@@ -33,7 +33,7 @@ public class GameUI : MonoBehaviour
             {
                 CardUI card = GameObject.Instantiate(cardUIItem, transCards);
                 card.Init(i);
-                cards.Add(card);
+                UICards.Add(card);
             }
         }
         else 
@@ -42,38 +42,39 @@ public class GameUI : MonoBehaviour
         CardsSizeFitter();
     }
 
-    public void DrawCards(int count)
+    public void DrawCards(List<CardFS> cards)
     {
+        int count = cards .Count;
         for (int i = count; i > 0; i--)
         {
             CardUI card = GameObject.Instantiate(cardUIItem, transCards);
-            card.Init(i);
-            cards.Add(card);
+            card.Init(i, cards[count - i]);
+            UICards.Add(card);
         }
         CardsSizeFitter();
     }
 
     public void ClearCards()
     {
-        if (cards.Count > 0)
+        if (UICards.Count > 0)
         {
-            for (int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < UICards.Count; i++)
             {
-                GameObject.Destroy(cards[i].gameObject);
+                GameObject.Destroy(UICards[i].gameObject);
             }
-            cards.Clear();
+            UICards.Clear();
         }
     }
 
     private void CardsSizeFitter()
     {
-        if(cards.Count * gridCards.cellSize.x <= transCards.sizeDelta.x)
+        if(UICards.Count * gridCards.cellSize.x <= transCards.sizeDelta.x)
         {
             gridCards.spacing = Vector2.zero;
         }
         else
         {
-            float spacingX = -(cards.Count * gridCards.cellSize.x - transCards.sizeDelta.x) / (cards.Count - 1);
+            float spacingX = -(UICards.Count * gridCards.cellSize.x - transCards.sizeDelta.x) / (UICards.Count - 1);
             gridCards.spacing = new Vector2(spacingX, 0);
         }
     }
@@ -84,7 +85,8 @@ public class GameUI : MonoBehaviour
 
     public void AddMsg(string v)
     {
-        throw new NotImplementedException();
+        Debug.Log(v);
+        //throw new NotImplementedException();
     }
 
     public void SetTurn()
