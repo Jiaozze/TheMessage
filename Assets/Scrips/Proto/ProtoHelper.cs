@@ -1,5 +1,5 @@
 using Google.Protobuf;
-using Protos;
+//using Protos;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +9,38 @@ using UnityEngine.Events;
 
 public static class ProtoHelper
 {
-    public static void OnReceiveMsg(string name, byte[] contont)
+    public static void OnReceiveMsg(int id, byte[] contont)
     {
+        Debug.LogError(id);
+        if(GetIdFromProtoName("add_card_toc") == id)
+        {
+            Debug.LogError("add_card_toc");
+            add_card_toc add_card_toc = add_card_toc.Parser.ParseFrom(contont);
+            if (add_card_toc.PlayerId == 0)
+            {
+                List<CardFS> uno_Cards = new List<CardFS>();
+                foreach (var card in add_card_toc.Cards)
+                {
+                    Debug.LogError("-----add_card_toc, CardId CardDir CardType:" + card.CardId + "," + card.CardDir + "," + card.CardType);
+                    CardFS cardFS = new CardFS(card);
+                    uno_Cards.Add(cardFS);
+                    //GameManager.Singleton.OnPlayerDrawCards((int)card.CardId, (int)card.Color, (int)card.Num);
+                }
+                GameManager.Singleton.OnPlayerDrawCards(uno_Cards);
+            }
+            else
+            {
+                Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
+            }
+        }
+        else if(GetIdFromProtoName("init_toc") == id)
+        {
+
+        }
+        else
+        {
+            Debug.LogError("undefine proto:" + id);
+        }
         //switch (name)
         //{
         //    case "init_toc":
@@ -34,18 +64,25 @@ public static class ProtoHelper
         //        Debug.LogError("-----other_add_hand_card_toc, PlayerId, Num:" + other_add_hand_card_toc.PlayerId + "," + other_add_hand_card_toc.Num);
         //        GameManager.Singleton.OnOtherDrawCards((int)other_add_hand_card_toc.PlayerId, (int)other_add_hand_card_toc.Num);
         //        break;
-        //    case "draw_card_toc":
-        //        draw_card_toc draw_card_toc = draw_card_toc.Parser.ParseFrom(contont);
-
-        //        List<uno_card> uno_Cards = new List<uno_card>();
-        //        foreach (var card in draw_card_toc.Card)
+        //case "add_card_toc":
+        //    add_card_toc add_card_toc = add_card_toc.Parser.ParseFrom(contont);
+        //    if(add_card_toc.PlayerId == 0)
+        //    {
+        //        List<CardFS> uno_Cards = new List<CardFS>();
+        //        foreach (var card in add_card_toc.Cards)
         //        {
-        //            uno_Cards.Add(card);
+        //            Debug.LogError("-----add_card_toc, CardId CardDir CardType:" + card.CardId + "," + card.CardDir + "," + card.CardType);
+        //            CardFS cardFS = new CardFS(card);
+        //            uno_Cards.Add(cardFS);
         //            //GameManager.Singleton.OnPlayerDrawCards((int)card.CardId, (int)card.Color, (int)card.Num);
         //        }
-        //        //Debug.LogError("-----draw_card_toc, CardId Color Num:" + card.CardId + "," + card.Color + "," + card.Num);
         //        GameManager.Singleton.OnPlayerDrawCards(uno_Cards);
-        //        break;
+        //    }
+        //    else
+        //    {
+        //        Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
+        //    }
+        //    break;
         //    case "notify_turn_toc":
         //        notify_turn_toc notify_turn_toc = notify_turn_toc.Parser.ParseFrom(contont);
         //        Debug.LogError("-----notify_turn_toc, PlayerId Dir:" + notify_turn_toc.PlayerId + "," + notify_turn_toc.Dir);
@@ -71,60 +108,55 @@ public static class ProtoHelper
 
         //        break;
         //    default:
-        //        Debug.LogError("undefine proto:" + name);
+        //        //Debug.LogError("undefine proto:" + name);
         //        break;
         //}
     }
 
     public static void SendDiscardMessage(int cardId, int wantColor)
     {
-        discard_card_tos discard_Card_Tos = new discard_card_tos() {CardId = (uint)cardId, WantColor = (uint)wantColor };
+        //discard_card_tos discard_Card_Tos = new discard_card_tos() {CardId = (uint)cardId, WantColor = (uint)wantColor };
 
-        byte[] proto = discard_Card_Tos.ToByteArray();
-        byte[] protoName = Encoding.UTF8.GetBytes("discard_card_tos");
-        short nameLen = (short)protoName.Length;
-        short len = (short)(protoName.Length + proto.Length + 2);
+        //byte[] proto = discard_Card_Tos.ToByteArray();
+        //byte[] protoName = Encoding.UTF8.GetBytes("discard_card_tos");
+        //short nameLen = (short)protoName.Length;
+        //short len = (short)(protoName.Length + proto.Length + 2);
 
-        List<byte> vs = new List<byte>() {(byte)(len>>8), (byte)len, (byte)(nameLen >> 8), (byte)nameLen, };
-        foreach(var bt in protoName)
-        {
-            vs.Add(bt);
-        }
-        foreach(var bt in proto)
-        {
-            vs.Add(bt);
-        }
-        byte[] msg = vs.ToArray();
-        //Debug.Log(BitConverter.ToString(msg, 0, msg.Length));
-        NetWork.Send(msg);
+        //List<byte> vs = new List<byte>() {(byte)(len>>8), (byte)len, (byte)(nameLen >> 8), (byte)nameLen, };
+        //foreach(var bt in protoName)
+        //{
+        //    vs.Add(bt);
+        //}
+        //foreach(var bt in proto)
+        //{
+        //    vs.Add(bt);
+        //}
+        //byte[] msg = vs.ToArray();
+        ////Debug.Log(BitConverter.ToString(msg, 0, msg.Length));
+        //NetWork.Send(msg);
     }
 
-    public static CardFS GetGameCard(fengsheng_card fengshengCard)
+    private static Dictionary<string, int> proto_name_id = new Dictionary<string, int>();
+
+    public static int GetIdFromProtoName(string protoName)
     {
-        CardFS gameCard = new CardFS();
-        gameCard.id = (int)fengshengCard.CardId;
-        gameCard.name = (CardName)fengshengCard.Name;
-        gameCard.color = (CardColor)fengshengCard.Color;
-        gameCard.transType = (CardTransmitType)fengshengCard.TransmitType;
-        foreach(var param in fengshengCard.CardParamList)
+        if (proto_name_id.ContainsKey(protoName))
         {
-            List<TestAction> actions = new List<TestAction>();
-            foreach(var act in param.Param2)
+            return proto_name_id[protoName];
+        }
+        else
+        {
+            ushort hash = 0;
+            foreach (var c in protoName)
             {
-                actions.Add((TestAction)act);
+                ushort ch = (ushort)c;
+                hash = (ushort)(hash + ((hash) << 5) + ch + (ch << 7));
             }
-            gameCard.test.Add((CardColor)param.Param1, actions);
+            proto_name_id.Add(protoName, (int)hash);
+            //Debug.LogError("protoName:" + hash);
+            return (int)hash;
         }
-        return gameCard;
     }
 
-    public static fengsheng_card GetProtoCard(CardFS cardFS)
-    {
-        throw new NotImplementedException();
-        //TODO
-        fengsheng_card fengshengCard = new fengsheng_card();
-
-        return fengshengCard;
-    }
 
 }

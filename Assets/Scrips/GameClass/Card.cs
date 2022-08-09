@@ -1,36 +1,40 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardName
+public enum CardNameEnum
 {
-	ZHUAN_YI = 0,
-	SUO_DING = 1,
-	SHI_PO = 2,
-	JIE_HUO = 3,
-	DIAO_HU_LI_SHAN = 4,
-	WEI_XIAN_QING_BAO = 5,
-	GONG_KAI_WEN_BEN = 6,
-	ZENG_YUAN = 7,
-	SHAO_HUI = 8,
-	PO_YI = 9,
-	DIAO_BAO = 10,
-	LI_JIAN = 11,
-	JI_MI_WEN_JIAN = 12,
+	Cheng_Qing = 0, // 澄清
+	Shi_Tan = 1, // 试探
+	Bi_Po = 2, // 逼迫
+	Li_You = 3, // 利诱
+	Ping_Heng = 4, // 平衡
+	Po_Yi = 5, // 破译
+	Jie_Huo = 6, // 截获
+	Diao_Bao = 7, // 掉包
+	Wu_Dao = 8, // 误导
 }
 
-public enum CardColor
+public enum CardColorEnum
 {
-	BLACK_OR_GREAN = 0,
-	RED = 1,
-	BLUE = 2,
+	Black = 0,// 对于身份，则是绿色（神秘人）；对于卡牌，则是黑色
+	Red = 1, // 红色
+	Blue = 2,  // 蓝色
+}
+
+public enum DirectionEnum
+{
+	Up = 0,    // 向上
+	Left = 1,  // 向左
+	Right = 2, // 向右
+
 }
 
 public enum CardTransmitType
 {
-	TEXT = 0,
-	SECRET = 1,
-	NONSTOP = 2,
+    TEXT = 0,
+    SECRET = 1,
+    NONSTOP = 2,
 }
 
 public enum TestAction
@@ -42,18 +46,30 @@ public enum TestAction
 	I_AM_SPY = 4,
 	I_AM_GOOD_MAN = 5,
 	I_AM_UNDERCOVER = 6,
-	LISTEN_TO_WIND = 7, // �����´�-����
-	WATCH_RAIN = 8, // �����´�-����
-	SUNSET = 9, // �����´�-����
+	LISTEN_TO_WIND = 7, // 秘密下达-听风
+	WATCH_RAIN = 8, // 秘密下达-看雨
+	SUNSET = 9, // 秘密下达-日落
 }
 public class CardFS 
 {
-	public int id;
-	public CardName name;
-	public CardColor color;
-	public CardTransmitType transType;
-	public Dictionary<CardColor, List<TestAction>> test = new Dictionary<CardColor, List<TestAction>>();
+	public int id = -1;
+	public CardNameEnum name;
+	public List<CardColorEnum> color;
+	public DirectionEnum direction;
+	//public CardTransmitType transType;
+	//public Dictionary<CardColorEnum, List<TestAction>> test = new Dictionary<CardColorEnum, List<TestAction>>();
 
 	public bool isHand;
 
+	public CardFS(card card)
+    {
+		id = (int)card.CardId;
+		name = (CardNameEnum)card.CardType;
+		color = new List<CardColorEnum>();
+		foreach(var color in card.CardColor)
+        {
+			this.color.Add((CardColorEnum)color);
+        }
+		direction = (DirectionEnum)card.CardDir;
+    }
 }

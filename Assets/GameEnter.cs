@@ -13,7 +13,7 @@ public class GameEnter : MonoBehaviour
     private void Awake()
     {
         GameManager.Singleton.Init();
-        CardFactory.Init();
+        //CardFactory.Init();
         Input.onEndEdit.AddListener((s) => {
             ip = s;
         });
