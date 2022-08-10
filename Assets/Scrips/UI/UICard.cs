@@ -17,28 +17,30 @@ public class UICard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Init(int index, CardFS cardInfo = null)
     {
-        if(cardInfo != null)
+        if (cardInfo != null)
         {
             SetInfo(cardInfo);
         }
         gameObject.SetActive(true);
+        index = index % 4;
+        index = index == 0 ? 4 : index;
         animator.SetTrigger("InitCard" + index);
     }
 
     public void SetInfo(CardFS cardInfo)
     {
-        if(cardInfo.id != -1)
+        if (cardInfo.id != -1)
         {
             textName.text = LanguageUtils.GetCardName(cardInfo.name);
             goArrowLeft.SetActive(cardInfo.direction == DirectionEnum.Left);
@@ -47,7 +49,7 @@ public class UICard : MonoBehaviour
 
             imgColor.color = GameUtils.GetCardColor(cardInfo.color[0]);
             imgColor2.gameObject.SetActive(cardInfo.color.Count > 1);
-            if(cardInfo.color.Count > 1)
+            if (cardInfo.color.Count > 1)
             {
                 imgColor2.color = GameUtils.GetCardColor(cardInfo.color[1]);
             }
