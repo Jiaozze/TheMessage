@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public PlayerUI playerUI;
-    public CardUI cardUIItem;
+    public UICard cardUIItem;
     public RectTransform transCards;
     public Transform transPlayerSelf;
     public GridLayoutGroup gridCards;
@@ -15,7 +15,7 @@ public class GameUI : MonoBehaviour
     public GridLayoutGroup leftPlayerGrid;
     public GridLayoutGroup rightPlayerGrid;
 
-    private List<CardUI> UICards = new List<CardUI>();
+    private List<UICard> UICards = new List<UICard>();
     public void InitPlayers(int num)
     {
         int leftNum = (num - 1) / 3;
@@ -31,7 +31,7 @@ public class GameUI : MonoBehaviour
             this.ClearCards();
             for(int i = count; i > 0; i--)
             {
-                CardUI card = GameObject.Instantiate(cardUIItem, transCards);
+                UICard card = GameObject.Instantiate(cardUIItem, transCards);
                 card.Init(i);
                 UICards.Add(card);
             }
@@ -47,7 +47,7 @@ public class GameUI : MonoBehaviour
         int count = cards .Count;
         for (int i = count; i > 0; i--)
         {
-            CardUI card = GameObject.Instantiate(cardUIItem, transCards);
+            UICard card = GameObject.Instantiate(cardUIItem, transCards);
             card.Init(i, cards[count - i]);
             UICards.Add(card);
         }
