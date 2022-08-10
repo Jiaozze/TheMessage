@@ -24,19 +24,22 @@ public static class ProtoHelper
                     //Debug.LogError("-----add_card_toc, CardId CardDir CardType:" + card.CardId + "," + card.CardDir + "," + card.CardType);
                     CardFS cardFS = new CardFS(card);
                     uno_Cards.Add(cardFS);
-                    //GameManager.Singleton.OnPlayerDrawCards((int)card.CardId, (int)card.Color, (int)card.Num);
                 }
                 GameManager.Singleton.OnPlayerDrawCards(uno_Cards);
             }
             else
             {
-                //TODO
-                Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
+                GameManager.Singleton.OnOtherDrawCards((int)add_card_toc.PlayerId, (int)add_card_toc.UnknownCardCount);
+                //Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
             }
         }
         else if(GetIdFromProtoName("init_toc") == id)
         {
-
+            init_toc init_Toc = init_toc.Parser.ParseFrom(contont);
+            int playerCount = (int)init_Toc.PlayerCount;
+            PlayerColorEnum playerColor = (PlayerColorEnum)init_Toc.Identity;
+            SecretTaskEnum secretTask = (SecretTaskEnum)init_Toc.SecretTask;
+            GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask);
         }
         else
         {

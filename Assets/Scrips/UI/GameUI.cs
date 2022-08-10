@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    public PlayerUI playerUI;
-    public UICard cardUIItem;
+    public UIPlayer itemPlayerUI;
+    public UICard itemCardUI;
     public RectTransform transCards;
     public Transform transPlayerSelf;
     public GridLayoutGroup gridCards;
@@ -15,13 +15,47 @@ public class GameUI : MonoBehaviour
     public GridLayoutGroup leftPlayerGrid;
     public GridLayoutGroup rightPlayerGrid;
 
-    private List<UICard> UICards = new List<UICard>();
+    public Dictionary<int, UICard> UICards = new Dictionary<int, UICard>();
+    public Dictionary<int, UIPlayer> uiPlayers = new Dictionary<int, UIPlayer>();
     public void InitPlayers(int num)
     {
+        if(uiPlayers.Count > 0)
+        {
+            foreach(var playerUI in uiPlayers)
+            {
+                GameObject.Destroy(playerUI.Value.gameObject);
+            }
+            uiPlayers.Clear();
+        }
         int leftNum = (num - 1) / 3;
         int topNum = num - 1 - 2 * leftNum;
 
-        var self = GameObject.Instantiate(playerUI, transPlayerSelf);
+        var self = GameObject.Instantiate(itemPlayerUI, transPlayerSelf);
+        self.Init(0);
+        uiPlayers[0] = self;
+        for(int i = 1; i < leftNum + 1; i++)
+        {
+            var player = GameObject.Instantiate(itemPlayerUI, rightPlayerGrid.transform);
+            player.Init(i);
+            uiPlayers[i] = player;
+        }
+        for (int i = 1 + leftNum; i < 1 + leftNum + topNum; i ++)
+        {
+            var player = GameObject.Instantiate(itemPlayerUI, topPlayerGrid.transform);
+            player.Init(i);
+            uiPlayers[i] = player;
+        }
+        for (int i = 1 + leftNum + topNum; i <1 + leftNum + topNum + leftNum; i++)
+        {
+            var player = GameObject.Instantiate(itemPlayerUI, leftPlayerGrid.transform);
+            player.Init(i);
+            uiPlayers[i] = player;
+        }
+        leftPlayerGrid.spacing = new Vector2(0, (leftPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - leftPlayerGrid.cellSize.y * leftNum) / leftNum);
+        rightPlayerGrid.spacing = new Vector2(0, (rightPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - rightPlayerGrid.cellSize.y * leftNum) / leftNum);
+        topPlayerGrid.spacing = new Vector2((topPlayerGrid.GetComponent<RectTransform>().sizeDelta.x - rightPlayerGrid.cellSize.x * topNum) / topNum, 0);
+
+
     }
 
     public void InitCards(int count)
@@ -31,9 +65,9 @@ public class GameUI : MonoBehaviour
             this.ClearCards();
             for(int i = count; i > 0; i--)
             {
-                UICard card = GameObject.Instantiate(cardUIItem, transCards);
+                UICard card = GameObject.Instantiate(itemCardUI, transCards);
                 card.Init(i);
-                UICards.Add(card);
+                UICards[i] = (card);
             }
         }
         else 
@@ -47,9 +81,9 @@ public class GameUI : MonoBehaviour
         int count = cards .Count;
         for (int i = count; i > 0; i--)
         {
-            UICard card = GameObject.Instantiate(cardUIItem, transCards);
+            UICard card = GameObject.Instantiate(itemCardUI, transCards);
             card.Init(i, cards[count - i]);
-            UICards.Add(card);
+            UICards[cards[i - 1].id] = card;
         }
         CardsSizeFitter();
     }
@@ -58,9 +92,9 @@ public class GameUI : MonoBehaviour
     {
         if (UICards.Count > 0)
         {
-            for (int i = 0; i < UICards.Count; i++)
+            foreach(var kv in UICards)
             {
-                GameObject.Destroy(UICards[i].gameObject);
+                GameObject.Destroy(kv.Value.gameObject);
             }
             UICards.Clear();
         }

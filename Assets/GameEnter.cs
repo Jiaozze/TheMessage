@@ -8,7 +8,7 @@ public class GameEnter : MonoBehaviour
 {
     public InputField Input;
     public static byte[] test;
-    private string ip;
+    private string ip = "127.0.0.1";
     // Start is called before the first frame update
     private void Awake()
     {

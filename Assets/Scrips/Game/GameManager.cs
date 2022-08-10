@@ -8,12 +8,13 @@ public class GameManager
     public bool dir;
     public GameUI gameUI;
 
-    public Dictionary<int, PlayerBase> players = new Dictionary<int, PlayerBase>();
-    public Dictionary<int, CardFS> cards = new Dictionary<int, CardFS>(); //<id, card>
+    public Dictionary<int, Player> players = new Dictionary<int, Player>();
+    public Dictionary<int, CardFS> cardsHand = new Dictionary<int, CardFS>(); //<id, card>
 
-    public int topColor; // 黑色牌声明的颜色
-    public int topCardCount;
-    public int wantColor;
+    public SecretTaskEnum task;
+    //public int topColor; // 黑色牌声明的颜色
+    //public int topCardCount;
+    //public int wantColor;
 
     public int onTurnPlayerId = -1;
     private List<int> selectCardIds = new List<int>();
@@ -60,7 +61,7 @@ public class GameManager
         players.Clear();
         for (int i = 0; i < num; i++)
         {
-            PlayerBase player = new PlayerBase();
+            Player player = new Player();
             players.Add(i, player);
         }
     }
@@ -69,7 +70,7 @@ public class GameManager
         foreach (var card in cards)
         {
             card.isHand = true;
-            this.cards.Add(card.id, card);
+            this.cardsHand.Add(card.id, card);
         }
     }
     public void SetDeckNum(int num)
@@ -159,7 +160,7 @@ public class GameManager
             }
         }
 
-            string colorStr = "<color=#" + ColorUtility.ToHtmlStringRGBA(color1) + ">" + num + "</color>";
+        string colorStr = "<color=#" + ColorUtility.ToHtmlStringRGBA(color1) + ">" + num + "</color>";
         return colorStr;
     }
 
@@ -177,13 +178,16 @@ public class GameManager
     #region 服务器消息处理
 
 
-    public void OnReceiveGameStart(int player_num, List<CardFS> cards)
+    public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask)
     {
+        this.task = secretTask;
+
         InitPlayers(player_num);
+        players[0].playerColor = playerColor;
         gameUI.InitPlayers(player_num);
 
-        InitCards(cards);
-        gameUI.InitCards(cards.Count);
+        InitCards(new List<CardFS>());
+        gameUI.InitCards(0);
         //gameUI.AddMsg(string.Format("你摸了{0}张牌, {1}", cards.Count, GetCardsInfo(cards)));
 
     }
@@ -199,15 +203,20 @@ public class GameManager
         //}
         //DeckNum = DeckNum - 1;
         //SetDeckNum(DeckNum);
+        int total = players[0].DrawCard(cards.Count);
         gameUI.DrawCards(cards);
+        if (gameUI.uiPlayers[0] != null) gameUI.uiPlayers[0].OnDrawCard(total, cards.Count);
         gameUI.AddMsg(string.Format("你摸了{0}张牌; {1}", cards.Count, cardInfo));
 
     }
 
     public void OnOtherDrawCards(int id, int num)
     {
-        DeckNum = DeckNum - num;
-        SetDeckNum(DeckNum);
+        int total = players[id].DrawCard(num);
+        if (gameUI.uiPlayers[id] != null)
+        {
+            gameUI.uiPlayers[id].OnDrawCard(total, num);
+        }
         gameUI.AddMsg(string.Format("{0}号玩家摸了{1}张牌", id, num));
     }
 
@@ -250,7 +259,7 @@ public class GameManager
         {
             return;
         }
-        CardFS card = cards[selectCard];
+        CardFS card = cardsHand[selectCard];
 
         if (IsCardAvailable(card.id, card.id))
         {
@@ -277,4 +286,11 @@ public class GameManager
     }
 
     #endregion
+}
+
+public enum SecretTaskEnum
+{
+    Killer = 0, // 你的回合中，一名红色和蓝色情报合计不少于2张的人死亡
+    Stealer = 1, // 你的回合中，有人宣胜，则你代替他胜利
+    Collector = 2, // 你获得3张红色情报或者3张蓝色情报
 }
