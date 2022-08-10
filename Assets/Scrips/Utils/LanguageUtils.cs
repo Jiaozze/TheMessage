@@ -1,4 +1,4 @@
-
+ï»¿
 
 public class LanguageUtils
 {
@@ -6,24 +6,24 @@ public class LanguageUtils
     {
         switch(nameEnum)
         {
-            case CardNameEnum.Bi_Po:
-                return "±ÆÆÈ";
+            case CardNameEnum.Wei_Bi:
+                return "å¨é€¼";
             case CardNameEnum.Cheng_Qing:
-                return "³ÎÇå";
+                return "æ¾„æ¸…";
             case CardNameEnum.Diao_Bao:
-                return "µô°ü";
+                return "æ‰åŒ…";
             case CardNameEnum.Jie_Huo:
-                return "½Ø»ñ";
+                return "æˆªè·";
             case CardNameEnum.Li_You:
-                return "ÀûÓÕ";
+                return "åˆ©è¯±";
             case CardNameEnum.Ping_Heng:
-                return "Æ½ºâ";
+                return "å¹³è¡¡";
             case CardNameEnum.Po_Yi:
-                return "ÆÆÒë";
+                return "ç ´è¯‘";
             case CardNameEnum.Shi_Tan:
-                return "ÊÔÌ½";
+                return "è¯•æ¢";
             case CardNameEnum.Wu_Dao:
-                return "Îóµ¼";
+                return "è¯¯å¯¼";
         }
         return "";
     }

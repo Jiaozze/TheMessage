@@ -163,7 +163,7 @@ public class GameManager
         return colorStr;
     }
 
-    public string GetCardsInfo(List<CardUI> cards)
+    public string GetCardsInfo(List<UICard> cards)
     {
         string ret = "";
         foreach (var card in cards)

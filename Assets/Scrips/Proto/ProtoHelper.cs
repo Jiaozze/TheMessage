@@ -11,17 +11,17 @@ public static class ProtoHelper
 {
     public static void OnReceiveMsg(int id, byte[] contont)
     {
-        Debug.LogError(id);
+        //Debug.LogError(id);
         if(GetIdFromProtoName("add_card_toc") == id)
         {
-            Debug.LogError("add_card_toc");
+            //Debug.LogError("add_card_toc");
             add_card_toc add_card_toc = add_card_toc.Parser.ParseFrom(contont);
             if (add_card_toc.PlayerId == 0)
             {
                 List<CardFS> uno_Cards = new List<CardFS>();
                 foreach (var card in add_card_toc.Cards)
                 {
-                    Debug.LogError("-----add_card_toc, CardId CardDir CardType:" + card.CardId + "," + card.CardDir + "," + card.CardType);
+                    //Debug.LogError("-----add_card_toc, CardId CardDir CardType:" + card.CardId + "," + card.CardDir + "," + card.CardType);
                     CardFS cardFS = new CardFS(card);
                     uno_Cards.Add(cardFS);
                     //GameManager.Singleton.OnPlayerDrawCards((int)card.CardId, (int)card.Color, (int)card.Num);
@@ -30,6 +30,7 @@ public static class ProtoHelper
             }
             else
             {
+                //TODO
                 Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardUI : MonoBehaviour
+public class UICard : MonoBehaviour
 {
     public Animator animator;
     public Text textName;
@@ -12,6 +12,8 @@ public class CardUI : MonoBehaviour
     public GameObject goArrowRight;
     public Image imgColor;
     public Image imgColor2;
+    public Image image;
+    public GameObject goLock;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,10 @@ public class CardUI : MonoBehaviour
             {
                 imgColor2.color = GameUtils.GetCardColor(cardInfo.color[1]);
             }
+
+            goLock.SetActive(cardInfo.canLock);
+
+            image.sprite = Resources.Load<Sprite>("Images/cards/" + cardInfo.name.ToString());
         }
     }
 }

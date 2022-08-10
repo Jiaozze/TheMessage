@@ -6,7 +6,7 @@ public enum CardNameEnum
 {
 	Cheng_Qing = 0, // 澄清
 	Shi_Tan = 1, // 试探
-	Bi_Po = 2, // 逼迫
+	Wei_Bi = 2, // 威逼
 	Li_You = 3, // 利诱
 	Ping_Heng = 4, // 平衡
 	Po_Yi = 5, // 破译
@@ -56,6 +56,7 @@ public class CardFS
 	public CardNameEnum name;
 	public List<CardColorEnum> color;
 	public DirectionEnum direction;
+	public bool canLock;
 	//public CardTransmitType transType;
 	//public Dictionary<CardColorEnum, List<TestAction>> test = new Dictionary<CardColorEnum, List<TestAction>>();
 
@@ -71,5 +72,6 @@ public class CardFS
 			this.color.Add((CardColorEnum)color);
         }
 		direction = (DirectionEnum)card.CardDir;
+		canLock = card.CanLock;
     }
 }
