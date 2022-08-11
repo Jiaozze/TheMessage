@@ -53,7 +53,7 @@ public enum TestAction
 public class CardFS 
 {
 	public int id = -1;
-	public CardNameEnum name;
+	public CardNameEnum cardName;
 	public List<CardColorEnum> color;
 	public DirectionEnum direction;
 	public bool canLock;
@@ -65,7 +65,7 @@ public class CardFS
 	public CardFS(card card)
     {
 		id = (int)card.CardId;
-		name = (CardNameEnum)card.CardType;
+		cardName = (CardNameEnum)card.CardType;
 		color = new List<CardColorEnum>();
 		foreach(var color in card.CardColor)
         {
@@ -73,8 +73,9 @@ public class CardFS
         }
 		direction = (DirectionEnum)card.CardDir;
 		canLock = card.CanLock;
-		if(name == CardNameEnum.Shi_Tan)
+		if(cardName == CardNameEnum.Shi_Tan)
         {
+			//Debug.LogError("==================" + card.CardId);
 			shiTanColor = new List<PlayerColorEnum>();
 			foreach (var color in card.WhoDrawCard)
 			{

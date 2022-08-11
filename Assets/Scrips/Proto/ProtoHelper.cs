@@ -12,7 +12,8 @@ public static class ProtoHelper
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //Debug.LogError(id);
-        if(GetIdFromProtoName("add_card_toc") == id)
+        // 通知客户端：某个玩家摸了一张卡
+        if (GetIdFromProtoName("add_card_toc") == id)
         {
             //Debug.LogError("add_card_toc");
             add_card_toc add_card_toc = add_card_toc.Parser.ParseFrom(contont);
@@ -33,7 +34,8 @@ public static class ProtoHelper
                 //Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
             }
         }
-        else if(GetIdFromProtoName("init_toc") == id)
+        // 通知客户端：初始化游戏
+        else if (GetIdFromProtoName("init_toc") == id)
         {
             init_toc init_Toc = init_toc.Parser.ParseFrom(contont);
             int playerCount = (int)init_Toc.PlayerCount;
@@ -41,103 +43,71 @@ public static class ProtoHelper
             SecretTaskEnum secretTask = (SecretTaskEnum)init_Toc.SecretTask;
             GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask);
         }
+        // 通知客户端，到谁的哪个阶段了
+        else if (GetIdFromProtoName("notify_phase_toc") == id)
+        {
+            notify_phase_toc notify_phase_toc = notify_phase_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.IntelligencePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, notify_phase_toc.Seq);
+            Debug.Log("_______receive________notify_phase_toc " + notify_phase_toc.WaitingPlayerId + " seq:" + notify_phase_toc.Seq);
+        }
+        // 通知客户端，谁对谁使用了试探
+        else if (GetIdFromProtoName("use_shi_tan_toc") == id)
+        {
+            Debug.LogError("TODO use_shi_tan_toc");
+        }
+        // 向被试探者展示试探，并等待回应
+        else if (GetIdFromProtoName("show_shi_tan_toc") == id)
+        {
+            Debug.LogError("TODO show_shi_tan_toc");
+        }
+        // 被试探者执行试探
+        else if (GetIdFromProtoName("execute_shi_tan_toc") == id)
+        {
+            Debug.LogError("TODO execute_shi_tan_toc");
+        }
+        // 通知客户端，牌堆的剩余数量
+        else if (GetIdFromProtoName("sync_deck_num_toc") == id)
+        {
+            Debug.LogError("TODO sync_deck_num_toc");
+
+        }
+        // 通知客户端，牌从谁的手牌被弃掉
+        else if (GetIdFromProtoName("discard_card_toc") == id)
+        {
+            Debug.LogError("TODO discard_card_toc");
+
+        }
         else
         {
             Debug.LogError("undefine proto:" + id);
         }
-        //switch (name)
-        //{
-        //    case "init_toc":
-        //        init_toc init_toc = init_toc.Parser.ParseFrom(contont);
-        //        List<Card> cards = new List<Card>();
-        //        foreach (var unoCard in init_toc.Cards)
-        //        {
-        //            Card card = new Card((int)unoCard.CardId, (int)unoCard.Color, (int)unoCard.Num, null);
-        //            Debug.LogError(string.Format("-----init_toc, CardId:{0}, color:{1}, num:{2}", unoCard.CardId, unoCard.Color, unoCard.Num));
-        //            cards.Add(card);
-        //        }
-        //        {
-        //            Debug.LogError("-----init_toc, PlayerNum:" + init_toc.PlayerNum);
-        //        }
-        //        //GameManager.Singleton.gameWindow.Invoke(new invokeDelegate());
-        //        //OnGameStart.Invoke((int)init_toc.PlayerNum, cards);
-        //        GameManager.Singleton.OnReceiveGameStart((int)init_toc.PlayerNum, cards);
-        //        break;
-        //    case "other_add_hand_card_toc":
-        //        other_add_hand_card_toc other_add_hand_card_toc = other_add_hand_card_toc.Parser.ParseFrom(contont);
-        //        Debug.LogError("-----other_add_hand_card_toc, PlayerId, Num:" + other_add_hand_card_toc.PlayerId + "," + other_add_hand_card_toc.Num);
-        //        GameManager.Singleton.OnOtherDrawCards((int)other_add_hand_card_toc.PlayerId, (int)other_add_hand_card_toc.Num);
-        //        break;
-        //case "add_card_toc":
-        //    add_card_toc add_card_toc = add_card_toc.Parser.ParseFrom(contont);
-        //    if(add_card_toc.PlayerId == 0)
-        //    {
-        //        List<CardFS> uno_Cards = new List<CardFS>();
-        //        foreach (var card in add_card_toc.Cards)
-        //        {
-        //            Debug.LogError("-----add_card_toc, CardId CardDir CardType:" + card.CardId + "," + card.CardDir + "," + card.CardType);
-        //            CardFS cardFS = new CardFS(card);
-        //            uno_Cards.Add(cardFS);
-        //            //GameManager.Singleton.OnPlayerDrawCards((int)card.CardId, (int)card.Color, (int)card.Num);
-        //        }
-        //        GameManager.Singleton.OnPlayerDrawCards(uno_Cards);
-        //    }
-        //    else
-        //    {
-        //        Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
-        //    }
-        //    break;
-        //    case "notify_turn_toc":
-        //        notify_turn_toc notify_turn_toc = notify_turn_toc.Parser.ParseFrom(contont);
-        //        Debug.LogError("-----notify_turn_toc, PlayerId Dir:" + notify_turn_toc.PlayerId + "," + notify_turn_toc.Dir);
-
-        //        GameManager.Singleton.OnTurnTo((int)notify_turn_toc.PlayerId, notify_turn_toc.Dir);
-        //        break;
-        //    case "set_deck_num_toc":
-        //        set_deck_num_toc set_deck_num_toc = set_deck_num_toc.Parser.ParseFrom(contont);
-        //        Debug.LogError("-----set_deck_num_toc, Num:" + set_deck_num_toc.Num);
-
-        //        GameManager.Singleton.OnDeckNumTo((int)set_deck_num_toc.Num);
-        //        break;
-        //    case "discard_card_toc":
-        //        discard_card_toc discard_card_toc = discard_card_toc.Parser.ParseFrom(contont);
-        //        Debug.LogError("-----discard_card_toc, PlayerId CardId Color Num WantColor:" + discard_card_toc.PlayerId + "," + discard_card_toc.Card.CardId + "," + discard_card_toc.Card.Color + "," + discard_card_toc.Card.Num + "," + discard_card_toc.WantColor);
-        //        GameManager.Singleton.OnDisCard((int)discard_card_toc.PlayerId, (int)discard_card_toc.Card.CardId, (int)discard_card_toc.Card.Color, (int)discard_card_toc.Card.Num, (int)discard_card_toc.WantColor);
-        //        break;
-        //    case "discard_card_tos":
-        //        discard_card_tos discard_card_tos = discard_card_tos.Parser.ParseFrom(contont);
-        //        //Debug.LogError("-----discard_card_toc, PlayerId CardId Color Num WantColor:" + discard_card_tos.PlayerId + discard_card_tos.Card.CardId + discard_card_tos.Card.Color + discard_card_tos.Card.Num + discard_card_tos.WantColor);
-        //        Debug.Log("---------------------discard_card_tos" + discard_card_tos.CardId);
-        //        //GameManager.Singleton.OnDisCard((int)discard_card_tos.PlayerId, (int)discard_card_tos.Card.CardId, (int)discard_card_tos.Card.Color, (int)discard_card_tos.Card.Num, (int)discard_card_tos.WantColor);
-
-        //        break;
-        //    default:
-        //        //Debug.LogError("undefine proto:" + name);
-        //        break;
-        //}
     }
 
-    public static void SendDiscardMessage(int cardId, int wantColor)
+    public static void SendUserCardMessage_ShiTan(int cardId, int playerId, uint seq)
     {
-        //discard_card_tos discard_Card_Tos = new discard_card_tos() {CardId = (uint)cardId, WantColor = (uint)wantColor };
+        Debug.Log("____send___________________SendUserCardMessage_ShiTan, seq:" + seq);
+        use_shi_tan_tos use_shi_tan_tos = new use_shi_tan_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, Seq = seq};
 
-        //byte[] proto = discard_Card_Tos.ToByteArray();
-        //byte[] protoName = Encoding.UTF8.GetBytes("discard_card_tos");
-        //short nameLen = (short)protoName.Length;
-        //short len = (short)(protoName.Length + proto.Length + 2);
+        byte[] proto = use_shi_tan_tos.ToByteArray();
+        SendProto("use_shi_tan_tos", proto);
+    }
 
-        //List<byte> vs = new List<byte>() {(byte)(len>>8), (byte)len, (byte)(nameLen >> 8), (byte)nameLen, };
-        //foreach(var bt in protoName)
-        //{
-        //    vs.Add(bt);
-        //}
-        //foreach(var bt in proto)
-        //{
-        //    vs.Add(bt);
-        //}
-        //byte[] msg = vs.ToArray();
-        ////Debug.Log(BitConverter.ToString(msg, 0, msg.Length));
-        //NetWork.Send(msg);
+    
+
+    private static void SendProto(string protoName, byte[] proto)
+    {
+        int protoId = GetIdFromProtoName(protoName);
+        short len = (short)(proto.Length + 2);
+        short shortId = (short)protoId;
+        List<byte> vs = new List<byte>() { (byte)len, (byte)(len >> 8), (byte)shortId, (byte)(shortId >> 8), };
+
+        foreach (var bt in proto)
+        {
+            vs.Add(bt);
+        }
+        byte[] msg = vs.ToArray();
+        //Debug.Log(BitConverter.ToString(msg, 0, msg.Length));
+        NetWork.Send(msg);
     }
 
     private static Dictionary<string, int> proto_name_id = new Dictionary<string, int>();
