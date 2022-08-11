@@ -15,41 +15,41 @@ public class GameUI : MonoBehaviour
     public GridLayoutGroup leftPlayerGrid;
     public GridLayoutGroup rightPlayerGrid;
 
-    public Dictionary<int, UICard> UICards = new Dictionary<int, UICard>();
-    public Dictionary<int, UIPlayer> uiPlayers = new Dictionary<int, UIPlayer>();
+    public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
+    public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
     public void InitPlayers(int num)
     {
-        if(uiPlayers.Count > 0)
+        if(Players.Count > 0)
         {
-            foreach(var playerUI in uiPlayers)
+            foreach(var playerUI in Players)
             {
                 GameObject.Destroy(playerUI.Value.gameObject);
             }
-            uiPlayers.Clear();
+            Players.Clear();
         }
         int leftNum = (num - 1) / 3;
         int topNum = num - 1 - 2 * leftNum;
 
         var self = GameObject.Instantiate(itemPlayerUI, transPlayerSelf);
         self.Init(0);
-        uiPlayers[0] = self;
+        Players[0] = self;
         for(int i = 1; i < leftNum + 1; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, rightPlayerGrid.transform);
             player.Init(i);
-            uiPlayers[i] = player;
+            Players[i] = player;
         }
         for (int i = 1 + leftNum; i < 1 + leftNum + topNum; i ++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, topPlayerGrid.transform);
             player.Init(i);
-            uiPlayers[i] = player;
+            Players[i] = player;
         }
         for (int i = 1 + leftNum + topNum; i <1 + leftNum + topNum + leftNum; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, leftPlayerGrid.transform);
             player.Init(i);
-            uiPlayers[i] = player;
+            Players[i] = player;
         }
         leftPlayerGrid.spacing = new Vector2(0, (leftPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - leftPlayerGrid.cellSize.y * leftNum) / leftNum);
         rightPlayerGrid.spacing = new Vector2(0, (rightPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - rightPlayerGrid.cellSize.y * leftNum) / leftNum);
@@ -67,7 +67,7 @@ public class GameUI : MonoBehaviour
             {
                 UICard card = GameObject.Instantiate(itemCardUI, transCards);
                 card.Init(i);
-                UICards[i] = (card);
+                Cards[i] = (card);
             }
         }
         else 
@@ -83,32 +83,32 @@ public class GameUI : MonoBehaviour
         {
             UICard card = GameObject.Instantiate(itemCardUI, transCards);
             card.Init(i, cards[count - i]);
-            UICards[cards[i - 1].id] = card;
+            Cards[cards[count - i].id] = card;
         }
         CardsSizeFitter();
     }
 
     public void ClearCards()
     {
-        if (UICards.Count > 0)
+        if (Cards.Count > 0)
         {
-            foreach(var kv in UICards)
+            foreach(var kv in Cards)
             {
                 GameObject.Destroy(kv.Value.gameObject);
             }
-            UICards.Clear();
+            Cards.Clear();
         }
     }
 
     private void CardsSizeFitter()
     {
-        if(UICards.Count * gridCards.cellSize.x <= transCards.sizeDelta.x)
+        if(Cards.Count * gridCards.cellSize.x <= transCards.sizeDelta.x)
         {
             gridCards.spacing = Vector2.zero;
         }
         else
         {
-            float spacingX = -(UICards.Count * gridCards.cellSize.x - transCards.sizeDelta.x) / (UICards.Count - 1);
+            float spacingX = -(Cards.Count * gridCards.cellSize.x - transCards.sizeDelta.x) / (Cards.Count - 1);
             gridCards.spacing = new Vector2(spacingX, 0);
         }
     }
@@ -128,4 +128,8 @@ public class GameUI : MonoBehaviour
         throw new NotImplementedException();
     }
 
+    public void OnclickUserCard()
+    {
+        GameManager.Singleton.UseCard();
+    }
 }

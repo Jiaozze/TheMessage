@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 public class UICard : MonoBehaviour
 {
     public Animator animator;
+    public Button button;
     public Text textName;
     public GameObject goArrowUp;
     public GameObject goArrowLeft;
@@ -16,10 +18,13 @@ public class UICard : MonoBehaviour
     public GameObject goLock;
     public Text textShitan;
     public GameObject goShiTan;
+    public Transform transContainer;
+
+    private int cardId;
     // Start is called before the first frame update
     void Start()
     {
-
+        button.onClick.AddListener(()=> { GameManager.Singleton.SelectCardId = cardId; });
     }
 
     // Update is called once per frame
@@ -44,7 +49,8 @@ public class UICard : MonoBehaviour
     {
         if (cardInfo.id != -1)
         {
-            textName.text = LanguageUtils.GetCardName(cardInfo.name);
+            cardId = cardInfo.id;
+            textName.text = LanguageUtils.GetCardName(cardInfo.cardName);
             goArrowLeft.SetActive(cardInfo.direction == DirectionEnum.Left);
             goArrowRight.SetActive(cardInfo.direction == DirectionEnum.Right);
             goArrowUp.SetActive(cardInfo.direction == DirectionEnum.Up);
@@ -58,8 +64,8 @@ public class UICard : MonoBehaviour
 
             goLock.SetActive(cardInfo.canLock);
 
-            image.sprite = Resources.Load<Sprite>("Images/cards/" + cardInfo.name.ToString());
-            if(cardInfo.name == CardNameEnum.Shi_Tan)
+            image.sprite = Resources.Load<Sprite>("Images/cards/" + cardInfo.cardName.ToString());
+            if(cardInfo.cardName == CardNameEnum.Shi_Tan)
             {
                 goShiTan.SetActive(true);
                 string black = cardInfo.shiTanColor.Contains(PlayerColorEnum.Green) ? "+1" : "-1";
@@ -75,5 +81,11 @@ public class UICard : MonoBehaviour
                 goShiTan.SetActive(false);
             }
         }
+    }
+
+    public void OnSelect(bool select)
+    {
+        float y = select ? 30 : 0;
+        transContainer.localPosition = new Vector3(0, y);
     }
 }
