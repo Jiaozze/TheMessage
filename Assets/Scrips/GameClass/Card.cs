@@ -59,7 +59,7 @@ public class CardFS
 	public bool canLock;
 	//public CardTransmitType transType;
 	//public Dictionary<CardColorEnum, List<TestAction>> test = new Dictionary<CardColorEnum, List<TestAction>>();
-
+	public List<PlayerColorEnum> shiTanColor; 
 	public bool isHand;
 
 	public CardFS(card card)
@@ -73,5 +73,14 @@ public class CardFS
         }
 		direction = (DirectionEnum)card.CardDir;
 		canLock = card.CanLock;
-    }
+		if(name == CardNameEnum.Shi_Tan)
+        {
+			shiTanColor = new List<PlayerColorEnum>();
+			foreach (var color in card.WhoDrawCard)
+			{
+				this.shiTanColor.Add((PlayerColorEnum)color);
+			}
+
+		}
+	}
 }

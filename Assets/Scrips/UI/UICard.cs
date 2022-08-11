@@ -14,6 +14,8 @@ public class UICard : MonoBehaviour
     public Image imgColor2;
     public Image image;
     public GameObject goLock;
+    public Text textShitan;
+    public GameObject goShiTan;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,21 @@ public class UICard : MonoBehaviour
             goLock.SetActive(cardInfo.canLock);
 
             image.sprite = Resources.Load<Sprite>("Images/cards/" + cardInfo.name.ToString());
+            if(cardInfo.name == CardNameEnum.Shi_Tan)
+            {
+                goShiTan.SetActive(true);
+                string black = cardInfo.shiTanColor.Contains(PlayerColorEnum.Green) ? "+1" : "-1";
+                string red = cardInfo.shiTanColor.Contains(PlayerColorEnum.Red) ? "+1" : "-1";
+                string blue = cardInfo.shiTanColor.Contains(PlayerColorEnum.Blue) ? "+1" : "-1";
+                //textShitan.text = "<color=#0000FF>" + blue + "</color>\n"
+                //    + "<color=#FF0000>" + red + "</color>\n"
+                //    + "<color=#000000>" + black + "</color>";
+                textShitan.text = blue + "\n" + red + "\n" + "<color=#000000>" + black + "</color>";
+            }
+            else
+            {
+                goShiTan.SetActive(false);
+            }
         }
     }
 }
