@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +11,8 @@ public class GameEnter : MonoBehaviour
     {
         GameManager.Singleton.Init();
         //CardFactory.Init();
-        Input.onEndEdit.AddListener((s) => {
+        Input.onEndEdit.AddListener((s) =>
+        {
             ip = s;
         });
     }
@@ -25,7 +23,7 @@ public class GameEnter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnDestroy()

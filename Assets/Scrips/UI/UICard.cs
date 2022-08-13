@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +22,19 @@ public class UICard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button.onClick.AddListener(()=> { GameManager.Singleton.SelectCardId = cardId; });
+        button.onClick.AddListener(() => { 
+            if(GameManager.Singleton.cardsHand.ContainsKey(cardId))
+            {
+                if(GameManager.Singleton.SelectCardId == cardId)
+                {
+                    GameManager.Singleton.SelectCardId = -1;
+                }
+                else
+                {
+                    GameManager.Singleton.SelectCardId = cardId;
+                }
+            }
+        });
     }
 
     // Update is called once per frame
@@ -65,7 +75,7 @@ public class UICard : MonoBehaviour
             goLock.SetActive(cardInfo.canLock);
 
             image.sprite = Resources.Load<Sprite>("Images/cards/" + cardInfo.cardName.ToString());
-            if(cardInfo.cardName == CardNameEnum.Shi_Tan)
+            if (cardInfo.cardName == CardNameEnum.Shi_Tan)
             {
                 goShiTan.SetActive(true);
                 string black = cardInfo.shiTanColor.Contains(PlayerColorEnum.Green) ? "+1" : "-1";
@@ -87,5 +97,19 @@ public class UICard : MonoBehaviour
     {
         float y = select ? 30 : 0;
         transContainer.localPosition = new Vector3(0, y);
+    }
+
+    public void OnUse()
+    {
+        //TODO
+        Debug.LogError("卡被用了" + textName.text);
+        Destroy(gameObject);
+    }
+
+    public void OnDiscard()
+    {
+        //TODO
+        Debug.LogError("卡被弃了" + textName.text);
+        Destroy(gameObject);
     }
 }

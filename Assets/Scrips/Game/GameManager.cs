@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager
 {
+    public int SelfPlayerId = 0;
     public bool dir;
     public GameUI gameUI;
 
@@ -17,17 +16,21 @@ public class GameManager
     public int CurTurnPlayerId { get; private set; }
     public int CurMessagePlayerId { get; private set; }
     public int CurWaitingPlayerId { get; private set; }
+    public bool IsBingShiTan { get; private set; }
 
-    private int _SelectCardId = -1;
     public int SelectCardId
     {
         get { return _SelectCardId; }
         set
         {
-            if(gameUI.Cards.ContainsKey(_SelectCardId)) gameUI.Cards[_SelectCardId].OnSelect(false);
-            if(_SelectCardId == value)
+            if (gameUI.Cards.ContainsKey(_SelectCardId)) gameUI.Cards[_SelectCardId].OnSelect(false);
+            if (_SelectCardId == value)
             {
                 _SelectCardId = -1;
+            }
+            else if(value == -1)
+            {
+                _SelectCardId = value;
             }
             else
             {
@@ -38,14 +41,15 @@ public class GameManager
             Debug.Log("cardId" + _SelectCardId);
         }
     }
-    private int _SelectPlayerId = -1;
+    private int _SelectCardId = -1;
+
     public int SelectPlayerId
     {
         get { return _SelectPlayerId; }
         set
         {
             // 取消选中玩家
-            if(value == -1)
+            if (value == -1)
             {
                 if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
                 _SelectPlayerId = value;
@@ -53,15 +57,15 @@ public class GameManager
             // 判断出牌时选中玩家
             else if (cardsHand.ContainsKey(_SelectCardId))
             {
-                switch(cardsHand[_SelectCardId].cardName)
+                switch (cardsHand[_SelectCardId].cardName)
                 {
                     case CardNameEnum.Shi_Tan:
-                        if(gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
-                        if(_SelectPlayerId == value)
+                        if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
+                        if (_SelectPlayerId == value)
                         {
                             _SelectPlayerId = -1;
                         }
-                        else if (value == 0)
+                        else if (value == SelfPlayerId)
                         {
                             Debug.LogError("不能选自己作为试探的目标");
                         }
@@ -76,6 +80,8 @@ public class GameManager
             Debug.Log("_SelectPlayerId" + _SelectPlayerId);
         }
     }
+    private int _SelectPlayerId = -1;
+
     private uint seqId;
     //public int topColor; // 黑色牌声明的颜色
     //public int topCardCount;
@@ -100,6 +106,7 @@ public class GameManager
     }
     private GameManager()
     {
+
     }
 
     public void Init()
@@ -140,12 +147,11 @@ public class GameManager
             this.cardsHand.Add(card.id, card);
         }
     }
-    public void SetDeckNum(int num)
-    {
-        DeckNum = num;
-        gameUI.SetDeckNum(num);
-    }
 
+    public PlayerColorEnum GetPlayerColor()
+    {
+        return players[SelfPlayerId].playerColor;
+    }
 
 
     public bool IsCardAvailable(int color, int num)
@@ -155,7 +161,7 @@ public class GameManager
 
     public Color GetColorById(int colorId)
     {
-        Color color = Color.black;
+        Color color;
         switch (colorId)
         {
             case 0:
@@ -186,7 +192,7 @@ public class GameManager
     {
         Color color1 = GetColorById(colorId);
 
-        string nunStr = "";
+        string nunStr;
 
         if (num < 10)
         {
@@ -239,7 +245,7 @@ public class GameManager
         task = secretTask;
 
         InitPlayers(player_num);
-        players[0].playerColor = playerColor;
+        players[SelfPlayerId].playerColor = playerColor;
         gameUI.InitPlayers(player_num);
 
         InitCards(new List<CardFS>());
@@ -248,7 +254,7 @@ public class GameManager
 
     }
     // 自己摸牌
-    public void OnPlayerDrawCards(List<CardFS> cards)
+    public void OnReceivePlayerDrawCards(List<CardFS> cards)
     {
         string cardInfo = "";
         foreach (var card in cards)
@@ -258,14 +264,41 @@ public class GameManager
         }
         //DeckNum = DeckNum - 1;
         //SetDeckNum(DeckNum);
-        int total = players[0].DrawCard(cards.Count);
+        int total = players[SelfPlayerId].DrawCard(cards.Count);
         gameUI.DrawCards(cards);
-        if (gameUI.Players[0] != null) gameUI.Players[0].OnDrawCard(total, cards.Count);
+        if (gameUI.Players[SelfPlayerId] != null) gameUI.Players[SelfPlayerId].OnDrawCard(total, cards.Count);
         gameUI.AddMsg(string.Format("你摸了{0}张牌; {1}", cards.Count, cardInfo));
 
     }
+    //玩家弃牌
+    public void OnReceiveDiscards(int playerId, List<CardFS> cards)
+    {
+        if (players.ContainsKey(playerId))
+        {
+            players[playerId].cardCount = players[playerId].cardCount - cards.Count;
+        }
+        if (gameUI.Players.ContainsKey(playerId))
+        {
+            gameUI.Players[playerId].Discard(cards);
+        }
+
+        if (playerId == SelfPlayerId)
+        {
+            foreach (var card in cards)
+            {
+                int cardId = card.id;
+                if (cardsHand.ContainsKey(cardId)) cardsHand.Remove(cardId);
+                if (gameUI.Cards.ContainsKey(cardId))
+                {
+                    gameUI.Cards[cardId].OnDiscard();
+                    gameUI.Cards.Remove(cardId);
+                }
+            }
+        }
+
+    }
     //其他角色摸牌
-    public void OnOtherDrawCards(int id, int num)
+    public void OnReceiveOtherDrawCards(int id, int num)
     {
         int total = players[id].DrawCard(num);
         if (gameUI.Players[id] != null)
@@ -275,31 +308,42 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家摸了{1}张牌", id, num));
     }
     // 通知客户端，到谁的哪个阶段了
-    public void OnTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, uint seqId)
+    public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, uint seqId)
     {
-        if(waitingPlayerId == 0)
+        Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
+        if (waitingPlayerId == 0)
         {
             this.seqId = seqId;
-        }    
+        }
         curPhase = phase;
-        if (CurTurnPlayerId != playerId && gameUI.Players[CurTurnPlayerId] != null)
+        if (CurTurnPlayerId != playerId)
         {
             gameUI.Players[CurTurnPlayerId].OnTurn(false);
+        }
+
+        if (gameUI.Players[CurTurnPlayerId] != null)
+        {
             gameUI.Players[playerId]?.OnTurn(true);
         }
         CurTurnPlayerId = playerId;
 
-        if (CurMessagePlayerId != messagePlayerId && gameUI.Players[CurTurnPlayerId] != null)
+        if (CurMessagePlayerId != messagePlayerId)
         {
             gameUI.Players[CurMessagePlayerId].OnMessageTurnTo(false);
+        }
+        if (gameUI.Players[CurTurnPlayerId] != null)
+        {
             gameUI.Players[messagePlayerId]?.OnMessageTurnTo(true);
         }
         CurMessagePlayerId = messagePlayerId;
 
-        if (CurWaitingPlayerId != messagePlayerId && gameUI.Players[CurTurnPlayerId] != null)
+        if (CurWaitingPlayerId != messagePlayerId)
         {
-            gameUI.Players[CurWaitingPlayerId].DoWaiting(0);
-            gameUI.Players[waitingPlayerId]?.DoWaiting(waitSecond);
+            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
+        }
+        if (gameUI.Players[CurTurnPlayerId] != null)
+        {
+            gameUI.Players[waitingPlayerId]?.OnWaiting(waitSecond);
         }
         CurWaitingPlayerId = waitingPlayerId;
 
@@ -307,42 +351,94 @@ public class GameManager
         //gameUI.AddMsg(string.Format("{0}号玩家回合开始", id));
     }
 
-    public void OnDeckNumTo(int num)
+    // 通知客户端，谁对谁使用了试探
+    public void OnRecerveUseShiTan(int user, int targetUser, int cardId = 0)
     {
-        DeckNum = num;
-        SetDeckNum(num);
+        CardFS card = null;
+        if (players.ContainsKey(user))
+        {
+            players[user].cardCount = players[user].cardCount - 1;
+        }
+        if (user == SelfPlayerId && cardsHand.ContainsKey(cardId))
+        {
+            card = cardsHand[cardId];
+            cardsHand.Remove(cardId);
+        }
+        //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
+        gameUI.OnUseCard(user, targetUser, card);
     }
-
-    public void OnDisCard(int playerId, int id, int color, int num, int colorEx)
+    // 向被试探者展示试探，并等待回应
+    public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
     {
-        string log = "";
-        if (playerId > 999)
+        this.seqId = seqId;
+        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
         {
-            log = "从牌堆顶翻出一张牌：{0}";
+            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
         }
-        else if (playerId == 0)
+        if (gameUI.Players.ContainsKey(targetUser))
         {
-            log = "你打出了一张牌：{0}";
+            gameUI.Players[targetUser].OnWaiting(waitingTime);
         }
-        else
+        //自己是被使用者，展示
+        if (targetUser == SelfPlayerId)
         {
-            log = "" + playerId + "号玩家打出一张牌：{0}";
+            IsBingShiTan = true;
+            gameUI.ShowShiTanInfo(card, waitingTime);
         }
-        gameUI.AddMsg(string.Format(log, GetCardInfo(color, num)));
+    }
+    // 被试探者执行试探
+    public void OnReceiveExcuteShiTan(int playerId, bool isDrawCard)
+    {
+        if(playerId == SelfPlayerId)
+        {
+            gameUI.HideShiTanInfo();
+        }
+    }
+    // 通知客户端使用利诱的结果
+    public void OnRecerveUseLiYou(int user, int target, CardFS card, bool isJoinHand)
+    {
+        if (players.ContainsKey(user))
+        {
+            players[user].cardCount = players[user].cardCount - 1;
+        }
+        if (user == SelfPlayerId && cardsHand.ContainsKey(card.id))
+        {
+            cardsHand.Remove(card.id);
+        }
+        gameUI.OnUseCard(user, target, card);
+
     }
     #endregion
 
 
     #region 向服务器发送请求
-    public void UseCard()
+    public void SendEndWaiting()
+    {
+        ProtoHelper.SendEndWaiting(seqId);
+    }
+
+    public void SendUseCard()
     {
         if (SelectCardId != -1 && cardsHand.ContainsKey(SelectCardId))
         {
-            if(cardsHand[SelectCardId].cardName == CardNameEnum.Shi_Tan)
+            //使用试探
+            if (cardsHand[SelectCardId].cardName == CardNameEnum.Shi_Tan)
             {
-                if(SelectPlayerId != -1 && SelectPlayerId != 0)
+                if (SelectPlayerId != -1 && SelectPlayerId != 0)
                 {
-                    ProtoHelper.SendUserCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
+                    ProtoHelper.SendUseCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
+                }
+                else
+                {
+                    Debug.LogError("请选择正确的试探目标");
+                }
+            }
+            //使用利诱
+            else if (cardsHand[SelectCardId].cardName == CardNameEnum.Li_You)
+            {
+                if (SelectPlayerId != -1 && SelectPlayerId != 0)
+                {
+                    ProtoHelper.SendUseCardMessage_LiYou(SelectCardId, SelectPlayerId, this.seqId);
                 }
                 else
                 {
@@ -350,10 +446,12 @@ public class GameManager
                 }
             }
         }
+        SelectCardId = -1;
     }
-    public void Discard()
+    public void SendDoShiTan(int cardId)
     {
-
+        ProtoHelper.SendDoShiTan(cardId, seqId);
+        SelectCardId = -1;
     }
 
     public void DrawCard()

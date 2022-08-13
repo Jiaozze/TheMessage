@@ -4,7 +4,7 @@ public class LanguageUtils
 {
     public static string GetCardName(CardNameEnum nameEnum)
     {
-        switch(nameEnum)
+        switch (nameEnum)
         {
             case CardNameEnum.Wei_Bi:
                 return "威逼";

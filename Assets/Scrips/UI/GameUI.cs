@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public ShiTanInfo shiTanInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
     public RectTransform transCards;
@@ -19,9 +19,9 @@ public class GameUI : MonoBehaviour
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
     public void InitPlayers(int num)
     {
-        if(Players.Count > 0)
+        if (Players.Count > 0)
         {
-            foreach(var playerUI in Players)
+            foreach (var playerUI in Players)
             {
                 GameObject.Destroy(playerUI.Value.gameObject);
             }
@@ -33,19 +33,19 @@ public class GameUI : MonoBehaviour
         var self = GameObject.Instantiate(itemPlayerUI, transPlayerSelf);
         self.Init(0);
         Players[0] = self;
-        for(int i = 1; i < leftNum + 1; i++)
+        for (int i = 1; i < leftNum + 1; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, rightPlayerGrid.transform);
             player.Init(i);
             Players[i] = player;
         }
-        for (int i = 1 + leftNum; i < 1 + leftNum + topNum; i ++)
+        for (int i = 1 + leftNum; i < 1 + leftNum + topNum; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, topPlayerGrid.transform);
             player.Init(i);
             Players[i] = player;
         }
-        for (int i = 1 + leftNum + topNum; i <1 + leftNum + topNum + leftNum; i++)
+        for (int i = 1 + leftNum + topNum; i < 1 + leftNum + topNum + leftNum; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, leftPlayerGrid.transform);
             player.Init(i);
@@ -60,25 +60,25 @@ public class GameUI : MonoBehaviour
 
     public void InitCards(int count)
     {
-        if(count <= 4)
+        if (count <= 4)
         {
             this.ClearCards();
-            for(int i = count; i > 0; i--)
+            for (int i = count; i > 0; i--)
             {
                 UICard card = GameObject.Instantiate(itemCardUI, transCards);
                 card.Init(i);
                 Cards[i] = (card);
             }
         }
-        else 
-        { 
+        else
+        {
         }
         CardsSizeFitter();
     }
 
     public void DrawCards(List<CardFS> cards)
     {
-        int count = cards .Count;
+        int count = cards.Count;
         for (int i = count; i > 0; i--)
         {
             UICard card = GameObject.Instantiate(itemCardUI, transCards);
@@ -92,7 +92,7 @@ public class GameUI : MonoBehaviour
     {
         if (Cards.Count > 0)
         {
-            foreach(var kv in Cards)
+            foreach (var kv in Cards)
             {
                 GameObject.Destroy(kv.Value.gameObject);
             }
@@ -102,7 +102,7 @@ public class GameUI : MonoBehaviour
 
     private void CardsSizeFitter()
     {
-        if(Cards.Count * gridCards.cellSize.x <= transCards.sizeDelta.x)
+        if (Cards.Count * gridCards.cellSize.x <= transCards.sizeDelta.x)
         {
             gridCards.spacing = Vector2.zero;
         }
@@ -123,13 +123,43 @@ public class GameUI : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    public void SetTurn()
-    {
-        throw new NotImplementedException();
-    }
-
     public void OnclickUserCard()
     {
-        GameManager.Singleton.UseCard();
+        GameManager.Singleton.SendUseCard();
+    }
+    public void OnclickEnd()
+    {
+        GameManager.Singleton.SendEndWaiting();
+    }
+    public void ShowShiTanInfo(CardFS card, int waitingTime)
+    {
+        shiTanInfo.Show(card, waitingTime);
+    }
+
+    public void HideShiTanInfo()
+    {
+        shiTanInfo.gameObject.SetActive(false);
+    }
+    public void OnUseCard(int user, int targetUser, CardFS card = null)
+    {
+        if (Players.ContainsKey(user))
+        {
+            Players[user].UseCard(card);
+        }
+        
+        if (user == GameManager.Singleton.SelfPlayerId && card != null)
+        {
+            int cardId = card.id;
+            if (Cards.ContainsKey(cardId))
+            {
+                Cards[cardId].OnUse();
+                Cards.Remove(cardId);
+            }
+        }
+    }
+
+    public void FanPai()
+    {
+
     }
 }

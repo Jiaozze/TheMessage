@@ -2,12 +2,11 @@
 namespace Unity.Threading
 {
     using System;
-    using System.Threading;
-    using System.Collections;
     using System.Collections.Generic;
+    using System.Reflection;
+    using System.Threading;
     using UnityEngine;
     using SystemThread = System.Threading.Thread;
-    using System.Reflection;
 
     public delegate void Callback(params object[] args);
     //¼àÌýÕß
@@ -365,7 +364,7 @@ namespace Unity.Threading
             thread = newThread;
             thread.IsBackground = true;
             thread.Start(obj);
-            
+
             MonitorExit();
         }
 
