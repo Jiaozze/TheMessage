@@ -1,11 +1,7 @@
 using Google.Protobuf;
 //using Protos;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.Events;
 
 public static class ProtoHelper
 {
@@ -26,11 +22,11 @@ public static class ProtoHelper
                     CardFS cardFS = new CardFS(card);
                     uno_Cards.Add(cardFS);
                 }
-                GameManager.Singleton.OnPlayerDrawCards(uno_Cards);
+                GameManager.Singleton.OnReceivePlayerDrawCards(uno_Cards);
             }
             else
             {
-                GameManager.Singleton.OnOtherDrawCards((int)add_card_toc.PlayerId, (int)add_card_toc.UnknownCardCount);
+                GameManager.Singleton.OnReceiveOtherDrawCards((int)add_card_toc.PlayerId, (int)add_card_toc.UnknownCardCount);
                 //Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
             }
         }
@@ -47,35 +43,76 @@ public static class ProtoHelper
         else if (GetIdFromProtoName("notify_phase_toc") == id)
         {
             notify_phase_toc notify_phase_toc = notify_phase_toc.Parser.ParseFrom(contont);
-            GameManager.Singleton.OnTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.IntelligencePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, notify_phase_toc.Seq);
+            GameManager.Singleton.OnReceiveTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.IntelligencePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, notify_phase_toc.Seq);
             Debug.Log("_______receive________notify_phase_toc " + notify_phase_toc.WaitingPlayerId + " seq:" + notify_phase_toc.Seq);
         }
+
         // 通知客户端，谁对谁使用了试探
         else if (GetIdFromProtoName("use_shi_tan_toc") == id)
         {
-            Debug.LogError("TODO use_shi_tan_toc");
+            use_shi_tan_toc use_Shi_Tan_Toc = use_shi_tan_toc.Parser.ParseFrom(contont);
+
+            int user = (int)use_Shi_Tan_Toc.PlayerId;
+            int target = (int)use_Shi_Tan_Toc.TargetPlayerId;
+            int cardId = (int)use_Shi_Tan_Toc.CardId;
+            GameManager.Singleton.OnRecerveUseShiTan(user, target, cardId);
+            Debug.Log("_______receive________ use_shi_tan_toc " + user + "," + target);
         }
+
         // 向被试探者展示试探，并等待回应
         else if (GetIdFromProtoName("show_shi_tan_toc") == id)
         {
-            Debug.LogError("TODO show_shi_tan_toc");
+            show_shi_tan_toc show_Shi_Tan_Toc = show_shi_tan_toc.Parser.ParseFrom(contont);
+
+            int user = (int)show_Shi_Tan_Toc.PlayerId;
+            int target = (int)show_Shi_Tan_Toc.TargetPlayerId;
+            CardFS card = new CardFS(show_Shi_Tan_Toc.Card);
+            int time = (int)show_Shi_Tan_Toc.WaitingSecond;
+            GameManager.Singleton.OnReceiveShowShiTan(user, target, card, time, show_Shi_Tan_Toc.Seq);
         }
         // 被试探者执行试探
         else if (GetIdFromProtoName("execute_shi_tan_toc") == id)
         {
-            Debug.LogError("TODO execute_shi_tan_toc");
+            execute_shi_tan_toc execute_Shi_Tan_Toc = execute_shi_tan_toc.Parser.ParseFrom(contont);
+
+            int playerId = (int)execute_Shi_Tan_Toc.PlayerId;
+            GameManager.Singleton.OnReceiveExcuteShiTan(playerId, execute_Shi_Tan_Toc.IsDrawCard);
+            Debug.Log("_______receive________ execute_shi_tan_toc");
         }
+
         // 通知客户端，牌堆的剩余数量
         else if (GetIdFromProtoName("sync_deck_num_toc") == id)
         {
-            Debug.LogError("TODO sync_deck_num_toc");
+            Debug.Log("TODO _______receive________ sync_deck_num_toc");
 
         }
         // 通知客户端，牌从谁的手牌被弃掉
         else if (GetIdFromProtoName("discard_card_toc") == id)
         {
-            Debug.LogError("TODO discard_card_toc");
+            Debug.Log("TODO _______receive________ discard_card_toc");
 
+            discard_card_toc discard_Card_Toc = discard_card_toc.Parser.ParseFrom(contont);
+            int playerId = (int)discard_Card_Toc.PlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in discard_Card_Toc.Cards)
+            {
+                CardFS cardFS = new CardFS(card);
+                cards.Add(cardFS);
+            }
+
+            GameManager.Singleton.OnReceiveDiscards(playerId, cards);
+        }
+        // 通知客户端使用利诱的结果
+        else if (GetIdFromProtoName("use_li_you_toc") == id)
+        {
+            Debug.Log("TODO _______receive________ use_li_you_toc");
+            use_li_you_toc use_Li_You_Toc = use_li_you_toc.Parser.ParseFrom(contont);
+
+            int user = (int)use_Li_You_Toc.PlayerId;
+            int target = (int)use_Li_You_Toc.TargetPlayerId;
+            CardFS cardFS = new CardFS(use_Li_You_Toc.Card);
+
+            GameManager.Singleton.OnRecerveUseLiYou(user, target, cardFS, use_Li_You_Toc.JoinIntoHand);
         }
         else
         {
@@ -83,16 +120,45 @@ public static class ProtoHelper
         }
     }
 
-    public static void SendUserCardMessage_ShiTan(int cardId, int playerId, uint seq)
+    public static void SendEndWaiting(uint seq)
     {
-        Debug.Log("____send___________________SendUserCardMessage_ShiTan, seq:" + seq);
-        use_shi_tan_tos use_shi_tan_tos = new use_shi_tan_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, Seq = seq};
+        Debug.Log("____send___________________ end_Main_Phase_Tos, seq:" + seq);
+        end_main_phase_tos end_Main_Phase_Tos = new end_main_phase_tos() { Seq = seq };
+
+        byte[] proto = end_Main_Phase_Tos.ToByteArray();
+        SendProto("end_main_phase_tos", proto);
+    }
+
+    public static void SendUseCardMessage_ShiTan(int cardId, int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ use_shi_tan_tos, seq:" + seq);
+        use_shi_tan_tos use_shi_tan_tos = new use_shi_tan_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, Seq = seq };
 
         byte[] proto = use_shi_tan_tos.ToByteArray();
         SendProto("use_shi_tan_tos", proto);
     }
 
-    
+    public static void SendUseCardMessage_LiYou(int cardId, int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ use_li_you_tos, seq:" + seq);
+        use_li_you_tos use_li_you_tos = new use_li_you_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, Seq = seq };
+
+        byte[] proto = use_li_you_tos.ToByteArray();
+        SendProto("use_li_you_tos", proto);
+    }
+
+    public static void SendDoShiTan(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ execute_shi_tan_tos, seq:" + seq);
+        execute_shi_tan_tos execute_Shi_Tan_Tos = new execute_shi_tan_tos() { Seq = seq };
+        if(cardId > 0)
+        {
+            execute_Shi_Tan_Tos.CardId.Add((uint)cardId);
+        }
+
+        byte[] proto = execute_Shi_Tan_Tos.ToByteArray();
+        SendProto("execute_shi_tan_tos", proto);
+    }
 
     private static void SendProto(string protoName, byte[] proto)
     {

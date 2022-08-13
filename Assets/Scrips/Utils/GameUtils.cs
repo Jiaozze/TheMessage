@@ -6,7 +6,7 @@ public class GameUtils
 {
     public static Color GetCardColor(CardColorEnum colorEnum)
     {
-        switch(colorEnum)
+        switch (colorEnum)
         {
             case CardColorEnum.Black:
                 return Color.black;
@@ -15,6 +15,7 @@ public class GameUtils
             case CardColorEnum.Red:
                 return Color.red;
         }
+
         return Color.white;
     }
 }
