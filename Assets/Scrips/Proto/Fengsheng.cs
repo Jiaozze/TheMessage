@@ -47,18 +47,19 @@ public static partial class FengshengReflection {
           "ZXJfaWQYBCABKA0SFgoOd2FpdGluZ19zZWNvbmQYBSABKA0SCwoDc2VxGAYg",
           "ASgNIiEKEmVuZF9tYWluX3BoYXNlX3RvcxILCgNzZXEYASABKA0iQQoOdXNl",
           "X2xpX3lvdV90b3MSDwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiAB",
-          "KA0SCwoDc2VxGAMgASgNImoKDnVzZV9saV95b3VfdG9jEhEKCXBsYXllcl9p",
-          "ZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEhMKBGNhcmQYAyAB",
-          "KAsyBS5jYXJkEhYKDmpvaW5faW50b19oYW5kGAQgASgIKlsKBXBoYXNlEg4K",
-          "CkRyYXdfUGhhc2UQABIOCgpNYWluX1BoYXNlEAESDgoKU2VuZF9QaGFzZRAC",
-          "Eg8KC0ZpZ2h0X1BoYXNlEAMSEQoNUmVjZWl2ZV9QaGFzZRAEKoEBCgljYXJk",
-          "X3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsKB1NoaV9UYW4QARIKCgZXZWlfQmkQ",
-          "AhIKCgZMaV9Zb3UQAxINCglQaW5nX0hlbmcQBBIJCgVQb19ZaRAFEgsKB0pp",
-          "ZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoKBld1X0RhbxAIKiUKBWNvbG9yEgkK",
-          "BUJsYWNrEAASBwoDUmVkEAESCAoEQmx1ZRACKjUKC3NlY3JldF90YXNrEgoK",
-          "BktpbGxlchAAEgsKB1N0ZWFsZXIQARINCglDb2xsZWN0b3IQAiooCglkaXJl",
-          "Y3Rpb24SBgoCVXAQABIICgRMZWZ0EAESCQoFUmlnaHQQAkIQWg5wcm90b3Mv",
-          "O3Byb3Rvc2IGcHJvdG8z"));
+          "KA0SCwoDc2VxGAMgASgNIo4BCg51c2VfbGlfeW91X3RvYxIRCglwbGF5ZXJf",
+          "aWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIaCgtsaV95b3Vf",
+          "Y2FyZBgDIAEoCzIFLmNhcmQSGwoMbWVzc2FnZV9jYXJkGAQgASgLMgUuY2Fy",
+          "ZBIWCg5qb2luX2ludG9faGFuZBgFIAEoCCpbCgVwaGFzZRIOCgpEcmF3X1Bo",
+          "YXNlEAASDgoKTWFpbl9QaGFzZRABEg4KClNlbmRfUGhhc2UQAhIPCgtGaWdo",
+          "dF9QaGFzZRADEhEKDVJlY2VpdmVfUGhhc2UQBCqBAQoJY2FyZF90eXBlEg4K",
+          "CkNoZW5nX1FpbmcQABILCgdTaGlfVGFuEAESCgoGV2VpX0JpEAISCgoGTGlf",
+          "WW91EAMSDQoJUGluZ19IZW5nEAQSCQoFUG9fWWkQBRILCgdKaWVfSHVvEAYS",
+          "DAoIRGlhb19CYW8QBxIKCgZXdV9EYW8QCColCgVjb2xvchIJCgVCbGFjaxAA",
+          "EgcKA1JlZBABEggKBEJsdWUQAio1CgtzZWNyZXRfdGFzaxIKCgZLaWxsZXIQ",
+          "ABILCgdTdGVhbGVyEAESDQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0aW9uEgYK",
+          "AlVwEAASCAoETGVmdBABEgkKBVJpZ2h0EAJCEFoOcHJvdG9zLztwcm90b3Ni",
+          "BnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -75,7 +76,7 @@ public static partial class FengshengReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::notify_phase_toc), global::notify_phase_toc.Parser, new[]{ "CurrentPlayerId", "CurrentPhase", "IntelligencePlayerId", "WaitingPlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::end_main_phase_tos), global::end_main_phase_tos.Parser, new[]{ "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_li_you_tos), global::use_li_you_tos.Parser, new[]{ "CardId", "PlayerId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::use_li_you_toc), global::use_li_you_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Card", "JoinIntoHand" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::use_li_you_toc), global::use_li_you_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "LiYouCard", "MessageCard", "JoinIntoHand" }, null, null, null, null)
         }));
   }
   #endregion
@@ -2787,7 +2788,8 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
   public use_li_you_toc(use_li_you_toc other) : this() {
     playerId_ = other.playerId_;
     targetPlayerId_ = other.targetPlayerId_;
-    card_ = other.card_ != null ? other.card_.Clone() : null;
+    liYouCard_ = other.liYouCard_ != null ? other.liYouCard_.Clone() : null;
+    messageCard_ = other.messageCard_ != null ? other.messageCard_.Clone() : null;
     joinIntoHand_ = other.joinIntoHand_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -2825,22 +2827,36 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
     }
   }
 
-  /// <summary>Field number for the "card" field.</summary>
-  public const int CardFieldNumber = 3;
-  private global::card card_;
+  /// <summary>Field number for the "li_you_card" field.</summary>
+  public const int LiYouCardFieldNumber = 3;
+  private global::card liYouCard_;
+  /// <summary>
+  /// 使用的这张利诱牌
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::card LiYouCard {
+    get { return liYouCard_; }
+    set {
+      liYouCard_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "message_card" field.</summary>
+  public const int MessageCardFieldNumber = 4;
+  private global::card messageCard_;
   /// <summary>
   /// 利诱翻出来的牌。如果牌堆和弃牌堆全用完了，则为null/nil
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public global::card Card {
-    get { return card_; }
+  public global::card MessageCard {
+    get { return messageCard_; }
     set {
-      card_ = value;
+      messageCard_ = value;
     }
   }
 
   /// <summary>Field number for the "join_into_hand" field.</summary>
-  public const int JoinIntoHandFieldNumber = 4;
+  public const int JoinIntoHandFieldNumber = 5;
   private bool joinIntoHand_;
   /// <summary>
   /// 是否改为加入使用者手牌
@@ -2868,7 +2884,8 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
     }
     if (PlayerId != other.PlayerId) return false;
     if (TargetPlayerId != other.TargetPlayerId) return false;
-    if (!object.Equals(Card, other.Card)) return false;
+    if (!object.Equals(LiYouCard, other.LiYouCard)) return false;
+    if (!object.Equals(MessageCard, other.MessageCard)) return false;
     if (JoinIntoHand != other.JoinIntoHand) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -2878,7 +2895,8 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
     int hash = 1;
     if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
-    if (card_ != null) hash ^= Card.GetHashCode();
+    if (liYouCard_ != null) hash ^= LiYouCard.GetHashCode();
+    if (messageCard_ != null) hash ^= MessageCard.GetHashCode();
     if (JoinIntoHand != false) hash ^= JoinIntoHand.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -2901,12 +2919,16 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
       output.WriteRawTag(16);
       output.WriteUInt32(TargetPlayerId);
     }
-    if (card_ != null) {
+    if (liYouCard_ != null) {
       output.WriteRawTag(26);
-      output.WriteMessage(Card);
+      output.WriteMessage(LiYouCard);
+    }
+    if (messageCard_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(MessageCard);
     }
     if (JoinIntoHand != false) {
-      output.WriteRawTag(32);
+      output.WriteRawTag(40);
       output.WriteBool(JoinIntoHand);
     }
     if (_unknownFields != null) {
@@ -2923,8 +2945,11 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
     if (TargetPlayerId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
     }
-    if (card_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
+    if (liYouCard_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(LiYouCard);
+    }
+    if (messageCard_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(MessageCard);
     }
     if (JoinIntoHand != false) {
       size += 1 + 1;
@@ -2946,11 +2971,17 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
     if (other.TargetPlayerId != 0) {
       TargetPlayerId = other.TargetPlayerId;
     }
-    if (other.card_ != null) {
-      if (card_ == null) {
-        Card = new global::card();
+    if (other.liYouCard_ != null) {
+      if (liYouCard_ == null) {
+        LiYouCard = new global::card();
       }
-      Card.MergeFrom(other.Card);
+      LiYouCard.MergeFrom(other.LiYouCard);
+    }
+    if (other.messageCard_ != null) {
+      if (messageCard_ == null) {
+        MessageCard = new global::card();
+      }
+      MessageCard.MergeFrom(other.MessageCard);
     }
     if (other.JoinIntoHand != false) {
       JoinIntoHand = other.JoinIntoHand;
@@ -2975,13 +3006,20 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
           break;
         }
         case 26: {
-          if (card_ == null) {
-            Card = new global::card();
+          if (liYouCard_ == null) {
+            LiYouCard = new global::card();
           }
-          input.ReadMessage(Card);
+          input.ReadMessage(LiYouCard);
           break;
         }
-        case 32: {
+        case 34: {
+          if (messageCard_ == null) {
+            MessageCard = new global::card();
+          }
+          input.ReadMessage(MessageCard);
+          break;
+        }
+        case 40: {
           JoinIntoHand = input.ReadBool();
           break;
         }

@@ -28,7 +28,7 @@ public class GameManager
             {
                 _SelectCardId = -1;
             }
-            else if(value == -1)
+            else if (value == -1)
             {
                 _SelectCardId = value;
             }
@@ -48,10 +48,15 @@ public class GameManager
         get { return _SelectPlayerId; }
         set
         {
+            if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
+            if (_SelectPlayerId == value)
+            {
+                _SelectPlayerId = -1;
+            }
+
             // 取消选中玩家
             if (value == -1)
             {
-                if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
                 _SelectPlayerId = value;
             }
             // 判断出牌时选中玩家
@@ -60,16 +65,18 @@ public class GameManager
                 switch (cardsHand[_SelectCardId].cardName)
                 {
                     case CardNameEnum.Shi_Tan:
-                        if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
-                        if (_SelectPlayerId == value)
-                        {
-                            _SelectPlayerId = -1;
-                        }
-                        else if (value == SelfPlayerId)
+                        if (value == SelfPlayerId)
                         {
                             Debug.LogError("不能选自己作为试探的目标");
                         }
-                        else
+                        else if (gameUI.Players.ContainsKey(value))
+                        {
+                            _SelectPlayerId = value;
+                            gameUI.Players[_SelectPlayerId].OnSelect(true);
+                        }
+                        break;
+                    case CardNameEnum.Li_You:
+                        if (gameUI.Players.ContainsKey(value))
                         {
                             _SelectPlayerId = value;
                             gameUI.Players[_SelectPlayerId].OnSelect(true);
@@ -237,6 +244,19 @@ public class GameManager
         return ret;
     }
 
+    private void OnCardUse(int user, int target, CardFS cardUsed)
+    {
+        if (players.ContainsKey(user))
+        {
+            players[user].cardCount = players[user].cardCount - 1;
+        }
+        if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
+        {
+            cardsHand.Remove(cardUsed.id);
+        }
+        gameUI.OnUseCard(user, target, cardUsed);
+    }
+
     #region 服务器消息处理
 
     // 通知客户端：初始化游戏
@@ -389,24 +409,31 @@ public class GameManager
     // 被试探者执行试探
     public void OnReceiveExcuteShiTan(int playerId, bool isDrawCard)
     {
-        if(playerId == SelfPlayerId)
+        if (playerId == SelfPlayerId)
         {
             gameUI.HideShiTanInfo();
         }
     }
     // 通知客户端使用利诱的结果
-    public void OnRecerveUseLiYou(int user, int target, CardFS card, bool isJoinHand)
+    public void OnRecerveUseLiYou(int user, int target, CardFS cardUsed, CardFS card, bool isJoinHand)
     {
-        if (players.ContainsKey(user))
-        {
-            players[user].cardCount = players[user].cardCount - 1;
-        }
-        if (user == SelfPlayerId && cardsHand.ContainsKey(card.id))
-        {
-            cardsHand.Remove(card.id);
-        }
-        gameUI.OnUseCard(user, target, card);
+        OnCardUse(user, target, cardUsed);
 
+        gameUI.ShowTopCard(card);
+        if (isJoinHand)
+        {
+            if (players.ContainsKey(user))
+            {
+                players[user].cardCount += 1;
+            }
+        }
+        else
+        {
+            if (players.ContainsKey(user))
+            {
+                players[user].AddMessage(card);
+            }
+        }
     }
     #endregion
 
