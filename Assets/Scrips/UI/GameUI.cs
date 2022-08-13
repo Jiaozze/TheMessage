@@ -158,8 +158,8 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void FanPai()
+    internal void ShowTopCard(CardFS card)
     {
-
+        Debug.LogError("展示了牌堆顶的牌，" + card.cardName);
     }
 }

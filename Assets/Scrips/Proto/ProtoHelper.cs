@@ -110,9 +110,9 @@ public static class ProtoHelper
 
             int user = (int)use_Li_You_Toc.PlayerId;
             int target = (int)use_Li_You_Toc.TargetPlayerId;
-            CardFS cardFS = new CardFS(use_Li_You_Toc.Card);
-
-            GameManager.Singleton.OnRecerveUseLiYou(user, target, cardFS, use_Li_You_Toc.JoinIntoHand);
+            CardFS cardLiYou = new CardFS(use_Li_You_Toc.LiYouCard);
+            CardFS cardMessage = new CardFS(use_Li_You_Toc.MessageCard);
+            GameManager.Singleton.OnRecerveUseLiYou(user, target, cardLiYou, cardMessage, use_Li_You_Toc.JoinIntoHand);
         }
         else
         {
