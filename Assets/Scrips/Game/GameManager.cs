@@ -157,7 +157,7 @@ public class GameManager
 
     public PlayerColorEnum GetPlayerColor()
     {
-        return players[SelfPlayerId].playerColor;
+        return players[SelfPlayerId].playerColor[0];
     }
 
 
@@ -265,13 +265,12 @@ public class GameManager
         task = secretTask;
 
         InitPlayers(player_num);
-        players[SelfPlayerId].playerColor = playerColor;
+        players[SelfPlayerId].playerColor = new List<PlayerColorEnum>() { playerColor };
         gameUI.InitPlayers(player_num);
 
         InitCards(new List<CardFS>());
         gameUI.InitCards(0);
         //gameUI.AddMsg(string.Format("你摸了{0}张牌, {1}", cards.Count, GetCardsInfo(cards)));
-
     }
     // 自己摸牌
     public void OnReceivePlayerDrawCards(List<CardFS> cards)

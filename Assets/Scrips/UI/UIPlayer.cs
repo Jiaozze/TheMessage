@@ -12,6 +12,7 @@ public class UIPlayer : MonoBehaviour
     public GameObject goSelect;
     public GameObject goTurnOn;
     public GameObject goMessageOn;
+    public UIPlayerColor playerColor;
     private int playerId;
 
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class UIPlayer : MonoBehaviour
         playerId = id;
         textPlayerId.text = "" + id;
         textCardCount.text = "0";
+        playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
     }
 
     public void OnDrawCard(int totalCount, int count)
