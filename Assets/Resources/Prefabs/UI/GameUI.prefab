@@ -559,7 +559,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 827282221031824117}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.03768668
+  m_Size: 0.038279608
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -910,10 +910,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 6
     m_AlignByGeometry: 0
@@ -1290,6 +1290,7 @@ MonoBehaviour:
   shiTanInfo: {fileID: 6233442418630943561}
   itemPlayerUI: {fileID: 8500817374496582300}
   itemCardUI: {fileID: 1712598523034950889}
+  textInfo: {fileID: 827282221921072762}
   transCards: {fileID: 827282221911209577}
   transPlayerSelf: {fileID: 827282221057026095}
   gridCards: {fileID: 827282221911209576}
@@ -2325,12 +2326,12 @@ PrefabInstance:
     - target: {fileID: 6713789139920658815, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.476
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6713789139920658815, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}

@@ -246,7 +246,7 @@ public class GameManager
         return ret;
     }
 
-    private void OnCardUse(int user, int target, CardFS cardUsed)
+    private void OnCardUse(int user, CardFS cardUsed, int target = -1)
     {
         if (players.ContainsKey(user))
         {
@@ -257,6 +257,9 @@ public class GameManager
             cardsHand.Remove(cardUsed.id);
         }
         gameUI.OnUseCard(user, target, cardUsed);
+        string targetInfo;
+        targetInfo = target == -1 ? "" : "对" + target + "号玩家";
+        gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
     }
 
     #region 服务器消息处理
@@ -281,7 +284,7 @@ public class GameManager
         foreach (var card in cards)
         {
             cardsHand[card.id] = card;
-            //cardInfo += GetCardInfo((int)card.Color, (int)card.Num) + ",";
+            cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
         }
         //DeckNum = DeckNum - 1;
         //SetDeckNum(DeckNum);
@@ -295,6 +298,7 @@ public class GameManager
     public void OnReceiveDiscards(int playerId, List<CardFS> cards)
     {
         //Debug.LogError("" + playerId + "号玩家弃牌 " +  cards.Count);
+        string cardInfo = "";
         if (players.ContainsKey(playerId))
         {
             players[playerId].cardCount = players[playerId].cardCount - cards.Count;
@@ -315,8 +319,10 @@ public class GameManager
                     gameUI.Cards[cardId].OnDiscard();
                     gameUI.Cards.Remove(cardId);
                 }
+                cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
         }
+        gameUI.AddMsg(string.Format("{0}号玩家弃了{1}张牌; {2}", playerId, cards.Count, cardInfo));
 
     }
     //其他角色摸牌
@@ -332,6 +338,11 @@ public class GameManager
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, uint seqId)
     {
+        if(playerId != CurTurnPlayerId)
+        {
+            gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
+        }
+
         //Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
         if (waitingPlayerId == 0)
         {
@@ -370,7 +381,6 @@ public class GameManager
         CurWaitingPlayerId = waitingPlayerId;
 
         //gameUI.SetTurn();
-        //gameUI.AddMsg(string.Format("{0}号玩家回合开始", id));
     }
 
     // 通知客户端，谁对谁使用了试探
@@ -388,6 +398,8 @@ public class GameManager
         }
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
+
+        gameUI.AddMsg(string.Format("{0}号玩家对{1}号玩家使用了试探;", user, targetUser ));
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
@@ -419,7 +431,7 @@ public class GameManager
     // 通知客户端使用利诱的结果
     public void OnRecerveUseLiYou(int user, int target, CardFS cardUsed, CardFS card, bool isJoinHand)
     {
-        OnCardUse(user, target, cardUsed);
+        OnCardUse(user, cardUsed, target);
 
         gameUI.ShowTopCard(card);
         if (isJoinHand)
@@ -427,20 +439,24 @@ public class GameManager
             if (players.ContainsKey(user))
             {
                 players[user].cardCount += 1;
+
+                gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}加入手牌", user, LanguageUtils.GetCardName(card.cardName)));
             }
         }
         else
         {
-            if (players.ContainsKey(user))
+            if (players.ContainsKey(target))
             {
-                players[user].AddMessage(card);
+                players[target].AddMessage(card);
+
+                gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}收为情报", target, LanguageUtils.GetCardName(card.cardName)));
             }
         }
     }
     // 通知客户端使用平衡的结果 //弃牌部分走 OnReceiveDiscards
     public void OnReceiveUsePingHeng(int user, int target, CardFS cardUsed)
     {
-        OnCardUse(user, target, cardUsed);
+        OnCardUse(user, cardUsed, target);
     }
     #endregion
 
