@@ -17,7 +17,11 @@ public class Player
     public List<CardFS> messageBlue = new List<CardFS>();
     public List<CardFS> messageBlack = new List<CardFS>();
 
-
+    public Player(int id)
+    {
+        playerId = id;
+        cardCount = 0;
+    }
     public int DrawCard(int count)
     {
         cardCount = cardCount + count;

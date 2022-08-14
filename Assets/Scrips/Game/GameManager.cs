@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager
@@ -54,20 +54,22 @@ public class GameManager
                 _SelectPlayerId = -1;
             }
 
-            // È¡ÏûÑ¡ÖĞÍæ¼Ò
+            // å–æ¶ˆé€‰ä¸­ç©å®¶
             if (value == -1)
             {
                 _SelectPlayerId = value;
             }
-            // ÅĞ¶Ï³öÅÆÊ±Ñ¡ÖĞÍæ¼Ò
+            // åˆ¤æ–­å‡ºç‰Œæ—¶é€‰ä¸­ç©å®¶
             else if (cardsHand.ContainsKey(_SelectCardId))
             {
                 switch (cardsHand[_SelectCardId].cardName)
                 {
+                    case CardNameEnum.Ping_Heng:
                     case CardNameEnum.Shi_Tan:
                         if (value == SelfPlayerId)
                         {
-                            Debug.LogError("²»ÄÜÑ¡×Ô¼º×÷ÎªÊÔÌ½µÄÄ¿±ê");
+                            string name = LanguageUtils.GetCardName(cardsHand[_SelectCardId].cardName);
+                            Debug.LogError("ä¸èƒ½é€‰è‡ªå·±ä½œä¸º" + name + "çš„ç›®æ ‡");
                         }
                         else if (gameUI.Players.ContainsKey(value))
                         {
@@ -90,7 +92,7 @@ public class GameManager
     private int _SelectPlayerId = -1;
 
     private uint seqId;
-    //public int topColor; // ºÚÉ«ÅÆÉùÃ÷µÄÑÕÉ«
+    //public int topColor; // é»‘è‰²ç‰Œå£°æ˜çš„é¢œè‰²
     //public int topCardCount;
     //public int wantColor;
 
@@ -142,7 +144,7 @@ public class GameManager
         players.Clear();
         for (int i = 0; i < num; i++)
         {
-            Player player = new Player();
+            Player player = new Player(i);
             players.Add(i, player);
         }
     }
@@ -210,16 +212,16 @@ public class GameManager
             switch (num)
             {
                 case 10:
-                    nunStr = "Ìø¹ı";
+                    nunStr = "è·³è¿‡";
                     break;
                 case 11:
-                    nunStr = "·´Ïò";
+                    nunStr = "åå‘";
                     break;
                 case 12:
                     nunStr = "+2";
                     break;
                 case 13:
-                    nunStr = "±äÉ«";
+                    nunStr = "å˜è‰²";
                     break;
                 case 14:
                     nunStr = "+4";
@@ -257,9 +259,9 @@ public class GameManager
         gameUI.OnUseCard(user, target, cardUsed);
     }
 
-    #region ·şÎñÆ÷ÏûÏ¢´¦Àí
+    #region æœåŠ¡å™¨æ¶ˆæ¯å¤„ç†
 
-    // Í¨Öª¿Í»§¶Ë£º³õÊ¼»¯ÓÎÏ·
+    // é€šçŸ¥å®¢æˆ·ç«¯ï¼šåˆå§‹åŒ–æ¸¸æˆ
     public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask)
     {
         task = secretTask;
@@ -270,9 +272,9 @@ public class GameManager
 
         InitCards(new List<CardFS>());
         gameUI.InitCards(0);
-        //gameUI.AddMsg(string.Format("ÄãÃşÁË{0}ÕÅÅÆ, {1}", cards.Count, GetCardsInfo(cards)));
+        //gameUI.AddMsg(string.Format("ä½ æ‘¸äº†{0}å¼ ç‰Œ, {1}", cards.Count, GetCardsInfo(cards)));
     }
-    // ×Ô¼ºÃşÅÆ
+    // è‡ªå·±æ‘¸ç‰Œ
     public void OnReceivePlayerDrawCards(List<CardFS> cards)
     {
         string cardInfo = "";
@@ -286,12 +288,13 @@ public class GameManager
         int total = players[SelfPlayerId].DrawCard(cards.Count);
         gameUI.DrawCards(cards);
         if (gameUI.Players[SelfPlayerId] != null) gameUI.Players[SelfPlayerId].OnDrawCard(total, cards.Count);
-        gameUI.AddMsg(string.Format("ÄãÃşÁË{0}ÕÅÅÆ; {1}", cards.Count, cardInfo));
+        gameUI.AddMsg(string.Format("ä½ æ‘¸äº†{0}å¼ ç‰Œ; {1}", cards.Count, cardInfo));
 
     }
-    //Íæ¼ÒÆúÅÆ
+    //ç©å®¶å¼ƒç‰Œ
     public void OnReceiveDiscards(int playerId, List<CardFS> cards)
     {
+        //Debug.LogError("" + playerId + "å·ç©å®¶å¼ƒç‰Œ " +  cards.Count);
         if (players.ContainsKey(playerId))
         {
             players[playerId].cardCount = players[playerId].cardCount - cards.Count;
@@ -316,7 +319,7 @@ public class GameManager
         }
 
     }
-    //ÆäËû½ÇÉ«ÃşÅÆ
+    //å…¶ä»–è§’è‰²æ‘¸ç‰Œ
     public void OnReceiveOtherDrawCards(int id, int num)
     {
         int total = players[id].DrawCard(num);
@@ -324,12 +327,12 @@ public class GameManager
         {
             gameUI.Players[id].OnDrawCard(total, num);
         }
-        gameUI.AddMsg(string.Format("{0}ºÅÍæ¼ÒÃşÁË{1}ÕÅÅÆ", id, num));
+        gameUI.AddMsg(string.Format("{0}å·ç©å®¶æ‘¸äº†{1}å¼ ç‰Œ", id, num));
     }
-    // Í¨Öª¿Í»§¶Ë£¬µ½Ë­µÄÄÄ¸ö½×¶ÎÁË
+    // é€šçŸ¥å®¢æˆ·ç«¯ï¼Œåˆ°è°çš„å“ªä¸ªé˜¶æ®µäº†
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, uint seqId)
     {
-        Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
+        //Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
         if (waitingPlayerId == 0)
         {
             this.seqId = seqId;
@@ -367,10 +370,10 @@ public class GameManager
         CurWaitingPlayerId = waitingPlayerId;
 
         //gameUI.SetTurn();
-        //gameUI.AddMsg(string.Format("{0}ºÅÍæ¼Ò»ØºÏ¿ªÊ¼", id));
+        //gameUI.AddMsg(string.Format("{0}å·ç©å®¶å›åˆå¼€å§‹", id));
     }
 
-    // Í¨Öª¿Í»§¶Ë£¬Ë­¶ÔË­Ê¹ÓÃÁËÊÔÌ½
+    // é€šçŸ¥å®¢æˆ·ç«¯ï¼Œè°å¯¹è°ä½¿ç”¨äº†è¯•æ¢
     public void OnRecerveUseShiTan(int user, int targetUser, int cardId = 0)
     {
         CardFS card = null;
@@ -386,7 +389,7 @@ public class GameManager
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
     }
-    // Ïò±»ÊÔÌ½ÕßÕ¹Ê¾ÊÔÌ½£¬²¢µÈ´ı»ØÓ¦
+    // å‘è¢«è¯•æ¢è€…å±•ç¤ºè¯•æ¢ï¼Œå¹¶ç­‰å¾…å›åº”
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
     {
         this.seqId = seqId;
@@ -398,14 +401,14 @@ public class GameManager
         {
             gameUI.Players[targetUser].OnWaiting(waitingTime);
         }
-        //×Ô¼ºÊÇ±»Ê¹ÓÃÕß£¬Õ¹Ê¾
+        //è‡ªå·±æ˜¯è¢«ä½¿ç”¨è€…ï¼Œå±•ç¤º
         if (targetUser == SelfPlayerId)
         {
             IsBingShiTan = true;
             gameUI.ShowShiTanInfo(card, waitingTime);
         }
     }
-    // ±»ÊÔÌ½ÕßÖ´ĞĞÊÔÌ½
+    // è¢«è¯•æ¢è€…æ‰§è¡Œè¯•æ¢
     public void OnReceiveExcuteShiTan(int playerId, bool isDrawCard)
     {
         if (playerId == SelfPlayerId)
@@ -413,7 +416,7 @@ public class GameManager
             gameUI.HideShiTanInfo();
         }
     }
-    // Í¨Öª¿Í»§¶ËÊ¹ÓÃÀûÓÕµÄ½á¹û
+    // é€šçŸ¥å®¢æˆ·ç«¯ä½¿ç”¨åˆ©è¯±çš„ç»“æœ
     public void OnRecerveUseLiYou(int user, int target, CardFS cardUsed, CardFS card, bool isJoinHand)
     {
         OnCardUse(user, target, cardUsed);
@@ -434,10 +437,15 @@ public class GameManager
             }
         }
     }
+    // é€šçŸ¥å®¢æˆ·ç«¯ä½¿ç”¨å¹³è¡¡çš„ç»“æœ //å¼ƒç‰Œéƒ¨åˆ†èµ° OnReceiveDiscards
+    public void OnReceiveUsePingHeng(int user, int target, CardFS cardUsed)
+    {
+        OnCardUse(user, target, cardUsed);
+    }
     #endregion
 
 
-    #region Ïò·şÎñÆ÷·¢ËÍÇëÇó
+    #region å‘æœåŠ¡å™¨å‘é€è¯·æ±‚
     public void SendEndWaiting()
     {
         ProtoHelper.SendEndWaiting(seqId);
@@ -447,31 +455,45 @@ public class GameManager
     {
         if (SelectCardId != -1 && cardsHand.ContainsKey(SelectCardId))
         {
-            //Ê¹ÓÃÊÔÌ½
-            if (cardsHand[SelectCardId].cardName == CardNameEnum.Shi_Tan)
+            CardNameEnum card = cardsHand[SelectCardId].cardName;
+            switch (card)
             {
-                if (SelectPlayerId != -1 && SelectPlayerId != 0)
-                {
-                    ProtoHelper.SendUseCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
-                }
-                else
-                {
-                    Debug.LogError("ÇëÑ¡ÔñÕıÈ·µÄÊÔÌ½Ä¿±ê");
-                }
-            }
-            //Ê¹ÓÃÀûÓÕ
-            else if (cardsHand[SelectCardId].cardName == CardNameEnum.Li_You)
-            {
-                if (SelectPlayerId != -1 && SelectPlayerId != 0)
-                {
-                    ProtoHelper.SendUseCardMessage_LiYou(SelectCardId, SelectPlayerId, this.seqId);
-                }
-                else
-                {
-                    Debug.LogError("ÇëÑ¡ÔñÕıÈ·µÄÊÔÌ½Ä¿±ê");
-                }
+                //ä½¿ç”¨è¯•æ¢
+                case CardNameEnum.Shi_Tan:
+                    if (SelectPlayerId != -1 && SelectPlayerId != 0)
+                    {
+                        ProtoHelper.SendUseCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
+                    }
+                    else
+                    {
+                        Debug.LogError("è¯·é€‰æ‹©æ­£ç¡®çš„è¯•æ¢ç›®æ ‡");
+                    }
+                    break;
+                //ä½¿ç”¨åˆ©è¯±
+                case CardNameEnum.Li_You:
+                    if (SelectPlayerId != -1)
+                    {
+                        ProtoHelper.SendUseCardMessage_LiYou(SelectCardId, SelectPlayerId, this.seqId);
+                    }
+                    else
+                    {
+                        Debug.LogError("è¯·é€‰æ‹©æ­£ç¡®çš„åˆ©è¯±ç›®æ ‡");
+                    }
+                    break;
+                //ä½¿ç”¨å¹³è¡¡
+                case CardNameEnum.Ping_Heng:
+                    if (SelectPlayerId != -1)
+                    {
+                        ProtoHelper.SendUseCardMessage_PingHeng(SelectCardId, SelectPlayerId, this.seqId);
+                    }
+                    else
+                    {
+                        Debug.LogError("è¯·é€‰æ‹©æ­£ç¡®çš„å¹³è¡¡ç›®æ ‡");
+                    }
+                    break;
             }
         }
+
         SelectCardId = -1;
     }
     public void SendDoShiTan(int cardId)
@@ -491,16 +513,16 @@ public class GameManager
 
 public enum SecretTaskEnum
 {
-    Killer = 0, // ÄãµÄ»ØºÏÖĞ£¬Ò»ÃûºìÉ«ºÍÀ¶É«Çé±¨ºÏ¼Æ²»ÉÙÓÚ2ÕÅµÄÈËËÀÍö
-    Stealer = 1, // ÄãµÄ»ØºÏÖĞ£¬ÓĞÈËĞûÊ¤£¬ÔòÄã´úÌæËûÊ¤Àû
-    Collector = 2, // Äã»ñµÃ3ÕÅºìÉ«Çé±¨»òÕß3ÕÅÀ¶É«Çé±¨
+    Killer = 0, // ä½ çš„å›åˆä¸­ï¼Œä¸€åçº¢è‰²å’Œè“è‰²æƒ…æŠ¥åˆè®¡ä¸å°‘äº2å¼ çš„äººæ­»äº¡
+    Stealer = 1, // ä½ çš„å›åˆä¸­ï¼Œæœ‰äººå®£èƒœï¼Œåˆ™ä½ ä»£æ›¿ä»–èƒœåˆ©
+    Collector = 2, // ä½ è·å¾—3å¼ çº¢è‰²æƒ…æŠ¥æˆ–è€…3å¼ è“è‰²æƒ…æŠ¥
 }
 
 public enum PhaseEnum
 {
-    Draw_Phase = 0,   // ÃşÅÆ½×¶Î
-    Main_Phase = 1,   // ³öÅÆ½×¶Î
-    Send_Phase = 2,   // ´«µİ½×¶Î
-    Fight_Phase = 3,   // Õù¶á½×¶Î
-    Receive_Phase = 4, // ½ÓÊÕ½×¶Î
+    Draw_Phase = 0,   // æ‘¸ç‰Œé˜¶æ®µ
+    Main_Phase = 1,   // å‡ºç‰Œé˜¶æ®µ
+    Send_Phase = 2,   // ä¼ é€’é˜¶æ®µ
+    Fight_Phase = 3,   // äº‰å¤ºé˜¶æ®µ
+    Receive_Phase = 4, // æ¥æ”¶é˜¶æ®µ
 }
