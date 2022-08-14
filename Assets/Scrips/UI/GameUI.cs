@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
     public ShiTanInfo shiTanInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
+    public Text textInfo;
     public RectTransform transCards;
     public Transform transPlayerSelf;
     public GridLayoutGroup gridCards;
@@ -119,7 +120,8 @@ public class GameUI : MonoBehaviour
 
     public void AddMsg(string v)
     {
-        Debug.Log(v);
+        textInfo.text = textInfo.text + "\n" + v;
+        //Debug.Log(v);
         //throw new NotImplementedException();
     }
 
