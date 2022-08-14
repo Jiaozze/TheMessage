@@ -105,7 +105,7 @@ public static class ProtoHelper
         // 通知客户端使用利诱的结果
         else if (GetIdFromProtoName("use_li_you_toc") == id)
         {
-            Debug.Log("TODO _______receive________ use_li_you_toc");
+            Debug.Log(" _______receive________ use_li_you_toc");
             use_li_you_toc use_Li_You_Toc = use_li_you_toc.Parser.ParseFrom(contont);
 
             int user = (int)use_Li_You_Toc.PlayerId;
@@ -113,6 +113,35 @@ public static class ProtoHelper
             CardFS cardLiYou = new CardFS(use_Li_You_Toc.LiYouCard);
             CardFS cardMessage = new CardFS(use_Li_You_Toc.MessageCard);
             GameManager.Singleton.OnRecerveUseLiYou(user, target, cardLiYou, cardMessage, use_Li_You_Toc.JoinIntoHand);
+        }
+        // 通知客户端使用平衡的结果
+        else if (GetIdFromProtoName("use_ping_heng_toc") == id)
+        {
+            Debug.Log(" _______receive________ use_ping_heng_toc");
+            use_ping_heng_toc use_Ping_Heng_Toc = use_ping_heng_toc.Parser.ParseFrom(contont);
+
+            int user = (int)use_Ping_Heng_Toc.PlayerId;
+            int target = (int)use_Ping_Heng_Toc.TargetPlayerId;
+            CardFS cardLiYou = new CardFS(use_Ping_Heng_Toc.PingHengCard);
+            //CardFS cardMessage = new CardFS(use_Li_You_Toc.MessageCard);
+            GameManager.Singleton.OnReceiveUsePingHeng(user, target, cardLiYou);
+
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in use_Ping_Heng_Toc.DiscardCards)
+            {
+                CardFS cardFS = new CardFS(card);
+                cards.Add(cardFS);
+            }
+            GameManager.Singleton.OnReceiveDiscards(user, cards);
+
+            List<CardFS> targetCards = new List<CardFS>();
+            foreach (var card in use_Ping_Heng_Toc.TargetDiscardCards)
+            {
+                CardFS cardFS = new CardFS(card);
+                targetCards.Add(cardFS);
+            }
+            GameManager.Singleton.OnReceiveDiscards(target, targetCards);
+
         }
         else
         {
@@ -147,6 +176,14 @@ public static class ProtoHelper
         SendProto("use_li_you_tos", proto);
     }
 
+    public static void SendUseCardMessage_PingHeng(int cardId, int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ use_ping_heng_tos, seq:" + seq);
+        use_ping_heng_tos use_ping_heng_tos = new use_ping_heng_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, Seq = seq };
+
+        byte[] proto = use_ping_heng_tos.ToByteArray();
+        SendProto("use_ping_heng_tos", proto);
+    }
     public static void SendDoShiTan(int cardId, uint seq)
     {
         Debug.Log("____send___________________ execute_shi_tan_tos, seq:" + seq);
