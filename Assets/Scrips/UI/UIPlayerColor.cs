@@ -42,7 +42,7 @@ public class UIPlayerColor : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.LogError(playerColors.Count);
+        //Debug.LogError(playerColors.Count);
         if(goToggles.activeSelf)
         {
             goToggles.SetActive(false);            
