@@ -143,6 +143,51 @@ public static class ProtoHelper
             GameManager.Singleton.OnReceiveDiscards(target, targetCards);
 
         }
+        // 通知所有人威逼的牌没有，展示所有手牌
+        else if(GetIdFromProtoName("wei_bi_show_hand_card_toc") == id)
+        {
+            Debug.Log(" _______receive________ wei_bi_show_hand_card_toc");
+
+            wei_bi_show_hand_card_toc wei_Bi_Show_Hand_Card_Toc = wei_bi_show_hand_card_toc.Parser.ParseFrom(contont);
+            int user = (int)wei_Bi_Show_Hand_Card_Toc.PlayerId;
+            int target = (int)wei_Bi_Show_Hand_Card_Toc.TargetPlayerId;
+            CardFS cardUsed = new CardFS(wei_Bi_Show_Hand_Card_Toc.Card);
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in wei_Bi_Show_Hand_Card_Toc.Cards)
+            {
+                CardFS cardFS = new CardFS(card);
+                cards.Add(cardFS);
+            }
+            GameManager.Singleton.OnReceiveUseWeiBiShowHands(user, target, cardUsed, cards);
+        }
+        // 通知所有人威逼等待给牌
+        else if (GetIdFromProtoName("wei_bi_wait_for_give_card_toc") == id)
+        {
+            Debug.Log(" _______receive________ wei_bi_wait_for_give_card_toc");
+
+            wei_bi_wait_for_give_card_toc wei_bi_wait_for_give_card_toc = wei_bi_wait_for_give_card_toc.Parser.ParseFrom(contont);
+            int user = (int)wei_bi_wait_for_give_card_toc.PlayerId;
+            int target = (int)wei_bi_wait_for_give_card_toc.TargetPlayerId;
+            CardFS cardUsed = new CardFS(wei_bi_wait_for_give_card_toc.Card);
+
+            int waitTime = (int)wei_bi_wait_for_give_card_toc.WaitingSecond;
+            uint seq = wei_bi_wait_for_give_card_toc.Seq;
+            CardNameEnum cardWant = (CardNameEnum)wei_bi_wait_for_give_card_toc.WantType;
+            GameManager.Singleton.OnReceiveUseWeiBiGiveCard(user, target, cardUsed, cardWant, waitTime, seq);
+        }
+        // 通知所有人威逼给牌
+        else if (GetIdFromProtoName("wei_bi_give_card_toc") == id)
+        {
+            Debug.Log(" _______receive________ wei_bi_give_card_toc");
+
+            wei_bi_give_card_toc wei_bi_give_card_toc = wei_bi_give_card_toc.Parser.ParseFrom(contont);
+            int user = (int)wei_bi_give_card_toc.PlayerId;
+            int target = (int)wei_bi_give_card_toc.TargetPlayerId;
+            CardFS cardUsed = new CardFS(wei_bi_give_card_toc.Card);
+
+            GameManager.Singleton.OnReceiveExcuteWeiBiGiveCard(user, target, cardUsed);
+        }
+
         else
         {
             Debug.LogError("undefine proto:" + id);
@@ -167,6 +212,14 @@ public static class ProtoHelper
         SendProto("use_shi_tan_tos", proto);
     }
 
+    public static void SendUseCardMessage_WeiBi(int cardId, int playerId, uint seq, CardNameEnum cardWant)
+    {
+        Debug.Log("____send___________________ use_wei_bi_tos, seq:" + seq);
+
+        use_wei_bi_tos use_Wei_Bi_Tos = new use_wei_bi_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, Seq = seq, WantType = (card_type)cardWant };
+        byte[] proto = use_Wei_Bi_Tos.ToByteArray();
+        SendProto("use_wei_bi_tos", proto);
+    }
     public static void SendUseCardMessage_LiYou(int cardId, int playerId, uint seq)
     {
         Debug.Log("____send___________________ use_li_you_tos, seq:" + seq);
@@ -184,6 +237,7 @@ public static class ProtoHelper
         byte[] proto = use_ping_heng_tos.ToByteArray();
         SendProto("use_ping_heng_tos", proto);
     }
+    // 试探弃牌或者摸牌
     public static void SendDoShiTan(int cardId, uint seq)
     {
         Debug.Log("____send___________________ execute_shi_tan_tos, seq:" + seq);
@@ -195,6 +249,14 @@ public static class ProtoHelper
 
         byte[] proto = execute_Shi_Tan_Tos.ToByteArray();
         SendProto("execute_shi_tan_tos", proto);
+    }
+    // 威逼给牌
+    public static void SendDoWeiBi(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ wei_bi_give_card_tos, seq:" + seq);
+        wei_bi_give_card_tos wei_Bi_Give_Card_Tos = new wei_bi_give_card_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = wei_Bi_Give_Card_Tos.ToByteArray();
+        SendProto("wei_bi_give_card_tos", proto);
     }
 
     private static void SendProto(string protoName, byte[] proto)

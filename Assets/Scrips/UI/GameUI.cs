@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public ShiTanInfo shiTanInfo;
+    public GameObject goWeiBiSelect;
+    public WeiBiGiveCard weiBiGiveCard;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
     public Text textInfo;
@@ -89,6 +91,20 @@ public class GameUI : MonoBehaviour
         CardsSizeFitter();
     }
 
+    public void DisCards(List<CardFS> cards)
+    {
+        foreach (var card in cards)
+        {
+            int cardId = card.id;
+
+            if (Cards.ContainsKey(cardId))
+            {
+                Cards[cardId].OnDiscard();
+                Cards.Remove(cardId);
+            }
+        }
+    }
+
     public void ClearCards()
     {
         if (Cards.Count > 0)
@@ -160,8 +176,18 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    internal void ShowTopCard(CardFS card)
+    public void ShowTopCard(CardFS card)
     {
         Debug.LogError("展示了牌堆顶的牌，" + card.cardName);
+    }
+
+    public void ShowWeiBiSelect(bool show)
+    {
+        goWeiBiSelect.SetActive(show);
+    }
+
+    public void ShowWeiBiGiveCard(CardNameEnum cardWant, int user, int waitTime)
+    {
+        weiBiGiveCard.Show(cardWant, user, waitTime);
     }
 }

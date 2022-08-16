@@ -64,6 +64,7 @@ public class GameManager
             {
                 switch (cardsHand[_SelectCardId].cardName)
                 {
+                    case CardNameEnum.Wei_Bi:
                     case CardNameEnum.Ping_Heng:
                     case CardNameEnum.Shi_Tan:
                         if (value == SelfPlayerId)
@@ -91,7 +92,7 @@ public class GameManager
     }
     private int _SelectPlayerId = -1;
 
-    private uint seqId;
+    public uint seqId;
     //public int topColor; // 黑色牌声明的颜色
     //public int topCardCount;
     //public int wantColor;
@@ -162,90 +163,6 @@ public class GameManager
         return players[SelfPlayerId].playerColor[0];
     }
 
-
-    public bool IsCardAvailable(int color, int num)
-    {
-        return true;
-    }
-
-    public Color GetColorById(int colorId)
-    {
-        Color color;
-        switch (colorId)
-        {
-            case 0:
-                color = Color.black;
-                break;
-            case 1:
-                color = Color.red;
-                break;
-            case 2:
-                color = Color.green;
-                break;
-            case 3:
-                color = Color.yellow;
-                break;
-            case 4:
-                color = Color.blue;
-                break;
-
-            default:
-                color = Color.gray;
-
-                break;
-        }
-        return color;
-    }
-
-    public string GetCardInfo(int colorId, int num)
-    {
-        Color color1 = GetColorById(colorId);
-
-        string nunStr;
-
-        if (num < 10)
-        {
-            nunStr = "" + num;
-        }
-        else
-        {
-            switch (num)
-            {
-                case 10:
-                    nunStr = "跳过";
-                    break;
-                case 11:
-                    nunStr = "反向";
-                    break;
-                case 12:
-                    nunStr = "+2";
-                    break;
-                case 13:
-                    nunStr = "变色";
-                    break;
-                case 14:
-                    nunStr = "+4";
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        string colorStr = "<color=#" + ColorUtility.ToHtmlStringRGBA(color1) + ">" + num + "</color>";
-        return colorStr;
-    }
-
-    public string GetCardsInfo(List<UICard> cards)
-    {
-        string ret = "";
-        foreach (var card in cards)
-        {
-            //ret += GetCardInfo(card.color, card.num);
-            //ret += ",";
-        }
-        return ret;
-    }
-
     private void OnCardUse(int user, CardFS cardUsed, int target = -1)
     {
         if (players.ContainsKey(user))
@@ -255,6 +172,10 @@ public class GameManager
         if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
         {
             cardsHand.Remove(cardUsed.id);
+        }
+        else if(user == SelfPlayerId && !cardsHand.ContainsKey(cardUsed.id))
+        {
+            Debug.LogError("no card in hand," + cardUsed.id);
         }
         gameUI.OnUseCard(user, target, cardUsed);
         string targetInfo;
@@ -314,13 +235,10 @@ public class GameManager
             {
                 int cardId = card.id;
                 if (cardsHand.ContainsKey(cardId)) cardsHand.Remove(cardId);
-                if (gameUI.Cards.ContainsKey(cardId))
-                {
-                    gameUI.Cards[cardId].OnDiscard();
-                    gameUI.Cards.Remove(cardId);
-                }
+
                 cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
+            gameUI.DisCards(cards);
         }
         gameUI.AddMsg(string.Format("{0}号玩家弃了{1}张牌; {2}", playerId, cards.Count, cardInfo));
 
@@ -359,6 +277,10 @@ public class GameManager
             gameUI.Players[playerId]?.OnTurn(true);
         }
         CurTurnPlayerId = playerId;
+        if(CurTurnPlayerId != SelfPlayerId)
+        {
+            gameUI.ShowWeiBiSelect(false);
+        }
 
         if (CurMessagePlayerId != messagePlayerId)
         {
@@ -442,6 +364,11 @@ public class GameManager
 
                 gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}加入手牌", user, LanguageUtils.GetCardName(card.cardName)));
             }
+
+            if(user == SelfPlayerId)
+            {
+                gameUI.DrawCards(new List<CardFS>() { card });
+            }
         }
         else
         {
@@ -457,6 +384,72 @@ public class GameManager
     public void OnReceiveUsePingHeng(int user, int target, CardFS cardUsed)
     {
         OnCardUse(user, cardUsed, target);
+    }
+    // 通知所有人威逼的牌没有，展示所有手牌
+    public void OnReceiveUseWeiBiShowHands(int user, int target, CardFS cardUsed, List<CardFS> cards)
+    {
+        OnCardUse(user, cardUsed, target);
+        if(user == SelfPlayerId)
+        {
+            string cardInfo = "";
+            foreach (var card in cards)
+            {
+                cardsHand[card.id] = card;
+                cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
+            }
+            gameUI.AddMsg(string.Format("{0}号玩家向你展示了手牌，{1}", target, cardInfo));
+        }
+    }
+    // 通知所有人威逼等待给牌
+    public void OnReceiveUseWeiBiGiveCard(int user, int target, CardFS cardUsed, CardNameEnum cardWant, int waitTime, uint seq)
+    {
+        OnCardUse(user, cardUsed, target);
+
+        this.seqId = seq;
+        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
+        {
+            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
+        }
+        if (gameUI.Players.ContainsKey(target))
+        {
+            gameUI.Players[target].OnWaiting(waitTime);
+        }
+
+        if(target == SelfPlayerId)
+        {
+            gameUI.ShowWeiBiGiveCard(cardWant, user, waitTime);
+        }
+        //Debug.LogError(cardUsed.cardName);
+    }
+
+    // 通知所有人威逼给牌
+    public void OnReceiveExcuteWeiBiGiveCard(int user, int target, CardFS cardGiven)
+    {
+        int total = players[user].DrawCard(1);
+        players[target].cardCount = players[target].cardCount - 1;
+
+        if (gameUI.Players[user] != null)
+        {
+            gameUI.Players[user].OnDrawCard(total, 1);
+        }
+
+        if (gameUI.Players.ContainsKey(target))
+        {
+            gameUI.Players[target].Discard(new List<CardFS>() {cardGiven });
+        }
+
+        if(user == SelfPlayerId)
+        {
+            cardsHand[cardGiven.id] = cardGiven;
+            gameUI.DrawCards(new List<CardFS>() { cardGiven });
+        }
+        if(SelfPlayerId == target)
+        {
+            cardsHand.Remove(cardGiven.id);
+            gameUI.DisCards(new List<CardFS>() { cardGiven });
+        }
+
+        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家一张牌{2}", target, user, LanguageUtils.GetCardName(cardGiven.cardName)));
     }
     #endregion
 
@@ -483,6 +476,18 @@ public class GameManager
                     else
                     {
                         Debug.LogError("请选择正确的试探目标");
+                    }
+                    break;
+                //使用威逼, 只打开选择界面， 不发送请求
+                case CardNameEnum.Wei_Bi:
+                    if (SelectPlayerId != -1 && SelectPlayerId != 0)
+                    {
+                        gameUI.ShowWeiBiSelect(true);
+                        return;
+                    }
+                    else
+                    {
+                        Debug.LogError("请选择正确的威逼目标");
                     }
                     break;
                 //使用利诱
@@ -515,6 +520,13 @@ public class GameManager
     public void SendDoShiTan(int cardId)
     {
         ProtoHelper.SendDoShiTan(cardId, seqId);
+        SelectCardId = -1;
+    }
+
+    public void SendDoWeiBi(int cardId)
+    {
+        Debug.LogError("威逼给牌" + cardId);
+        ProtoHelper.SendDoWeiBi(cardId, seqId);
         SelectCardId = -1;
     }
 
