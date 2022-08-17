@@ -58,7 +58,6 @@ public class CardFS
     //public CardTransmitType transType;
     //public Dictionary<CardColorEnum, List<TestAction>> test = new Dictionary<CardColorEnum, List<TestAction>>();
     public List<PlayerColorEnum> shiTanColor;
-    public bool isHand;
 
     public CardFS(card card)
     {

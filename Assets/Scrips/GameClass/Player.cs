@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,9 +14,7 @@ public class Player
     public int playerId;
     public List<PlayerColorEnum>  playerColor = new List<PlayerColorEnum>() { PlayerColorEnum.Blue, PlayerColorEnum.Green, PlayerColorEnum.Red };
     public int cardCount;
-    public List<CardFS> messageRed = new List<CardFS>();
-    public List<CardFS> messageBlue = new List<CardFS>();
-    public List<CardFS> messageBlack = new List<CardFS>();
+    public List<CardFS> messages = new List<CardFS>();
 
     public Player(int id)
     {
@@ -30,17 +29,47 @@ public class Player
 
     public void AddMessage(CardFS card)
     {
-        Debug.LogError("" + playerId + "号玩家获得情报");
+        messages.Add(card);
+        //Debug.LogError("" + playerId + "号玩家获得情报");
 
-            //if(card.color.Contains(CardColorEnum.Black))
-            //{
-            //    messageBlack.Add(card);
-            //}
-            //switch (card.color)
-            //{
-            //    case CardColorEnum.Black:
-            //        messageBlack.Add(card);
-            //        break;
-            //}
+        //if(card.color.Contains(CardColorEnum.Black))
+        //{
+        //    messageBlack.Add(card);
+        //}
+        //switch (card.color)
+        //{
+        //    case CardColorEnum.Black:
+        //        messageBlack.Add(card);
+        //        break;
+        //}
+    }
+
+    public void RemoveMessage(int targetCardId)
+    {
+        foreach(var message in messages)
+        {
+            if(message.id == targetCardId)
+            {
+                messages.Remove(message);
+            }
+        }
+    }
+
+    public int GetMessageCount(CardColorEnum color)
+    {
+        int count = 0;
+        foreach(var msg in messages)
+        {
+            if(msg.color.Contains(color))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int GetMessageCountAll()
+    {
+        return messages.Count;
     }
 }
