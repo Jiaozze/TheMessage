@@ -187,7 +187,19 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveExcuteWeiBiGiveCard(user, target, cardUsed);
         }
+        // 通知所有人澄清
+        else if (GetIdFromProtoName("use_cheng_qing_toc") == id)
+        {
+            Debug.Log(" _______receive________ use_cheng_qing_toc");
 
+            use_cheng_qing_toc use_cheng_qing_toc = use_cheng_qing_toc.Parser.ParseFrom(contont);
+            int user = (int)use_cheng_qing_toc.PlayerId;
+            int target = (int)use_cheng_qing_toc.TargetPlayerId;
+            CardFS cardUsed = new CardFS(use_cheng_qing_toc.Card);
+            int targetCardId = (int)use_cheng_qing_toc.TargetCardId;
+
+            GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
+        }
         else
         {
             Debug.LogError("undefine proto:" + id);
@@ -220,6 +232,7 @@ public static class ProtoHelper
         byte[] proto = use_Wei_Bi_Tos.ToByteArray();
         SendProto("use_wei_bi_tos", proto);
     }
+
     public static void SendUseCardMessage_LiYou(int cardId, int playerId, uint seq)
     {
         Debug.Log("____send___________________ use_li_you_tos, seq:" + seq);
@@ -237,6 +250,17 @@ public static class ProtoHelper
         byte[] proto = use_ping_heng_tos.ToByteArray();
         SendProto("use_ping_heng_tos", proto);
     }
+
+    // 请求使用澄清
+    public static void SendUseCardMessage_ChengQing(int cardId, int playerId, int targetCardId, uint seq)
+    {
+        Debug.Log("____send___________________ use_cheng_qing_tos, seq:" + seq);
+        use_cheng_qing_tos use_cheng_qing_tos = new use_cheng_qing_tos() { CardId = (uint)cardId, PlayerId = (uint)playerId, TargetCardId = (uint)targetCardId, Seq = seq };
+
+        byte[] proto = use_cheng_qing_tos.ToByteArray();
+        SendProto("use_cheng_qing_tos", proto);
+    }
+
     // 试探弃牌或者摸牌
     public static void SendDoShiTan(int cardId, uint seq)
     {

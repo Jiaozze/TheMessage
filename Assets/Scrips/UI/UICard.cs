@@ -19,8 +19,8 @@ public class UICard : MonoBehaviour
     public Transform transContainer;
 
     private int cardId;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         button.onClick.AddListener(() => { 
             if(GameManager.Singleton.cardsHand.ContainsKey(cardId))
@@ -37,10 +37,10 @@ public class UICard : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMessage(UnityEngine.Events.UnityAction onClick)
     {
-
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(onClick);
     }
 
     public void Init(int index, CardFS cardInfo = null)

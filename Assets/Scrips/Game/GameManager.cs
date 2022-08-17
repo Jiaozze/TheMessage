@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager
@@ -48,6 +49,7 @@ public class GameManager
         get { return _SelectPlayerId; }
         set
         {
+            gameUI.HidePlayerMessageInfo();
             if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
             if (_SelectPlayerId == value)
             {
@@ -84,6 +86,14 @@ public class GameManager
                             _SelectPlayerId = value;
                             gameUI.Players[_SelectPlayerId].OnSelect(true);
                         }
+                        break;
+                    case CardNameEnum.Cheng_Qing:
+                        if (gameUI.Players.ContainsKey(value) && players[value].GetMessageCount(CardColorEnum.Black) > 0)
+                        {
+                            _SelectPlayerId = value;
+                            gameUI.Players[_SelectPlayerId].OnSelect(true);
+                        }
+                        gameUI.ShowPlayerMessageInfo(_SelectPlayerId, true);
                         break;
                 }
             }
@@ -153,7 +163,6 @@ public class GameManager
     {
         foreach (var card in cards)
         {
-            card.isHand = true;
             this.cardsHand.Add(card.id, card);
         }
     }
@@ -173,7 +182,7 @@ public class GameManager
         {
             cardsHand.Remove(cardUsed.id);
         }
-        else if(user == SelfPlayerId && !cardsHand.ContainsKey(cardUsed.id))
+        else if (user == SelfPlayerId && !cardsHand.ContainsKey(cardUsed.id))
         {
             Debug.LogError("no card in hand," + cardUsed.id);
         }
@@ -256,7 +265,7 @@ public class GameManager
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, uint seqId)
     {
-        if(playerId != CurTurnPlayerId)
+        if (playerId != CurTurnPlayerId)
         {
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
         }
@@ -277,7 +286,7 @@ public class GameManager
             gameUI.Players[playerId]?.OnTurn(true);
         }
         CurTurnPlayerId = playerId;
-        if(CurTurnPlayerId != SelfPlayerId)
+        if (CurTurnPlayerId != SelfPlayerId)
         {
             gameUI.ShowWeiBiSelect(false);
         }
@@ -321,7 +330,7 @@ public class GameManager
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
 
-        gameUI.AddMsg(string.Format("{0}号玩家对{1}号玩家使用了试探;", user, targetUser ));
+        gameUI.AddMsg(string.Format("{0}号玩家对{1}号玩家使用了试探;", user, targetUser));
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
@@ -365,7 +374,7 @@ public class GameManager
                 gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}加入手牌", user, LanguageUtils.GetCardName(card.cardName)));
             }
 
-            if(user == SelfPlayerId)
+            if (user == SelfPlayerId)
             {
                 gameUI.DrawCards(new List<CardFS>() { card });
             }
@@ -375,7 +384,7 @@ public class GameManager
             if (players.ContainsKey(target))
             {
                 players[target].AddMessage(card);
-
+                gameUI.Players[target].RefreshMessage();
                 gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}收为情报", target, LanguageUtils.GetCardName(card.cardName)));
             }
         }
@@ -389,7 +398,7 @@ public class GameManager
     public void OnReceiveUseWeiBiShowHands(int user, int target, CardFS cardUsed, List<CardFS> cards)
     {
         OnCardUse(user, cardUsed, target);
-        if(user == SelfPlayerId)
+        if (user == SelfPlayerId)
         {
             string cardInfo = "";
             foreach (var card in cards)
@@ -415,7 +424,7 @@ public class GameManager
             gameUI.Players[target].OnWaiting(waitTime);
         }
 
-        if(target == SelfPlayerId)
+        if (target == SelfPlayerId)
         {
             gameUI.ShowWeiBiGiveCard(cardWant, user, waitTime);
         }
@@ -435,21 +444,35 @@ public class GameManager
 
         if (gameUI.Players.ContainsKey(target))
         {
-            gameUI.Players[target].Discard(new List<CardFS>() {cardGiven });
+            gameUI.Players[target].Discard(new List<CardFS>() { cardGiven });
         }
 
-        if(user == SelfPlayerId)
+        if (user == SelfPlayerId)
         {
             cardsHand[cardGiven.id] = cardGiven;
             gameUI.DrawCards(new List<CardFS>() { cardGiven });
         }
-        if(SelfPlayerId == target)
+        if (SelfPlayerId == target)
         {
             cardsHand.Remove(cardGiven.id);
             gameUI.DisCards(new List<CardFS>() { cardGiven });
         }
 
         gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家一张牌{2}", target, user, LanguageUtils.GetCardName(cardGiven.cardName)));
+    }
+
+    // 通知所有人澄清
+    public void OnReceiveUseChengQing(int user, int target, CardFS cardUsed, int targetCardId)
+    {
+        OnCardUse(user, cardUsed, target);
+
+        if(players.ContainsKey(target))
+        {
+            players[target].RemoveMessage(targetCardId);
+            gameUI.Players[target].RefreshMessage();
+        }
+        gameUI.AddMsg(string.Format("{0}号玩家的情报被烧毁", target));
+
     }
     #endregion
 
@@ -459,7 +482,6 @@ public class GameManager
     {
         ProtoHelper.SendEndWaiting(seqId);
     }
-
     public void SendUseCard()
     {
         if (SelectCardId != -1 && cardsHand.ContainsKey(SelectCardId))
@@ -530,11 +552,6 @@ public class GameManager
         SelectCardId = -1;
     }
 
-    public void DrawCard()
-    {
-        //ProtoHelper.SendDiscardMessage(0, 0);
-
-    }
 
     #endregion
 }

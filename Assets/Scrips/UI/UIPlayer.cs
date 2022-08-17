@@ -8,6 +8,7 @@ public class UIPlayer : MonoBehaviour
     public Button button;
     public Text textPlayerId;
     public Text textCardCount;
+    public Text textMessageCount;
     public Slider slider;
     public GameObject goSelect;
     public GameObject goTurnOn;
@@ -38,6 +39,7 @@ public class UIPlayer : MonoBehaviour
         textPlayerId.text = "" + id;
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
+        RefreshMessage();
     }
 
     public void OnDrawCard(int totalCount, int count)
@@ -53,6 +55,11 @@ public class UIPlayer : MonoBehaviour
     public void Discard(List<CardFS> cards)
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
+    }
+
+    public void RefreshMessage()
+    {
+        textMessageCount.text = "" + GameManager.Singleton.players[playerId].messages.Count;
     }
 
     public void OnTurn(bool isTurn)

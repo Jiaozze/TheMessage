@@ -67,16 +67,20 @@ public static partial class FengshengReflection {
           "Z2V0X3BsYXllcl9pZBgCIAEoDRITCgRjYXJkGAMgASgLMgUuY2FyZCJzChl3",
           "ZWlfYmlfc2hvd19oYW5kX2NhcmRfdG9jEhMKBGNhcmQYASABKAsyBS5jYXJk",
           "EhEKCXBsYXllcl9pZBgCIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgN",
-          "EhQKBWNhcmRzGAQgAygLMgUuY2FyZCpbCgVwaGFzZRIOCgpEcmF3X1BoYXNl",
-          "EAASDgoKTWFpbl9QaGFzZRABEg4KClNlbmRfUGhhc2UQAhIPCgtGaWdodF9Q",
-          "aGFzZRADEhEKDVJlY2VpdmVfUGhhc2UQBCqBAQoJY2FyZF90eXBlEg4KCkNo",
-          "ZW5nX1FpbmcQABILCgdTaGlfVGFuEAESCgoGV2VpX0JpEAISCgoGTGlfWW91",
-          "EAMSDQoJUGluZ19IZW5nEAQSCQoFUG9fWWkQBRILCgdKaWVfSHVvEAYSDAoI",
-          "RGlhb19CYW8QBxIKCgZXdV9EYW8QCColCgVjb2xvchIJCgVCbGFjaxAAEgcK",
-          "A1JlZBABEggKBEJsdWUQAio1CgtzZWNyZXRfdGFzaxIKCgZLaWxsZXIQABIL",
-          "CgdTdGVhbGVyEAESDQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0aW9uEgYKAlVw",
-          "EAASCAoETGVmdBABEgkKBVJpZ2h0EAJCEFoOcHJvdG9zLztwcm90b3NiBnBy",
-          "b3RvMw=="));
+          "EhQKBWNhcmRzGAQgAygLMgUuY2FyZCJdChJ1c2VfY2hlbmdfcWluZ190b3MS",
+          "DwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiABKA0SFgoOdGFyZ2V0",
+          "X2NhcmRfaWQYAyABKA0SCwoDc2VxGAQgASgNIm4KEnVzZV9jaGVuZ19xaW5n",
+          "X3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0S",
+          "GAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoDRIWCg50YXJnZXRfY2FyZF9pZBgE",
+          "IAEoDSpbCgVwaGFzZRIOCgpEcmF3X1BoYXNlEAASDgoKTWFpbl9QaGFzZRAB",
+          "Eg4KClNlbmRfUGhhc2UQAhIPCgtGaWdodF9QaGFzZRADEhEKDVJlY2VpdmVf",
+          "UGhhc2UQBCqBAQoJY2FyZF90eXBlEg4KCkNoZW5nX1FpbmcQABILCgdTaGlf",
+          "VGFuEAESCgoGV2VpX0JpEAISCgoGTGlfWW91EAMSDQoJUGluZ19IZW5nEAQS",
+          "CQoFUG9fWWkQBRILCgdKaWVfSHVvEAYSDAoIRGlhb19CYW8QBxIKCgZXdV9E",
+          "YW8QCColCgVjb2xvchIJCgVCbGFjaxAAEgcKA1JlZBABEggKBEJsdWUQAio1",
+          "CgtzZWNyZXRfdGFzaxIKCgZLaWxsZXIQABILCgdTdGVhbGVyEAESDQoJQ29s",
+          "bGVjdG9yEAIqKAoJZGlyZWN0aW9uEgYKAlVwEAASCAoETGVmdBABEgkKBVJp",
+          "Z2h0EAJCEFoOcHJvdG9zLztwcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -100,7 +104,9 @@ public static partial class FengshengReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_wait_for_give_card_toc), global::wei_bi_wait_for_give_card_toc.Parser, new[]{ "Card", "PlayerId", "TargetPlayerId", "WantType", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_give_card_tos), global::wei_bi_give_card_tos.Parser, new[]{ "CardId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_give_card_toc), global::wei_bi_give_card_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Card" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_show_hand_card_toc), global::wei_bi_show_hand_card_toc.Parser, new[]{ "Card", "PlayerId", "TargetPlayerId", "Cards" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_show_hand_card_toc), global::wei_bi_show_hand_card_toc.Parser, new[]{ "Card", "PlayerId", "TargetPlayerId", "Cards" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::use_cheng_qing_tos), global::use_cheng_qing_tos.Parser, new[]{ "CardId", "PlayerId", "TargetCardId", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::use_cheng_qing_toc), global::use_cheng_qing_toc.Parser, new[]{ "Card", "PlayerId", "TargetPlayerId", "TargetCardId" }, null, null, null, null)
         }));
   }
   #endregion
@@ -4574,6 +4580,447 @@ public sealed partial class wei_bi_show_hand_card_toc : pb::IMessage<wei_bi_show
         }
         case 34: {
           cards_.AddEntriesFrom(input, _repeated_cards_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 请求使用澄清
+/// </summary>
+public sealed partial class use_cheng_qing_tos : pb::IMessage<use_cheng_qing_tos> {
+  private static readonly pb::MessageParser<use_cheng_qing_tos> _parser = new pb::MessageParser<use_cheng_qing_tos>(() => new use_cheng_qing_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<use_cheng_qing_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[21]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_cheng_qing_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_cheng_qing_tos(use_cheng_qing_tos other) : this() {
+    cardId_ = other.cardId_;
+    playerId_ = other.playerId_;
+    targetCardId_ = other.targetCardId_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_cheng_qing_tos Clone() {
+    return new use_cheng_qing_tos(this);
+  }
+
+  /// <summary>Field number for the "card_id" field.</summary>
+  public const int CardIdFieldNumber = 1;
+  private uint cardId_;
+  /// <summary>
+  /// 卡牌ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint CardId {
+    get { return cardId_; }
+    set {
+      cardId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 2;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_card_id" field.</summary>
+  public const int TargetCardIdFieldNumber = 3;
+  private uint targetCardId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetCardId {
+    get { return targetCardId_; }
+    set {
+      targetCardId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 4;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as use_cheng_qing_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(use_cheng_qing_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (CardId != other.CardId) return false;
+    if (PlayerId != other.PlayerId) return false;
+    if (TargetCardId != other.TargetCardId) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (CardId != 0) hash ^= CardId.GetHashCode();
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (TargetCardId != 0) hash ^= TargetCardId.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (CardId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(CardId);
+    }
+    if (PlayerId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(PlayerId);
+    }
+    if (TargetCardId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TargetCardId);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (CardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardId);
+    }
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (TargetCardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetCardId);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(use_cheng_qing_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.CardId != 0) {
+      CardId = other.CardId;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.TargetCardId != 0) {
+      TargetCardId = other.TargetCardId;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          CardId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TargetCardId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 通知所有人澄清
+/// </summary>
+public sealed partial class use_cheng_qing_toc : pb::IMessage<use_cheng_qing_toc> {
+  private static readonly pb::MessageParser<use_cheng_qing_toc> _parser = new pb::MessageParser<use_cheng_qing_toc>(() => new use_cheng_qing_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<use_cheng_qing_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[22]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_cheng_qing_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_cheng_qing_toc(use_cheng_qing_toc other) : this() {
+    card_ = other.card_ != null ? other.card_.Clone() : null;
+    playerId_ = other.playerId_;
+    targetPlayerId_ = other.targetPlayerId_;
+    targetCardId_ = other.targetCardId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_cheng_qing_toc Clone() {
+    return new use_cheng_qing_toc(this);
+  }
+
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 1;
+  private global::card card_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::card Card {
+    get { return card_; }
+    set {
+      card_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 2;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 3;
+  private uint targetPlayerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_card_id" field.</summary>
+  public const int TargetCardIdFieldNumber = 4;
+  private uint targetCardId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetCardId {
+    get { return targetCardId_; }
+    set {
+      targetCardId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as use_cheng_qing_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(use_cheng_qing_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Card, other.Card)) return false;
+    if (PlayerId != other.PlayerId) return false;
+    if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (TargetCardId != other.TargetCardId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (card_ != null) hash ^= Card.GetHashCode();
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (TargetCardId != 0) hash ^= TargetCardId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (card_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Card);
+    }
+    if (PlayerId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(PlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TargetPlayerId);
+    }
+    if (TargetCardId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(TargetCardId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
+    }
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (TargetCardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetCardId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(use_cheng_qing_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
+      }
+      Card.MergeFrom(other.Card);
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
+    }
+    if (other.TargetCardId != 0) {
+      TargetCardId = other.TargetCardId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          if (card_ == null) {
+            Card = new global::card();
+          }
+          input.ReadMessage(Card);
+          break;
+        }
+        case 16: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          TargetCardId = input.ReadUInt32();
           break;
         }
       }

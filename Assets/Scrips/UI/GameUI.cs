@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour
     public ShiTanInfo shiTanInfo;
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
+    public PlayerMessagInfo playerMessagInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
     public Text textInfo;
@@ -189,5 +190,15 @@ public class GameUI : MonoBehaviour
     public void ShowWeiBiGiveCard(CardNameEnum cardWant, int user, int waitTime)
     {
         weiBiGiveCard.Show(cardWant, user, waitTime);
+    }
+
+    public void ShowPlayerMessageInfo(int playerId, bool showChengQing = false)
+    {
+        playerMessagInfo.Show(playerId, showChengQing);
+    }
+
+    public void HidePlayerMessageInfo()
+    {
+        playerMessagInfo.gameObject.SetActive(false);
     }
 }
