@@ -43,7 +43,8 @@ public static class ProtoHelper
         else if (GetIdFromProtoName("notify_phase_toc") == id)
         {
             notify_phase_toc notify_phase_toc = notify_phase_toc.Parser.ParseFrom(contont);
-            GameManager.Singleton.OnReceiveTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.IntelligencePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, notify_phase_toc.Seq);
+            CardFS message = new CardFS(notify_phase_toc.MessageCard);
+            GameManager.Singleton.OnReceiveTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.IntelligencePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, (DirectionEnum)notify_phase_toc.MessageCardDir, message, notify_phase_toc.Seq);
             Debug.Log("_______receive________notify_phase_toc " + notify_phase_toc.WaitingPlayerId + " seq:" + notify_phase_toc.Seq);
         }
 
@@ -144,7 +145,7 @@ public static class ProtoHelper
 
         }
         // 通知所有人威逼的牌没有，展示所有手牌
-        else if(GetIdFromProtoName("wei_bi_show_hand_card_toc") == id)
+        else if (GetIdFromProtoName("wei_bi_show_hand_card_toc") == id)
         {
             Debug.Log(" _______receive________ wei_bi_show_hand_card_toc");
 
@@ -200,12 +201,49 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
         }
+        // 通知客户端谁死亡了
+        else if (GetIdFromProtoName("notify_die_toc") == id)
+        {
+            Debug.Log(" _______receive________ notify_die_toc");
+
+            notify_die_toc notify_die_toc = notify_die_toc.Parser.ParseFrom(contont);
+            int playerId = (int)notify_die_toc.PlayerId;
+            bool loseGame = notify_die_toc.LoseGame;
+            GameManager.Singleton.OnReceivePlayerDied(playerId, loseGame);
+        }
+        // 通知客户端谁死亡了
+        else if (GetIdFromProtoName("notify_winner_toc") == id)
+        {
+            Debug.Log(" _______receive________ notify_winner_toc");
+
+            notify_winner_toc notify_winner_toc = notify_winner_toc.Parser.ParseFrom(contont);
+            int playerId = (int)notify_winner_toc.DeclarePlayerId;
+            List<int> winners = new List<int>();
+            foreach (var winner in notify_winner_toc.WinnerIds)
+            {
+                winners.Add((int)winner);
+            }
+            //GameManager.Singleton.OnReceivePlayerDied(playerId, loseGame);
+        }
+        // 濒死求澄清
+        else if (GetIdFromProtoName("wait_for_cheng_qing_toc") == id)
+        {
+            Debug.Log(" _______receive________ wait_for_cheng_qing_toc");
+
+            wait_for_cheng_qing_toc wait_for_cheng_qing_toc = wait_for_cheng_qing_toc.Parser.ParseFrom(contont);
+            int playerId = (int)wait_for_cheng_qing_toc.DiePlayerId;
+            int waitingPlayer = (int)wait_for_cheng_qing_toc.WaitingPlayerId;
+            int waitingSecond = (int)wait_for_cheng_qing_toc.WaitingSecond;
+            GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond);
+        }
+
         else
         {
             Debug.LogError("undefine proto:" + id);
         }
     }
 
+    #region 出牌阶段协议
     public static void SendEndWaiting(uint seq)
     {
         Debug.Log("____send___________________ end_Main_Phase_Tos, seq:" + seq);
@@ -266,7 +304,7 @@ public static class ProtoHelper
     {
         Debug.Log("____send___________________ execute_shi_tan_tos, seq:" + seq);
         execute_shi_tan_tos execute_Shi_Tan_Tos = new execute_shi_tan_tos() { Seq = seq };
-        if(cardId > 0)
+        if (cardId > 0)
         {
             execute_Shi_Tan_Tos.CardId.Add((uint)cardId);
         }
@@ -282,7 +320,44 @@ public static class ProtoHelper
         byte[] proto = wei_Bi_Give_Card_Tos.ToByteArray();
         SendProto("wei_bi_give_card_tos", proto);
     }
+    #endregion
 
+    #region 传情报阶段协议
+    // 请求传情报
+    public static void SendMessageCard(int cardId, int targetPlayer, List<int> lockPlayers, DirectionEnum dir, uint seq)
+    {
+        Debug.Log("____send___________________ send_message_card_tos, seq:" + seq);
+
+        send_message_card_tos send_message_card_tos = new send_message_card_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)targetPlayer, CardDir = (direction)dir, Seq = seq };
+        foreach (var lockPlayer in lockPlayers)
+        {
+            send_message_card_tos.LockPlayerId.Add((uint)lockPlayer);
+        }
+
+        byte[] proto = send_message_card_tos.ToByteArray();
+        SendProto("send_message_card_tos", proto);
+    }
+    // 选择是否接收情报
+    public static void SendWhetherReceive(bool isReceive, uint seq)
+    {
+        Debug.Log("____send___________________ choose_whether_receive_tos, seq:" + seq);
+
+        choose_whether_receive_tos choose_whether_receive_tos = new choose_whether_receive_tos() { Receive = isReceive, Seq = seq };
+
+        byte[] proto = choose_whether_receive_tos.ToByteArray();
+        SendProto("choose_whether_receive_tos", proto);
+    }
+    #endregion
+
+    // 是否使用澄清
+    public static void SendChengQingSaveDying(bool use, int cardId, int targetCard, uint seq)
+    {
+        Debug.Log("____send___________________ choose_whether_receive_tos, seq:" + seq);
+
+        cheng_qing_save_die_tos cheng_Qing_Save_Die_Tos = new cheng_qing_save_die_tos() { Use = use, CardId = (uint)cardId, TargetCardId = (uint)targetCard, Seq = seq };
+        byte[] proto = cheng_Qing_Save_Die_Tos.ToByteArray();
+        SendProto("", proto);
+    }
     private static void SendProto(string protoName, byte[] proto)
     {
         int protoId = GetIdFromProtoName(protoName);
