@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager
 {
-    public int SelfPlayerId = 0;
+    public static int SelfPlayerId = 0;
     public bool dir;
     public GameUI gameUI;
 
@@ -19,6 +19,7 @@ public class GameManager
     public int CurWaitingPlayerId { get; private set; }
     public bool IsBingShiTan { get; private set; }
 
+    public bool IsWaitSaving { get; private set; }
     public int SelectCardId
     {
         get { return _SelectCardId; }
@@ -167,6 +168,18 @@ public class GameManager
         }
     }
 
+    public CardFS GetCardSelect()
+    {
+        if (cardsHand.ContainsKey(SelectCardId))
+        {
+            return cardsHand[SelectCardId];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public PlayerColorEnum GetPlayerColor()
     {
         return players[SelfPlayerId].playerColor[0];
@@ -263,13 +276,26 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家摸了{1}张牌", id, num));
     }
     // 通知客户端，到谁的哪个阶段了
-    public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, uint seqId)
+    public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
+        gameUI.HideMessagingCard();
         if (playerId != CurTurnPlayerId)
         {
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
         }
-
+        if(phase == PhaseEnum.Send_Start_Phase)
+        {
+            gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
+        }
+        else if(phase == PhaseEnum.Send_Phase || phase == PhaseEnum.Fight_Phase)
+        {
+            gameUI.ShowMessagingCard(message, messagePlayerId);
+            if(cardsHand.ContainsKey(message.id))
+            {
+                cardsHand.Remove(message.id);
+                gameUI.DisCards(new List<CardFS>() { message });
+            }
+        }    
         //Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
         if (waitingPlayerId == 0)
         {
@@ -311,7 +337,19 @@ public class GameManager
         }
         CurWaitingPlayerId = waitingPlayerId;
 
+        if(CurWaitingPlayerId == SelfPlayerId)
+        {
+            //switch(curPhase)
+            //{
+            //    case PhaseEnum.
+            //}
+        }
         //gameUI.SetTurn();
+    }
+
+    public void OnReceivePlayerDied(int playerId, bool loseGame)
+    {
+        throw new NotImplementedException();
     }
 
     // 通知客户端，谁对谁使用了试探
@@ -474,6 +512,17 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家的情报被烧毁", target));
 
     }
+
+    public void OnReceiveWaitSaving(int playerId, int waitingPlayer, int waitingSecond)
+    {
+        gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
+        gameUI.Players[waitingPlayer].OnWaiting(waitingSecond);
+
+        if(waitingPlayer == SelfPlayerId)
+        {
+            IsWaitSaving = true;
+        }
+    }
     #endregion
 
 
@@ -539,6 +588,19 @@ public class GameManager
 
         SelectCardId = -1;
     }
+
+    public void SendMessage()
+    {
+        if(curPhase == PhaseEnum.Send_Start_Phase && CurWaitingPlayerId == SelfPlayerId)
+        {
+            ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+        }
+    }
+
+    public void SendWhetherReceive(bool receive)
+    {
+        ProtoHelper.SendWhetherReceive(receive, seqId);
+    }
     public void SendDoShiTan(int cardId)
     {
         ProtoHelper.SendDoShiTan(cardId, seqId);
@@ -552,6 +614,10 @@ public class GameManager
         SelectCardId = -1;
     }
 
+    public void SendWhetherSave(bool save, int cardId)
+    {
+        ProtoHelper.SendChengQingSaveDying(save, SelectCardId, cardId, seqId);
+    }
 
     #endregion
 }
@@ -567,7 +633,8 @@ public enum PhaseEnum
 {
     Draw_Phase = 0,   // 摸牌阶段
     Main_Phase = 1,   // 出牌阶段
-    Send_Phase = 2,   // 传递阶段
-    Fight_Phase = 3,   // 争夺阶段
-    Receive_Phase = 4, // 接收阶段
+    Send_Start_Phase = 2, //情报传递阶段开始时
+    Send_Phase = 3,   // 传递阶段
+    Fight_Phase = 4,   // 争夺阶段
+    Receive_Phase = 5, // 接收阶段
 }

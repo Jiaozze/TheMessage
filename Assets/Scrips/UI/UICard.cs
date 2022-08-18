@@ -17,15 +17,17 @@ public class UICard : MonoBehaviour
     public Text textShitan;
     public GameObject goShiTan;
     public Transform transContainer;
+    public GameObject goUnknown;
 
     private int cardId;
 
     void Awake()
     {
-        button.onClick.AddListener(() => { 
-            if(GameManager.Singleton.cardsHand.ContainsKey(cardId))
+        button.onClick.AddListener(() =>
+        {
+            if (GameManager.Singleton.cardsHand.ContainsKey(cardId))
             {
-                if(GameManager.Singleton.SelectCardId == cardId)
+                if (GameManager.Singleton.SelectCardId == cardId)
                 {
                     GameManager.Singleton.SelectCardId = -1;
                 }
@@ -57,8 +59,10 @@ public class UICard : MonoBehaviour
 
     public void SetInfo(CardFS cardInfo)
     {
-        if (cardInfo.id != -1)
+        if (cardInfo.id > 0)
         {
+            goUnknown.SetActive(false);
+
             cardId = cardInfo.id;
             textName.text = LanguageUtils.GetCardName(cardInfo.cardName);
             goArrowLeft.SetActive(cardInfo.direction == DirectionEnum.Left);
@@ -90,6 +94,11 @@ public class UICard : MonoBehaviour
             {
                 goShiTan.SetActive(false);
             }
+        }
+        // °µÅÆ
+        else
+        {
+            goUnknown.SetActive(true);
         }
     }
 

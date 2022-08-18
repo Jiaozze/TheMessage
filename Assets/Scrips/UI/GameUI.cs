@@ -11,6 +11,7 @@ public class GameUI : MonoBehaviour
     public PlayerMessagInfo playerMessagInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
+    public UICard messageCard;
     public Text textInfo;
     public RectTransform transCards;
     public Transform transPlayerSelf;
@@ -144,11 +145,53 @@ public class GameUI : MonoBehaviour
 
     public void OnclickUserCard()
     {
-        GameManager.Singleton.SendUseCard();
+        if(GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
+        {
+            Debug.LogError("不在自己的相应时间");
+            return;
+        }
+
+        //有人濒死求澄清
+        if(GameManager.Singleton.IsWaitSaving)
+        {
+            if(GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
+            {
+                //GameManager.Singleton.send
+            }
+        }
+        //自己出牌阶段
+        else if(GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
+        {
+            GameManager.Singleton.SendUseCard();
+        }
+        //自己开始传情报阶段
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase)
+        {
+            GameManager.Singleton.SendMessage();
+        }
+        //情报传递阶段，情报到自己面前时
+        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
+        {
+            GameManager.Singleton.SendWhetherReceive(true);
+        }
     }
     public void OnclickEnd()
     {
-        GameManager.Singleton.SendEndWaiting();
+        if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
+        {
+            Debug.LogError("不在自己的相应时间");
+            return;
+        }
+
+        //自己出牌阶段
+        if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
+        {
+            GameManager.Singleton.SendEndWaiting();
+        }
+        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
+        {
+            GameManager.Singleton.SendWhetherReceive(false);
+        }
     }
     public void ShowShiTanInfo(CardFS card, int waitingTime)
     {
@@ -166,7 +209,7 @@ public class GameUI : MonoBehaviour
             Players[user].UseCard(card);
         }
         
-        if (user == GameManager.Singleton.SelfPlayerId && card != null)
+        if (user == GameManager.SelfPlayerId && card != null)
         {
             int cardId = card.id;
             if (Cards.ContainsKey(cardId))
@@ -200,5 +243,17 @@ public class GameUI : MonoBehaviour
     public void HidePlayerMessageInfo()
     {
         playerMessagInfo.gameObject.SetActive(false);
+    }
+
+    public void ShowMessagingCard(CardFS message, int messagePlayerId)
+    {
+        Debug.LogError("情报id，" + message.id);
+        messageCard.gameObject.SetActive(true);
+        messageCard.SetInfo(message);
+        messageCard.transform.position = Players[messagePlayerId].transform.position;
+    }
+    public void HideMessagingCard()
+    {
+        messageCard.gameObject.SetActive(false);
     }
 }
