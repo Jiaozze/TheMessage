@@ -118,7 +118,7 @@ public class UICard : MonoBehaviour
     public void OnDiscard()
     {
         //TODO
-        Debug.LogError("卡被弃了" + textName.text);
+        Debug.Log("卡被弃了" + textName.text);
         Destroy(gameObject);
     }
 }
