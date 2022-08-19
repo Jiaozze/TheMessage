@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public Text textPhase;
     public ShiTanInfo shiTanInfo;
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
@@ -192,6 +193,10 @@ public class GameUI : MonoBehaviour
         {
             GameManager.Singleton.SendWhetherReceive(false);
         }
+        else if(GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase)
+        {
+            GameManager.Singleton.SendEndFightPhase();
+        }
     }
     public void ShowShiTanInfo(CardFS card, int waitingTime)
     {
@@ -247,7 +252,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowMessagingCard(CardFS message, int messagePlayerId)
     {
-        Debug.LogError("情报id，" + message.id);
+        //Debug.LogError("情报id，" + message.id);
         messageCard.gameObject.SetActive(true);
         messageCard.SetInfo(message);
         messageCard.transform.position = Players[messagePlayerId].transform.position;
@@ -255,5 +260,17 @@ public class GameUI : MonoBehaviour
     public void HideMessagingCard()
     {
         messageCard.gameObject.SetActive(false);
+    }
+
+    public void ShowPhase()
+    {
+        if(GameManager.Singleton.IsWaitLock)
+        {
+            textPhase.text = "请选择锁定目标";
+        }
+        else
+        {
+            textPhase.text = LanguageUtils.GetPhaseName(GameManager.Singleton.curPhase);
+        }
     }
 }

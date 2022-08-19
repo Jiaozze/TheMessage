@@ -27,4 +27,25 @@ public class LanguageUtils
         }
         return "";
     }
+
+    public static string GetPhaseName(PhaseEnum phase)
+    {
+        switch (phase)
+        {
+            case PhaseEnum.Draw_Phase:
+                return "摸牌阶段";
+            case PhaseEnum.Main_Phase:
+                return "出牌阶段";
+            case PhaseEnum.Send_Start_Phase:
+                return "开始传递情报";
+            case PhaseEnum.Send_Phase:
+                return "情报传递阶段";
+            case PhaseEnum.Fight_Phase:
+                return "情报争夺阶段";
+            case PhaseEnum.Receive_Phase:
+                return "情报接收阶段";
+        }
+        return "";
+
+    }
 }

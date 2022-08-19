@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager
 {
     public static int SelfPlayerId = 0;
-    public bool dir;
     public GameUI gameUI;
 
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
@@ -19,12 +18,21 @@ public class GameManager
     public int CurWaitingPlayerId { get; private set; }
     public bool IsBingShiTan { get; private set; }
 
+    #region 特殊状态 有人求澄清 传情报时选择锁定目标
     public bool IsWaitSaving { get; private set; }
+    public bool IsWaitLock { get; private set; }
+    #endregion
     public int SelectCardId
     {
         get { return _SelectCardId; }
         set
         {
+            if(IsWaitLock)
+            {
+                Debug.LogError("发情报选择是否锁定时，点牌无效");
+                return;
+            }
+
             if (gameUI.Cards.ContainsKey(_SelectCardId)) gameUI.Cards[_SelectCardId].OnSelect(false);
             if (_SelectCardId == value)
             {
@@ -61,6 +69,20 @@ public class GameManager
             if (value == -1)
             {
                 _SelectPlayerId = value;
+            }
+            // 开始传情报时，选择传递目标和锁定目标
+            else if(curPhase == PhaseEnum.Send_Start_Phase)
+            {
+                if (value == SelfPlayerId)
+                {
+                    string name = LanguageUtils.GetCardName(cardsHand[_SelectCardId].cardName);
+                    Debug.LogError("不能选自己作为" + name + "的目标");
+                }
+                else if (gameUI.Players.ContainsKey(value))
+                {
+                    _SelectPlayerId = value;
+                    gameUI.Players[_SelectPlayerId].OnSelect(true);
+                }
             }
             // 判断出牌时选中玩家
             else if (cardsHand.ContainsKey(_SelectCardId))
@@ -278,6 +300,7 @@ public class GameManager
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
+        IsWaitLock = false;
         gameUI.HideMessagingCard();
         if (playerId != CurTurnPlayerId)
         {
@@ -287,7 +310,7 @@ public class GameManager
         {
             gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
         }
-        else if(phase == PhaseEnum.Send_Phase || phase == PhaseEnum.Fight_Phase)
+        else if(phase == PhaseEnum.Send_Phase)
         {
             gameUI.ShowMessagingCard(message, messagePlayerId);
             if(cardsHand.ContainsKey(message.id))
@@ -295,7 +318,21 @@ public class GameManager
                 cardsHand.Remove(message.id);
                 gameUI.DisCards(new List<CardFS>() { message });
             }
-        }    
+            //string dir;
+
+            gameUI.AddMsg(string.Format("情报到达{0}号玩家，方向{1}", messagePlayerId, messageCardDir.ToString()));
+        }
+        else if(phase == PhaseEnum.Fight_Phase)
+        {
+            gameUI.ShowMessagingCard(message, messagePlayerId);
+        }
+        else if(phase == PhaseEnum.Receive_Phase)
+        {
+            players[messagePlayerId].AddMessage(message);
+            gameUI.Players[messagePlayerId].RefreshMessage();
+            gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
+        }
+
         //Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
         if (waitingPlayerId == 0)
         {
@@ -344,7 +381,7 @@ public class GameManager
             //    case PhaseEnum.
             //}
         }
-        //gameUI.SetTurn();
+        gameUI.ShowPhase();
     }
 
     public void OnReceivePlayerDied(int playerId, bool loseGame)
@@ -531,6 +568,10 @@ public class GameManager
     {
         ProtoHelper.SendEndWaiting(seqId);
     }
+    public void SendEndFightPhase()
+    {
+        ProtoHelper.SendEndFight(seqId);
+    }
     public void SendUseCard()
     {
         if (SelectCardId != -1 && cardsHand.ContainsKey(SelectCardId))
@@ -589,11 +630,27 @@ public class GameManager
         SelectCardId = -1;
     }
 
+    private int messageTarget = 0;
     public void SendMessage()
     {
         if(curPhase == PhaseEnum.Send_Start_Phase && CurWaitingPlayerId == SelfPlayerId)
         {
-            ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+            if(!cardsHand[SelectCardId].canLock)
+            {
+                ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+            }
+            if (!IsWaitLock)
+            {
+                IsWaitLock = true;
+                messageTarget = SelectPlayerId;
+                SelectPlayerId = -1;
+                gameUI.ShowPhase();
+            }
+            else
+            {
+                IsWaitLock = false;
+                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { SelectPlayerId }, cardsHand[SelectCardId].direction, seqId);
+            }
         }
     }
 

@@ -253,6 +253,14 @@ public static class ProtoHelper
         SendProto("end_main_phase_tos", proto);
     }
 
+    public static void SendEndFight(uint seq)
+    {
+        Debug.Log("____send___________________ end_fight_phase_tos, seq:" + seq);
+        end_fight_phase_tos end_fight_phase_tos = new end_fight_phase_tos() { Seq = seq };
+
+        byte[] proto = end_fight_phase_tos.ToByteArray();
+        SendProto("end_fight_phase_tos", proto);
+    }
     public static void SendUseCardMessage_ShiTan(int cardId, int playerId, uint seq)
     {
         Debug.Log("____send___________________ use_shi_tan_tos, seq:" + seq);
@@ -395,6 +403,5 @@ public static class ProtoHelper
             return (int)hash;
         }
     }
-
 
 }
