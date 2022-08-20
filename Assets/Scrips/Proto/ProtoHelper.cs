@@ -84,8 +84,9 @@ public static class ProtoHelper
         // 通知客户端，牌堆的剩余数量
         else if (GetIdFromProtoName("sync_deck_num_toc") == id)
         {
-            Debug.Log("TODO _______receive________ sync_deck_num_toc");
-
+            Debug.Log("_______receive________ sync_deck_num_toc");
+            sync_deck_num_toc sync_deck_num_toc = sync_deck_num_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnReceiveDeckNum((int)sync_deck_num_toc.Num, sync_deck_num_toc.Shuffled);
         }
         // 通知客户端，牌从谁的手牌被弃掉
         else if (GetIdFromProtoName("discard_card_toc") == id)

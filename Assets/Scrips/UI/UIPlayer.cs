@@ -19,7 +19,6 @@ public class UIPlayer : MonoBehaviour
     public GameObject goDie;
     public GameObject goLose;
     public GameObject goTask;
-    public Text textTask;
 
     private int playerId;
 
@@ -47,11 +46,6 @@ public class UIPlayer : MonoBehaviour
         textPlayerId.text = "" + id;
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
-        if(playerId == GameManager.SelfPlayerId && GameManager.Singleton.players[id].playerColor.Count == 1 && GameManager.Singleton.players[id].playerColor[0] == PlayerColorEnum.Green)
-        {
-            goTask.SetActive(true);
-            textTask.text = LanguageUtils.GetTaskName(GameManager.Singleton.task);
-        }
         RefreshMessage();
     }
 
