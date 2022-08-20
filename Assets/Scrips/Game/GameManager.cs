@@ -278,6 +278,7 @@ public class GameManager
 
         InitCards(new List<CardFS>());
         gameUI.InitCards(0);
+        gameUI.SetTask(task);
         //gameUI.AddMsg(string.Format("你摸了{0}张牌, {1}", cards.Count, GetCardsInfo(cards)));
     }
     // 通知客户端，牌堆的剩余数量
@@ -812,6 +813,7 @@ public class GameManager
             if (!cardsHand[SelectCardId].canLock)
             {
                 ProtoHelper.SendMessageCard(SelectCardId, 0, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+                SelectCardId = -1;
             }
             else if (!IsWaitLock)
             {
@@ -825,6 +827,7 @@ public class GameManager
                 IsWaitLock = false;
                 int lockId = SelectPlayerId > 0 ? SelectPlayerId : 0;
                 ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { lockId }, cardsHand[SelectCardId].direction, seqId);
+                SelectCardId = -1;
             }
         }
     }
