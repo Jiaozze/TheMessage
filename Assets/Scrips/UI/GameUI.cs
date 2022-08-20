@@ -197,7 +197,7 @@ public class GameUI : MonoBehaviour
         }
         else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase)
         {
-            GameManager.Singleton.SendEndFightPhase();
+            GameManager.Singleton.SendUseCard();
         }
 
     }
@@ -290,12 +290,15 @@ public class GameUI : MonoBehaviour
         playerMessagInfo.gameObject.SetActive(false);
     }
 
-    public void ShowMessagingCard(CardFS message, int messagePlayerId)
+    public void ShowMessagingCard(CardFS message, int messagePlayerId = -1)
     {
         //Debug.LogError("Çé±¨id£¬" + message.id);
         messageCard.gameObject.SetActive(true);
         messageCard.SetInfo(message);
-        messageCard.transform.position = Players[messagePlayerId].transform.position;
+        if(messagePlayerId != -1)
+        {
+            messageCard.transform.position = Players[messagePlayerId].transform.position;
+        }
     }
     public void HideMessagingCard()
     {
