@@ -201,6 +201,31 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
         }
+        // 通知所有人使用破译，并询问是否翻开并摸一张牌（只有黑情报才能翻开）
+        else if (GetIdFromProtoName("use_po_yi_toc") == id)
+        {
+            Debug.Log(" _______receive________ use_po_yi_toc");
+
+            use_po_yi_toc use_po_yi_toc = use_po_yi_toc.Parser.ParseFrom(contont);
+            int user = (int)use_po_yi_toc.PlayerId;
+            CardFS cardUsed = new CardFS(use_po_yi_toc.Card);
+            CardFS messageCard = new CardFS(use_po_yi_toc.MessageCard);
+            int waitingTime = (int)use_po_yi_toc.WaitingSecond;
+
+            //GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
+        }
+        // 通知客户端破译翻牌结果
+        else if (GetIdFromProtoName("po_yi_show_toc") == id)
+        {
+            Debug.Log(" _______receive________ po_yi_show_toc");
+
+            po_yi_show_toc po_yi_show_toc = po_yi_show_toc.Parser.ParseFrom(contont);
+            int user = (int)po_yi_show_toc.PlayerId;
+            CardFS messageCard = new CardFS(po_yi_show_toc.MessageCard);
+            bool show = po_yi_show_toc.Show;
+            //GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
+        }
+
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
         {
@@ -211,7 +236,7 @@ public static class ProtoHelper
             bool loseGame = notify_die_toc.LoseGame;
             GameManager.Singleton.OnReceivePlayerDied(playerId, loseGame);
         }
-        // 通知客户端谁死亡了
+        // 通知客户端谁胜利了
         else if (GetIdFromProtoName("notify_winner_toc") == id)
         {
             Debug.Log(" _______receive________ notify_winner_toc");
@@ -223,7 +248,18 @@ public static class ProtoHelper
             {
                 winners.Add((int)winner);
             }
-            //GameManager.Singleton.OnReceivePlayerDied(playerId, loseGame);
+            List<PlayerColorEnum> playerColers = new List<PlayerColorEnum>();
+            List<SecretTaskEnum> playerTasks = new List<SecretTaskEnum>();
+            for(int i = 0; i < notify_winner_toc.Identity.Count; i++)
+            {
+                playerColers.Add((PlayerColorEnum)notify_winner_toc.Identity[i]);
+            }
+            for (int i = 0; i < notify_winner_toc.SecretTasks.Count; i++)
+            {
+                playerTasks.Add((SecretTaskEnum)notify_winner_toc.SecretTasks[i]);
+            }
+
+            GameManager.Singleton.OnReceiveWinner(playerId, winners, playerColers, playerTasks);
         }
         // 濒死求澄清
         else if (GetIdFromProtoName("wait_for_cheng_qing_toc") == id)
@@ -236,7 +272,16 @@ public static class ProtoHelper
             int waitingSecond = (int)wait_for_cheng_qing_toc.WaitingSecond;
             GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond);
         }
+        // 等待死亡时给三张牌
+        else if (GetIdFromProtoName("wait_for_die_give_card_toc") == id)
+        {
+            Debug.Log(" _______receive________ wait_for_die_give_card_toc");
 
+            wait_for_die_give_card_toc wait_for_die_give_card_toc = wait_for_die_give_card_toc.Parser.ParseFrom(contont);
+            int playerId = (int)wait_for_die_give_card_toc.PlayerId;
+            int waitingSecond = (int)wait_for_die_give_card_toc.WaitingSecond;
+            //GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond);
+        }
         else
         {
             Debug.LogError("undefine proto:" + id);
@@ -307,6 +352,7 @@ public static class ProtoHelper
         SendProto("use_cheng_qing_tos", proto);
     }
 
+
     // 试探弃牌或者摸牌
     public static void SendDoShiTan(int cardId, uint seq)
     {
@@ -345,6 +391,7 @@ public static class ProtoHelper
         byte[] proto = send_message_card_tos.ToByteArray();
         SendProto("send_message_card_tos", proto);
     }
+    
     // 选择是否接收情报
     public static void SendWhetherReceive(bool isReceive, uint seq)
     {
@@ -354,6 +401,25 @@ public static class ProtoHelper
 
         byte[] proto = choose_whether_receive_tos.ToByteArray();
         SendProto("choose_whether_receive_tos", proto);
+    }
+    
+    // 使用破译
+    public static void SendUseCardMessage_PoYi(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ use_po_yi_tos, seq:" + seq);
+        use_po_yi_tos use_po_yi_tos = new use_po_yi_tos() { CardId = (uint)cardId, Seq = seq };
+
+        byte[] proto = use_po_yi_tos.ToByteArray();
+        SendProto("use_po_yi_tos", proto);
+    }
+    public static void SendPoYiShow(bool show, uint seq)
+    {
+        Debug.Log("____send___________________ po_yi_show_tos, seq:" + seq);
+        po_yi_show_tos po_yi_show_tos = new po_yi_show_tos() { Show = show, Seq = seq };
+
+        byte[] proto = po_yi_show_tos.ToByteArray();
+        SendProto("po_yi_show_tos", proto);
+
     }
     #endregion
 
