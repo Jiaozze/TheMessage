@@ -598,6 +598,13 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3324365227506148501, guid: 430e47e29d59b814b81c176f91507e55,
+        type: 3}
+      propertyPath: m_Text
+      value: 'aaaaaaaaaaaaaaaaaaa
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 3324365227827583860, guid: 430e47e29d59b814b81c176f91507e55,
         type: 3}
       propertyPath: m_Name

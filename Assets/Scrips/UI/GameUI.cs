@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public Text textPhase;
+    //public Po
     public ShiTanInfo shiTanInfo;
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
@@ -180,8 +181,25 @@ public class GameUI : MonoBehaviour
         //情报传递阶段，情报到自己面前时
         else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
         {
-            GameManager.Singleton.SendWhetherReceive(true);
+            bool usePoYi = false;
+            if(GameManager.Singleton.SelectCardId != -1)
+            {
+                usePoYi = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId].cardName == CardNameEnum.Po_Yi;
+            }
+            if(usePoYi)
+            {
+                GameManager.Singleton.SendUserPoYi();
+            }
+            else
+            {
+                GameManager.Singleton.SendWhetherReceive(true);
+            }
         }
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase)
+        {
+            GameManager.Singleton.SendEndFightPhase();
+        }
+
     }
     public void OnclickEnd()
     {
@@ -303,5 +321,10 @@ public class GameUI : MonoBehaviour
     public void ShowWinInfo(int playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
     {
         winInfo.Show(playerId, winners, playerColers, playerTasks);
+    }
+
+    public void ShowPoYiResult(CardFS messageCard)
+    {
+        throw new NotImplementedException();
     }
 }

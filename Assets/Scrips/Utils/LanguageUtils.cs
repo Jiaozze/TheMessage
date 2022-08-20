@@ -45,6 +45,21 @@ public class LanguageUtils
         }
     }
 
+    public static string GetColorName(CardColorEnum cardColor)
+    {
+        switch (cardColor)
+        {
+            case CardColorEnum.Red:
+                return "<color=#FF0000>红色</color>";
+            case CardColorEnum.Blue:
+                return "<color=#0000FF>蓝色</color>";
+            case CardColorEnum.Black:
+                return "<color=#FFFFFF>黑色</color>";
+            default:
+                return "undifined";
+        }
+    }
+
     public static string GetPhaseName(PhaseEnum phase)
     {
         switch (phase)

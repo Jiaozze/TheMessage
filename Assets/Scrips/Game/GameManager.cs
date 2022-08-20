@@ -16,6 +16,7 @@ public class GameManager
     public int CurTurnPlayerId { get; private set; }
     public int CurMessagePlayerId { get; private set; }
     public int CurWaitingPlayerId { get; private set; }
+
     public bool IsBingShiTan { get; private set; }
 
     #region 特殊状态 有人求澄清 传情报时选择锁定目标 死亡给牌
@@ -250,6 +251,19 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
     }
 
+    private void OnWait(int playerId, int waitSeconds)
+    {
+        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
+        {
+            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
+        }
+        if (gameUI.Players.ContainsKey(playerId))
+        {
+            gameUI.Players[playerId].OnWaiting(waitSeconds);
+        }
+        CurWaitingPlayerId = playerId;
+
+    }
     #region 服务器消息处理
 
     // 通知客户端：初始化游戏
@@ -320,6 +334,7 @@ public class GameManager
         }
         gameUI.AddMsg(string.Format("{0}号玩家摸了{1}张牌", id, num));
     }
+
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
@@ -406,6 +421,41 @@ public class GameManager
             //}
         }
         gameUI.ShowPhase();
+    }
+
+    public void OnReceiveUseDiaoBao(int user, int cardUsed, CardFS messageCard)
+    {
+        
+    }
+
+    //通知所有人使用破译，并询问是否翻开并摸一张牌（只有黑情报才能翻开）
+    public void OnReceiveUsePoYi(int user, CardFS cardUsed, CardFS messageCard, int waitingTime, uint seq)
+    {
+        seqId = seq;
+        OnCardUse(user, cardUsed);
+        OnWait(user, waitingTime);
+        if(user == SelectPlayerId)
+        {
+            gameUI.ShowPoYiResult(messageCard);
+            string colorStr = "";
+            foreach(var color in messageCard.color)
+            {
+                colorStr = colorStr + LanguageUtils.GetColorName(color);
+            }
+            gameUI.AddMsg(string.Format("破译结果为，{0} {1}", colorStr, LanguageUtils.GetCardName(messageCard.cardName)));
+        }
+    }
+    public void OnReceivePoYiShow(int user, bool show, CardFS messageCard)
+    {
+        if(show)
+        {
+            string colorStr = "";
+            foreach (var color in messageCard.color)
+            {
+                colorStr = colorStr + LanguageUtils.GetColorName(color);
+            }
+            gameUI.AddMsg(string.Format("情报被翻开，{0} {1}", colorStr, LanguageUtils.GetCardName(messageCard.cardName)));
+        }
     }
 
     // 通知客户端，谁对谁使用了试探
@@ -505,6 +555,10 @@ public class GameManager
             }
             gameUI.AddMsg(string.Format("{0}号玩家向你展示了手牌，{1}", target, cardInfo));
         }
+        else
+        {
+            gameUI.AddMsg(string.Format("{0}号玩家向{1}号玩家展示了手牌", target, user));
+        }
     }
     // 通知所有人威逼等待给牌
     public void OnReceiveUseWeiBiGiveCard(int user, int target, CardFS cardUsed, CardNameEnum cardWant, int waitTime, uint seq)
@@ -587,12 +641,22 @@ public class GameManager
         {
             IsWaitSaving = -1;
         }
+        gameUI.AddMsg(string.Format("{0}号玩家濒死向{1}号玩家请求澄清", playerId, waitingPlayer));
+
     }
 
     // 通知客户端谁死亡了
     public void OnReceivePlayerDied(int playerId, bool loseGame)
     {
         gameUI.Players[playerId].OnDie(loseGame);
+        if(loseGame)
+        {
+            gameUI.AddMsg(string.Format("{0}号玩家游戏失败", playerId));
+        }
+        else
+        {
+            gameUI.AddMsg(string.Format("{0}号玩家阵亡", playerId));
+        }
     }
 
     public void OnReceiveDieGiveingCard(int playerId, int waitingSecond, uint seq)
@@ -604,7 +668,7 @@ public class GameManager
         }
         if (gameUI.Players.ContainsKey(playerId))
         {
-            gameUI.Players[playerId].OnWaiting(playerId);
+            gameUI.Players[playerId].OnWaiting(waitingSecond);
         }
         CurWaitingPlayerId = playerId;
 
@@ -614,6 +678,7 @@ public class GameManager
             IsWaitGiveCard = true;
             gameUI.ShowPhase();
         }
+        gameUI.AddMsg(string.Format("等待{0}号玩家托付手牌", playerId));
     }
 
     // 通知谁获胜了
@@ -637,58 +702,67 @@ public class GameManager
     {
         if (SelectCardId != -1 && cardsHand.ContainsKey(SelectCardId))
         {
-            CardNameEnum card = cardsHand[SelectCardId].cardName;
-            switch (card)
+            if(curPhase == PhaseEnum.Main_Phase)
             {
-                //使用试探
-                case CardNameEnum.Shi_Tan:
-                    if (SelectPlayerId != -1 && SelectPlayerId != 0)
-                    {
-                        ProtoHelper.SendUseCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
-                    }
-                    else
-                    {
-                        Debug.LogError("请选择正确的试探目标");
-                    }
-                    break;
-                //使用威逼, 只打开选择界面， 不发送请求
-                case CardNameEnum.Wei_Bi:
-                    if (SelectPlayerId != -1 && SelectPlayerId != 0)
-                    {
-                        gameUI.ShowWeiBiSelect(true);
-                        return;
-                    }
-                    else
-                    {
-                        Debug.LogError("请选择正确的威逼目标");
-                    }
-                    break;
-                //使用利诱
-                case CardNameEnum.Li_You:
-                    if (SelectPlayerId != -1)
-                    {
-                        ProtoHelper.SendUseCardMessage_LiYou(SelectCardId, SelectPlayerId, this.seqId);
-                    }
-                    else
-                    {
-                        Debug.LogError("请选择正确的利诱目标");
-                    }
-                    break;
-                //使用平衡
-                case CardNameEnum.Ping_Heng:
-                    if (SelectPlayerId != -1)
-                    {
-                        ProtoHelper.SendUseCardMessage_PingHeng(SelectCardId, SelectPlayerId, this.seqId);
-                    }
-                    else
-                    {
-                        Debug.LogError("请选择正确的平衡目标");
-                    }
-                    break;
+                CardNameEnum card = cardsHand[SelectCardId].cardName;
+                switch (card)
+                {
+                    //使用试探
+                    case CardNameEnum.Shi_Tan:
+                        if (SelectPlayerId != -1 && SelectPlayerId != 0)
+                        {
+                            ProtoHelper.SendUseCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
+                        }
+                        else
+                        {
+                            Debug.LogError("请选择正确的试探目标");
+                        }
+                        break;
+                    //使用威逼, 只打开选择界面， 不发送请求
+                    case CardNameEnum.Wei_Bi:
+                        if (SelectPlayerId != -1 && SelectPlayerId != 0)
+                        {
+                            gameUI.ShowWeiBiSelect(true);
+                            return;
+                        }
+                        else
+                        {
+                            Debug.LogError("请选择正确的威逼目标");
+                        }
+                        break;
+                    //使用利诱
+                    case CardNameEnum.Li_You:
+                        if (SelectPlayerId != -1)
+                        {
+                            ProtoHelper.SendUseCardMessage_LiYou(SelectCardId, SelectPlayerId, this.seqId);
+                        }
+                        else
+                        {
+                            Debug.LogError("请选择正确的利诱目标");
+                        }
+                        break;
+                    //使用平衡
+                    case CardNameEnum.Ping_Heng:
+                        if (SelectPlayerId != -1)
+                        {
+                            ProtoHelper.SendUseCardMessage_PingHeng(SelectCardId, SelectPlayerId, this.seqId);
+                        }
+                        else
+                        {
+                            Debug.LogError("请选择正确的平衡目标");
+                        }
+                        break;
+                }
             }
+
         }
 
         SelectCardId = -1;
+    }
+
+    public void SendUserPoYi()
+    {
+        ProtoHelper.SendUseCardMessage_PoYi(SelectCardId, seqId);
     }
 
     private int messageTarget = 0;
@@ -698,7 +772,7 @@ public class GameManager
         {
             if (!cardsHand[SelectCardId].canLock)
             {
-                ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+                ProtoHelper.SendMessageCard(SelectCardId, 0, new List<int>(), cardsHand[SelectCardId].direction, seqId);
             }
             else if (!IsWaitLock)
             {
@@ -710,7 +784,8 @@ public class GameManager
             else
             {
                 IsWaitLock = false;
-                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { SelectPlayerId }, cardsHand[SelectCardId].direction, seqId);
+                int lockId = SelectPlayerId > 0 ? SelectPlayerId : 0;
+                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { lockId }, cardsHand[SelectCardId].direction, seqId);
             }
         }
     }
@@ -747,6 +822,11 @@ public class GameManager
         {
             Debug.LogError("请选择手牌和目标角色");
         }
+    }
+
+    public void SendPoYiShow(bool show)
+    {
+        ProtoHelper.SendPoYiShow(show, seqId);
     }
     #endregion
 }
