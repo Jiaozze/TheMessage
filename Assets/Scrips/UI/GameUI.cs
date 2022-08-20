@@ -200,6 +200,11 @@ public class GameUI : MonoBehaviour
             ProtoHelper.SendDieGiveCard(GameManager.Singleton.seqId);
             return;
         }
+        if(GameManager.Singleton.IsWaitLock)
+        {
+            GameManager.Singleton.SendMessage();
+            return;
+        }
 
         //×Ô¼º³öÅÆ½×¶Î
         if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
