@@ -341,6 +341,7 @@ public class GameManager
         IsWaitLock = false;
         IsWaitSaving = -1;
         gameUI.HideMessagingCard();
+        gameUI.weiBiGiveCard.gameObject.SetActive(false);
         if (playerId != CurTurnPlayerId)
         {
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
@@ -423,9 +424,30 @@ public class GameManager
         gameUI.ShowPhase();
     }
 
-    public void OnReceiveUseDiaoBao(int user, int cardUsed, CardFS messageCard)
+    // 通知所有人使用调包
+    public void OnReceiveUseDiaoBao(int user, int cardUsedId, CardFS messageCard)
     {
-        
+        CardFS cardUsed;
+        if(user == SelfPlayerId)
+        {
+            cardUsed = cardsHand[cardUsedId];
+        }
+        else
+        {
+            cardUsed = new CardFS(null);
+            cardUsed.cardName = CardNameEnum.Diao_Bao;
+            cardUsed.id = cardUsedId;
+        }
+        OnCardUse(user, cardUsed);
+
+        gameUI.ShowMessagingCard(cardUsed);
+        string colorStr = "";
+        foreach (var color in messageCard.color)
+        {
+            colorStr = colorStr + LanguageUtils.GetColorName(color);
+        }
+
+        gameUI.AddMsg("情报" + colorStr + LanguageUtils.GetCardName(messageCard.cardName) + "被调包了");
     }
 
     //通知所有人使用破译，并询问是否翻开并摸一张牌（只有黑情报才能翻开）
@@ -702,7 +724,7 @@ public class GameManager
     {
         if (SelectCardId != -1 && cardsHand.ContainsKey(SelectCardId))
         {
-            if(curPhase == PhaseEnum.Main_Phase)
+            if (curPhase == PhaseEnum.Main_Phase)
             {
                 CardNameEnum card = cardsHand[SelectCardId].cardName;
                 switch (card)
@@ -751,6 +773,16 @@ public class GameManager
                         {
                             Debug.LogError("请选择正确的平衡目标");
                         }
+                        break;
+                }
+            }
+            else if (curPhase == PhaseEnum.Fight_Phase)
+            {
+                CardNameEnum card = cardsHand[SelectCardId].cardName;
+                switch (card)
+                {
+                    case CardNameEnum.Diao_Bao:
+                        ProtoHelper.SendUseDiaoBao(SelectCardId, seqId);
                         break;
                 }
             }
