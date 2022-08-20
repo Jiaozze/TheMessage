@@ -212,7 +212,7 @@ public static class ProtoHelper
             CardFS messageCard = new CardFS(use_po_yi_toc.MessageCard);
             int waitingTime = (int)use_po_yi_toc.WaitingSecond;
 
-            //GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
+            GameManager.Singleton.OnReceiveUsePoYi(user, cardUsed, messageCard, waitingTime, use_po_yi_toc.Seq);
         }
         // 通知客户端破译翻牌结果
         else if (GetIdFromProtoName("po_yi_show_toc") == id)
@@ -223,7 +223,18 @@ public static class ProtoHelper
             int user = (int)po_yi_show_toc.PlayerId;
             CardFS messageCard = new CardFS(po_yi_show_toc.MessageCard);
             bool show = po_yi_show_toc.Show;
-            //GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
+            GameManager.Singleton.OnReceivePoYiShow(user, show, messageCard);
+        }
+        // 通知所有人使用调包
+        else if (GetIdFromProtoName("use_diao_bao_toc") == id)
+        {
+            Debug.Log(" _______receive________ use_diao_bao_toc");
+
+            use_diao_bao_toc use_diao_bao_toc = use_diao_bao_toc.Parser.ParseFrom(contont);
+            int user = (int)use_diao_bao_toc.PlayerId;
+            CardFS messageCard = new CardFS(use_diao_bao_toc.OldMessageCard);
+            int cardUsed = (int)use_diao_bao_toc.CardId;
+            GameManager.Singleton.OnReceiveUseDiaoBao(user, cardUsed, messageCard);
         }
 
         // 通知客户端谁死亡了
@@ -402,7 +413,15 @@ public static class ProtoHelper
         byte[] proto = choose_whether_receive_tos.ToByteArray();
         SendProto("choose_whether_receive_tos", proto);
     }
-    
+    // 使用调包
+    public static void SendUseDiaoBao(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ use_diao_bao_tos, seq:" + seq);
+
+        use_diao_bao_tos use_Diao_Bao_Tos = new use_diao_bao_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = use_Diao_Bao_Tos.ToByteArray();
+        SendProto("use_diao_bao_tos", proto);
+    }
     // 使用破译
     public static void SendUseCardMessage_PoYi(int cardId, uint seq)
     {

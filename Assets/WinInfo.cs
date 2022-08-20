@@ -19,7 +19,7 @@ public class WinInfo : MonoBehaviour
         ClearItems();
         foreach(var winnerId in winners)
         {
-            WinInfoItem item = GameObject.Instantiate(winInfoItem);
+            WinInfoItem item = GameObject.Instantiate(winInfoItem, winInfoItem.transform.parent);
             item.Show(winnerId, true, playerColers[winnerId], playerTasks[winnerId], winnerId == playerId);
         }
 
@@ -28,7 +28,7 @@ public class WinInfo : MonoBehaviour
             int id = kv.Value.playerId;
             if (!winners.Contains(id))
             {
-                WinInfoItem item = GameObject.Instantiate(winInfoItem);
+                WinInfoItem item = GameObject.Instantiate(winInfoItem, winInfoItem.transform.parent);
                 item.Show(id, false, playerColers[id], playerTasks[id], id == playerId);
             }
         }
