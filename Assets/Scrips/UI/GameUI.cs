@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public Text textPhase;
-    //public Po
+    public GameObject goTask;
+    public Text textTask;
+    public PoYiResult poYiResult;
     public ShiTanInfo shiTanInfo;
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
@@ -16,6 +18,7 @@ public class GameUI : MonoBehaviour
     public UICard itemCardUI;
     public UICard messageCard;
     public Text textInfo;
+    public Text textDeckCount;
     public RectTransform transCards;
     public Transform transPlayerSelf;
     public GridLayoutGroup gridCards;
@@ -136,7 +139,7 @@ public class GameUI : MonoBehaviour
     }
     public void SetDeckNum(int num)
     {
-        throw new NotImplementedException();
+        textDeckCount.text = "" + num;
     }
 
     public void AddMsg(string v)
@@ -328,6 +331,12 @@ public class GameUI : MonoBehaviour
 
     public void ShowPoYiResult(CardFS messageCard)
     {
-        throw new NotImplementedException();
+        poYiResult.Show(messageCard);
+    }
+
+    public void SetTask(SecretTaskEnum secretTask)
+    {
+        goTask.SetActive(GameManager.Singleton.GetPlayerColor() == PlayerColorEnum.Green);
+        textTask.text = LanguageUtils.GetTaskName(secretTask);
     }
 }

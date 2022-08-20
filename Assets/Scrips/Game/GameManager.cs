@@ -147,6 +147,7 @@ public class GameManager
             Debug.Log("_SelectPlayerId" + _SelectPlayerId);
         }
     }
+
     private int _SelectPlayerId = -1;
 
     public uint seqId;
@@ -278,6 +279,12 @@ public class GameManager
         InitCards(new List<CardFS>());
         gameUI.InitCards(0);
         //gameUI.AddMsg(string.Format("你摸了{0}张牌, {1}", cards.Count, GetCardsInfo(cards)));
+    }
+    // 通知客户端，牌堆的剩余数量
+    public void OnReceiveDeckNum(int num, bool shuffled)
+    {
+        DeckNum = num;
+        gameUI.SetDeckNum(num);
     }
     // 自己摸牌
     public void OnReceivePlayerDrawCards(List<CardFS> cards)
