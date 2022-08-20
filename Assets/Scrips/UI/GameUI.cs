@@ -153,8 +153,14 @@ public class GameUI : MonoBehaviour
             return;
         }
 
+        if (GameManager.Singleton.IsWaitGiveCard)
+        {
+            GameManager.Singleton.SendDieGiveCards();
+            return;
+        }
+
         //有人濒死求澄清
-        if(GameManager.Singleton.IsWaitSaving != -1)
+        if (GameManager.Singleton.IsWaitSaving != -1)
         {
             if(GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
             {
@@ -187,6 +193,11 @@ public class GameUI : MonoBehaviour
         if (GameManager.Singleton.IsWaitSaving != -1)
         {
             GameManager.Singleton.SendWhetherSave(false);
+            return;
+        }
+        if(GameManager.Singleton.IsWaitGiveCard)
+        {
+            ProtoHelper.SendDieGiveCard(GameManager.Singleton.seqId);
             return;
         }
 
@@ -273,6 +284,10 @@ public class GameUI : MonoBehaviour
         if(GameManager.Singleton.IsWaitLock)
         {
             textPhase.text = "请选择锁定目标";
+        }
+        else if(GameManager.Singleton.IsWaitGiveCard)
+        {
+            textPhase.text = "你阵亡了，可以选择至多三张牌交给一名玩家";
         }
         else
         {

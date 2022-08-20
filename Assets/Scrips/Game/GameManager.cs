@@ -18,18 +18,42 @@ public class GameManager
     public int CurWaitingPlayerId { get; private set; }
     public bool IsBingShiTan { get; private set; }
 
-    #region 特殊状态 有人求澄清 传情报时选择锁定目标
+    #region 特殊状态 有人求澄清 传情报时选择锁定目标 死亡给牌
     public int IsWaitSaving { get; private set; }
     public bool IsWaitLock { get; private set; }
+    public bool IsWaitGiveCard { get; private set; }
+
+    public List<int> cardsToGive = new List<int>();
     #endregion
     public int SelectCardId
     {
         get { return _SelectCardId; }
         set
         {
-            if(IsWaitLock)
+            if (IsWaitLock)
             {
                 Debug.LogError("发情报选择是否锁定时，点牌无效");
+                return;
+            }
+            if (IsWaitGiveCard)
+            {
+                if (cardsToGive.Contains(value))
+                {
+                    cardsToGive.Remove(value);
+                    gameUI.Cards[value].OnSelect(false);
+                }
+                else if (cardsToGive.Count >= 3)
+                {
+                    gameUI.Cards[0].OnSelect(false);
+                    cardsToGive.RemoveAt(0);
+                    cardsToGive.Add(value);
+                    gameUI.Cards[value].OnSelect(true);
+                }
+                else
+                {
+                    cardsToGive.Add(value);
+                    gameUI.Cards[value].OnSelect(true);
+                }
                 return;
             }
 
@@ -70,13 +94,12 @@ public class GameManager
             {
                 _SelectPlayerId = value;
             }
-            // 开始传情报时，选择传递目标和锁定目标
-            else if(curPhase == PhaseEnum.Send_Start_Phase)
+            // 开始传情报时，选择传递目标和锁定目标 // 等待死亡时给三张牌
+            else if (curPhase == PhaseEnum.Send_Start_Phase || IsWaitGiveCard)
             {
                 if (value == SelfPlayerId)
                 {
-                    string name = LanguageUtils.GetCardName(cardsHand[_SelectCardId].cardName);
-                    Debug.LogError("不能选自己作为" + name + "的目标");
+                    Debug.LogError("不能选自己作为目标");
                 }
                 else if (gameUI.Players.ContainsKey(value))
                 {
@@ -307,14 +330,14 @@ public class GameManager
         {
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
         }
-        if(phase == PhaseEnum.Send_Start_Phase)
+        if (phase == PhaseEnum.Send_Start_Phase)
         {
             gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
         }
-        else if(phase == PhaseEnum.Send_Phase)
+        else if (phase == PhaseEnum.Send_Phase)
         {
             gameUI.ShowMessagingCard(message, messagePlayerId);
-            if(cardsHand.ContainsKey(message.id))
+            if (cardsHand.ContainsKey(message.id))
             {
                 cardsHand.Remove(message.id);
                 gameUI.DisCards(new List<CardFS>() { message });
@@ -323,11 +346,11 @@ public class GameManager
 
             gameUI.AddMsg(string.Format("情报到达{0}号玩家，方向{1}", messagePlayerId, messageCardDir.ToString()));
         }
-        else if(phase == PhaseEnum.Fight_Phase)
+        else if (phase == PhaseEnum.Fight_Phase)
         {
             gameUI.ShowMessagingCard(message, messagePlayerId);
         }
-        else if(phase == PhaseEnum.Receive_Phase)
+        else if (phase == PhaseEnum.Receive_Phase)
         {
             players[messagePlayerId].AddMessage(message);
             gameUI.Players[messagePlayerId].RefreshMessage();
@@ -375,7 +398,7 @@ public class GameManager
         }
         CurWaitingPlayerId = waitingPlayerId;
 
-        if(CurWaitingPlayerId == SelfPlayerId)
+        if (CurWaitingPlayerId == SelfPlayerId)
         {
             //switch(curPhase)
             //{
@@ -415,6 +438,8 @@ public class GameManager
         {
             gameUI.Players[targetUser].OnWaiting(waitingTime);
         }
+        CurWaitingPlayerId = targetUser;
+
         //自己是被使用者，展示
         if (targetUser == SelfPlayerId)
         {
@@ -422,6 +447,7 @@ public class GameManager
             gameUI.ShowShiTanInfo(card, waitingTime);
         }
     }
+
     // 被试探者执行试探
     public void OnReceiveExcuteShiTan(int playerId, bool isDrawCard)
     {
@@ -494,6 +520,7 @@ public class GameManager
         {
             gameUI.Players[target].OnWaiting(waitTime);
         }
+        CurWaitingPlayerId = target;
 
         if (target == SelfPlayerId)
         {
@@ -537,7 +564,7 @@ public class GameManager
     {
         OnCardUse(user, cardUsed, target);
 
-        if(players.ContainsKey(target))
+        if (players.ContainsKey(target))
         {
             players[target].RemoveMessage(targetCardId);
             gameUI.Players[target].RefreshMessage();
@@ -552,7 +579,7 @@ public class GameManager
         gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
         gameUI.Players[waitingPlayer].OnWaiting(waitingSecond);
 
-        if(waitingPlayer == SelfPlayerId)
+        if (waitingPlayer == SelfPlayerId)
         {
             IsWaitSaving = playerId;
         }
@@ -566,6 +593,27 @@ public class GameManager
     public void OnReceivePlayerDied(int playerId, bool loseGame)
     {
         gameUI.Players[playerId].OnDie(loseGame);
+    }
+
+    public void OnReceiveDieGiveingCard(int playerId, int waitingSecond, uint seq)
+    {
+        this.seqId = seq;
+        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
+        {
+            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
+        }
+        if (gameUI.Players.ContainsKey(playerId))
+        {
+            gameUI.Players[playerId].OnWaiting(playerId);
+        }
+        CurWaitingPlayerId = playerId;
+
+        if (playerId == SelfPlayerId)
+        {
+            SelectCardId = -1;
+            IsWaitGiveCard = true;
+            gameUI.ShowPhase();
+        }
     }
 
     // 通知谁获胜了
@@ -646,13 +694,13 @@ public class GameManager
     private int messageTarget = 0;
     public void SendMessage()
     {
-        if(curPhase == PhaseEnum.Send_Start_Phase && CurWaitingPlayerId == SelfPlayerId)
+        if (curPhase == PhaseEnum.Send_Start_Phase && CurWaitingPlayerId == SelfPlayerId)
         {
-            if(!cardsHand[SelectCardId].canLock)
+            if (!cardsHand[SelectCardId].canLock)
             {
                 ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
             }
-            if (!IsWaitLock)
+            else if (!IsWaitLock)
             {
                 IsWaitLock = true;
                 messageTarget = SelectPlayerId;
@@ -689,6 +737,17 @@ public class GameManager
         ProtoHelper.SendChengQingSaveDying(save, SelectCardId, cardId, seqId);
     }
 
+    public void SendDieGiveCards()
+    {
+        if (SelectPlayerId != -1 && SelectPlayerId != 0 && cardsToGive.Count > 0)
+        {
+            ProtoHelper.SendDieGiveCard(seqId, cardsToGive, SelectPlayerId);
+        }
+        else
+        {
+            Debug.LogError("请选择手牌和目标角色");
+        }
+    }
     #endregion
 }
 
