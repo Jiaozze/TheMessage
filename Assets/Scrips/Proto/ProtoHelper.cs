@@ -280,7 +280,7 @@ public static class ProtoHelper
             wait_for_die_give_card_toc wait_for_die_give_card_toc = wait_for_die_give_card_toc.Parser.ParseFrom(contont);
             int playerId = (int)wait_for_die_give_card_toc.PlayerId;
             int waitingSecond = (int)wait_for_die_give_card_toc.WaitingSecond;
-            //GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond);
+            GameManager.Singleton.OnReceiveDieGiveingCard(playerId, waitingSecond, wait_for_die_give_card_toc.Seq);
         }
         else
         {
@@ -431,6 +431,22 @@ public static class ProtoHelper
         cheng_qing_save_die_tos cheng_Qing_Save_Die_Tos = new cheng_qing_save_die_tos() { Use = use, CardId = (uint)cardId, TargetCardId = (uint)targetCard, Seq = seq };
         byte[] proto = cheng_Qing_Save_Die_Tos.ToByteArray();
         SendProto("", proto);
+    }
+    // 等待死亡时给三张牌
+    public static void SendDieGiveCard(uint seq, List<int> cardIds = null, int playerId = 0)
+    {
+        Debug.Log("____send___________________ die_give_card_tos, seq:" + seq);
+
+        die_give_card_tos die_give_card_tos = new die_give_card_tos() {TargetPlayerId = (uint)playerId, Seq = seq };
+        if(cardIds != null)
+        {
+            foreach(var id in cardIds)
+            {
+                die_give_card_tos.CardId.Add((uint)id);
+            }
+        }
+        byte[] proto = die_give_card_tos.ToByteArray();
+        SendProto("die_give_card_tos", proto);
     }
     private static void SendProto(string protoName, byte[] proto)
     {
