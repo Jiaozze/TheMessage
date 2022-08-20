@@ -19,7 +19,7 @@ public class GameManager
     public bool IsBingShiTan { get; private set; }
 
     #region 特殊状态 有人求澄清 传情报时选择锁定目标
-    public bool IsWaitSaving { get; private set; }
+    public int IsWaitSaving { get; private set; }
     public bool IsWaitLock { get; private set; }
     #endregion
     public int SelectCardId
@@ -301,6 +301,7 @@ public class GameManager
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
         IsWaitLock = false;
+        IsWaitSaving = -1;
         gameUI.HideMessagingCard();
         if (playerId != CurTurnPlayerId)
         {
@@ -382,11 +383,6 @@ public class GameManager
             //}
         }
         gameUI.ShowPhase();
-    }
-
-    public void OnReceivePlayerDied(int playerId, bool loseGame)
-    {
-        throw new NotImplementedException();
     }
 
     // 通知客户端，谁对谁使用了试探
@@ -550,6 +546,7 @@ public class GameManager
 
     }
 
+    // 濒死求澄清
     public void OnReceiveWaitSaving(int playerId, int waitingPlayer, int waitingSecond)
     {
         gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
@@ -557,8 +554,24 @@ public class GameManager
 
         if(waitingPlayer == SelfPlayerId)
         {
-            IsWaitSaving = true;
+            IsWaitSaving = playerId;
         }
+        else
+        {
+            IsWaitSaving = -1;
+        }
+    }
+
+    // 通知客户端谁死亡了
+    public void OnReceivePlayerDied(int playerId, bool loseGame)
+    {
+        gameUI.Players[playerId].OnDie(loseGame);
+    }
+
+    // 通知谁获胜了
+    public void OnReceiveWinner(int playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
+    {
+        gameUI.ShowWinInfo(playerId, winners, playerColers, playerTasks);
     }
     #endregion
 
@@ -671,7 +684,7 @@ public class GameManager
         SelectCardId = -1;
     }
 
-    public void SendWhetherSave(bool save, int cardId)
+    public void SendWhetherSave(bool save, int cardId = 0)
     {
         ProtoHelper.SendChengQingSaveDying(save, SelectCardId, cardId, seqId);
     }

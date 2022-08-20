@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 public class LanguageUtils
 {
     public static string GetCardName(CardNameEnum nameEnum)
@@ -25,7 +27,22 @@ public class LanguageUtils
             case CardNameEnum.Wu_Dao:
                 return "误导";
         }
-        return "";
+        return "undifined";
+    }
+
+    public static string GetTaskName(SecretTaskEnum secretTaskEnum)
+    {
+        switch(secretTaskEnum)
+        {
+            case SecretTaskEnum.Collector:
+                return "你获得3张红色情报或者3张蓝色情报";
+            case SecretTaskEnum.Killer:
+                return "你的回合中，一名红色和蓝色情报合计不少于2张的人死亡";
+            case SecretTaskEnum.Stealer:
+                return "你的回合中，有人宣胜，则你代替他胜利";
+            default:
+                return "undifined";
+        }
     }
 
     public static string GetPhaseName(PhaseEnum phase)
@@ -45,7 +62,22 @@ public class LanguageUtils
             case PhaseEnum.Receive_Phase:
                 return "情报接收阶段";
         }
-        return "";
+        return "undifined";
 
+    }
+
+    public static string GetIdentityName(PlayerColorEnum playerColor)
+    {
+        switch(playerColor)
+        {
+            case PlayerColorEnum.Blue:
+                return "<color=#0000FF>特工机关</color>";
+            case PlayerColorEnum.Red:
+                return "<color=#FF0000>潜伏战线</color>";
+            case PlayerColorEnum.Green:
+                return "<color=#00FF00>神秘人</color>";
+            default:
+                return "undifined";
+        }
     }
 }

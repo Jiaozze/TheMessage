@@ -57,6 +57,7 @@ public class PlayerMessagInfo : MonoBehaviour
                     butChengQing.interactable = false;
                     cardId = 0;
                 }
+                Debug.Log("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm " + cardId);
             });
             items[msg.id] = (card);
         }
@@ -73,9 +74,17 @@ public class PlayerMessagInfo : MonoBehaviour
     {
         var curCard = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId];
 
-        if (cardId != 0 && curCard.cardName == CardNameEnum.Cheng_Qing && GameManager.Singleton.SelectPlayerId != -1 && GameManager.Singleton.SelectPlayerId != 0)
+        if(GameManager.Singleton.IsWaitSaving != -1 && cardId != 0 && curCard.cardName == CardNameEnum.Cheng_Qing)
+        {
+            GameManager.Singleton.SendWhetherSave(true, cardId);
+        }
+        else if (cardId != 0 && curCard.cardName == CardNameEnum.Cheng_Qing && GameManager.Singleton.SelectPlayerId != -1 && GameManager.Singleton.SelectPlayerId != 0)
         {
             ProtoHelper.SendUseCardMessage_ChengQing(GameManager.Singleton.SelectCardId, GameManager.Singleton.SelectPlayerId, cardId, GameManager.Singleton.seqId);
+        }
+        else
+        {
+            Debug.LogError("" + GameManager.Singleton.SelectPlayerId + cardId + GameManager.Singleton.IsWaitSaving + GameManager.Singleton.SelectCardId);
         }
     }
 }

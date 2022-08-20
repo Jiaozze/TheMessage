@@ -8,17 +8,23 @@ public class UIPlayer : MonoBehaviour
     public Button button;
     public Text textPlayerId;
     public Text textCardCount;
-    public Text textMessageCount;
+    public Text textMessageRedCount;
+    public Text textMessageBlueCount;
+    public Text textMessageBlackCount;
     public Slider slider;
     public GameObject goSelect;
     public GameObject goTurnOn;
     public GameObject goMessageOn;
     public UIPlayerColor playerColor;
+    public GameObject goDie;
+    public GameObject goLose;
+
     private int playerId;
 
     // Start is called before the first frame update
     void Start()
     {
+        goDie.SetActive(false);
         slider.gameObject.SetActive(false);
         button.onClick.AddListener(() => { GameManager.Singleton.SelectPlayerId = playerId; });
     }
@@ -42,6 +48,11 @@ public class UIPlayer : MonoBehaviour
         RefreshMessage();
     }
 
+    public void OnClickMessage()
+    {
+        GameManager.Singleton.gameUI.ShowPlayerMessageInfo(playerId);
+    }
+
     public void OnDrawCard(int totalCount, int count)
     {
         textCardCount.text = "" + totalCount;
@@ -59,7 +70,9 @@ public class UIPlayer : MonoBehaviour
 
     public void RefreshMessage()
     {
-        textMessageCount.text = "" + GameManager.Singleton.players[playerId].messages.Count;
+        textMessageRedCount.text = "" + GameManager.Singleton.players[playerId].GetMessageCount(CardColorEnum.Red);
+        textMessageBlueCount.text = "" + GameManager.Singleton.players[playerId].GetMessageCount(CardColorEnum.Blue);
+        textMessageBlackCount.text = "" + GameManager.Singleton.players[playerId].GetMessageCount(CardColorEnum.Black);
     }
 
     public void OnTurn(bool isTurn)
@@ -86,6 +99,12 @@ public class UIPlayer : MonoBehaviour
             slider.gameObject.SetActive(true);
             StartCoroutine(ShowSlider(seconds));
         }
+    }
+
+    public void OnDie(bool loseGame)
+    {
+        goDie.SetActive(true);
+        goLose.SetActive(loseGame);
     }
 
     private IEnumerator ShowSlider(int seconds)

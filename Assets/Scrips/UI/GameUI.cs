@@ -10,6 +10,7 @@ public class GameUI : MonoBehaviour
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
     public PlayerMessagInfo playerMessagInfo;
+    public WinInfo winInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
     public UICard messageCard;
@@ -153,11 +154,11 @@ public class GameUI : MonoBehaviour
         }
 
         //有人濒死求澄清
-        if(GameManager.Singleton.IsWaitSaving)
+        if(GameManager.Singleton.IsWaitSaving != -1)
         {
             if(GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
             {
-                //GameManager.Singleton.send
+                ShowPlayerMessageInfo(GameManager.Singleton.IsWaitSaving, true);
             }
         }
         //自己出牌阶段
@@ -181,6 +182,11 @@ public class GameUI : MonoBehaviour
         if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             Debug.LogError("不在自己的相应时间");
+            return;
+        }
+        if (GameManager.Singleton.IsWaitSaving != -1)
+        {
+            GameManager.Singleton.SendWhetherSave(false);
             return;
         }
 
@@ -272,5 +278,10 @@ public class GameUI : MonoBehaviour
         {
             textPhase.text = LanguageUtils.GetPhaseName(GameManager.Singleton.curPhase);
         }
+    }
+
+    public void ShowWinInfo(int playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
+    {
+        winInfo.Show(playerId, winners, playerColers, playerTasks);
     }
 }
