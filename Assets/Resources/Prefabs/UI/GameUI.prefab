@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 984115380}
   - component: {fileID: 984115379}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ButtonCancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 827282221031824117}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.03830383
+  m_Size: 0.038294747
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1586,6 +1586,8 @@ MonoBehaviour:
   topPlayerGrid: {fileID: 827282222297747229}
   leftPlayerGrid: {fileID: 827282222662202060}
   rightPlayerGrid: {fileID: 827282222271925586}
+  butCancel: {fileID: 984115379}
+  butSure: {fileID: 391851071178793274}
   selfMessagePos: {fileID: 4753641791780547211}
 --- !u!1 &827282222597111696
 GameObject:

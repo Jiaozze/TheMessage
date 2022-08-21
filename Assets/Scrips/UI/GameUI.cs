@@ -26,7 +26,8 @@ public class GameUI : MonoBehaviour
     public GridLayoutGroup topPlayerGrid;
     public GridLayoutGroup leftPlayerGrid;
     public GridLayoutGroup rightPlayerGrid;
-
+    public Button butCancel;
+    public Button butSure;
     public Transform selfMessagePos;
 
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
@@ -449,6 +450,27 @@ public class GameUI : MonoBehaviour
             scal = origenScal * (2 * pt * (1 - pt) + 1);
             messageCard.transform.localScale = new Vector3(scal, scal, 1);
         }
+    }
 
+    public void RefreshIsCanCancel()
+    {
+        bool canCancel = true;
+        bool canSure = true;
+        if(GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
+        {
+            canCancel = false;
+            canSure = false;
+        }
+        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
+        {
+            bool isSend = GameManager.Singleton.CurTurnPlayerId == GameManager.SelfPlayerId;
+            bool isLocked = GameManager.Singleton.lockedPlayer != null && GameManager.Singleton.lockedPlayer.Contains(GameManager.SelfPlayerId);
+            if (isSend || isLocked)
+            {
+                canCancel = false;
+            }
+        }
+        butCancel.interactable = canCancel;
+        butSure.interactable = canSure;
     }
 }

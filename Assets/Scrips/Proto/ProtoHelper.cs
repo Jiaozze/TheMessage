@@ -255,7 +255,16 @@ public static class ProtoHelper
             int cardUsed = (int)use_diao_bao_toc.CardId;
             GameManager.Singleton.OnReceiveUseDiaoBao(user, cardUsed, messageCard);
         }
+        // 通知所有人使用截获
+        else if (GetIdFromProtoName("use_jie_huo_toc") == id)
+        {
+            Debug.Log(" _______receive________ use_jie_huo_toc");
 
+            use_jie_huo_toc use_diao_bao_toc = use_jie_huo_toc.Parser.ParseFrom(contont);
+            int user = (int)use_diao_bao_toc.PlayerId;
+            CardFS cardUsed = new CardFS(use_diao_bao_toc.Card);
+            GameManager.Singleton.OnReceiveUseJieHuo(user, cardUsed);
+        }
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
         {

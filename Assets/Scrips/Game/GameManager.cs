@@ -26,6 +26,8 @@ public class GameManager
 
     public List<int> cardsToGive = new List<int>();
     #endregion
+
+    public List<int> lockedPlayer = null;
     public int SelectCardId
     {
         get { return _SelectCardId; }
@@ -269,6 +271,7 @@ public class GameManager
         {
             Debug.LogError("no card in hand," + cardId);
         }
+        lockedPlayer = lockIds;
         gameUI.OnCardSend(playerId, cardId);
         gameUI.SetLock(lockIds);
         string dirStr = "";
@@ -382,6 +385,7 @@ public class GameManager
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
         if (playerId != CurTurnPlayerId)
         {
+            lockedPlayer = null;
             gameUI.ClearLock();
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
         }
@@ -446,8 +450,14 @@ public class GameManager
 
         OnWait(waitingPlayerId, waitSecond);
         gameUI.ShowPhase();
+        gameUI.RefreshIsCanCancel();
     }
-    
+
+    public void OnReceiveUseJieHuo(int user, CardFS cardUsed)
+    {
+        OnCardUse(user, cardUsed);
+    }
+
     // 通知所有人传情报
     public void OnReceiveMessageSend(int playerId, int cardId, int targetId, List<int> locakIds, DirectionEnum dir)
     {
@@ -800,6 +810,10 @@ public class GameManager
                     case CardNameEnum.Diao_Bao:
                         ProtoHelper.SendUseDiaoBao(SelectCardId, seqId);
                         break;
+                    case CardNameEnum.Jie_Huo:
+                        ProtoHelper.SendUseCardMessage_JieHuo(SelectCardId, seqId);
+                        break;
+
                 }
             }
 
