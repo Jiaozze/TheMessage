@@ -268,6 +268,23 @@ public class GameUI : MonoBehaviour
             GameManager.Singleton.SendEndFightPhase();
         }
     }
+
+    public void SetLock(List<int> lockIds)
+    {
+        foreach(var id in lockIds)
+        {
+            Players[id].SetLock(true);
+        }
+    }
+
+    public void ClearLock()
+    {
+        foreach(var id_player in Players)
+        {
+            id_player.Value.SetLock(false);
+        }
+    }
+
     public void ShowShiTanInfo(CardFS card, int waitingTime)
     {
         shiTanInfo.Show(card, waitingTime);
@@ -294,7 +311,22 @@ public class GameUI : MonoBehaviour
             }
         }
     }
+    public void OnCardSend(int user, int cardId)
+    {
+        if (Players.ContainsKey(user))
+        {
+            Players[user].SendCard();
+        }
 
+        if (user == GameManager.SelfPlayerId && cardId != 0)
+        {
+            if (Cards.ContainsKey(cardId))
+            {
+                Cards[cardId].OnUse();
+                Cards.Remove(cardId);
+            }
+        }
+    }
     public void ShowTopCard(CardFS card)
     {
         Debug.LogError("展示了牌堆顶的牌，" + card.cardName);
@@ -395,5 +427,28 @@ public class GameUI : MonoBehaviour
     {
         goTask.SetActive(GameManager.Singleton.GetPlayerColor() == PlayerColorEnum.Green);
         textTask.text = LanguageUtils.GetTaskName(secretTask);
+    }
+
+    public void OnMessageAccept(int playerId)
+    {
+        StartCoroutine(DoMessageScale());
+    }
+
+    private IEnumerator DoMessageScale()
+    {
+        yield return null;
+        float pt = 0;
+        float t = 0.1f;
+        int count = 10;
+        float origenScal = 0.5f;
+        float scal = 0;
+        for (int i = 0; i <= count; i++)
+        {
+            pt = (float)i / count;
+            yield return new WaitForSeconds(pt * t);
+            scal = origenScal * (2 * pt * (1 - pt) + 1);
+            messageCard.transform.localScale = new Vector3(scal, scal, 1);
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,8 @@ public class UIPlayer : MonoBehaviour
     public UIPlayerColor playerColor;
     public GameObject goDie;
     public GameObject goLose;
-    public GameObject goTask;
+    public GameObject goLock;
+
 
     private int playerId;
 
@@ -26,6 +28,7 @@ public class UIPlayer : MonoBehaviour
     void Start()
     {
         goDie.SetActive(false);
+        goLock.SetActive(false);
         slider.gameObject.SetActive(false);
         button.onClick.AddListener(() => { GameManager.Singleton.SelectPlayerId = playerId; });
     }
@@ -63,7 +66,10 @@ public class UIPlayer : MonoBehaviour
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
     }
-
+    public void SendCard()
+    {
+        textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
+    }
     public void Discard(List<CardFS> cards)
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
@@ -125,5 +131,10 @@ public class UIPlayer : MonoBehaviour
     public void OnSelect(bool select)
     {
         goSelect.SetActive(select);
+    }
+
+    public void SetLock(bool isLock)
+    {
+        goLock.SetActive(isLock);
     }
 }
