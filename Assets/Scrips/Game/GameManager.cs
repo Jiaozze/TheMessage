@@ -356,11 +356,12 @@ public class GameManager
         }
         if (phase == PhaseEnum.Send_Start_Phase)
         {
+            gameUI.InitMessageSenderPos(playerId);
             gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
         }
         else if (phase == PhaseEnum.Send_Phase)
         {
-            gameUI.ShowMessagingCard(message, messagePlayerId);
+            gameUI.ShowMessagingCard(message, messagePlayerId, true);
             if (cardsHand.ContainsKey(message.id))
             {
                 cardsHand.Remove(message.id);
@@ -492,6 +493,7 @@ public class GameManager
     public void OnRecerveUseShiTan(int user, int targetUser, int cardId = 0)
     {
         CardFS card = null;
+        string cardInfo = "";
         if (players.ContainsKey(user))
         {
             players[user].cardCount = players[user].cardCount - 1;
@@ -500,11 +502,16 @@ public class GameManager
         {
             card = cardsHand[cardId];
             cardsHand.Remove(cardId);
+            cardInfo = "试探摸牌颜色";
+            foreach (var color in card.shiTanColor)
+            {
+                cardInfo = cardInfo + LanguageUtils.GetIdentityName(color);
+            }
         }
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
 
-        gameUI.AddMsg(string.Format("{0}号玩家对{1}号玩家使用了试探;", user, targetUser));
+        gameUI.AddMsg(string.Format("{0}号玩家对{1}号玩家使用了试探;{2}", user, targetUser, cardInfo));
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
@@ -653,6 +660,7 @@ public class GameManager
             players[target].RemoveMessage(targetCardId);
             gameUI.Players[target].RefreshMessage();
         }
+        gameUI.HidePlayerMessageInfo();
         gameUI.AddMsg(string.Format("{0}号玩家的情报被烧毁", target));
 
     }
@@ -812,11 +820,25 @@ public class GameManager
         {
             if (!cardsHand[SelectCardId].canLock)
             {
+                if (SelectPlayerId < 1)
+                {
+                    SelectCardId = -1;
+                    SelectPlayerId = -1;
+                    return;
+                }
+
                 ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
                 SelectCardId = -1;
             }
             else if (!IsWaitLock)
             {
+                if(SelectPlayerId < 1)
+                {
+                    SelectCardId = -1;
+                    SelectPlayerId = -1;
+                    return;
+                }
+
                 IsWaitLock = true;
                 messageTarget = SelectPlayerId;
                 SelectPlayerId = -1;

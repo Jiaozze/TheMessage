@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,8 +27,11 @@ public class GameUI : MonoBehaviour
     public GridLayoutGroup leftPlayerGrid;
     public GridLayoutGroup rightPlayerGrid;
 
+    public Transform selfMessagePos;
+
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
+    private Dictionary<int, Vector3> messagePoses = new Dictionary<int, Vector3>();
     public void InitPlayers(int num)
     {
         if (Players.Count > 0)
@@ -38,6 +42,7 @@ public class GameUI : MonoBehaviour
             }
             Players.Clear();
         }
+
         int leftNum = (num - 1) / 3;
         int topNum = num - 1 - 2 * leftNum;
 
@@ -66,7 +71,29 @@ public class GameUI : MonoBehaviour
         rightPlayerGrid.spacing = new Vector2(0, (rightPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - rightPlayerGrid.cellSize.y * leftNum) / leftNum);
         topPlayerGrid.spacing = new Vector2((topPlayerGrid.GetComponent<RectTransform>().sizeDelta.x - rightPlayerGrid.cellSize.x * topNum) / topNum, 0);
 
+        StartCoroutine(InitMssagePoses(leftNum, topNum));
+    }
 
+    private IEnumerator InitMssagePoses(int leftNum, int topNum)
+    {
+        yield return new WaitForEndOfFrame();
+        if (messagePoses.Count > 0)
+        {
+            messagePoses.Clear();
+        }
+        messagePoses[0] = selfMessagePos.position;
+        for (int i = 1; i < leftNum + 1; i++)
+        {
+            messagePoses[i] = Players[i].transform.position + new Vector3(-100, 0);
+        }
+        for (int i = 1 + leftNum; i < 1 + leftNum + topNum; i++)
+        {
+            messagePoses[i] = Players[i].transform.position + new Vector3(0, -150);
+        }
+        for (int i = 1 + leftNum + topNum; i < 1 + leftNum + topNum + leftNum; i++)
+        {
+            messagePoses[i] = Players[i].transform.position + new Vector3(100, 0);
+        }
     }
 
     public void InitCards(int count)
@@ -293,14 +320,44 @@ public class GameUI : MonoBehaviour
         playerMessagInfo.gameObject.SetActive(false);
     }
 
-    public void ShowMessagingCard(CardFS message, int messagePlayerId = -1)
+    public void InitMessageSenderPos(int messagePlayerId)
+    {
+        if(messagePoses.ContainsKey(messagePlayerId))
+        {
+            messageCard.transform.position = messagePoses[messagePlayerId];
+        }
+    }
+
+    public void ShowMessagingCard(CardFS message, int messagePlayerId = -1, bool move = false)
     {
         //Debug.LogError("Çé±¨id£¬" + message.id);
         messageCard.gameObject.SetActive(true);
         messageCard.SetInfo(message);
         if(messagePlayerId != -1)
         {
-            messageCard.transform.position = Players[messagePlayerId].transform.position;
+            if(move)
+            {
+                Vector3 from = messageCard.transform.position;
+                Vector3 to = messagePoses[messagePlayerId];
+                StartCoroutine(DoMove(messageCard.transform, from, to, 0.1f));
+            }
+            else
+            {
+                messageCard.transform.position = messagePoses[messagePlayerId];
+            }
+        }
+    }
+
+    private IEnumerator DoMove(Transform trans, Vector3 from, Vector3 to, float t)
+    {
+        yield return null;
+        float pt = 0;
+        int count = 10;
+        for (int i = 0; i <= count; i++) 
+        {
+            pt = (float)i / count;
+            yield return new WaitForSeconds(pt * t);
+            trans.position = from + pt * (to - from);
         }
     }
     public void HideMessagingCard()
