@@ -39,7 +39,7 @@ public class ShiTanInfo : MonoBehaviour
         float secondsF = seconds;
         while (secondsF > 0)
         {
-            butDisCard.interactable = GameManager.Singleton.cardsHand.Count < 1 || (!isDrawCard && GameManager.Singleton.SelectCardId != -1) ;
+            butDisCard.interactable = (!isDrawCard && GameManager.Singleton.cardsHand.Count < 1) || (!isDrawCard && GameManager.Singleton.SelectCardId != -1) ;
             slider.value = secondsF / total;
             secondsF = secondsF - 0.1f;
             yield return new WaitForSeconds(0.1f);
