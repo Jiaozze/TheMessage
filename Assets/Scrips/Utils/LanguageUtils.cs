@@ -13,7 +13,7 @@ public class LanguageUtils
             case CardNameEnum.Cheng_Qing:
                 return "澄清";
             case CardNameEnum.Diao_Bao:
-                return "掉包";
+                return "调包";
             case CardNameEnum.Jie_Huo:
                 return "截获";
             case CardNameEnum.Li_You:
