@@ -414,23 +414,7 @@ public class GameManager
         }
         CurMessagePlayerId = messagePlayerId;
 
-        if (CurWaitingPlayerId != messagePlayerId)
-        {
-            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
-        }
-        if (gameUI.Players[CurTurnPlayerId] != null)
-        {
-            gameUI.Players[waitingPlayerId]?.OnWaiting(waitSecond);
-        }
-        CurWaitingPlayerId = waitingPlayerId;
-
-        if (CurWaitingPlayerId == SelfPlayerId)
-        {
-            //switch(curPhase)
-            //{
-            //    case PhaseEnum.
-            //}
-        }
+        OnWait(waitingPlayerId, waitSecond);
         gameUI.ShowPhase();
     }
 
@@ -518,16 +502,7 @@ public class GameManager
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
     {
         this.seqId = seqId;
-        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
-        {
-            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
-        }
-        if (gameUI.Players.ContainsKey(targetUser))
-        {
-            gameUI.Players[targetUser].OnWaiting(waitingTime);
-        }
-        CurWaitingPlayerId = targetUser;
-
+        OnWait(targetUser, waitingTime);
         //自己是被使用者，展示
         if (targetUser == SelfPlayerId)
         {
@@ -604,16 +579,7 @@ public class GameManager
         OnCardUse(user, cardUsed, target);
 
         this.seqId = seq;
-        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
-        {
-            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
-        }
-        if (gameUI.Players.ContainsKey(target))
-        {
-            gameUI.Players[target].OnWaiting(waitTime);
-        }
-        CurWaitingPlayerId = target;
-
+        OnWait(target, waitTime);
         if (target == SelfPlayerId)
         {
             gameUI.ShowWeiBiGiveCard(cardWant, user, waitTime);
@@ -701,16 +667,7 @@ public class GameManager
     public void OnReceiveDieGiveingCard(int playerId, int waitingSecond, uint seq)
     {
         this.seqId = seq;
-        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
-        {
-            gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
-        }
-        if (gameUI.Players.ContainsKey(playerId))
-        {
-            gameUI.Players[playerId].OnWaiting(waitingSecond);
-        }
-        CurWaitingPlayerId = playerId;
-
+        OnWait(playerId, waitingSecond);
         if (playerId == SelfPlayerId)
         {
             SelectCardId = -1;
