@@ -44,10 +44,28 @@ public static class ProtoHelper
         {
             notify_phase_toc notify_phase_toc = notify_phase_toc.Parser.ParseFrom(contont);
             CardFS message = new CardFS(notify_phase_toc.MessageCard);
-            GameManager.Singleton.OnReceiveTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.IntelligencePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, (DirectionEnum)notify_phase_toc.MessageCardDir, message, notify_phase_toc.Seq);
+            GameManager.Singleton.OnReceiveTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.MessagePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, (DirectionEnum)notify_phase_toc.MessageCardDir, message, notify_phase_toc.Seq);
             Debug.Log("_______receive________notify_phase_toc " + notify_phase_toc.WaitingPlayerId + " seq:" + notify_phase_toc.Seq);
         }
-
+        // 通知所有人传情报
+        else if (GetIdFromProtoName("send_message_card_toc") == id)
+        {
+            send_message_card_toc send_message_card_toc = send_message_card_toc.Parser.ParseFrom(contont);
+            List<int> locks = new List<int>();
+            foreach(var lockId in send_message_card_toc.LockPlayerIds)
+            {
+                locks.Add((int)lockId);
+            }
+            GameManager.Singleton.OnReceiveMessageSend((int)send_message_card_toc.PlayerId, (int)send_message_card_toc.CardId, (int)send_message_card_toc.TargetPlayerId, locks, (DirectionEnum)send_message_card_toc.CardDir);
+            Debug.Log("_______receive________ send_message_card_toc " + send_message_card_toc.PlayerId);
+        }
+        // 通知所有人选择要接收情报（只有选择要收时有这条协议）
+        else if (GetIdFromProtoName("choose_receive_toc") == id)
+        {
+            choose_receive_toc choose_receive_toc = choose_receive_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnReceiveMessageAccept((int)choose_receive_toc.PlayerId);
+            Debug.Log("_______receive________ choose_receive_toc " + choose_receive_toc.PlayerId);
+        }
         // 通知客户端，谁对谁使用了试探
         else if (GetIdFromProtoName("use_shi_tan_toc") == id)
         {
@@ -431,6 +449,14 @@ public static class ProtoHelper
 
         byte[] proto = use_po_yi_tos.ToByteArray();
         SendProto("use_po_yi_tos", proto);
+    }
+    public static void SendUseCardMessage_JieHuo(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ use_jie_huo_tos, seq:" + seq);
+        use_jie_huo_tos use_po_yi_tos = new use_jie_huo_tos() { CardId = (uint)cardId, Seq = seq };
+
+        byte[] proto = use_po_yi_tos.ToByteArray();
+        SendProto("use_jie_huo_tos", proto);
     }
     public static void SendPoYiShow(bool show, uint seq)
     {

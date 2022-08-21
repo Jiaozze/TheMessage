@@ -253,6 +253,35 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
     }
 
+    private void OnCardSend(int playerId, int cardId, int targetId, List<int> lockIds, DirectionEnum dir)
+    {
+        int user = playerId;
+        if (players.ContainsKey(user))
+        {
+            players[user].cardCount = players[user].cardCount - 1;
+        }
+        if (user == SelfPlayerId && cardsHand.ContainsKey(cardId))
+        {
+            cardsHand.Remove(cardId);
+            SelectCardId = -1;
+        }
+        else if (user == SelfPlayerId && !cardsHand.ContainsKey(cardId))
+        {
+            Debug.LogError("no card in hand," + cardId);
+        }
+        gameUI.OnCardSend(playerId, cardId);
+        gameUI.SetLock(lockIds);
+        string dirStr = "";
+        if (dir == DirectionEnum.Up) dirStr = "上";
+        else if (dir == DirectionEnum.Left) dirStr = "左";
+        else if (dir == DirectionEnum.Right) dirStr = "右";
+
+        gameUI.AddMsg(string.Format("{0}号玩家向{1}号玩家传出一张情报，方向向{2}", playerId, targetId, dirStr));
+        foreach(var id in lockIds)
+        {
+            gameUI.AddMsg("" + id + "号玩家被锁定了");
+        }
+    }
     private void OnWait(int playerId, int waitSeconds)
     {
         if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
@@ -353,6 +382,7 @@ public class GameManager
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
         if (playerId != CurTurnPlayerId)
         {
+            gameUI.ClearLock();
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
         }
         if (phase == PhaseEnum.Send_Start_Phase)
@@ -417,7 +447,19 @@ public class GameManager
         OnWait(waitingPlayerId, waitSecond);
         gameUI.ShowPhase();
     }
+    
+    // 通知所有人传情报
+    public void OnReceiveMessageSend(int playerId, int cardId, int targetId, List<int> locakIds, DirectionEnum dir)
+    {
+        OnCardSend(playerId, cardId, targetId, locakIds, dir);
 
+    }
+
+    // 通知所有人选择要接收情报（只有选择要收时有这条协议）
+    public void OnReceiveMessageAccept(int playerId)
+    {
+        gameUI.OnMessageAccept(playerId);
+    }
     // 通知所有人使用调包
     public void OnReceiveUseDiaoBao(int user, int cardUsedId, CardFS messageCard)
     {
