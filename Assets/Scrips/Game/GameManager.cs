@@ -241,6 +241,7 @@ public class GameManager
         if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
         {
             cardsHand.Remove(cardUsed.id);
+            SelectCardId = -1;
         }
         else if (user == SelfPlayerId && !cardsHand.ContainsKey(cardUsed.id))
         {
