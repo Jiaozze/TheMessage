@@ -464,7 +464,7 @@ public class GameManager
         seqId = seq;
         OnCardUse(user, cardUsed);
         OnWait(user, waitingTime);
-        if(user == SelectPlayerId)
+        if(user == SelfPlayerId)
         {
             gameUI.ShowPoYiResult(messageCard);
             string colorStr = "";
@@ -812,7 +812,7 @@ public class GameManager
         {
             if (!cardsHand[SelectCardId].canLock)
             {
-                ProtoHelper.SendMessageCard(SelectCardId, 0, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+                ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
                 SelectCardId = -1;
             }
             else if (!IsWaitLock)
