@@ -121,4 +121,16 @@ public class UICard : MonoBehaviour
         Debug.Log("¿¨±»ÆúÁË" + textName.text);
         Destroy(gameObject);
     }
+
+    public bool IsUnknown()
+    {
+        return goUnknown.activeSelf;
+    }
+
+    public void TurnOn(CardFS cardInfo)
+    {
+        gameObject.SetActive(true);
+        animator.SetTrigger("TurnOn");
+        SetInfo(cardInfo);
+    }
 }

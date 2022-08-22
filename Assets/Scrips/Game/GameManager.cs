@@ -451,6 +451,7 @@ public class GameManager
         else if (phase == PhaseEnum.Receive_Phase)
         {
             players[messagePlayerId].AddMessage(message);
+            gameUI.ShowAddMessage(messagePlayerId, message, true);
             gameUI.Players[messagePlayerId].RefreshMessage();
             gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
         }
@@ -639,6 +640,7 @@ public class GameManager
             if (players.ContainsKey(target))
             {
                 players[target].AddMessage(card);
+                gameUI.ShowAddMessage(target, card, false);
                 gameUI.Players[target].RefreshMessage();
                 gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}收为情报", target, LanguageUtils.GetCardName(card.cardName)));
             }
