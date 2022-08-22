@@ -111,7 +111,7 @@ public class GameManager
                 }
             }
             // 判断出牌时选中玩家
-            else if (cardsHand.ContainsKey(_SelectCardId))
+            else if (curPhase == PhaseEnum.Main_Phase && cardsHand.ContainsKey(_SelectCardId))
             {
                 switch (cardsHand[_SelectCardId].cardName)
                 {
@@ -144,6 +144,18 @@ public class GameManager
                         }
                         gameUI.ShowPlayerMessageInfo(_SelectPlayerId, true);
                         break;
+                }
+            }
+            // 情报争夺阶段选择误导目标
+            else if(curPhase == PhaseEnum.Fight_Phase && cardsHand.ContainsKey(_SelectCardId))
+            {
+                if(cardsHand[_SelectCardId].cardName == CardNameEnum.Wu_Dao)
+                {
+                    if(value == GetPlayerAliveLeft(CurMessagePlayerId) || value == GetPlayerAliveRight(CurMessagePlayerId))
+                    {
+                        _SelectPlayerId = value;
+                        gameUI.Players[_SelectPlayerId].OnSelect(true);
+                    }
                 }
             }
             Debug.Log("_SelectPlayerId" + _SelectPlayerId);
@@ -233,7 +245,33 @@ public class GameManager
     {
         return players[SelfPlayerId].playerColor[0];
     }
+    public int GetPlayerAliveLeft(int PlayerId)
+    {
+        int id = (PlayerId + players.Count - 1) % players.Count;
+        while (!players[id].alive)
+        {
+            id = (id + players.Count - 1) % players.Count;
+            if (id == PlayerId)
+            {
+                return id;
+            }
+        }
+        return id;
+    }
 
+    public int GetPlayerAliveRight(int PlayerId)
+    {
+        int id = (PlayerId + 1) % players.Count;
+        while(!players[id].alive)
+        {
+            id = (id + 1) % players.Count;
+            if(id == PlayerId)
+            {
+                return id;
+            }
+        }
+        return id;
+    }
     private void OnCardUse(int user, CardFS cardUsed, int target = -1)
     {
         if (players.ContainsKey(user))
@@ -408,7 +446,7 @@ public class GameManager
         }
         else if (phase == PhaseEnum.Fight_Phase)
         {
-            gameUI.ShowMessagingCard(message, messagePlayerId);
+            gameUI.ShowMessagingCard(message, messagePlayerId, true);
         }
         else if (phase == PhaseEnum.Receive_Phase)
         {
@@ -451,6 +489,11 @@ public class GameManager
         OnWait(waitingPlayerId, waitSecond);
         gameUI.ShowPhase();
         gameUI.RefreshIsCanCancel();
+    }
+
+    public void OnReceiveUseWuDao(int user, int target, CardFS cardUsed)
+    {
+        OnCardUse(user, cardUsed, target);
     }
 
     public void OnReceiveUseJieHuo(int user, CardFS cardUsed)
@@ -705,6 +748,7 @@ public class GameManager
     // 通知客户端谁死亡了
     public void OnReceivePlayerDied(int playerId, bool loseGame)
     {
+        players[playerId].alive = false;
         gameUI.Players[playerId].OnDie(loseGame);
         if(loseGame)
         {
@@ -813,10 +857,14 @@ public class GameManager
                     case CardNameEnum.Jie_Huo:
                         ProtoHelper.SendUseCardMessage_JieHuo(SelectCardId, seqId);
                         break;
-
+                    case CardNameEnum.Wu_Dao:
+                        if(SelectPlayerId == GetPlayerAliveRight(CurMessagePlayerId) || SelectPlayerId == GetPlayerAliveLeft(CurMessagePlayerId))
+                        {
+                            ProtoHelper.SendUseCardMessage_WuDao(SelectCardId, SelectPlayerId, seqId);
+                        }
+                        break;
                 }
             }
-
         }
 
         SelectCardId = -1;

@@ -15,7 +15,7 @@ public class Player
     public List<PlayerColorEnum>  playerColor = new List<PlayerColorEnum>() { PlayerColorEnum.Blue, PlayerColorEnum.Green, PlayerColorEnum.Red };
     public int cardCount;
     public List<CardFS> messages = new List<CardFS>();
-
+    public bool alive = true;
     public Player(int id)
     {
         playerId = id;
