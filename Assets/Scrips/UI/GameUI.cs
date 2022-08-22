@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
@@ -179,7 +180,7 @@ public class GameUI : MonoBehaviour
 
     public void OnclickUserCard()
     {
-        if(GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
+        if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             Debug.LogError("不在自己的相应时间");
             return;
@@ -194,13 +195,13 @@ public class GameUI : MonoBehaviour
         //有人濒死求澄清
         if (GameManager.Singleton.IsWaitSaving != -1)
         {
-            if(GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
+            if (GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
             {
                 ShowPlayerMessageInfo(GameManager.Singleton.IsWaitSaving, true);
             }
         }
         //自己出牌阶段
-        else if(GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
         {
             GameManager.Singleton.SendUseCard();
         }
@@ -210,14 +211,14 @@ public class GameUI : MonoBehaviour
             GameManager.Singleton.SendMessage();
         }
         //情报传递阶段，情报到自己面前时
-        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
         {
             bool usePoYi = false;
-            if(GameManager.Singleton.SelectCardId != -1)
+            if (GameManager.Singleton.SelectCardId != -1)
             {
                 usePoYi = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId].cardName == CardNameEnum.Po_Yi;
             }
-            if(usePoYi)
+            if (usePoYi)
             {
                 GameManager.Singleton.SendUserPoYi();
             }
@@ -244,12 +245,12 @@ public class GameUI : MonoBehaviour
             GameManager.Singleton.SendWhetherSave(false);
             return;
         }
-        if(GameManager.Singleton.IsWaitGiveCard)
+        if (GameManager.Singleton.IsWaitGiveCard)
         {
             ProtoHelper.SendDieGiveCard(GameManager.Singleton.seqId);
             return;
         }
-        if(GameManager.Singleton.IsWaitLock)
+        if (GameManager.Singleton.IsWaitLock)
         {
             GameManager.Singleton.SendMessage();
             return;
@@ -260,11 +261,11 @@ public class GameUI : MonoBehaviour
         {
             GameManager.Singleton.SendEndWaiting();
         }
-        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
         {
             GameManager.Singleton.SendWhetherReceive(false);
         }
-        else if(GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase)
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase)
         {
             GameManager.Singleton.SendEndFightPhase();
         }
@@ -272,7 +273,7 @@ public class GameUI : MonoBehaviour
 
     public void SetLock(List<int> lockIds)
     {
-        foreach(var id in lockIds)
+        foreach (var id in lockIds)
         {
             Players[id].SetLock(true);
         }
@@ -280,7 +281,7 @@ public class GameUI : MonoBehaviour
 
     public void ClearLock()
     {
-        foreach(var id_player in Players)
+        foreach (var id_player in Players)
         {
             id_player.Value.SetLock(false);
         }
@@ -301,7 +302,7 @@ public class GameUI : MonoBehaviour
         {
             Players[user].UseCard(card);
         }
-        
+
         if (user == GameManager.SelfPlayerId && card != null)
         {
             int cardId = card.id;
@@ -355,7 +356,7 @@ public class GameUI : MonoBehaviour
 
     public void InitMessageSenderPos(int messagePlayerId)
     {
-        if(messagePoses.ContainsKey(messagePlayerId))
+        if (messagePoses.ContainsKey(messagePlayerId))
         {
             messageCard.transform.position = messagePoses[messagePlayerId];
         }
@@ -366,9 +367,9 @@ public class GameUI : MonoBehaviour
         //Debug.LogError("情报id，" + message.id);
         messageCard.gameObject.SetActive(true);
         messageCard.SetInfo(message);
-        if(messagePlayerId != -1)
+        if (messagePlayerId != -1)
         {
-            if(move)
+            if (move)
             {
                 Vector3 from = messageCard.transform.position;
                 Vector3 to = messagePoses[messagePlayerId];
@@ -381,16 +382,20 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private IEnumerator DoMove(Transform trans, Vector3 from, Vector3 to, float t)
+    private IEnumerator DoMove(Transform trans, Vector3 from, Vector3 to, float t, UnityAction callBack = null, float delay = 0f)
     {
-        yield return null;
+        yield return new WaitForSeconds(delay);
         float pt = 0;
         int count = 10;
-        for (int i = 0; i <= count; i++) 
+        for (int i = 0; i <= count; i++)
         {
             pt = (float)i / count;
             yield return new WaitForSeconds(pt * t);
             trans.position = from + pt * (to - from);
+        }
+        if (callBack != null)
+        {
+            callBack.Invoke();
         }
     }
     public void HideMessagingCard()
@@ -400,11 +405,11 @@ public class GameUI : MonoBehaviour
 
     public void ShowPhase()
     {
-        if(GameManager.Singleton.IsWaitLock)
+        if (GameManager.Singleton.IsWaitLock)
         {
             textPhase.text = "请选择锁定目标";
         }
-        else if(GameManager.Singleton.IsWaitGiveCard)
+        else if (GameManager.Singleton.IsWaitGiveCard)
         {
             textPhase.text = "你阵亡了，可以选择至多三张牌交给一名玩家";
         }
@@ -456,12 +461,12 @@ public class GameUI : MonoBehaviour
     {
         bool canCancel = true;
         bool canSure = true;
-        if(GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
+        if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             canCancel = false;
             canSure = false;
         }
-        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
         {
             bool isSend = GameManager.Singleton.CurTurnPlayerId == GameManager.SelfPlayerId;
             bool isLocked = GameManager.Singleton.lockedPlayer != null && GameManager.Singleton.lockedPlayer.Contains(GameManager.SelfPlayerId);
@@ -472,5 +477,31 @@ public class GameUI : MonoBehaviour
         }
         butCancel.interactable = canCancel;
         butSure.interactable = canSure;
+    }
+
+    public void ShowAddMessage(int messagePlayerId, CardFS message, bool isSend)
+    {
+        if (isSend)
+        {
+            var card = GameObject.Instantiate(messageCard, transform);
+            if (card.IsUnknown())
+            {
+                card.TurnOn(message);
+                StartCoroutine(DoMove(card.transform, card.transform.position, Players[messagePlayerId].transform.position, 0.05f, () => { Destroy(card.gameObject); }, 1f));
+            }
+            else
+            {
+                card.gameObject.SetActive(true);
+                StartCoroutine(DoMove(card.transform, card.transform.position, Players[messagePlayerId].transform.position, 0.05f, () => { Destroy(card.gameObject); }, 1f));
+            }
+        }
+        else
+        {
+            var card = GameObject.Instantiate(itemCardUI, transform);
+            card.transform.localScale = new Vector3(0.5f, 0.5f);
+            card.SetInfo(message);
+            card.gameObject.SetActive(true);
+            StartCoroutine(DoMove(card.transform, card.transform.position, Players[messagePlayerId].transform.position, 0.05f, () => { Destroy(card.gameObject); }, 1f));
+        }
     }
 }
