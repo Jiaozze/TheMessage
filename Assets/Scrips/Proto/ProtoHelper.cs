@@ -1,4 +1,4 @@
-using Google.Protobuf;
+ï»¿using Google.Protobuf;
 //using Protos;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ public static class ProtoHelper
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //Debug.LogError(id);
-        // Í¨Öª¿Í»§¶Ë£ºÄ³¸öÍæ¼ÒÃşÁËÒ»ÕÅ¿¨
+        // é€šçŸ¥å®¢æˆ·ç«¯ï¼šæŸä¸ªç©å®¶æ‘¸äº†ä¸€å¼ å¡
         if (GetIdFromProtoName("add_card_toc") == id)
         {
             //Debug.LogError("add_card_toc");
@@ -30,7 +30,7 @@ public static class ProtoHelper
                 //Debug.LogError("-----add_card_toc, PlayerId:" + add_card_toc.PlayerId);
             }
         }
-        // Í¨Öª¿Í»§¶Ë£º³õÊ¼»¯ÓÎÏ·
+        // é€šçŸ¥å®¢æˆ·ç«¯ï¼šåˆå§‹åŒ–æ¸¸æˆ
         else if (GetIdFromProtoName("init_toc") == id)
         {
             init_toc init_Toc = init_toc.Parser.ParseFrom(contont);
@@ -39,7 +39,7 @@ public static class ProtoHelper
             SecretTaskEnum secretTask = (SecretTaskEnum)init_Toc.SecretTask;
             GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask);
         }
-        // Í¨Öª¿Í»§¶Ë£¬µ½Ë­µÄÄÄ¸ö½×¶ÎÁË
+        // é€šçŸ¥å®¢æˆ·ç«¯ï¼Œåˆ°è°çš„å“ªä¸ªé˜¶æ®µäº†
         else if (GetIdFromProtoName("notify_phase_toc") == id)
         {
             notify_phase_toc notify_phase_toc = notify_phase_toc.Parser.ParseFrom(contont);
@@ -47,7 +47,7 @@ public static class ProtoHelper
             GameManager.Singleton.OnReceiveTurn((int)notify_phase_toc.CurrentPlayerId, (int)notify_phase_toc.MessagePlayerId, (int)notify_phase_toc.WaitingPlayerId, (PhaseEnum)notify_phase_toc.CurrentPhase, (int)notify_phase_toc.WaitingSecond, (DirectionEnum)notify_phase_toc.MessageCardDir, message, notify_phase_toc.Seq);
             Debug.Log("_______receive________notify_phase_toc " + notify_phase_toc.WaitingPlayerId + " seq:" + notify_phase_toc.Seq);
         }
-        // Í¨ÖªËùÓĞÈË´«Çé±¨
+        // é€šçŸ¥æ‰€æœ‰äººä¼ æƒ…æŠ¥
         else if (GetIdFromProtoName("send_message_card_toc") == id)
         {
             send_message_card_toc send_message_card_toc = send_message_card_toc.Parser.ParseFrom(contont);
@@ -59,14 +59,14 @@ public static class ProtoHelper
             GameManager.Singleton.OnReceiveMessageSend((int)send_message_card_toc.PlayerId, (int)send_message_card_toc.CardId, (int)send_message_card_toc.TargetPlayerId, locks, (DirectionEnum)send_message_card_toc.CardDir);
             Debug.Log("_______receive________ send_message_card_toc " + send_message_card_toc.PlayerId);
         }
-        // Í¨ÖªËùÓĞÈËÑ¡ÔñÒª½ÓÊÕÇé±¨£¨Ö»ÓĞÑ¡ÔñÒªÊÕÊ±ÓĞÕâÌõĞ­Òé£©
+        // é€šçŸ¥æ‰€æœ‰äººé€‰æ‹©è¦æ¥æ”¶æƒ…æŠ¥ï¼ˆåªæœ‰é€‰æ‹©è¦æ”¶æ—¶æœ‰è¿™æ¡åè®®ï¼‰
         else if (GetIdFromProtoName("choose_receive_toc") == id)
         {
             choose_receive_toc choose_receive_toc = choose_receive_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnReceiveMessageAccept((int)choose_receive_toc.PlayerId);
             Debug.Log("_______receive________ choose_receive_toc " + choose_receive_toc.PlayerId);
         }
-        // Í¨Öª¿Í»§¶Ë£¬Ë­¶ÔË­Ê¹ÓÃÁËÊÔÌ½
+        // é€šçŸ¥å®¢æˆ·ç«¯ï¼Œè°å¯¹è°ä½¿ç”¨äº†è¯•æ¢
         else if (GetIdFromProtoName("use_shi_tan_toc") == id)
         {
             use_shi_tan_toc use_Shi_Tan_Toc = use_shi_tan_toc.Parser.ParseFrom(contont);
@@ -78,7 +78,7 @@ public static class ProtoHelper
             Debug.Log("_______receive________ use_shi_tan_toc " + user + "," + target);
         }
 
-        // Ïò±»ÊÔÌ½ÕßÕ¹Ê¾ÊÔÌ½£¬²¢µÈ´ı»ØÓ¦
+        // å‘è¢«è¯•æ¢è€…å±•ç¤ºè¯•æ¢ï¼Œå¹¶ç­‰å¾…å›åº”
         else if (GetIdFromProtoName("show_shi_tan_toc") == id)
         {
             show_shi_tan_toc show_Shi_Tan_Toc = show_shi_tan_toc.Parser.ParseFrom(contont);
@@ -89,7 +89,7 @@ public static class ProtoHelper
             int time = (int)show_Shi_Tan_Toc.WaitingSecond;
             GameManager.Singleton.OnReceiveShowShiTan(user, target, card, time, show_Shi_Tan_Toc.Seq);
         }
-        // ±»ÊÔÌ½ÕßÖ´ĞĞÊÔÌ½
+        // è¢«è¯•æ¢è€…æ‰§è¡Œè¯•æ¢
         else if (GetIdFromProtoName("execute_shi_tan_toc") == id)
         {
             execute_shi_tan_toc execute_Shi_Tan_Toc = execute_shi_tan_toc.Parser.ParseFrom(contont);
@@ -99,14 +99,14 @@ public static class ProtoHelper
             Debug.Log("_______receive________ execute_shi_tan_toc");
         }
 
-        // Í¨Öª¿Í»§¶Ë£¬ÅÆ¶ÑµÄÊ£ÓàÊıÁ¿
+        // é€šçŸ¥å®¢æˆ·ç«¯ï¼Œç‰Œå †çš„å‰©ä½™æ•°é‡
         else if (GetIdFromProtoName("sync_deck_num_toc") == id)
         {
             Debug.Log("_______receive________ sync_deck_num_toc");
             sync_deck_num_toc sync_deck_num_toc = sync_deck_num_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnReceiveDeckNum((int)sync_deck_num_toc.Num, sync_deck_num_toc.Shuffled);
         }
-        // Í¨Öª¿Í»§¶Ë£¬ÅÆ´ÓË­µÄÊÖÅÆ±»Æúµô
+        // é€šçŸ¥å®¢æˆ·ç«¯ï¼Œç‰Œä»è°çš„æ‰‹ç‰Œè¢«å¼ƒæ‰
         else if (GetIdFromProtoName("discard_card_toc") == id)
         {
             Debug.Log("TODO _______receive________ discard_card_toc");
@@ -122,7 +122,7 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveDiscards(playerId, cards);
         }
-        // Í¨Öª¿Í»§¶ËÊ¹ÓÃÀûÓÕµÄ½á¹û
+        // é€šçŸ¥å®¢æˆ·ç«¯ä½¿ç”¨åˆ©è¯±çš„ç»“æœ
         else if (GetIdFromProtoName("use_li_you_toc") == id)
         {
             Debug.Log(" _______receive________ use_li_you_toc");
@@ -134,7 +134,7 @@ public static class ProtoHelper
             CardFS cardMessage = new CardFS(use_Li_You_Toc.MessageCard);
             GameManager.Singleton.OnRecerveUseLiYou(user, target, cardLiYou, cardMessage, use_Li_You_Toc.JoinIntoHand);
         }
-        // Í¨Öª¿Í»§¶ËÊ¹ÓÃÆ½ºâµÄ½á¹û
+        // é€šçŸ¥å®¢æˆ·ç«¯ä½¿ç”¨å¹³è¡¡çš„ç»“æœ
         else if (GetIdFromProtoName("use_ping_heng_toc") == id)
         {
             Debug.Log(" _______receive________ use_ping_heng_toc");
@@ -163,7 +163,7 @@ public static class ProtoHelper
             GameManager.Singleton.OnReceiveDiscards(target, targetCards);
 
         }
-        // Í¨ÖªËùÓĞÈËÍş±ÆµÄÅÆÃ»ÓĞ£¬Õ¹Ê¾ËùÓĞÊÖÅÆ
+        // é€šçŸ¥æ‰€æœ‰äººå¨é€¼çš„ç‰Œæ²¡æœ‰ï¼Œå±•ç¤ºæ‰€æœ‰æ‰‹ç‰Œ
         else if (GetIdFromProtoName("wei_bi_show_hand_card_toc") == id)
         {
             Debug.Log(" _______receive________ wei_bi_show_hand_card_toc");
@@ -180,7 +180,7 @@ public static class ProtoHelper
             }
             GameManager.Singleton.OnReceiveUseWeiBiShowHands(user, target, cardUsed, cards);
         }
-        // Í¨ÖªËùÓĞÈËÍş±ÆµÈ´ı¸øÅÆ
+        // é€šçŸ¥æ‰€æœ‰äººå¨é€¼ç­‰å¾…ç»™ç‰Œ
         else if (GetIdFromProtoName("wei_bi_wait_for_give_card_toc") == id)
         {
             Debug.Log(" _______receive________ wei_bi_wait_for_give_card_toc");
@@ -195,7 +195,7 @@ public static class ProtoHelper
             CardNameEnum cardWant = (CardNameEnum)wei_bi_wait_for_give_card_toc.WantType;
             GameManager.Singleton.OnReceiveUseWeiBiGiveCard(user, target, cardUsed, cardWant, waitTime, seq);
         }
-        // Í¨ÖªËùÓĞÈËÍş±Æ¸øÅÆ
+        // é€šçŸ¥æ‰€æœ‰äººå¨é€¼ç»™ç‰Œ
         else if (GetIdFromProtoName("wei_bi_give_card_toc") == id)
         {
             Debug.Log(" _______receive________ wei_bi_give_card_toc");
@@ -207,7 +207,7 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveExcuteWeiBiGiveCard(user, target, cardUsed);
         }
-        // Í¨ÖªËùÓĞÈË³ÎÇå
+        // é€šçŸ¥æ‰€æœ‰äººæ¾„æ¸…
         else if (GetIdFromProtoName("use_cheng_qing_toc") == id)
         {
             Debug.Log(" _______receive________ use_cheng_qing_toc");
@@ -220,7 +220,7 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveUseChengQing(user, target, cardUsed, targetCardId);
         }
-        // Í¨ÖªËùÓĞÈËÊ¹ÓÃÆÆÒë£¬²¢Ñ¯ÎÊÊÇ·ñ·­¿ª²¢ÃşÒ»ÕÅÅÆ£¨Ö»ÓĞºÚÇé±¨²ÅÄÜ·­¿ª£©
+        // é€šçŸ¥æ‰€æœ‰äººä½¿ç”¨ç ´è¯‘ï¼Œå¹¶è¯¢é—®æ˜¯å¦ç¿»å¼€å¹¶æ‘¸ä¸€å¼ ç‰Œï¼ˆåªæœ‰é»‘æƒ…æŠ¥æ‰èƒ½ç¿»å¼€ï¼‰
         else if (GetIdFromProtoName("use_po_yi_toc") == id)
         {
             Debug.Log(" _______receive________ use_po_yi_toc");
@@ -233,7 +233,7 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveUsePoYi(user, cardUsed, messageCard, waitingTime, use_po_yi_toc.Seq);
         }
-        // Í¨Öª¿Í»§¶ËÆÆÒë·­ÅÆ½á¹û
+        // é€šçŸ¥å®¢æˆ·ç«¯ç ´è¯‘ç¿»ç‰Œç»“æœ
         else if (GetIdFromProtoName("po_yi_show_toc") == id)
         {
             Debug.Log(" _______receive________ po_yi_show_toc");
@@ -244,7 +244,7 @@ public static class ProtoHelper
             bool show = po_yi_show_toc.Show;
             GameManager.Singleton.OnReceivePoYiShow(user, show, messageCard);
         }
-        // Í¨ÖªËùÓĞÈËÊ¹ÓÃµ÷°ü
+        // é€šçŸ¥æ‰€æœ‰äººä½¿ç”¨è°ƒåŒ…
         else if (GetIdFromProtoName("use_diao_bao_toc") == id)
         {
             Debug.Log(" _______receive________ use_diao_bao_toc");
@@ -255,7 +255,7 @@ public static class ProtoHelper
             int cardUsed = (int)use_diao_bao_toc.CardId;
             GameManager.Singleton.OnReceiveUseDiaoBao(user, cardUsed, messageCard);
         }
-        // Í¨ÖªËùÓĞÈËÊ¹ÓÃ½Ø»ñ
+        // é€šçŸ¥æ‰€æœ‰äººä½¿ç”¨æˆªè·
         else if (GetIdFromProtoName("use_jie_huo_toc") == id)
         {
             Debug.Log(" _______receive________ use_jie_huo_toc");
@@ -265,7 +265,18 @@ public static class ProtoHelper
             CardFS cardUsed = new CardFS(use_diao_bao_toc.Card);
             GameManager.Singleton.OnReceiveUseJieHuo(user, cardUsed);
         }
-        // Í¨Öª¿Í»§¶ËË­ËÀÍöÁË
+        // é€šçŸ¥æ‰€æœ‰äººä½¿ç”¨è¯¯å¯¼
+        else if (GetIdFromProtoName("use_wu_dao_toc") == id)
+        {
+            Debug.Log(" _______receive________ use_wu_dao_toc");
+
+            use_wu_dao_toc use_wu_dao_toc = use_wu_dao_toc.Parser.ParseFrom(contont);
+            int user = (int)use_wu_dao_toc.PlayerId;
+            int target = (int)use_wu_dao_toc.TargetPlayerId;
+            CardFS cardUsed = new CardFS(use_wu_dao_toc.Card);
+            GameManager.Singleton.OnReceiveUseWuDao(user, target, cardUsed);
+        }
+        // é€šçŸ¥å®¢æˆ·ç«¯è°æ­»äº¡äº†
         else if (GetIdFromProtoName("notify_die_toc") == id)
         {
             Debug.Log(" _______receive________ notify_die_toc");
@@ -275,7 +286,7 @@ public static class ProtoHelper
             bool loseGame = notify_die_toc.LoseGame;
             GameManager.Singleton.OnReceivePlayerDied(playerId, loseGame);
         }
-        // Í¨Öª¿Í»§¶ËË­Ê¤ÀûÁË
+        // é€šçŸ¥å®¢æˆ·ç«¯è°èƒœåˆ©äº†
         else if (GetIdFromProtoName("notify_winner_toc") == id)
         {
             Debug.Log(" _______receive________ notify_winner_toc");
@@ -300,7 +311,7 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnReceiveWinner(playerId, winners, playerColers, playerTasks);
         }
-        // ±ôËÀÇó³ÎÇå
+        // æ¿’æ­»æ±‚æ¾„æ¸…
         else if (GetIdFromProtoName("wait_for_cheng_qing_toc") == id)
         {
             Debug.Log(" _______receive________ wait_for_cheng_qing_toc");
@@ -311,7 +322,7 @@ public static class ProtoHelper
             int waitingSecond = (int)wait_for_cheng_qing_toc.WaitingSecond;
             GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond);
         }
-        // µÈ´ıËÀÍöÊ±¸øÈıÕÅÅÆ
+        // ç­‰å¾…æ­»äº¡æ—¶ç»™ä¸‰å¼ ç‰Œ
         else if (GetIdFromProtoName("wait_for_die_give_card_toc") == id)
         {
             Debug.Log(" _______receive________ wait_for_die_give_card_toc");
@@ -327,7 +338,7 @@ public static class ProtoHelper
         }
     }
 
-    #region ³öÅÆ½×¶ÎĞ­Òé
+    #region å‡ºç‰Œé˜¶æ®µåè®®
     public static void SendEndWaiting(uint seq)
     {
         Debug.Log("____send___________________ end_Main_Phase_Tos, seq:" + seq);
@@ -381,7 +392,7 @@ public static class ProtoHelper
         SendProto("use_ping_heng_tos", proto);
     }
 
-    // ÇëÇóÊ¹ÓÃ³ÎÇå
+    // è¯·æ±‚ä½¿ç”¨æ¾„æ¸…
     public static void SendUseCardMessage_ChengQing(int cardId, int playerId, int targetCardId, uint seq)
     {
         Debug.Log("____send___________________ use_cheng_qing_tos, seq:" + seq);
@@ -392,7 +403,7 @@ public static class ProtoHelper
     }
 
 
-    // ÊÔÌ½ÆúÅÆ»òÕßÃşÅÆ
+    // è¯•æ¢å¼ƒç‰Œæˆ–è€…æ‘¸ç‰Œ
     public static void SendDoShiTan(int cardId, uint seq)
     {
         Debug.Log("____send___________________ execute_shi_tan_tos, seq:" + seq);
@@ -405,7 +416,7 @@ public static class ProtoHelper
         byte[] proto = execute_Shi_Tan_Tos.ToByteArray();
         SendProto("execute_shi_tan_tos", proto);
     }
-    // Íş±Æ¸øÅÆ
+    // å¨é€¼ç»™ç‰Œ
     public static void SendDoWeiBi(int cardId, uint seq)
     {
         Debug.Log("____send___________________ wei_bi_give_card_tos, seq:" + seq);
@@ -415,8 +426,8 @@ public static class ProtoHelper
     }
     #endregion
 
-    #region ´«Çé±¨½×¶ÎĞ­Òé
-    // ÇëÇó´«Çé±¨
+    #region ä¼ æƒ…æŠ¥é˜¶æ®µåè®®
+    // è¯·æ±‚ä¼ æƒ…æŠ¥
     public static void SendMessageCard(int cardId, int targetPlayer, List<int> lockPlayers, DirectionEnum dir, uint seq)
     {
         Debug.Log("____send___________________ send_message_card_tos, seq:" + seq);
@@ -431,7 +442,7 @@ public static class ProtoHelper
         SendProto("send_message_card_tos", proto);
     }
     
-    // Ñ¡ÔñÊÇ·ñ½ÓÊÕÇé±¨
+    // é€‰æ‹©æ˜¯å¦æ¥æ”¶æƒ…æŠ¥
     public static void SendWhetherReceive(bool isReceive, uint seq)
     {
         Debug.Log("____send___________________ choose_whether_receive_tos, seq:" + seq);
@@ -441,7 +452,7 @@ public static class ProtoHelper
         byte[] proto = choose_whether_receive_tos.ToByteArray();
         SendProto("choose_whether_receive_tos", proto);
     }
-    // Ê¹ÓÃµ÷°ü
+    // ä½¿ç”¨è°ƒåŒ…
     public static void SendUseDiaoBao(int cardId, uint seq)
     {
         Debug.Log("____send___________________ use_diao_bao_tos, seq:" + seq);
@@ -450,7 +461,7 @@ public static class ProtoHelper
         byte[] proto = use_Diao_Bao_Tos.ToByteArray();
         SendProto("use_diao_bao_tos", proto);
     }
-    // Ê¹ÓÃÆÆÒë
+    // ä½¿ç”¨ç ´è¯‘
     public static void SendUseCardMessage_PoYi(int cardId, uint seq)
     {
         Debug.Log("____send___________________ use_po_yi_tos, seq:" + seq);
@@ -459,6 +470,7 @@ public static class ProtoHelper
         byte[] proto = use_po_yi_tos.ToByteArray();
         SendProto("use_po_yi_tos", proto);
     }
+    //ä½¿ç”¨æˆªè·
     public static void SendUseCardMessage_JieHuo(int cardId, uint seq)
     {
         Debug.Log("____send___________________ use_jie_huo_tos, seq:" + seq);
@@ -466,6 +478,14 @@ public static class ProtoHelper
 
         byte[] proto = use_po_yi_tos.ToByteArray();
         SendProto("use_jie_huo_tos", proto);
+    }
+    public static void SendUseCardMessage_WuDao(int cardId,int target, uint seq)
+    {
+        Debug.Log("____send___________________ use_wu_dao_tos, seq:" + seq);
+        use_wu_dao_tos use_wu_dao_tos = new use_wu_dao_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)target, Seq = seq };
+
+        byte[] proto = use_wu_dao_tos.ToByteArray();
+        SendProto("use_wu_dao_tos", proto);
     }
     public static void SendPoYiShow(bool show, uint seq)
     {
@@ -478,7 +498,7 @@ public static class ProtoHelper
     }
     #endregion
 
-    // ÊÇ·ñÊ¹ÓÃ³ÎÇå
+    // æ˜¯å¦ä½¿ç”¨æ¾„æ¸…
     public static void SendChengQingSaveDying(bool use, int cardId, int targetCard, uint seq)
     {
         Debug.Log("____send___________________ choose_whether_receive_tos, seq:" + seq);
@@ -487,7 +507,7 @@ public static class ProtoHelper
         byte[] proto = cheng_Qing_Save_Die_Tos.ToByteArray();
         SendProto("", proto);
     }
-    // µÈ´ıËÀÍöÊ±¸øÈıÕÅÅÆ
+    // ç­‰å¾…æ­»äº¡æ—¶ç»™ä¸‰å¼ ç‰Œ
     public static void SendDieGiveCard(uint seq, List<int> cardIds = null, int playerId = 0)
     {
         Debug.Log("____send___________________ die_give_card_tos, seq:" + seq);
