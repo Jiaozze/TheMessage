@@ -464,7 +464,10 @@ public static class ProtoHelper
         send_message_card_tos send_message_card_tos = new send_message_card_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)targetPlayer, CardDir = (direction)dir, Seq = seq };
         foreach (var lockPlayer in lockPlayers)
         {
-            send_message_card_tos.LockPlayerId.Add((uint)lockPlayer);
+            if(lockPlayer != 0)
+            {
+                send_message_card_tos.LockPlayerId.Add((uint)lockPlayer);
+            }
         }
 
         byte[] proto = send_message_card_tos.ToByteArray();
