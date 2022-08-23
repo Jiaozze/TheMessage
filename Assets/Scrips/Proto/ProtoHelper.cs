@@ -332,6 +332,35 @@ public static class ProtoHelper
             int waitingSecond = (int)wait_for_die_give_card_toc.WaitingSecond;
             GameManager.Singleton.OnReceiveDieGiveingCard(playerId, waitingSecond, wait_for_die_give_card_toc.Seq);
         }
+        // 返回房间所有人的信息
+        else if (GetIdFromProtoName("get_room_info_toc") == id)
+        {
+            Debug.Log(" _______receive________ get_room_info_toc ");
+
+            get_room_info_toc get_Room_Info_Toc = get_room_info_toc.Parser.ParseFrom(contont);
+            List<string> names = new List<string>();
+            foreach(var name in get_Room_Info_Toc.Names)
+            {
+                names.Add(name);
+            }
+            GameManager.Singleton.OnReceiveRoomInfo(names, (int)get_Room_Info_Toc.MyPosition);
+        }
+        // 通知谁加入了房间
+        else if (GetIdFromProtoName("join_room_toc") == id)
+        {
+            join_room_toc join_room_toc = join_room_toc.Parser.ParseFrom(contont);
+            Debug.Log(" _______receive________ join_room_toc " + join_room_toc.Position);
+
+            GameManager.Singleton.OnAddPlayer(join_room_toc.Name, (int)join_room_toc.Position);
+            
+        }
+        // 通知谁离开的房间
+        else if (GetIdFromProtoName("leave_room_toc") == id)
+        {
+            leave_room_toc leave_room_toc = leave_room_toc.Parser.ParseFrom(contont);
+
+            GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
+        }
         else
         {
             Debug.LogError("undefine proto:" + id);
@@ -523,6 +552,21 @@ public static class ProtoHelper
         byte[] proto = die_give_card_tos.ToByteArray();
         SendProto("die_give_card_tos", proto);
     }
+
+    public static void SendGetRoomInfo()
+    {
+        get_room_info_tos get_room_info_tos = new get_room_info_tos();
+        byte[] proto = get_room_info_tos.ToByteArray();
+        SendProto("get_room_info_tos", proto);
+    }
+
+    public static void SendAddAI()
+    {
+        add_robot_tos add_robot_tos = new add_robot_tos();
+        byte[] proto = add_robot_tos.ToByteArray();
+        SendProto("add_robot_tos", proto);
+    }
+
     private static void SendProto(string protoName, byte[] proto)
     {
         int protoId = GetIdFromProtoName(protoName);

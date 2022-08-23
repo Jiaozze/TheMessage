@@ -117,12 +117,15 @@ public static class NetWork
     {
         try
         {
-            socket.Shutdown(SocketShutdown.Both);
-            socket.Close();
-            thread.Abort();
-            easyThread.StopThread();
-            thread = null;
-            Debug.Log("关闭与远程服务器的连接!");
+            if(socket != null)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+                thread.Abort();
+                easyThread.StopThread();
+                thread = null;
+                Debug.Log("关闭与远程服务器的连接!");
+            }
         }
         catch (Exception ex)
         {

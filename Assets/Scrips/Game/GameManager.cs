@@ -6,7 +6,7 @@ public class GameManager
 {
     public static int SelfPlayerId = 0;
     public GameUI gameUI;
-
+    public RoomUI roomUI;
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public Dictionary<int, CardFS> cardsHand = new Dictionary<int, CardFS>(); //<id, card>
 
@@ -194,6 +194,8 @@ public class GameManager
     public void Init()
     {
         GameObject windowGo = GameObject.Find("GameUI");
+        GameObject roomGo = GameObject.Find("RoomUI");
+
         if (gameUI == null && windowGo != null)
         {
             gameUI = windowGo.GetComponent<GameUI>();
@@ -202,10 +204,13 @@ public class GameManager
                 gameUI = windowGo.AddComponent<GameUI>();
             }
         }
-        else
+        
+        if(roomUI == null && roomGo != null)
         {
-            //TODO
+            roomUI = roomGo.GetComponent<RoomUI>();
         }
+        gameUI.gameObject.SetActive(false);
+        roomUI.gameObject.SetActive(true);
     }
 
     private void InitDatas()
@@ -337,10 +342,24 @@ public class GameManager
 
     }
     #region 服务器消息处理
-
+    public void OnReceiveRoomInfo(List<string> names, int myPosition)
+    {
+        roomUI.OnRoomInfo(names, myPosition);
+    }
+    public void OnAddPlayer(string name, int index)
+    {
+        roomUI.OnAddPlayer(name, index);
+    }
+    public void OnPlayerLeave(int position)
+    {
+        roomUI.OnPlayerLeave(position);
+    }
     // 通知客户端：初始化游戏
     public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask)
     {
+        gameUI.gameObject.SetActive(true);
+        roomUI.gameObject.SetActive(false);
+
         task = secretTask;
 
         InitPlayers(player_num);
