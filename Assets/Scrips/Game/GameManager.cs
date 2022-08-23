@@ -651,6 +651,7 @@ public class GameManager
 
             if (user == SelfPlayerId)
             {
+                cardsHand[card.id] = (card);
                 gameUI.DrawCards(new List<CardFS>() { card });
             }
         }
