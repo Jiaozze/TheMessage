@@ -807,6 +807,45 @@ public class GameManager
         }
         gameUI.AddMsg(string.Format("等待{0}号玩家托付手牌", playerId));
     }
+    public void OnReceiveDieGivenCard(int playerId, int targetPlayerId, int cardCount, List<CardFS> cards)
+    {
+        int count = SelectPlayerId == playerId || SelectPlayerId == targetPlayerId ? cards.Count : cardCount;
+        int total = players[playerId].DrawCard(count);
+        string cardsInfo = "";
+        players[targetPlayerId].cardCount = players[targetPlayerId].cardCount - count;
+
+        if (gameUI.Players[playerId] != null)
+        {
+            gameUI.Players[playerId].OnDrawCard(total, 1);
+        }
+
+        if (gameUI.Players.ContainsKey(targetPlayerId))
+        {
+            gameUI.Players[targetPlayerId].Discard(cards);
+        }
+
+        if (playerId == SelfPlayerId)
+        {
+            foreach (var cardGiven in cards)
+            {
+                cardsHand[cardGiven.id] = cardGiven;
+                cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
+            }
+            gameUI.DrawCards(cards);
+        }
+        if (SelfPlayerId == targetPlayerId)
+        {
+            foreach(var cardGiven in cards)
+            {
+                cardsHand.Remove(cardGiven.id);
+                cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
+            }
+            gameUI.DisCards(cards);
+        }
+
+        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家{2}张牌 {3}", targetPlayerId, playerId, count, cardsInfo));
+
+    }
 
     // 通知谁获胜了
     public void OnReceiveWinner(int playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)

@@ -332,6 +332,21 @@ public static class ProtoHelper
             int waitingSecond = (int)wait_for_die_give_card_toc.WaitingSecond;
             GameManager.Singleton.OnReceiveDieGiveingCard(playerId, waitingSecond, wait_for_die_give_card_toc.Seq);
         }
+        else if (GetIdFromProtoName("notify_die_give_card_toc") == id)
+        {
+            Debug.Log(" _______receive________ notify_die_give_card_toc");
+
+            notify_die_give_card_toc wait_for_die_give_card_toc = notify_die_give_card_toc.Parser.ParseFrom(contont);
+            int playerId = (int)wait_for_die_give_card_toc.PlayerId;
+            int targetPlayerId = (int)wait_for_die_give_card_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            int cardCount = (int)wait_for_die_give_card_toc.CardCount;
+            foreach (var card in wait_for_die_give_card_toc.Card)
+            {
+                cards.Add(new CardFS(card));
+            }
+            GameManager.Singleton.OnReceiveDieGivenCard(playerId, targetPlayerId, cardCount, cards);
+        }
         // 返回房间所有人的信息
         else if (GetIdFromProtoName("get_room_info_toc") == id)
         {
@@ -556,12 +571,12 @@ public static class ProtoHelper
         SendProto("die_give_card_tos", proto);
     }
 
-    public static void SendGetRoomInfo()
-    {
-        get_room_info_tos get_room_info_tos = new get_room_info_tos();
-        byte[] proto = get_room_info_tos.ToByteArray();
-        SendProto("get_room_info_tos", proto);
-    }
+    //public static void SendGetRoomInfo()
+    //{
+    //    get_room_info_tos get_room_info_tos = new get_room_info_tos();
+    //    byte[] proto = get_room_info_tos.ToByteArray();
+    //    SendProto("get_room_info_tos", proto);
+    //}
 
     public static void SendAddAI()
     {
