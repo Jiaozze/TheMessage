@@ -330,11 +330,19 @@ public class GameManager
     }
     private void OnWait(int playerId, int waitSeconds)
     {
-        if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
+        if(CurWaitingPlayerId == SelfPlayerId)
+        {
+            gameUI.OnWaiting(0);
+        }
+        else if (gameUI.Players.ContainsKey(CurWaitingPlayerId))
         {
             gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
         }
-        if (gameUI.Players.ContainsKey(playerId))
+        if(playerId == SelfPlayerId)
+        {
+            gameUI.OnWaiting(waitSeconds);
+        }
+        else if (gameUI.Players.ContainsKey(playerId))
         {
             gameUI.Players[playerId].OnWaiting(waitSeconds);
         }
@@ -752,8 +760,7 @@ public class GameManager
     // 濒死求澄清
     public void OnReceiveWaitSaving(int playerId, int waitingPlayer, int waitingSecond)
     {
-        gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
-        gameUI.Players[waitingPlayer].OnWaiting(waitingSecond);
+        OnWait(waitingPlayer, waitingSecond);
 
         if (waitingPlayer == SelfPlayerId)
         {
