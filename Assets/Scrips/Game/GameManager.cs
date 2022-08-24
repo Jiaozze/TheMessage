@@ -631,6 +631,12 @@ public class GameManager
         {
             IsBingShiTan = true;
             gameUI.ShowShiTanInfo(card, waitingTime);
+            string cardInfo = "试探摸牌颜色";
+            foreach (var color in card.shiTanColor)
+            {
+                cardInfo = cardInfo + LanguageUtils.GetIdentityName(color);
+            }
+            gameUI.AddMsg("你被试探了;" + cardInfo);
         }
     }
 
