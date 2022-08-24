@@ -30,6 +30,7 @@ public class GameUI : MonoBehaviour
     public Button butCancel;
     public Button butSure;
     public Transform selfMessagePos;
+    public Slider slider;
 
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
@@ -503,5 +504,36 @@ public class GameUI : MonoBehaviour
             card.gameObject.SetActive(true);
             StartCoroutine(DoMove(card.transform, card.transform.position, Players[messagePlayerId].transform.position, 0.05f, () => { Destroy(card.gameObject); }, 1f));
         }
+    }
+
+    private Coroutine sliderCorout;
+    public void OnWaiting(int seconds)
+    {
+        if (seconds <= 0)
+        {
+            if(sliderCorout != null)
+            {
+                StopCoroutine(sliderCorout);
+            }
+            slider.gameObject.SetActive(false);
+        }
+        else
+        {
+            slider.gameObject.SetActive(true);
+            sliderCorout = StartCoroutine(ShowSlider(seconds));
+        }
+    }
+
+    private IEnumerator ShowSlider(int seconds)
+    {
+        float total = seconds;
+        float secondsF = seconds;
+        while (secondsF > 0)
+        {
+            slider.value = secondsF / total;
+            secondsF = secondsF - 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        slider.gameObject.SetActive(false);
     }
 }
