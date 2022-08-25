@@ -57,75 +57,74 @@ public static partial class FengshengReflection {
           "GAMgASgLMgUuY2FyZBIbCgxtZXNzYWdlX2NhcmQYBCABKAsyBS5jYXJkEhYK",
           "DmpvaW5faW50b19oYW5kGAUgASgIIkQKEXVzZV9waW5nX2hlbmdfdG9zEg8K",
           "B2NhcmRfaWQYASABKA0SEQoJcGxheWVyX2lkGAIgASgNEgsKA3NlcRgDIAEo",
-          "DSKiAQoRdXNlX3BpbmdfaGVuZ190b2MSEQoJcGxheWVyX2lkGAEgASgNEhgK",
-          "EHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SHQoOcGluZ19oZW5nX2NhcmQYAyAB",
-          "KAsyBS5jYXJkEhwKDWRpc2NhcmRfY2FyZHMYBCADKAsyBS5jYXJkEiMKFHRh",
-          "cmdldF9kaXNjYXJkX2NhcmRzGAUgAygLMgUuY2FyZCJgCg51c2Vfd2VpX2Jp",
-          "X3RvcxIPCgdjYXJkX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEoDRIdCgl3",
-          "YW50X3R5cGUYAyABKA4yCi5jYXJkX3R5cGUSCwoDc2VxGAQgASgNIqUBCh13",
-          "ZWlfYmlfd2FpdF9mb3JfZ2l2ZV9jYXJkX3RvYxITCgRjYXJkGAEgASgLMgUu",
-          "Y2FyZBIRCglwbGF5ZXJfaWQYAiABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgD",
-          "IAEoDRIdCgl3YW50X3R5cGUYBCABKA4yCi5jYXJkX3R5cGUSFgoOd2FpdGlu",
-          "Z19zZWNvbmQYBSABKA0SCwoDc2VxGAYgASgNIjQKFHdlaV9iaV9naXZlX2Nh",
-          "cmRfdG9zEg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgNIlgKFHdlaV9i",
-          "aV9naXZlX2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRf",
-          "cGxheWVyX2lkGAIgASgNEhMKBGNhcmQYAyABKAsyBS5jYXJkInMKGXdlaV9i",
-          "aV9zaG93X2hhbmRfY2FyZF90b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJ",
-          "cGxheWVyX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKA0SFAoF",
-          "Y2FyZHMYBCADKAsyBS5jYXJkIl0KEnVzZV9jaGVuZ19xaW5nX3RvcxIPCgdj",
-          "YXJkX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEoDRIWCg50YXJnZXRfY2Fy",
-          "ZF9pZBgDIAEoDRILCgNzZXEYBCABKA0ibgoSdXNlX2NoZW5nX3FpbmdfdG9j",
-          "EhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgCIAEoDRIYChB0",
-          "YXJnZXRfcGxheWVyX2lkGAMgASgNEhYKDnRhcmdldF9jYXJkX2lkGAQgASgN",
-          "IoUBChVzZW5kX21lc3NhZ2VfY2FyZF90b3MSDwoHY2FyZF9pZBgBIAEoDRIY",
-          "ChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEhYKDmxvY2tfcGxheWVyX2lkGAMg",
-          "AygNEhwKCGNhcmRfZGlyGAQgASgOMgouZGlyZWN0aW9uEgsKA3NlcRgFIAEo",
-          "DSKMAQoVc2VuZF9tZXNzYWdlX2NhcmRfdG9jEg8KB2NhcmRfaWQYASABKA0S",
-          "EQoJcGxheWVyX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKA0S",
-          "FwoPbG9ja19wbGF5ZXJfaWRzGAQgAygNEhwKCGNhcmRfZGlyGAUgASgOMgou",
-          "ZGlyZWN0aW9uIjoKGmNob29zZV93aGV0aGVyX3JlY2VpdmVfdG9zEg8KB3Jl",
-          "Y2VpdmUYASABKAgSCwoDc2VxGAIgASgNIicKEmNob29zZV9yZWNlaXZlX3Rv",
-          "YxIRCglwbGF5ZXJfaWQYASABKA0iIgoTZW5kX2ZpZ2h0X3BoYXNlX3RvcxIL",
-          "CgNzZXEYASABKA0iNgoObm90aWZ5X2RpZV90b2MSEQoJcGxheWVyX2lkGAEg",
-          "ASgNEhEKCWxvc2VfZ2FtZRgCIAEoCCKAAQoRbm90aWZ5X3dpbm5lcl90b2MS",
-          "GQoRZGVjbGFyZV9wbGF5ZXJfaWQYASABKA0SEgoKd2lubmVyX2lkcxgCIAMo",
-          "DRIYCghpZGVudGl0eRgDIAMoDjIGLmNvbG9yEiIKDHNlY3JldF90YXNrcxgE",
-          "IAMoDjIMLnNlY3JldF90YXNrInAKF3dhaXRfZm9yX2NoZW5nX3FpbmdfdG9j",
-          "EhUKDWRpZV9wbGF5ZXJfaWQYASABKA0SGQoRd2FpdGluZ19wbGF5ZXJfaWQY",
-          "AiABKA0SFgoOd2FpdGluZ19zZWNvbmQYAyABKA0SCwoDc2VxGAQgASgNIlwK",
-          "F2NoZW5nX3Fpbmdfc2F2ZV9kaWVfdG9zEgsKA3VzZRgBIAEoCBIPCgdjYXJk",
-          "X2lkGAIgASgNEhYKDnRhcmdldF9jYXJkX2lkGAMgASgNEgsKA3NlcRgEIAEo",
-          "DSJUChp3YWl0X2Zvcl9kaWVfZ2l2ZV9jYXJkX3RvYxIRCglwbGF5ZXJfaWQY",
-          "ASABKA0SFgoOd2FpdGluZ19zZWNvbmQYAiABKA0SCwoDc2VxGAMgASgNIksK",
-          "EWRpZV9naXZlX2NhcmRfdG9zEhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKA0S",
-          "DwoHY2FyZF9pZBgCIAMoDRILCgNzZXEYAyABKA0icAoYbm90aWZ5X2RpZV9n",
-          "aXZlX2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxh",
-          "eWVyX2lkGAIgASgNEhMKBGNhcmQYAyADKAsyBS5jYXJkEhIKCmNhcmRfY291",
-          "bnQYBCABKA0iLQoNdXNlX3BvX3lpX3RvcxIPCgdjYXJkX2lkGAEgASgNEgsK",
-          "A3NlcRgCIAEoDSJ5Cg11c2VfcG9feWlfdG9jEhMKBGNhcmQYASABKAsyBS5j",
-          "YXJkEhEKCXBsYXllcl9pZBgCIAEoDRIbCgxtZXNzYWdlX2NhcmQYAyABKAsy",
-          "BS5jYXJkEhYKDndhaXRpbmdfc2Vjb25kGAQgASgNEgsKA3NlcRgFIAEoDSIr",
-          "Cg5wb195aV9zaG93X3RvcxIMCgRzaG93GAEgASgIEgsKA3NlcRgCIAEoDSJO",
-          "Cg5wb195aV9zaG93X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SDAoEc2hvdxgC",
-          "IAEoCBIbCgxtZXNzYWdlX2NhcmQYAyABKAsyBS5jYXJkIi8KD3VzZV9qaWVf",
-          "aHVvX3RvcxIPCgdjYXJkX2lkGAEgASgNEgsKA3NlcRgCIAEoDSI5Cg91c2Vf",
-          "amllX2h1b190b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJcGxheWVyX2lk",
-          "GAIgASgNIjAKEHVzZV9kaWFvX2Jhb190b3MSDwoHY2FyZF9pZBgBIAEoDRIL",
-          "CgNzZXEYAiABKA0iVwoQdXNlX2RpYW9fYmFvX3RvYxIPCgdjYXJkX2lkGAEg",
-          "ASgNEh8KEG9sZF9tZXNzYWdlX2NhcmQYAiABKAsyBS5jYXJkEhEKCXBsYXll",
-          "cl9pZBgDIAEoDSJICg51c2Vfd3VfZGFvX3RvcxIPCgdjYXJkX2lkGAEgASgN",
-          "EhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SCwoDc2VxGAMgASgNIlIKDnVz",
-          "ZV93dV9kYW9fdG9jEhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9p",
-          "ZBgCIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgNKnEKBXBoYXNlEg4K",
-          "CkRyYXdfUGhhc2UQABIOCgpNYWluX1BoYXNlEAESFAoQU2VuZF9TdGFydF9Q",
-          "aGFzZRACEg4KClNlbmRfUGhhc2UQAxIPCgtGaWdodF9QaGFzZRAEEhEKDVJl",
-          "Y2VpdmVfUGhhc2UQBSqBAQoJY2FyZF90eXBlEg4KCkNoZW5nX1FpbmcQABIL",
-          "CgdTaGlfVGFuEAESCgoGV2VpX0JpEAISCgoGTGlfWW91EAMSDQoJUGluZ19I",
-          "ZW5nEAQSCQoFUG9fWWkQBRILCgdKaWVfSHVvEAYSDAoIRGlhb19CYW8QBxIK",
-          "CgZXdV9EYW8QCColCgVjb2xvchIJCgVCbGFjaxAAEgcKA1JlZBABEggKBEJs",
-          "dWUQAio1CgtzZWNyZXRfdGFzaxIKCgZLaWxsZXIQABILCgdTdGVhbGVyEAES",
-          "DQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0aW9uEgYKAlVwEAASCAoETGVmdBAB",
-          "EgkKBVJpZ2h0EAJCEFoOcHJvdG9zLztwcm90b3NiBnByb3RvMw=="));
+          "DSJfChF1c2VfcGluZ19oZW5nX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQ",
+          "dGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIdCg5waW5nX2hlbmdfY2FyZBgDIAEo",
+          "CzIFLmNhcmQiYAoOdXNlX3dlaV9iaV90b3MSDwoHY2FyZF9pZBgBIAEoDRIR",
+          "CglwbGF5ZXJfaWQYAiABKA0SHQoJd2FudF90eXBlGAMgASgOMgouY2FyZF90",
+          "eXBlEgsKA3NlcRgEIAEoDSKlAQodd2VpX2JpX3dhaXRfZm9yX2dpdmVfY2Fy",
+          "ZF90b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJcGxheWVyX2lkGAIgASgN",
+          "EhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKA0SHQoJd2FudF90eXBlGAQgASgO",
+          "MgouY2FyZF90eXBlEhYKDndhaXRpbmdfc2Vjb25kGAUgASgNEgsKA3NlcRgG",
+          "IAEoDSI0ChR3ZWlfYmlfZ2l2ZV9jYXJkX3RvcxIPCgdjYXJkX2lkGAEgASgN",
+          "EgsKA3NlcRgCIAEoDSJYChR3ZWlfYmlfZ2l2ZV9jYXJkX3RvYxIRCglwbGF5",
+          "ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRITCgRjYXJk",
+          "GAMgASgLMgUuY2FyZCJzChl3ZWlfYmlfc2hvd19oYW5kX2NhcmRfdG9jEhMK",
+          "BGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgCIAEoDRIYChB0YXJn",
+          "ZXRfcGxheWVyX2lkGAMgASgNEhQKBWNhcmRzGAQgAygLMgUuY2FyZCJdChJ1",
+          "c2VfY2hlbmdfcWluZ190b3MSDwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJf",
+          "aWQYAiABKA0SFgoOdGFyZ2V0X2NhcmRfaWQYAyABKA0SCwoDc2VxGAQgASgN",
+          "Im4KEnVzZV9jaGVuZ19xaW5nX3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIR",
+          "CglwbGF5ZXJfaWQYAiABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoDRIW",
+          "Cg50YXJnZXRfY2FyZF9pZBgEIAEoDSKFAQoVc2VuZF9tZXNzYWdlX2NhcmRf",
+          "dG9zEg8KB2NhcmRfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEo",
+          "DRIWCg5sb2NrX3BsYXllcl9pZBgDIAMoDRIcCghjYXJkX2RpchgEIAEoDjIK",
+          "LmRpcmVjdGlvbhILCgNzZXEYBSABKA0ijAEKFXNlbmRfbWVzc2FnZV9jYXJk",
+          "X3RvYxIPCgdjYXJkX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEoDRIYChB0",
+          "YXJnZXRfcGxheWVyX2lkGAMgASgNEhcKD2xvY2tfcGxheWVyX2lkcxgEIAMo",
+          "DRIcCghjYXJkX2RpchgFIAEoDjIKLmRpcmVjdGlvbiI6ChpjaG9vc2Vfd2hl",
+          "dGhlcl9yZWNlaXZlX3RvcxIPCgdyZWNlaXZlGAEgASgIEgsKA3NlcRgCIAEo",
+          "DSInChJjaG9vc2VfcmVjZWl2ZV90b2MSEQoJcGxheWVyX2lkGAEgASgNIiIK",
+          "E2VuZF9maWdodF9waGFzZV90b3MSCwoDc2VxGAEgASgNIjYKDm5vdGlmeV9k",
+          "aWVfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIRCglsb3NlX2dhbWUYAiABKAgi",
+          "gAEKEW5vdGlmeV93aW5uZXJfdG9jEhkKEWRlY2xhcmVfcGxheWVyX2lkGAEg",
+          "ASgNEhIKCndpbm5lcl9pZHMYAiADKA0SGAoIaWRlbnRpdHkYAyADKA4yBi5j",
+          "b2xvchIiCgxzZWNyZXRfdGFza3MYBCADKA4yDC5zZWNyZXRfdGFzayJwChd3",
+          "YWl0X2Zvcl9jaGVuZ19xaW5nX3RvYxIVCg1kaWVfcGxheWVyX2lkGAEgASgN",
+          "EhkKEXdhaXRpbmdfcGxheWVyX2lkGAIgASgNEhYKDndhaXRpbmdfc2Vjb25k",
+          "GAMgASgNEgsKA3NlcRgEIAEoDSJcChdjaGVuZ19xaW5nX3NhdmVfZGllX3Rv",
+          "cxILCgN1c2UYASABKAgSDwoHY2FyZF9pZBgCIAEoDRIWCg50YXJnZXRfY2Fy",
+          "ZF9pZBgDIAEoDRILCgNzZXEYBCABKA0iVAoad2FpdF9mb3JfZGllX2dpdmVf",
+          "Y2FyZF90b2MSEQoJcGxheWVyX2lkGAEgASgNEhYKDndhaXRpbmdfc2Vjb25k",
+          "GAIgASgNEgsKA3NlcRgDIAEoDSJLChFkaWVfZ2l2ZV9jYXJkX3RvcxIYChB0",
+          "YXJnZXRfcGxheWVyX2lkGAEgASgNEg8KB2NhcmRfaWQYAiADKA0SCwoDc2Vx",
+          "GAMgASgNInAKGG5vdGlmeV9kaWVfZ2l2ZV9jYXJkX3RvYxIRCglwbGF5ZXJf",
+          "aWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRITCgRjYXJkGAMg",
+          "AygLMgUuY2FyZBISCgpjYXJkX2NvdW50GAQgASgNIi0KDXVzZV9wb195aV90",
+          "b3MSDwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0ieQoNdXNlX3BvX3lp",
+          "X3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0S",
+          "GwoMbWVzc2FnZV9jYXJkGAMgASgLMgUuY2FyZBIWCg53YWl0aW5nX3NlY29u",
+          "ZBgEIAEoDRILCgNzZXEYBSABKA0iKwoOcG9feWlfc2hvd190b3MSDAoEc2hv",
+          "dxgBIAEoCBILCgNzZXEYAiABKA0iTgoOcG9feWlfc2hvd190b2MSEQoJcGxh",
+          "eWVyX2lkGAEgASgNEgwKBHNob3cYAiABKAgSGwoMbWVzc2FnZV9jYXJkGAMg",
+          "ASgLMgUuY2FyZCIvCg91c2VfamllX2h1b190b3MSDwoHY2FyZF9pZBgBIAEo",
+          "DRILCgNzZXEYAiABKA0iOQoPdXNlX2ppZV9odW9fdG9jEhMKBGNhcmQYASAB",
+          "KAsyBS5jYXJkEhEKCXBsYXllcl9pZBgCIAEoDSIwChB1c2VfZGlhb19iYW9f",
+          "dG9zEg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgNIlcKEHVzZV9kaWFv",
+          "X2Jhb190b2MSDwoHY2FyZF9pZBgBIAEoDRIfChBvbGRfbWVzc2FnZV9jYXJk",
+          "GAIgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAyABKA0iSAoOdXNlX3d1X2Rh",
+          "b190b3MSDwoHY2FyZF9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIg",
+          "ASgNEgsKA3NlcRgDIAEoDSJSCg51c2Vfd3VfZGFvX3RvYxITCgRjYXJkGAEg",
+          "ASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0SGAoQdGFyZ2V0X3BsYXll",
+          "cl9pZBgDIAEoDSpxCgVwaGFzZRIOCgpEcmF3X1BoYXNlEAASDgoKTWFpbl9Q",
+          "aGFzZRABEhQKEFNlbmRfU3RhcnRfUGhhc2UQAhIOCgpTZW5kX1BoYXNlEAMS",
+          "DwoLRmlnaHRfUGhhc2UQBBIRCg1SZWNlaXZlX1BoYXNlEAUqgQEKCWNhcmRf",
+          "dHlwZRIOCgpDaGVuZ19RaW5nEAASCwoHU2hpX1RhbhABEgoKBldlaV9CaRAC",
+          "EgoKBkxpX1lvdRADEg0KCVBpbmdfSGVuZxAEEgkKBVBvX1lpEAUSCwoHSmll",
+          "X0h1bxAGEgwKCERpYW9fQmFvEAcSCgoGV3VfRGFvEAgqJQoFY29sb3ISCQoF",
+          "QmxhY2sQABIHCgNSZWQQARIICgRCbHVlEAIqNQoLc2VjcmV0X3Rhc2sSCgoG",
+          "S2lsbGVyEAASCwoHU3RlYWxlchABEg0KCUNvbGxlY3RvchACKigKCWRpcmVj",
+          "dGlvbhIGCgJVcBAAEggKBExlZnQQARIJCgVSaWdodBACQhBaDnByb3Rvcy87",
+          "cHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -148,7 +147,7 @@ public static partial class FengshengReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::use_li_you_tos), global::use_li_you_tos.Parser, new[]{ "CardId", "PlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_li_you_toc), global::use_li_you_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "LiYouCard", "MessageCard", "JoinIntoHand" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_ping_heng_tos), global::use_ping_heng_tos.Parser, new[]{ "CardId", "PlayerId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::use_ping_heng_toc), global::use_ping_heng_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "PingHengCard", "DiscardCards", "TargetDiscardCards" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::use_ping_heng_toc), global::use_ping_heng_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "PingHengCard" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_wei_bi_tos), global::use_wei_bi_tos.Parser, new[]{ "CardId", "PlayerId", "WantType", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_wait_for_give_card_toc), global::wei_bi_wait_for_give_card_toc.Parser, new[]{ "Card", "PlayerId", "TargetPlayerId", "WantType", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::wei_bi_give_card_tos), global::wei_bi_give_card_tos.Parser, new[]{ "CardId", "Seq" }, null, null, null, null),
@@ -3975,8 +3974,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
     playerId_ = other.playerId_;
     targetPlayerId_ = other.targetPlayerId_;
     pingHengCard_ = other.pingHengCard_ != null ? other.pingHengCard_.Clone() : null;
-    discardCards_ = other.discardCards_.Clone();
-    targetDiscardCards_ = other.targetDiscardCards_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -4027,32 +4024,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
     }
   }
 
-  /// <summary>Field number for the "discard_cards" field.</summary>
-  public const int DiscardCardsFieldNumber = 4;
-  private static readonly pb::FieldCodec<global::card> _repeated_discardCards_codec
-      = pb::FieldCodec.ForMessage(34, global::card.Parser);
-  private readonly pbc::RepeatedField<global::card> discardCards_ = new pbc::RepeatedField<global::card>();
-  /// <summary>
-  /// 使用者弃掉的牌。（平衡摸的三张牌直接发add_card_toc协议）
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<global::card> DiscardCards {
-    get { return discardCards_; }
-  }
-
-  /// <summary>Field number for the "target_discard_cards" field.</summary>
-  public const int TargetDiscardCardsFieldNumber = 5;
-  private static readonly pb::FieldCodec<global::card> _repeated_targetDiscardCards_codec
-      = pb::FieldCodec.ForMessage(42, global::card.Parser);
-  private readonly pbc::RepeatedField<global::card> targetDiscardCards_ = new pbc::RepeatedField<global::card>();
-  /// <summary>
-  /// 被使用者弃掉的牌。（平衡摸的三张牌直接发add_card_toc协议）
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<global::card> TargetDiscardCards {
-    get { return targetDiscardCards_; }
-  }
-
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as use_ping_heng_toc);
@@ -4069,8 +4040,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
     if (PlayerId != other.PlayerId) return false;
     if (TargetPlayerId != other.TargetPlayerId) return false;
     if (!object.Equals(PingHengCard, other.PingHengCard)) return false;
-    if(!discardCards_.Equals(other.discardCards_)) return false;
-    if(!targetDiscardCards_.Equals(other.targetDiscardCards_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -4080,8 +4049,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
     if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
     if (pingHengCard_ != null) hash ^= PingHengCard.GetHashCode();
-    hash ^= discardCards_.GetHashCode();
-    hash ^= targetDiscardCards_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -4107,8 +4074,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
       output.WriteRawTag(26);
       output.WriteMessage(PingHengCard);
     }
-    discardCards_.WriteTo(output, _repeated_discardCards_codec);
-    targetDiscardCards_.WriteTo(output, _repeated_targetDiscardCards_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -4126,8 +4091,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
     if (pingHengCard_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(PingHengCard);
     }
-    size += discardCards_.CalculateSize(_repeated_discardCards_codec);
-    size += targetDiscardCards_.CalculateSize(_repeated_targetDiscardCards_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -4151,8 +4114,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
       }
       PingHengCard.MergeFrom(other.PingHengCard);
     }
-    discardCards_.Add(other.discardCards_);
-    targetDiscardCards_.Add(other.targetDiscardCards_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -4177,14 +4138,6 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
             PingHengCard = new global::card();
           }
           input.ReadMessage(PingHengCard);
-          break;
-        }
-        case 34: {
-          discardCards_.AddEntriesFrom(input, _repeated_discardCards_codec);
-          break;
-        }
-        case 42: {
-          targetDiscardCards_.AddEntriesFrom(input, _repeated_targetDiscardCards_codec);
           break;
         }
       }

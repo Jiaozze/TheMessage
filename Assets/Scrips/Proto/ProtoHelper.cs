@@ -146,21 +146,21 @@ public static class ProtoHelper
             //CardFS cardMessage = new CardFS(use_Li_You_Toc.MessageCard);
             GameManager.Singleton.OnReceiveUsePingHeng(user, target, cardLiYou);
 
-            List<CardFS> cards = new List<CardFS>();
-            foreach (var card in use_Ping_Heng_Toc.DiscardCards)
-            {
-                CardFS cardFS = new CardFS(card);
-                cards.Add(cardFS);
-            }
-            GameManager.Singleton.OnReceiveDiscards(user, cards);
+            //List<CardFS> cards = new List<CardFS>();
+            //foreach (var card in use_Ping_Heng_Toc.DiscardCards)
+            //{
+            //    CardFS cardFS = new CardFS(card);
+            //    cards.Add(cardFS);
+            //}
+            //GameManager.Singleton.OnReceiveDiscards(user, cards);
 
-            List<CardFS> targetCards = new List<CardFS>();
-            foreach (var card in use_Ping_Heng_Toc.TargetDiscardCards)
-            {
-                CardFS cardFS = new CardFS(card);
-                targetCards.Add(cardFS);
-            }
-            GameManager.Singleton.OnReceiveDiscards(target, targetCards);
+            //List<CardFS> targetCards = new List<CardFS>();
+            //foreach (var card in use_Ping_Heng_Toc.TargetDiscardCards)
+            //{
+            //    CardFS cardFS = new CardFS(card);
+            //    targetCards.Add(cardFS);
+            //}
+            //GameManager.Singleton.OnReceiveDiscards(target, targetCards);
 
         }
         // 通知所有人威逼的牌没有，展示所有手牌
