@@ -347,6 +347,7 @@ public class GameManager
             gameUI.Players[playerId].OnWaiting(waitSeconds);
         }
         CurWaitingPlayerId = playerId;
+        gameUI.RefreshIsCanCancel();
 
     }
     #region 服务器消息处理
@@ -516,7 +517,6 @@ public class GameManager
 
         OnWait(waitingPlayerId, waitSecond);
         gameUI.ShowPhase();
-        gameUI.RefreshIsCanCancel();
     }
 
     public void OnReceiveUseWuDao(int user, int target, CardFS cardUsed)
@@ -779,7 +779,7 @@ public class GameManager
             IsWaitSaving = -1;
         }
         gameUI.AddMsg(string.Format("{0}号玩家濒死向{1}号玩家请求澄清", playerId, waitingPlayer));
-
+        gameUI.ShowPhase();
     }
 
     // 通知客户端谁死亡了
@@ -787,7 +787,13 @@ public class GameManager
     {
         players[playerId].alive = false;
         gameUI.Players[playerId].OnDie(loseGame);
-        if(loseGame)
+        List<CardFS> messages = new List<CardFS>();
+        string cardsStr = "";
+        foreach (var message in players[playerId].messages)
+        {
+            messages.Add(message);
+        }
+        if (loseGame)
         {
             gameUI.AddMsg(string.Format("{0}号玩家游戏失败", playerId));
         }
