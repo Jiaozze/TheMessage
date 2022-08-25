@@ -765,8 +765,9 @@ public class GameManager
     }
 
     // 濒死求澄清
-    public void OnReceiveWaitSaving(int playerId, int waitingPlayer, int waitingSecond)
+    public void OnReceiveWaitSaving(int playerId, int waitingPlayer, int waitingSecond, uint seq)
     {
+        seqId = seq;
         OnWait(waitingPlayer, waitingSecond);
 
         if (waitingPlayer == SelfPlayerId)

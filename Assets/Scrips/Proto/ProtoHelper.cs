@@ -320,7 +320,7 @@ public static class ProtoHelper
             int playerId = (int)wait_for_cheng_qing_toc.DiePlayerId;
             int waitingPlayer = (int)wait_for_cheng_qing_toc.WaitingPlayerId;
             int waitingSecond = (int)wait_for_cheng_qing_toc.WaitingSecond;
-            GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond);
+            GameManager.Singleton.OnReceiveWaitSaving(playerId, waitingPlayer, waitingSecond, wait_for_cheng_qing_toc.Seq);
         }
         // 等待死亡时给三张牌
         else if (GetIdFromProtoName("wait_for_die_give_card_toc") == id)
@@ -550,6 +550,7 @@ public static class ProtoHelper
     {
         Debug.Log("____send___________________ cheng_qing_save_die_tos, seq:" + seq);
 
+        cardId = cardId < 0 ? 0 : cardId;
         cheng_qing_save_die_tos cheng_Qing_Save_Die_Tos = new cheng_qing_save_die_tos() { Use = use, CardId = (uint)cardId, TargetCardId = (uint)targetCard, Seq = seq };
         byte[] proto = cheng_Qing_Save_Die_Tos.ToByteArray();
         SendProto("cheng_qing_save_die_tos", proto);
