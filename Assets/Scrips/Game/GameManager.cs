@@ -818,22 +818,22 @@ public class GameManager
     }
     public void OnReceiveDieGivenCard(int playerId, int targetPlayerId, int cardCount, List<CardFS> cards)
     {
-        int count = SelectPlayerId == playerId || SelectPlayerId == targetPlayerId ? cards.Count : cardCount;
-        int total = players[playerId].DrawCard(count);
+        int count = SelfPlayerId == playerId || SelfPlayerId == targetPlayerId ? cards.Count : cardCount;
+        int total = players[targetPlayerId].DrawCard(count);
         string cardsInfo = "";
-        players[targetPlayerId].cardCount = players[targetPlayerId].cardCount - count;
+        players[playerId].cardCount = players[playerId].cardCount - count;
 
-        if (gameUI.Players[playerId] != null)
+        if (gameUI.Players[targetPlayerId] != null)
         {
-            gameUI.Players[playerId].OnDrawCard(total, 1);
+            gameUI.Players[targetPlayerId].OnDrawCard(total, 1);
         }
 
-        if (gameUI.Players.ContainsKey(targetPlayerId))
+        if (gameUI.Players.ContainsKey(playerId))
         {
-            gameUI.Players[targetPlayerId].Discard(cards);
+            gameUI.Players[playerId].Discard(cards);
         }
 
-        if (playerId == SelfPlayerId)
+        if (targetPlayerId == SelfPlayerId)
         {
             foreach (var cardGiven in cards)
             {
@@ -842,7 +842,7 @@ public class GameManager
             }
             gameUI.DrawCards(cards);
         }
-        if (SelfPlayerId == targetPlayerId)
+        if (SelfPlayerId == playerId)
         {
             foreach(var cardGiven in cards)
             {
@@ -852,7 +852,7 @@ public class GameManager
             gameUI.DisCards(cards);
         }
 
-        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家{2}张牌 {3}", targetPlayerId, playerId, count, cardsInfo));
+        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家{2}张牌 {3}", playerId, targetPlayerId, count, cardsInfo));
 
     }
 
