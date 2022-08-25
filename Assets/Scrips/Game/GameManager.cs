@@ -785,6 +785,7 @@ public class GameManager
     // 通知客户端谁死亡了
     public void OnReceivePlayerDied(int playerId, bool loseGame)
     {
+        IsWaitSaving = -1;
         players[playerId].alive = false;
         gameUI.Players[playerId].OnDie(loseGame);
         List<CardFS> messages = new List<CardFS>();
@@ -806,13 +807,13 @@ public class GameManager
     public void OnReceiveDieGiveingCard(int playerId, int waitingSecond, uint seq)
     {
         this.seqId = seq;
-        OnWait(playerId, waitingSecond);
         if (playerId == SelfPlayerId)
         {
             SelectCardId = -1;
             IsWaitGiveCard = true;
             gameUI.ShowPhase();
         }
+        OnWait(playerId, waitingSecond);
         gameUI.AddMsg(string.Format("等待{0}号玩家托付手牌", playerId));
     }
     public void OnReceiveDieGivenCard(int playerId, int targetPlayerId, int cardCount, List<CardFS> cards)
