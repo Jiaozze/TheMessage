@@ -27,6 +27,11 @@ public class Player
         return cardCount;
     }
 
+    public void DisCard(int count)
+    {
+        cardCount = cardCount - count;
+    }
+
     public void AddMessage(CardFS card)
     {
         messages.Add(card);

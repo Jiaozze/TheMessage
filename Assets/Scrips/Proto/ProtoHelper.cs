@@ -548,11 +548,11 @@ public static class ProtoHelper
     // 是否使用澄清
     public static void SendChengQingSaveDying(bool use, int cardId, int targetCard, uint seq)
     {
-        Debug.Log("____send___________________ choose_whether_receive_tos, seq:" + seq);
+        Debug.Log("____send___________________ cheng_qing_save_die_tos, seq:" + seq);
 
         cheng_qing_save_die_tos cheng_Qing_Save_Die_Tos = new cheng_qing_save_die_tos() { Use = use, CardId = (uint)cardId, TargetCardId = (uint)targetCard, Seq = seq };
         byte[] proto = cheng_Qing_Save_Die_Tos.ToByteArray();
-        SendProto("", proto);
+        SendProto("cheng_qing_save_die_tos", proto);
     }
     // 等待死亡时给三张牌
     public static void SendDieGiveCard(uint seq, List<int> cardIds = null, int playerId = 0)

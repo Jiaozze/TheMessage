@@ -281,7 +281,7 @@ public class GameManager
     {
         if (players.ContainsKey(user))
         {
-            players[user].cardCount = players[user].cardCount - 1;
+            players[user].DisCard(1);
         }
         if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
         {
@@ -303,7 +303,7 @@ public class GameManager
         int user = playerId;
         if (players.ContainsKey(user))
         {
-            players[user].cardCount = players[user].cardCount - 1;
+            players[user].DisCard(1);
         }
         if (user == SelfPlayerId && cardsHand.ContainsKey(cardId))
         {
@@ -409,7 +409,7 @@ public class GameManager
         string cardInfo = "";
         if (players.ContainsKey(playerId))
         {
-            players[playerId].cardCount = players[playerId].cardCount - cards.Count;
+            players[playerId].DisCard(cards.Count);
         }
         if (gameUI.Players.ContainsKey(playerId))
         {
@@ -681,6 +681,7 @@ public class GameManager
         }
     }
     // 通知客户端使用平衡的结果 //弃牌部分走 OnReceiveDiscards
+    private bool isPingheng;
     public void OnReceiveUsePingHeng(int user, int target, CardFS cardUsed)
     {
         OnCardUse(user, cardUsed, target);

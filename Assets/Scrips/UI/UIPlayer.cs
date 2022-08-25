@@ -59,7 +59,7 @@ public class UIPlayer : MonoBehaviour
 
     public void OnDrawCard(int totalCount, int count)
     {
-        textCardCount.text = "" + totalCount;
+        textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
     }
 
     public void UseCard(CardFS cardInfo = null)
