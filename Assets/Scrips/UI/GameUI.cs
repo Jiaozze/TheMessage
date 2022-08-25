@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -183,7 +183,7 @@ public class GameUI : MonoBehaviour
     {
         if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
-            Debug.LogError("²»ÔÚ×Ô¼ºµÄÏàÓ¦Ê±¼ä");
+            Debug.LogError("ä¸åœ¨è‡ªå·±çš„ç›¸åº”æ—¶é—´");
             return;
         }
 
@@ -193,7 +193,7 @@ public class GameUI : MonoBehaviour
             return;
         }
 
-        //ÓĞÈË±ôËÀÇó³ÎÇå
+        //æœ‰äººæ¿’æ­»æ±‚æ¾„æ¸…
         if (GameManager.Singleton.IsWaitSaving != -1)
         {
             if (GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
@@ -201,17 +201,17 @@ public class GameUI : MonoBehaviour
                 ShowPlayerMessageInfo(GameManager.Singleton.IsWaitSaving, true);
             }
         }
-        //×Ô¼º³öÅÆ½×¶Î
+        //è‡ªå·±å‡ºç‰Œé˜¶æ®µ
         else if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
         {
             GameManager.Singleton.SendUseCard();
         }
-        //×Ô¼º¿ªÊ¼´«Çé±¨½×¶Î
+        //è‡ªå·±å¼€å§‹ä¼ æƒ…æŠ¥é˜¶æ®µ
         else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase)
         {
             GameManager.Singleton.SendMessage();
         }
-        //Çé±¨´«µİ½×¶Î£¬Çé±¨µ½×Ô¼ºÃæÇ°Ê±
+        //æƒ…æŠ¥ä¼ é€’é˜¶æ®µï¼Œæƒ…æŠ¥åˆ°è‡ªå·±é¢å‰æ—¶
         else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
         {
             bool usePoYi = false;
@@ -238,7 +238,7 @@ public class GameUI : MonoBehaviour
     {
         if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
-            Debug.LogError("²»ÔÚ×Ô¼ºµÄÏàÓ¦Ê±¼ä");
+            Debug.LogError("ä¸åœ¨è‡ªå·±çš„ç›¸åº”æ—¶é—´");
             return;
         }
         if (GameManager.Singleton.IsWaitSaving != -1)
@@ -257,7 +257,7 @@ public class GameUI : MonoBehaviour
             return;
         }
 
-        //×Ô¼º³öÅÆ½×¶Î
+        //è‡ªå·±å‡ºç‰Œé˜¶æ®µ
         if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
         {
             GameManager.Singleton.SendEndWaiting();
@@ -332,7 +332,7 @@ public class GameUI : MonoBehaviour
     }
     public void ShowTopCard(CardFS card)
     {
-        Debug.LogError("Õ¹Ê¾ÁËÅÆ¶Ñ¶¥µÄÅÆ£¬" + card.cardName);
+        Debug.LogError("å±•ç¤ºäº†ç‰Œå †é¡¶çš„ç‰Œï¼Œ" + card.cardName);
     }
 
     public void ShowWeiBiSelect(bool show)
@@ -365,7 +365,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowMessagingCard(CardFS message, int messagePlayerId = -1, bool move = false)
     {
-        //Debug.LogError("Çé±¨id£¬" + message.id);
+        //Debug.LogError("æƒ…æŠ¥idï¼Œ" + message.id);
         messageCard.gameObject.SetActive(true);
         messageCard.SetInfo(message);
         if (messagePlayerId != -1)
@@ -408,11 +408,15 @@ public class GameUI : MonoBehaviour
     {
         if (GameManager.Singleton.IsWaitLock)
         {
-            textPhase.text = "ÇëÑ¡ÔñËø¶¨Ä¿±ê";
+            textPhase.text = "è¯·é€‰æ‹©é”å®šç›®æ ‡";
+        }
+        else if(GameManager.Singleton.IsWaitSaving != -1)
+        {
+            textPhase.text = "" + GameManager.Singleton.IsWaitSaving + "å·ç©å®¶æ¿’æ­»ï¼Œè¯·æ±‚æ¾„æ¸…";
         }
         else if (GameManager.Singleton.IsWaitGiveCard)
         {
-            textPhase.text = "ÄãÕóÍöÁË£¬¿ÉÒÔÑ¡ÔñÖÁ¶àÈıÕÅÅÆ½»¸øÒ»ÃûÍæ¼Ò";
+            textPhase.text = "ä½ é˜µäº¡äº†ï¼Œå¯ä»¥é€‰æ‹©è‡³å¤šä¸‰å¼ ç‰Œäº¤ç»™ä¸€åç©å®¶";
         }
         else
         {
@@ -466,6 +470,11 @@ public class GameUI : MonoBehaviour
         {
             canCancel = false;
             canSure = false;
+        }
+        else if (GameManager.Singleton.IsWaitSaving != -1)
+        {
+            canCancel = true;
+            canSure = true;
         }
         else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Phase)
         {
