@@ -30,6 +30,7 @@ public class GameUI : MonoBehaviour
     public Button butCancel;
     public Button butSure;
     public Transform selfMessagePos;
+    public Transform transCardsUsed;
     public Slider slider;
 
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
@@ -309,9 +310,45 @@ public class GameUI : MonoBehaviour
             int cardId = card.id;
             if (Cards.ContainsKey(cardId))
             {
-                Cards[cardId].OnUse();
+                var uiCard = Cards[cardId];
                 Cards.Remove(cardId);
+                uiCard.transform.SetParent(transCardsUsed);
+                uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
+                Vector3 to = card.cardName == CardNameEnum.Diao_Bao ? messageCard.transform.position : transCardsUsed.position;
+                StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
+                {
+                    if(card.cardName == CardNameEnum.Diao_Bao)
+                    {
+                        messageCard.gameObject.SetActive(true);
+                        Destroy(uiCard.gameObject);
+                    }
+                    else
+                    {
+                        Destroy(uiCard.gameObject, 2);
+                    }
+                }));
             }
+        }
+        else if (user != GameManager.SelfPlayerId && card != null)
+        {
+            var uiCard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+            uiCard.transform.position = Players[user].transform.position;
+            uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
+            uiCard.SetInfo(card);
+            uiCard.gameObject.SetActive(true);
+            Vector3 to = card.cardName == CardNameEnum.Diao_Bao ? messageCard.transform.position : transCardsUsed.position;
+            StartCoroutine(DoMove(uiCard.transform, Players[user].transform.position, to, 0.1f, () =>
+            {
+                if (card.cardName == CardNameEnum.Diao_Bao)
+                {
+                    messageCard.gameObject.SetActive(true);
+                    Destroy(uiCard.gameObject);
+                }
+                else
+                {
+                    Destroy(uiCard.gameObject, 2);
+                }
+            }));
         }
     }
     public void OnCardSend(int user, int cardId)
@@ -325,11 +362,33 @@ public class GameUI : MonoBehaviour
         {
             if (Cards.ContainsKey(cardId))
             {
-                Cards[cardId].OnUse();
+                Cards[cardId].OnSend();
                 Cards.Remove(cardId);
             }
         }
     }
+    public void ShowMessagingDiaoBao(CardFS cardUsed)
+    {
+        //messageCard.TurnOn(cardUsed);
+
+        var uiCard = GameObject.Instantiate(messageCard, transCardsUsed);
+        messageCard.gameObject.SetActive(false);
+        Vector3 to = transCardsUsed.position;
+        StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () => {
+            if(uiCard.IsUnknown())
+            {
+                uiCard.TurnOn(cardUsed);
+            }
+
+            Destroy(uiCard.gameObject, 2);
+        }));
+    }
+
+    public void OnCardsGive(int from, int to, List<CardFS> cards)
+    {
+
+    }
+
     public void ShowTopCard(CardFS card)
     {
         Debug.LogError("展示了牌堆顶的牌，" + card.cardName);
@@ -508,6 +567,7 @@ public class GameUI : MonoBehaviour
         else
         {
             var card = GameObject.Instantiate(itemCardUI, transform);
+            card.transform.position = textDeckCount.transform.position;
             card.transform.localScale = new Vector3(0.5f, 0.5f);
             card.SetInfo(message);
             card.gameObject.SetActive(true);

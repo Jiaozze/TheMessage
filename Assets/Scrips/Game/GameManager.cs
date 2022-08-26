@@ -445,6 +445,7 @@ public class GameManager
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
+        IsWaitGiveCard = false;
         IsWaitLock = false;
         IsWaitSaving = -1;
         gameUI.HideMessagingCard();
@@ -557,7 +558,7 @@ public class GameManager
         }
         OnCardUse(user, cardUsed);
 
-        gameUI.ShowMessagingCard(cardUsed);
+        gameUI.ShowMessagingDiaoBao(messageCard);
         string colorStr = "";
         foreach (var color in messageCard.color)
         {
@@ -616,6 +617,11 @@ public class GameManager
                 cardInfo = cardInfo + LanguageUtils.GetIdentityName(color);
             }
         }
+        else
+        {
+            card = new CardFS(null);
+            card.cardName = CardNameEnum.Shi_Tan;
+        }
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
 
@@ -668,6 +674,7 @@ public class GameManager
                 cardsHand[card.id] = (card);
                 gameUI.DrawCards(new List<CardFS>() { card });
             }
+            gameUI.ShowAddMessage(user, card, false);
         }
         else
         {

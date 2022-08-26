@@ -108,10 +108,9 @@ public class UICard : MonoBehaviour
         transContainer.localPosition = new Vector3(0, y);
     }
 
-    public void OnUse()
+    public void OnSend()
     {
-        //TODO
-        Debug.LogError("卡被用了" + textName.text);
+        Debug.Log("卡被传出去了" + textName.text);
         Destroy(gameObject);
     }
 
