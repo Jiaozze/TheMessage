@@ -77,7 +77,7 @@ public class GameManager
             SelectPlayerId = -1;
             Debug.Log("cardId" + _SelectCardId);
 
-            gameUI.RefreshTargetAvailable();
+            gameUI.CheckTargetAvailable();
         }
     }
     private int _SelectCardId = -1;
@@ -634,6 +634,7 @@ public class GameManager
         }
     }
 
+    private List<PlayerColorEnum> shiTanColor;
     // 通知客户端，谁对谁使用了试探
     public void OnRecerveUseShiTan(int user, int targetUser, int cardId = 0)
     {
@@ -647,6 +648,7 @@ public class GameManager
         {
             card = cardsHand[cardId];
             cardsHand.Remove(cardId);
+            shiTanColor = card.shiTanColor;
             cardInfo = "试探摸牌颜色";
             foreach (var color in card.shiTanColor)
             {
@@ -690,6 +692,23 @@ public class GameManager
         if (playerId == SelfPlayerId)
         {
             gameUI.HideShiTanInfo();
+        }
+
+        if (shiTanColor != null)
+        {
+            List<PlayerColorEnum> colors = new List<PlayerColorEnum>();
+            foreach (var color in players[playerId].playerColor)
+            {
+                if (isDrawCard == shiTanColor.Contains(color))
+                {
+                    colors.Add(color);
+                }
+            }
+            players[playerId].playerColor = colors;
+
+            gameUI.Players[playerId].playerColor.SetColor(players[playerId].playerColor);
+
+            shiTanColor = null;
         }
 
         string s = isDrawCard ? "" + playerId + "号玩家被试探摸了一张牌" : "" + playerId + "号玩家被试探弃了一张牌";
@@ -1057,6 +1076,7 @@ public class GameManager
                 messageTarget = SelectPlayerId;
                 SelectPlayerId = -1;
                 gameUI.ShowPhase();
+                gameUI.CheckTargetAvailable();
             }
             else
             {

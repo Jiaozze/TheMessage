@@ -22,7 +22,7 @@ public class GameUI : MonoBehaviour
     public Text textInfo;
     public Text textMidInfo;
     public Text textDeckCount;
-    
+
     public GameObject goDirect;
     public Transform transDir;
     public RectTransform transCards;
@@ -395,7 +395,7 @@ public class GameUI : MonoBehaviour
                 Vector3 to = card.cardName == CardNameEnum.Diao_Bao ? messageCard.transform.position : transCardsUsed.position;
                 StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
                 {
-                    if(card.cardName == CardNameEnum.Diao_Bao)
+                    if (card.cardName == CardNameEnum.Diao_Bao)
                     {
                         messageCard.gameObject.SetActive(true);
                         Destroy(uiCard.gameObject);
@@ -452,8 +452,9 @@ public class GameUI : MonoBehaviour
         var uiCard = GameObject.Instantiate(messageCard, transCardsDised);
         messageCard.gameObject.SetActive(false);
         Vector3 to = transCardsDised.position;
-        StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () => {
-            if(uiCard.IsUnknown())
+        StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
+        {
+            if (uiCard.IsUnknown())
             {
                 uiCard.TurnOn(cardUsed);
             }
@@ -524,11 +525,11 @@ public class GameUI : MonoBehaviour
     public void ShowNextMessagePlayer(DirectionEnum messageCardDir)
     {
         goDirect.SetActive(true);
-        if(messageCardDir == DirectionEnum.Up)
+        if (messageCardDir == DirectionEnum.Up)
         {
             transDir.rotation = Quaternion.Euler(0, 0, 180);
         }
-        else if(messageCardDir == DirectionEnum.Left)
+        else if (messageCardDir == DirectionEnum.Left)
         {
             transDir.rotation = Quaternion.Euler(0, 0, -90);
         }
@@ -595,7 +596,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowPhase(string info = null)
     {
-        if(info != null)
+        if (info != null)
         {
             textPhase.text = info;
         }
@@ -603,7 +604,7 @@ public class GameUI : MonoBehaviour
         {
             textPhase.text = "请选择锁定目标";
         }
-        else if(GameManager.Singleton.IsWaitSaving != -1)
+        else if (GameManager.Singleton.IsWaitSaving != -1)
         {
             textPhase.text = "" + GameManager.Singleton.IsWaitSaving + "号玩家濒死，向" + GameManager.Singleton.CurWaitingPlayerId + "号请求澄清";
         }
@@ -611,9 +612,9 @@ public class GameUI : MonoBehaviour
         {
             textPhase.text = "你阵亡了，可以选择至多三张牌交给一名玩家";
         }
-        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase)
+        else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase)
         {
-            if(GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId)
+            if (GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId)
             {
                 textPhase.text = "进入情报传递阶段，请传递一张情报";
             }
@@ -727,7 +728,7 @@ public class GameUI : MonoBehaviour
     {
         if (seconds <= 0)
         {
-            if(sliderCorout != null)
+            if (sliderCorout != null)
             {
                 StopCoroutine(sliderCorout);
             }
@@ -758,7 +759,7 @@ public class GameUI : MonoBehaviour
         playerMessagInfo.ShowHandCard(target, cards);
     }
 
-    public void RefreshTargetAvailable()
+    public void CheckTargetAvailable()
     {
 
         foreach (var kv in Players)
@@ -769,7 +770,11 @@ public class GameUI : MonoBehaviour
         if (GameManager.Singleton.SelectCardId != -1)
         {
             var card = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId];
-            if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.Wu_Dao)
+            if (GameManager.Singleton.IsWaitLock)
+            {
+                //传情报锁定时，不需要限定目标
+            }
+            else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.Wu_Dao)
             {
                 bool banClick = false;
                 foreach (var kv in Players)
@@ -784,7 +789,7 @@ public class GameUI : MonoBehaviour
                 bool banClick = false;
                 foreach (var kv in Players)
                 {
-                    if(card.direction == DirectionEnum.Left)
+                    if (card.direction == DirectionEnum.Left)
                     {
                         banClick = kv.Key != GameManager.Singleton.GetPlayerAliveLeft(GameManager.SelfPlayerId);
                     }
