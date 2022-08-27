@@ -804,12 +804,12 @@ public class GameManager
 
         if (gameUI.Players[user] != null)
         {
-            gameUI.Players[user].OnDrawCard(total, 1);
+            gameUI.Players[user].RefreshCardCount();
         }
 
         if (gameUI.Players.ContainsKey(target))
         {
-            gameUI.Players[target].Discard(new List<CardFS>() { cardGiven });
+            gameUI.Players[target].RefreshCardCount();
         }
 
         if (user == SelfPlayerId)
@@ -915,12 +915,12 @@ public class GameManager
 
         if (gameUI.Players[targetPlayerId] != null)
         {
-            gameUI.Players[targetPlayerId].OnDrawCard(total, 1);
+            gameUI.Players[targetPlayerId].RefreshCardCount();
         }
 
         if (gameUI.Players.ContainsKey(playerId))
         {
-            gameUI.Players[playerId].Discard(cards);
+            gameUI.Players[playerId].RefreshCardCount();
         }
 
         if (targetPlayerId == SelfPlayerId)

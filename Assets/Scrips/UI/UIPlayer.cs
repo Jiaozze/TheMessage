@@ -62,6 +62,10 @@ public class UIPlayer : MonoBehaviour
         GameManager.Singleton.gameUI.ShowPlayerMessageInfo(playerId);
     }
 
+    public void RefreshCardCount()
+    {
+        textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
+    }
     public void OnDrawCard(int totalCount, int count)
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
