@@ -130,6 +130,44 @@ public class GameUI : MonoBehaviour
         CardsSizeFitter();
     }
 
+    public void DisCard(List<CardFS> cards, int playerId)
+    {
+        var user = playerId;
+        foreach (var card in cards)
+        {
+            if (user == GameManager.SelfPlayerId && card != null)
+            {
+                int cardId = card.id;
+                if (Cards.ContainsKey(cardId))
+                {
+                    var uiCard = Cards[cardId];
+                    Cards.Remove(cardId);
+                    uiCard.transform.SetParent(transCardsUsed);
+                    uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
+                    Vector3 to = transCardsUsed.position;
+                    StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
+                    {
+                        Destroy(uiCard.gameObject, 2);
+                    }));
+                }
+            }
+            else if (user != GameManager.SelfPlayerId && card != null)
+            {
+                var uiCard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+                uiCard.transform.position = Players[user].transform.position;
+                uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
+                uiCard.SetInfo(card);
+                uiCard.gameObject.SetActive(true);
+                Vector3 to = transCardsUsed.position;
+                StartCoroutine(DoMove(uiCard.transform, Players[user].transform.position, to, 0.1f, () =>
+                {
+                    Destroy(uiCard.gameObject, 2);
+                }));
+            }
+        }
+
+    }
+
     public void DisCards(List<CardFS> cards)
     {
         foreach (var card in cards)

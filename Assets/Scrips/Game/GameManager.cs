@@ -426,8 +426,9 @@ public class GameManager
 
                 cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
-            gameUI.DisCards(cards);
         }
+        gameUI.DisCard(cards, playerId);
+
         gameUI.AddMsg(string.Format("{0}号玩家弃了{1}张牌; {2}", playerId, cards.Count, cardInfo));
 
     }
