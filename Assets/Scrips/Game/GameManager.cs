@@ -751,8 +751,8 @@ public class GameManager
         if (SelfPlayerId == target)
         {
             cardsHand.Remove(cardGiven.id);
-            gameUI.DisCards(new List<CardFS>() { cardGiven });
         }
+        gameUI.GiveCards(target, user, new List<CardFS>() { cardGiven });
 
         gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家一张牌{2}", target, user, LanguageUtils.GetCardName(cardGiven.cardName)));
     }
@@ -764,8 +764,18 @@ public class GameManager
 
         if (players.ContainsKey(target))
         {
+            CardFS message = new CardFS(null);
+            foreach(var card in players[target].messages)
+            {
+                if(card.id == targetCardId)
+                {
+                    message = card;
+                    break;
+                }
+            }
             players[target].RemoveMessage(targetCardId);
             gameUI.Players[target].RefreshMessage();
+            gameUI.OnPlayerMessageRemove(target, new List<CardFS>() { message });
         }
         gameUI.HidePlayerMessageInfo();
         gameUI.AddMsg(string.Format("{0}号玩家的情报被烧毁", target));
@@ -802,6 +812,9 @@ public class GameManager
         {
             messages.Add(message);
         }
+        players[playerId].messages.Clear();
+        gameUI.OnPlayerMessageRemove(playerId, messages);
+
         if (loseGame)
         {
             gameUI.AddMsg(string.Format("{0}号玩家游戏失败", playerId));
@@ -857,8 +870,8 @@ public class GameManager
                 cardsHand.Remove(cardGiven.id);
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
             }
-            gameUI.DisCards(cards);
         }
+        gameUI.GiveCards(playerId, targetPlayerId, cards);
 
         gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家{2}张牌 {3}", playerId, targetPlayerId, count, cardsInfo));
 

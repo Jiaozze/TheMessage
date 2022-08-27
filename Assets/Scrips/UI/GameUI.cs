@@ -170,6 +170,39 @@ public class GameUI : MonoBehaviour
 
     }
 
+    public void GiveCards(int from, int to, List<CardFS> cards)
+    {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            UICard uICard;
+            Vector3 fromPos;
+            Vector3 toPos = Players[to].transform.position;
+            if (from == GameManager.SelfPlayerId)
+            {
+                int cardId = cards[i].id;
+
+                uICard = Cards[cardId];
+                Cards.Remove(cardId);
+                uICard.transform.SetParent(transCardsUsed);
+                uICard.transform.localScale = new Vector3(0.5f, 0.5f);
+                fromPos = uICard.transform.position;
+
+            }
+            else
+            {
+                uICard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+                uICard.transform.localScale = new Vector3(0.5f, 0.5f);
+                fromPos = Players[from].transform.position + new Vector3(i * 20, 0);
+            }
+            uICard.gameObject.SetActive(true);
+            StartCoroutine(DoMove(uICard.transform, fromPos, toPos, 0.1f, () =>
+            {
+                Destroy(uICard.gameObject);
+            }));
+
+        }
+
+    }
     public void DisCards(List<CardFS> cards)
     {
         foreach (var card in cards)
@@ -424,6 +457,23 @@ public class GameUI : MonoBehaviour
         }));
     }
 
+    public void OnPlayerMessageRemove(int playerId, List<CardFS> messages)
+    {
+        for (int i = 0; i < messages.Count; i++)
+        {
+            UICard uICard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+            uICard.SetInfo(messages[i]);
+            Vector3 fromPos = Players[playerId].transform.position + new Vector3(i * 20, 0);
+            Vector3 toPos = transCardsUsed.position;
+            uICard.transform.localScale = new Vector3(0.5f, 0.5f);
+            uICard.gameObject.SetActive(true);
+
+            StartCoroutine(DoMove(uICard.transform, fromPos, toPos, 0.1f, () =>
+            {
+                Destroy(uICard.gameObject);
+            }));
+        }
+    }
     public void OnCardsGive(int from, int to, List<CardFS> cards)
     {
 
