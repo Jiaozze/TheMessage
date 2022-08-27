@@ -21,7 +21,8 @@ public class GameUI : MonoBehaviour
     public UICard messageCard;
     public Text textInfo;
     public Text textDeckCount;
-    public Text textNextMessagePlayer;
+    public GameObject goDirect;
+    public Transform transDir;
     public RectTransform transCards;
     public Transform transPlayerSelf;
     public GridLayoutGroup gridCards;
@@ -516,11 +517,23 @@ public class GameUI : MonoBehaviour
     public void HideMessagingCard()
     {
         messageCard.gameObject.SetActive(false);
-        textNextMessagePlayer.text = "";
+        goDirect.SetActive(false);
     }
-    public void ShowNextMessagePlayer(int nextPlayer)
+    public void ShowNextMessagePlayer(DirectionEnum messageCardDir)
     {
-        textNextMessagePlayer.text = "下一个接收情报者:\n" + nextPlayer + "号玩家";
+        goDirect.SetActive(true);
+        if(messageCardDir == DirectionEnum.Up)
+        {
+            transDir.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if(messageCardDir == DirectionEnum.Left)
+        {
+            transDir.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (messageCardDir == DirectionEnum.Right)
+        {
+            transDir.rotation = Quaternion.Euler(0, 0, 90);
+        }
     }
     public void ShowMessagingCard(CardFS message, int messagePlayerId = -1, bool move = false)
     {

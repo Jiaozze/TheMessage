@@ -471,20 +471,7 @@ public class GameManager
             gameUI.ShowMessagingCard(message, messagePlayerId, true);
             if(messagePlayerId == SelfPlayerId && playerId != SelfPlayerId)
             {
-                int next = 0;
-                switch(messageCardDir)
-                {
-                    case DirectionEnum.Up:
-                        next = playerId;
-                        break;
-                    case DirectionEnum.Left:
-                        next = GetPlayerAliveLeft(0);
-                        break;
-                    case DirectionEnum.Right:
-                        next = GetPlayerAliveRight(0);
-                        break;
-                }
-                gameUI.ShowNextMessagePlayer(next);
+                gameUI.ShowNextMessagePlayer(messageCardDir);
             }
             if (cardsHand.ContainsKey(message.id))
             {
