@@ -722,4 +722,45 @@ public class GameUI : MonoBehaviour
     {
         playerMessagInfo.ShowHandCard(target, cards);
     }
+
+    public void RefreshTargetAvailable()
+    {
+
+        foreach (var kv in Players)
+        {
+            kv.Value.SetBanClick(false);
+        }
+
+        if (GameManager.Singleton.SelectCardId != -1)
+        {
+            var card = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId];
+            if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.Wu_Dao)
+            {
+                bool banClick = false;
+                foreach (var kv in Players)
+                {
+                    banClick = kv.Key != GameManager.Singleton.GetPlayerAliveLeft(GameManager.Singleton.CurMessagePlayerId)
+                        && kv.Key != GameManager.Singleton.GetPlayerAliveRight(GameManager.Singleton.CurMessagePlayerId);
+                    kv.Value.SetBanClick(banClick);
+                }
+            }
+            else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase && GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId && card.direction != DirectionEnum.Up)
+            {
+                bool banClick = false;
+                foreach (var kv in Players)
+                {
+                    if(card.direction == DirectionEnum.Left)
+                    {
+                        banClick = kv.Key != GameManager.Singleton.GetPlayerAliveLeft(GameManager.SelfPlayerId);
+                    }
+                    else
+                    {
+                        banClick = kv.Key != GameManager.Singleton.GetPlayerAliveRight(GameManager.SelfPlayerId);
+                    }
+                    kv.Value.SetBanClick(banClick);
+                }
+
+            }
+        }
+    }
 }

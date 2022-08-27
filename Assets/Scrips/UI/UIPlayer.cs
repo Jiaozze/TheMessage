@@ -23,6 +23,7 @@ public class UIPlayer : MonoBehaviour
     public GameObject goLose;
     public GameObject goLock;
     public GameObject goCard;
+    public GameObject goMask;
 
 
     private int playerId;
@@ -30,6 +31,7 @@ public class UIPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        goMask.SetActive(false);
         goDie.SetActive(false);
         goLock.SetActive(false);
         slider.gameObject.SetActive(false);
@@ -164,5 +166,13 @@ public class UIPlayer : MonoBehaviour
     public void HidePhase()
     {
         textPhase.text = "";
+    }
+
+    internal void SetBanClick(bool v)
+    {
+        if(!goDie.activeSelf)
+        {
+            goMask.SetActive(v);
+        }
     }
 }
