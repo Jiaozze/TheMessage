@@ -752,6 +752,7 @@ public class GameManager
                 cardsHand[card.id] = card;
                 cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
+            gameUI.ShowHandCard(target, cards);
             gameUI.AddMsg(string.Format("{0}号玩家向你展示了手牌，{1}", target, cardInfo));
         }
         else
@@ -770,6 +771,7 @@ public class GameManager
         {
             gameUI.ShowWeiBiGiveCard(cardWant, user, waitTime);
         }
+        gameUI.AddMsg(string.Format("{0}号向{1}号索求一张{2}", user, target, LanguageUtils.GetCardName(cardWant)));
         //Debug.LogError(cardUsed.cardName);
     }
 

@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +25,7 @@ public class PlayerMessagInfo : MonoBehaviour
     public void Show(int playerId, bool showChengQing = false)
     {
         gameObject.SetActive(true);
-        textTittle.text = "" + playerId + "号玩家的情报";
+        textTittle.text = "" + playerId + "鍙风帺瀹剁殑鎯呮姤";
 
         foreach (var kv in items)
         {
@@ -62,6 +62,30 @@ public class PlayerMessagInfo : MonoBehaviour
         }
 
         butChengQing.gameObject.SetActive(showChengQing);
+    }
+
+    public void ShowHandCard(int playerId, List<CardFS> cards)
+    {
+        gameObject.SetActive(true);
+        textTittle.text = "" + playerId + "鍙风帺瀹剁殑鎵嬬墝";
+
+        foreach (var kv in items)
+        {
+            GameObject.Destroy(kv.Value.gameObject);
+        }
+        items.Clear();
+
+        int i = cards.Count;
+
+        foreach (var cardFS in cards)
+        {
+            UICard card = GameObject.Instantiate(itemCardUI, grid.transform);
+            card.Init(i, cardFS);
+            items[cardFS.id] = (card);
+        }
+
+        butChengQing.gameObject.SetActive(false);
+
     }
 
     public void Hide()
