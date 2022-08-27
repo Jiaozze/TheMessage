@@ -559,23 +559,39 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void ShowPhase()
+    public void ShowPhase(string info = null)
     {
-        if (GameManager.Singleton.IsWaitLock)
+        if(info != null)
+        {
+            textPhase.text = info;
+        }
+        else if (GameManager.Singleton.IsWaitLock)
         {
             textPhase.text = "请选择锁定目标";
         }
         else if(GameManager.Singleton.IsWaitSaving != -1)
         {
-            textPhase.text = "" + GameManager.Singleton.IsWaitSaving + "号玩家濒死，请求澄清";
+            textPhase.text = "" + GameManager.Singleton.IsWaitSaving + "号玩家濒死，向" + GameManager.Singleton.CurWaitingPlayerId + "号请求澄清";
         }
         else if (GameManager.Singleton.IsWaitGiveCard)
         {
             textPhase.text = "你阵亡了，可以选择至多三张牌交给一名玩家";
         }
+        else if(GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase)
+        {
+            if(GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId)
+            {
+                textPhase.text = "进入情报传递阶段，请传递一张情报";
+            }
+            else
+            {
+                textPhase.text = "" + GameManager.Singleton.CurWaitingPlayerId + "号玩家进入情报传递阶段，正在准备传递的情报";
+            }
+        }
         else
         {
-            textPhase.text = LanguageUtils.GetPhaseName(GameManager.Singleton.curPhase);
+            textPhase.text = "";
+            //textPhase.text = LanguageUtils.GetPhaseName(GameManager.Singleton.curPhase);
         }
     }
 

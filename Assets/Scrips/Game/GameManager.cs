@@ -451,6 +451,8 @@ public class GameManager
         IsWaitSaving = -1;
         gameUI.HideMessagingCard();
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
+        gameUI.Players[CurTurnPlayerId].HidePhase();
+        gameUI.Players[playerId].SetPhase(phase);
         if (playerId != CurTurnPlayerId)
         {
             lockedPlayer = null;
@@ -552,13 +554,40 @@ public class GameManager
     public void OnReceiveMessageSend(int playerId, int cardId, int targetId, List<int> locakIds, DirectionEnum dir)
     {
         OnCardSend(playerId, cardId, targetId, locakIds, dir);
-
+        string sLock = "";
+        string sDir = "";
+        if(locakIds.Count > 0)
+        {
+            sLock = " 并锁定玩家";
+            foreach(var id in locakIds)
+            {
+                sLock += " " + id;
+            }
+        }
+        switch(dir)
+        {
+            case DirectionEnum.Left:
+                sDir = "向左";
+                break;
+            case DirectionEnum.Right:
+                sDir = "向右";
+                break;
+            case DirectionEnum.Up:
+                sDir = "向上";
+                break;
+        }
+        string s = string.Format("{0}号玩家向{1}号玩家传出情报,方向{2}{3}", playerId, targetId, sDir, sLock);
+        gameUI.ShowPhase(s);
+        gameUI.AddMsg(s);
     }
 
     // 通知所有人选择要接收情报（只有选择要收时有这条协议）
     public void OnReceiveMessageAccept(int playerId)
     {
         gameUI.OnMessageAccept(playerId);
+        string s = "" + playerId + "号玩家选择了接收情报，正在询问所有人是否响应";
+        gameUI.ShowPhase(s);
+        gameUI.AddMsg(s);
     }
     // 通知所有人使用调包
     public void OnReceiveUseDiaoBao(int user, int cardUsedId, CardFS messageCard)

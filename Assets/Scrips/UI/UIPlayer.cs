@@ -8,6 +8,7 @@ public class UIPlayer : MonoBehaviour
 {
     public Animator animator;
     public Button button;
+    public Text textPhase;
     public Text textPlayerId;
     public Text textCardCount;
     public Text textMessageRedCount;
@@ -153,5 +154,15 @@ public class UIPlayer : MonoBehaviour
     public void SetLock(bool isLock)
     {
         goLock.SetActive(isLock);
+    }
+
+    public void SetPhase(PhaseEnum phase)
+    {
+        textPhase.text = LanguageUtils.GetPhaseName(phase);
+    }
+
+    public void HidePhase()
+    {
+        textPhase.text = "";
     }
 }
