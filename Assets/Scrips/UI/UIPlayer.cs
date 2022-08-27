@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIPlayer : MonoBehaviour
 {
+    public Animator animator;
     public Button button;
     public Text textPlayerId;
     public Text textCardCount;
@@ -20,6 +21,7 @@ public class UIPlayer : MonoBehaviour
     public GameObject goDie;
     public GameObject goLose;
     public GameObject goLock;
+    public GameObject goCard;
 
 
     private int playerId;
@@ -46,7 +48,7 @@ public class UIPlayer : MonoBehaviour
         goTurnOn.SetActive(false);
         goMessageOn.SetActive(false);
         playerId = id;
-        textPlayerId.text = "" + id;
+        textPlayerId.text = "" + id + "ºÅÍæ¼Ò";
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
@@ -60,6 +62,18 @@ public class UIPlayer : MonoBehaviour
     public void OnDrawCard(int totalCount, int count)
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
+        if(playerId != GameManager.SelfPlayerId)
+        {
+            if (count > 1)
+            {
+                for (int i = 1; i < count; i++)
+                {
+                    var go = GameObject.Instantiate(goCard, goCard.transform.parent);
+                    Destroy(go, 0.5f);
+                }
+            }
+            animator.SetTrigger("DrawCards");
+        }
     }
 
     public void UseCard(CardFS cardInfo = null)
