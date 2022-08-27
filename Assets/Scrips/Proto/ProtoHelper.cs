@@ -178,7 +178,9 @@ public static class ProtoHelper
                 CardFS cardFS = new CardFS(card);
                 cards.Add(cardFS);
             }
-            GameManager.Singleton.OnReceiveUseWeiBiShowHands(user, target, cardUsed, cards);
+            CardNameEnum cardWant = (CardNameEnum)wei_Bi_Show_Hand_Card_Toc.WantType;
+
+            GameManager.Singleton.OnReceiveUseWeiBiShowHands(user, target, cardUsed, cards, cardWant);
         }
         // 通知所有人威逼等待给牌
         else if (GetIdFromProtoName("wei_bi_wait_for_give_card_toc") == id)

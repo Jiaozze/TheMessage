@@ -743,9 +743,12 @@ public class GameManager
         OnCardUse(user, cardUsed, target);
     }
     // 通知所有人威逼的牌没有，展示所有手牌
-    public void OnReceiveUseWeiBiShowHands(int user, int target, CardFS cardUsed, List<CardFS> cards)
+    public void OnReceiveUseWeiBiShowHands(int user, int target, CardFS cardUsed, List<CardFS> cards, CardNameEnum cardWant)
     {
         OnCardUse(user, cardUsed, target);
+
+        gameUI.AddMsg(string.Format("{0}号向{1}号索求一张{2}", user, target, LanguageUtils.GetCardName(cardWant)));
+
         if (user == SelfPlayerId)
         {
             string cardInfo = "";
@@ -759,7 +762,7 @@ public class GameManager
         }
         else
         {
-            gameUI.AddMsg(string.Format("{0}号玩家向{1}号玩家展示了手牌", target, user));
+            gameUI.AddMsg(string.Format("{0}号玩家没有{1}，向{2}号玩家展示了手牌", target, LanguageUtils.GetCardName(cardWant), user));
         }
     }
     // 通知所有人威逼等待给牌
