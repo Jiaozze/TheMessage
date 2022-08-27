@@ -20,7 +20,9 @@ public class GameUI : MonoBehaviour
     public UICard itemCardUI;
     public UICard messageCard;
     public Text textInfo;
+    public Text textMidInfo;
     public Text textDeckCount;
+    
     public GameObject goDirect;
     public Transform transDir;
     public RectTransform transCards;
@@ -570,6 +572,24 @@ public class GameUI : MonoBehaviour
         {
             callBack.Invoke();
         }
+    }
+
+    private string infoStr = null;
+    private Coroutine hideInfoCorout;
+    public void ShowInfo(string info)
+    {
+        textMidInfo.text = infoStr == null ? info : infoStr + "\n" + info;
+        textMidInfo.gameObject.SetActive(true);
+        infoStr = info;
+        if (hideInfoCorout != null) StopCoroutine(hideInfoCorout);
+        hideInfoCorout = StartCoroutine(HideInfo());
+    }
+
+    private IEnumerator HideInfo()
+    {
+        yield return new WaitForSeconds(2);
+        infoStr = null;
+        textMidInfo.gameObject.SetActive(false);
     }
 
     public void ShowPhase(string info = null)

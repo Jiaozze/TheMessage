@@ -566,7 +566,7 @@ public class GameManager
                 break;
         }
         string s = string.Format("{0}号玩家向{1}号玩家传出情报,方向{2}{3}", playerId, targetId, sDir, sLock);
-        gameUI.ShowPhase(s);
+        gameUI.ShowInfo(s);
         gameUI.AddMsg(s);
     }
 
@@ -575,7 +575,7 @@ public class GameManager
     {
         gameUI.OnMessageAccept(playerId);
         string s = "" + playerId + "号玩家选择了接收情报，正在询问所有人是否响应";
-        gameUI.ShowPhase(s);
+        gameUI.ShowInfo(s);
         gameUI.AddMsg(s);
     }
     // 通知所有人使用调包
@@ -661,7 +661,9 @@ public class GameManager
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
 
-        gameUI.AddMsg(string.Format("{0}号玩家对{1}号玩家使用了试探;{2}", user, targetUser, cardInfo));
+        string s = string.Format("{0}号玩家对{1}号玩家使用了试探;{2}", user, targetUser, cardInfo);
+        gameUI.AddMsg(s);
+        gameUI.ShowInfo(s);
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
@@ -689,6 +691,9 @@ public class GameManager
         {
             gameUI.HideShiTanInfo();
         }
+
+        string s = isDrawCard ? "" + playerId + "号玩家被试探摸了一张牌" : "" + playerId + "号玩家被试探弃了一张牌";
+        gameUI.ShowInfo(s);
     }
     // 通知客户端使用利诱的结果
     public void OnRecerveUseLiYou(int user, int target, CardFS cardUsed, CardFS card, bool isJoinHand)
@@ -751,6 +756,7 @@ public class GameManager
         {
             gameUI.AddMsg(string.Format("{0}号玩家没有{1}，向{2}号玩家展示了手牌", target, LanguageUtils.GetCardName(cardWant), user));
         }
+        gameUI.ShowInfo(string.Format("{0}号玩家没有{1}，向{2}号玩家展示了手牌", target, LanguageUtils.GetCardName(cardWant), user));
     }
     // 通知所有人威逼等待给牌
     public void OnReceiveUseWeiBiGiveCard(int user, int target, CardFS cardUsed, CardNameEnum cardWant, int waitTime, uint seq)
@@ -763,7 +769,9 @@ public class GameManager
         {
             gameUI.ShowWeiBiGiveCard(cardWant, user, waitTime);
         }
-        gameUI.AddMsg(string.Format("{0}号向{1}号索求一张{2}", user, target, LanguageUtils.GetCardName(cardWant)));
+        string s = string.Format("{0}号向{1}号索求一张{2}", user, target, LanguageUtils.GetCardName(cardWant));
+        gameUI.AddMsg(s);
+        gameUI.ShowInfo(s);
         //Debug.LogError(cardUsed.cardName);
     }
 
