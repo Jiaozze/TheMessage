@@ -76,6 +76,8 @@ public class GameManager
             }
             SelectPlayerId = -1;
             Debug.Log("cardId" + _SelectCardId);
+
+            gameUI.RefreshTargetAvailable();
         }
     }
     private int _SelectCardId = -1;
