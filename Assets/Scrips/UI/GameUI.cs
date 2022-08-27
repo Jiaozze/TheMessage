@@ -21,6 +21,7 @@ public class GameUI : MonoBehaviour
     public UICard messageCard;
     public Text textInfo;
     public Text textDeckCount;
+    public Text textNextMessagePlayer;
     public RectTransform transCards;
     public Transform transPlayerSelf;
     public GridLayoutGroup gridCards;
@@ -512,7 +513,15 @@ public class GameUI : MonoBehaviour
             messageCard.transform.position = messagePoses[messagePlayerId];
         }
     }
-
+    public void HideMessagingCard()
+    {
+        messageCard.gameObject.SetActive(false);
+        textNextMessagePlayer.text = "";
+    }
+    public void ShowNextMessagePlayer(int nextPlayer)
+    {
+        textNextMessagePlayer.text = "下一个接收情报者:\n" + nextPlayer + "号玩家";
+    }
     public void ShowMessagingCard(CardFS message, int messagePlayerId = -1, bool move = false)
     {
         //Debug.LogError("情报id，" + message.id);
@@ -548,10 +557,6 @@ public class GameUI : MonoBehaviour
         {
             callBack.Invoke();
         }
-    }
-    public void HideMessagingCard()
-    {
-        messageCard.gameObject.SetActive(false);
     }
 
     public void ShowPhase()
