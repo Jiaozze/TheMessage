@@ -581,15 +581,16 @@ public class GameUI : MonoBehaviour
         textMidInfo.text = infoStr == null ? info : infoStr + "\n" + info;
         textMidInfo.gameObject.SetActive(true);
         infoStr = info;
-        if (hideInfoCorout != null) StopCoroutine(hideInfoCorout);
         hideInfoCorout = StartCoroutine(HideInfo());
     }
 
     private IEnumerator HideInfo()
     {
+        string s = infoStr;
         yield return new WaitForSeconds(2);
         infoStr = null;
-        textMidInfo.gameObject.SetActive(false);
+        textMidInfo.text = textMidInfo.text.Replace(s, "");
+        //textMidInfo.gameObject.SetActive(false);
     }
 
     public void ShowPhase(string info = null)
