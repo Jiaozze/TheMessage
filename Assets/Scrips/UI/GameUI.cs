@@ -717,4 +717,9 @@ public class GameUI : MonoBehaviour
         }
         slider.gameObject.SetActive(false);
     }
+
+    public void ShowHandCard(int target, List<CardFS> cards)
+    {
+        playerMessagInfo.ShowHandCard(target, cards);
+    }
 }
