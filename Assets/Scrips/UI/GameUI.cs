@@ -133,8 +133,10 @@ public class GameUI : MonoBehaviour
     public void DisCard(List<CardFS> cards, int playerId)
     {
         var user = playerId;
+        int count = 0;
         foreach (var card in cards)
         {
+            count++;
             if (user == GameManager.SelfPlayerId && card != null)
             {
                 int cardId = card.id;
@@ -147,21 +149,21 @@ public class GameUI : MonoBehaviour
                     Vector3 to = transCardsUsed.position;
                     StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
                     {
-                        Destroy(uiCard.gameObject, 2);
+                        Destroy(uiCard.gameObject);
                     }));
                 }
             }
             else if (user != GameManager.SelfPlayerId && card != null)
             {
                 var uiCard = GameObject.Instantiate(itemCardUI, transCardsUsed);
-                uiCard.transform.position = Players[user].transform.position;
+                uiCard.transform.position = Players[user].transform.position + (count - 1) * new Vector3(10, 0); ;
                 uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
                 uiCard.SetInfo(card);
                 uiCard.gameObject.SetActive(true);
                 Vector3 to = transCardsUsed.position;
                 StartCoroutine(DoMove(uiCard.transform, Players[user].transform.position, to, 0.1f, () =>
                 {
-                    Destroy(uiCard.gameObject, 2);
+                    Destroy(uiCard.gameObject);
                 }));
             }
         }
