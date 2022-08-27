@@ -31,6 +31,7 @@ public class GameUI : MonoBehaviour
     public Button butSure;
     public Transform selfMessagePos;
     public Transform transCardsUsed;
+    public Transform transCardsDised;
     public Slider slider;
 
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
@@ -144,9 +145,9 @@ public class GameUI : MonoBehaviour
                 {
                     var uiCard = Cards[cardId];
                     Cards.Remove(cardId);
-                    uiCard.transform.SetParent(transCardsUsed);
+                    uiCard.transform.SetParent(transCardsDised);
                     uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
-                    Vector3 to = transCardsUsed.position;
+                    Vector3 to = transCardsDised.position;
                     StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
                     {
                         Destroy(uiCard.gameObject);
@@ -155,12 +156,12 @@ public class GameUI : MonoBehaviour
             }
             else if (user != GameManager.SelfPlayerId && card != null)
             {
-                var uiCard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+                var uiCard = GameObject.Instantiate(itemCardUI, transCardsDised);
                 uiCard.transform.position = Players[user].transform.position + (count - 1) * new Vector3(10, 0); ;
                 uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
                 uiCard.SetInfo(card);
                 uiCard.gameObject.SetActive(true);
-                Vector3 to = transCardsUsed.position;
+                Vector3 to = transCardsDised.position;
                 StartCoroutine(DoMove(uiCard.transform, Players[user].transform.position, to, 0.1f, () =>
                 {
                     Destroy(uiCard.gameObject);
@@ -444,9 +445,9 @@ public class GameUI : MonoBehaviour
     {
         //messageCard.TurnOn(cardUsed);
 
-        var uiCard = GameObject.Instantiate(messageCard, transCardsUsed);
+        var uiCard = GameObject.Instantiate(messageCard, transCardsDised);
         messageCard.gameObject.SetActive(false);
-        Vector3 to = transCardsUsed.position;
+        Vector3 to = transCardsDised.position;
         StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () => {
             if(uiCard.IsUnknown())
             {
@@ -461,10 +462,10 @@ public class GameUI : MonoBehaviour
     {
         for (int i = 0; i < messages.Count; i++)
         {
-            UICard uICard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+            UICard uICard = GameObject.Instantiate(itemCardUI, transCardsDised);
             uICard.SetInfo(messages[i]);
             Vector3 fromPos = Players[playerId].transform.position + new Vector3(i * 20, 0);
-            Vector3 toPos = transCardsUsed.position;
+            Vector3 toPos = transCardsDised.position;
             uICard.transform.localScale = new Vector3(0.5f, 0.5f);
             uICard.gameObject.SetActive(true);
 
