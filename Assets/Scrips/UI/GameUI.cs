@@ -397,7 +397,6 @@ public class GameUI : MonoBehaviour
                 {
                     if (card.cardName == CardNameEnum.Diao_Bao)
                     {
-                        messageCard.gameObject.SetActive(true);
                         Destroy(uiCard.gameObject);
                     }
                     else
@@ -419,7 +418,6 @@ public class GameUI : MonoBehaviour
             {
                 if (card.cardName == CardNameEnum.Diao_Bao)
                 {
-                    messageCard.gameObject.SetActive(true);
                     Destroy(uiCard.gameObject);
                 }
                 else
@@ -450,9 +448,9 @@ public class GameUI : MonoBehaviour
         //messageCard.TurnOn(cardUsed);
 
         var uiCard = GameObject.Instantiate(messageCard, transCardsDised);
-        messageCard.gameObject.SetActive(false);
+        uiCard.transform.position = messageCard.transform.position;
         Vector3 to = transCardsDised.position;
-        StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
+        StartCoroutine(DoMove(uiCard.transform, messageCard.transform.position, to, 0.1f, () =>
         {
             if (uiCard.IsUnknown())
             {
@@ -460,7 +458,7 @@ public class GameUI : MonoBehaviour
             }
 
             Destroy(uiCard.gameObject, 2);
-        }));
+        }, 0.3f));
     }
 
     public void OnPlayerMessageRemove(int playerId, List<CardFS> messages)
