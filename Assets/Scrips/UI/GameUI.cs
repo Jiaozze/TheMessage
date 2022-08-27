@@ -151,6 +151,7 @@ public class GameUI : MonoBehaviour
                     Cards.Remove(cardId);
                     uiCard.transform.SetParent(transCardsDised);
                     uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
+                    CardsSizeFitter();
                     Vector3 to = transCardsDised.position;
                     StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
                     {
@@ -191,7 +192,7 @@ public class GameUI : MonoBehaviour
                 uICard.transform.SetParent(transCardsUsed);
                 uICard.transform.localScale = new Vector3(0.5f, 0.5f);
                 fromPos = uICard.transform.position;
-
+                CardsSizeFitter();
             }
             else
             {
@@ -218,6 +219,7 @@ public class GameUI : MonoBehaviour
             {
                 Cards[cardId].OnDiscard();
                 Cards.Remove(cardId);
+                CardsSizeFitter();
             }
         }
     }
@@ -392,6 +394,7 @@ public class GameUI : MonoBehaviour
                 Cards.Remove(cardId);
                 uiCard.transform.SetParent(transCardsUsed);
                 uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
+                CardsSizeFitter();
                 Vector3 to = card.cardName == CardNameEnum.Diao_Bao ? messageCard.transform.position : transCardsUsed.position;
                 StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
                 {
@@ -440,6 +443,7 @@ public class GameUI : MonoBehaviour
             {
                 Cards[cardId].OnSend();
                 Cards.Remove(cardId);
+                CardsSizeFitter();
             }
         }
     }
