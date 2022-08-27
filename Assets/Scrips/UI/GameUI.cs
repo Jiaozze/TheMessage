@@ -618,7 +618,8 @@ public class GameUI : MonoBehaviour
             }
             else
             {
-                textPhase.text = "" + GameManager.Singleton.CurWaitingPlayerId + "号玩家进入情报传递阶段，正在准备传递的情报";
+                textPhase.text = "";
+                ShowInfo("" + GameManager.Singleton.CurWaitingPlayerId + "号玩家进入情报传递阶段，正在准备传递的情报");
             }
         }
         else
