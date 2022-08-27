@@ -62,7 +62,7 @@ public class ShiTanInfo : MonoBehaviour
         {
             int cardId = GameManager.Singleton.SelectCardId;
             cardId = cardId < 0 ? 0 : cardId;
-            if (cardId != -1 && GameManager.Singleton.cardsHand.ContainsKey(cardId))
+            if (GameManager.Singleton.cardsHand.Count < 1 || (cardId != -1 && GameManager.Singleton.cardsHand.ContainsKey(cardId)))
             {
                 GameManager.Singleton.SendDoShiTan(cardId);
             }
