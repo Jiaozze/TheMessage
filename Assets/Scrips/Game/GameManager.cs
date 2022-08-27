@@ -425,9 +425,11 @@ public class GameManager
             {
                 int cardId = card.id;
                 if (cardsHand.ContainsKey(cardId)) cardsHand.Remove(cardId);
-
-                cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
+        }
+        foreach (var card in cards)
+        {
+            cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
         }
         gameUI.DisCard(cards, playerId);
 
