@@ -901,8 +901,13 @@ public class GameManager
         {
             SelectCardId = -1;
             IsWaitGiveCard = true;
-            gameUI.ShowPhase();
         }
+        else
+        {
+            gameUI.ShowInfo("" + playerId +"号玩家死亡，可以选择交给一名玩家至多三张牌");
+        }
+        IsWaitSaving = -1;
+        gameUI.ShowPhase();
         OnWait(playerId, waitingSecond);
         gameUI.AddMsg(string.Format("等待{0}号玩家托付手牌", playerId));
     }
