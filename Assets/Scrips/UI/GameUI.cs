@@ -768,12 +768,14 @@ public class GameUI : MonoBehaviour
     {
         float total = seconds;
         float secondsF = seconds;
+        slider.value = secondsF / total;
         while (secondsF > 0)
         {
-            slider.value = secondsF / total;
             secondsF = secondsF - 0.1f;
             yield return new WaitForSeconds(0.1f);
+            slider.value = secondsF / total;
         }
+        yield return new WaitForEndOfFrame();
         slider.gameObject.SetActive(false);
     }
 
