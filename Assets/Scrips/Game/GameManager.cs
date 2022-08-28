@@ -603,6 +603,7 @@ public class GameManager
             colorStr = colorStr + LanguageUtils.GetColorName(color);
         }
 
+        gameUI.ShowInfo("情报" + colorStr + LanguageUtils.GetCardName(messageCard.cardName) + "被调包了");
         gameUI.AddMsg("情报" + colorStr + LanguageUtils.GetCardName(messageCard.cardName) + "被调包了");
     }
 
