@@ -302,7 +302,15 @@ public class GameUI : MonoBehaviour
             }
             if (usePoYi)
             {
-                GameManager.Singleton.SendUserPoYi();
+                if(messageCard.IsUnknown())
+                {
+                    GameManager.Singleton.SendUserPoYi();
+                }
+                else
+                {
+                    ShowInfo("情报已经被翻开，不需要破译");
+                }
+
             }
             else
             {
