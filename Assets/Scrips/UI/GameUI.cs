@@ -43,6 +43,22 @@ public class GameUI : MonoBehaviour
 
     private int leftNum;
     private int topNum;
+
+    private void Awake()
+    {
+        goDirect.SetActive(false);
+        slider.gameObject.SetActive(false);
+        itemCardUI.gameObject.SetActive(false);
+        itemPlayerUI.gameObject.SetActive(false);
+        messageCard.gameObject.SetActive(false);
+        winInfo.gameObject.SetActive(false);
+        goTask.gameObject.SetActive(false);
+        poYiResult.gameObject.SetActive(false);
+        shiTanInfo.gameObject.SetActive(false);
+        goWeiBiSelect.gameObject.SetActive(false);
+        weiBiGiveCard.gameObject.SetActive(false);
+        playerMessagInfo.gameObject.SetActive(false);
+    }
     public void InitPlayers(int num)
     {
         if (Players.Count > 0)
