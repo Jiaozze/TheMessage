@@ -75,7 +75,6 @@ public static class NetWork
                 //string name = Encoding.UTF8.GetString(buffer, 2, len2);
                 byte[] body = buffer.Skip(2).Take(len1 - 2).ToArray();
                 easyThread.mainRemote.Send(EVENT_RECEIVE, id, body);
-
             }
             catch (Exception ex)
             {
