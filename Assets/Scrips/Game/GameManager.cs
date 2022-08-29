@@ -1025,6 +1025,9 @@ public class GameManager
                             Debug.LogError("请选择正确的平衡目标");
                         }
                         break;
+                    case CardNameEnum.Cheng_Qing:
+                        gameUI.playerMessagInfo.OnClickChengQing();
+                        break;
                 }
             }
             else if (curPhase == PhaseEnum.Fight_Phase)
