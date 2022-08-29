@@ -363,7 +363,7 @@ public class GameUI : MonoBehaviour
         }
 
         //自己出牌阶段
-        if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase)
+        if (GameManager.Singleton.curPhase == PhaseEnum.Main_Phase && GameManager.Singleton.CurTurnPlayerId == GameManager.SelfPlayerId)
         {
             GameManager.Singleton.SendEndWaiting();
         }
