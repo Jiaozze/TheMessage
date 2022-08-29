@@ -832,6 +832,7 @@ public class GameManager
     {
         OnCardUse(user, cardUsed, target);
 
+        string messageInfo = "";
         if (players.ContainsKey(target))
         {
             CardFS message = new CardFS(null);
@@ -839,6 +840,7 @@ public class GameManager
             {
                 if(card.id == targetCardId)
                 {
+                    messageInfo = LanguageUtils.GetColorsName(card.color) + LanguageUtils.GetCardName(card.cardName);
                     message = card;
                     break;
                 }
@@ -848,7 +850,7 @@ public class GameManager
             gameUI.OnPlayerMessageRemove(target, new List<CardFS>() { message });
         }
         gameUI.HidePlayerMessageInfo();
-        gameUI.AddMsg(string.Format("{0}号玩家的情报被烧毁", target));
+        gameUI.AddMsg(string.Format("{0}号玩家的情报{1}被烧毁", target, messageInfo));
 
     }
 
