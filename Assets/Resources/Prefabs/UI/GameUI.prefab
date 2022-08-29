@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 827282221031824117}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.037874002
+  m_Size: 0.03830383
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4321,32 +4321,32 @@ PrefabInstance:
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2590767950454934108, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
@@ -4408,46 +4408,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3909026448977017155, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -70
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6233442418630943561}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickDisCard
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShiTanInfo, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4143036376679220974, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6129166579707535545, guid: 0f9c4ccebee94b145b324dda68b53c4e,
         type: 3}
       propertyPath: m_Name
@@ -4467,41 +4427,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6233442418630943561}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickDrawCard
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShiTanInfo, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7898878006654445729, guid: 0f9c4ccebee94b145b324dda68b53c4e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9c4ccebee94b145b324dda68b53c4e, type: 3}
