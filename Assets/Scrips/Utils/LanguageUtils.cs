@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Collections.Generic;
 
 public class LanguageUtils
 {
@@ -43,6 +44,16 @@ public class LanguageUtils
             default:
                 return "undifined";
         }
+    }
+
+    public static string GetColorsName(List<CardColorEnum> cardColors)
+    {
+        string s = "";
+        foreach(var color in cardColors)
+        {
+            s += GetColorName(color);
+        }
+        return s;
     }
 
     public static string GetColorName(CardColorEnum cardColor)
