@@ -107,6 +107,7 @@ public class PlayerMessagInfo : MonoBehaviour
         }
         else
         {
+            GameManager.Singleton.gameUI.ShowInfo("选择正确的澄清角色/卡牌");
             Debug.LogError("" + GameManager.Singleton.SelectPlayerId + cardId + GameManager.Singleton.IsWaitSaving + curCard.cardName);
         }
     }
