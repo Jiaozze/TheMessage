@@ -27,6 +27,8 @@ public class SoundManager : MonoBehaviour
         string sex = isWoman ? "woman" : "man";
         string path = "Music/Sound/" + cardNameEnum.ToString() + "_" + sex;
         soundManager.soundAudio.clip = Resources.Load<AudioClip>(path);
+        soundManager.soundAudio.time = 2;
         soundManager.soundAudio.Play();
+        //soundManager.soundAudio.PlayScheduled(1);
     }
 }
