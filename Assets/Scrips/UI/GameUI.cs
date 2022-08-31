@@ -293,7 +293,7 @@ public class GameUI : MonoBehaviour
         //有人濒死求澄清
         if (GameManager.Singleton.IsWaitSaving != -1)
         {
-            if (GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.Cheng_Qing)
+            if (GameManager.Singleton.GetCardSelect() != null && GameManager.Singleton.GetCardSelect().cardName == CardNameEnum.ChengQing)
             {
                 ShowPlayerMessageInfo(GameManager.Singleton.IsWaitSaving, true);
             }
@@ -314,7 +314,7 @@ public class GameUI : MonoBehaviour
             bool usePoYi = false;
             if (GameManager.Singleton.SelectCardId != -1)
             {
-                usePoYi = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId].cardName == CardNameEnum.Po_Yi;
+                usePoYi = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId].cardName == CardNameEnum.PoYi;
             }
             if (usePoYi)
             {
@@ -419,10 +419,10 @@ public class GameUI : MonoBehaviour
                 uiCard.transform.SetParent(transCardsUsed);
                 uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
                 CardsSizeFitter();
-                Vector3 to = card.cardName == CardNameEnum.Diao_Bao ? messageCard.transform.position : transCardsUsed.position;
+                Vector3 to = card.cardName == CardNameEnum.DiaoBao ? messageCard.transform.position : transCardsUsed.position;
                 StartCoroutine(DoMove(uiCard.transform, uiCard.transform.position, to, 0.1f, () =>
                 {
-                    if (card.cardName == CardNameEnum.Diao_Bao)
+                    if (card.cardName == CardNameEnum.DiaoBao)
                     {
                         Destroy(uiCard.gameObject);
                     }
@@ -440,10 +440,10 @@ public class GameUI : MonoBehaviour
             uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
             uiCard.SetInfo(card);
             uiCard.gameObject.SetActive(true);
-            Vector3 to = card.cardName == CardNameEnum.Diao_Bao ? messageCard.transform.position : transCardsUsed.position;
+            Vector3 to = card.cardName == CardNameEnum.DiaoBao ? messageCard.transform.position : transCardsUsed.position;
             StartCoroutine(DoMove(uiCard.transform, Players[user].transform.position, to, 0.1f, () =>
             {
-                if (card.cardName == CardNameEnum.Diao_Bao)
+                if (card.cardName == CardNameEnum.DiaoBao)
                 {
                     Destroy(uiCard.gameObject);
                 }
@@ -799,7 +799,7 @@ public class GameUI : MonoBehaviour
             {
                 //传情报锁定时，不需要限定目标
             }
-            else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.Wu_Dao)
+            else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.WuDao)
             {
                 bool banClick = false;
                 foreach (var kv in Players)

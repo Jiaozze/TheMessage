@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public AudioSource musicAudio;
+    public AudioSource soundAudio;
     private static SoundManager soundManager;
 
     private void Awake()
@@ -14,11 +15,18 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public static void Play()
     {
-        soundManager.audioSource.Play();
+        soundManager.musicAudio.Play();
+    }
+
+    public static void PlaySound(CardNameEnum cardNameEnum, bool isWoman = false)
+    {
+        string sex = isWoman ? "woman" : "man";
+        string path = "Music/Sound/" + cardNameEnum.ToString() + "_" + sex;
+        soundManager.soundAudio.clip = Resources.Load<AudioClip>(path);
+        soundManager.soundAudio.Play();
     }
 }

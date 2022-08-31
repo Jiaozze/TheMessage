@@ -117,9 +117,9 @@ public class GameManager
             {
                 switch (cardsHand[_SelectCardId].cardName)
                 {
-                    case CardNameEnum.Wei_Bi:
-                    case CardNameEnum.Ping_Heng:
-                    case CardNameEnum.Shi_Tan:
+                    case CardNameEnum.WeiBi:
+                    case CardNameEnum.PingHeng:
+                    case CardNameEnum.ShiTan:
                         if (value == SelfPlayerId)
                         {
                             string name = LanguageUtils.GetCardName(cardsHand[_SelectCardId].cardName);
@@ -131,14 +131,14 @@ public class GameManager
                             gameUI.Players[_SelectPlayerId].OnSelect(true);
                         }
                         break;
-                    case CardNameEnum.Li_You:
+                    case CardNameEnum.LiYou:
                         if (gameUI.Players.ContainsKey(value))
                         {
                             _SelectPlayerId = value;
                             gameUI.Players[_SelectPlayerId].OnSelect(true);
                         }
                         break;
-                    case CardNameEnum.Cheng_Qing:
+                    case CardNameEnum.ChengQing:
                         if (gameUI.Players.ContainsKey(value) && players[value].GetMessageCount(CardColorEnum.Black) > 0)
                         {
                             _SelectPlayerId = value;
@@ -151,7 +151,7 @@ public class GameManager
             // 情报争夺阶段选择误导目标
             else if(curPhase == PhaseEnum.Fight_Phase && cardsHand.ContainsKey(_SelectCardId))
             {
-                if(cardsHand[_SelectCardId].cardName == CardNameEnum.Wu_Dao)
+                if(cardsHand[_SelectCardId].cardName == CardNameEnum.WuDao)
                 {
                     if(value == GetPlayerAliveLeft(CurMessagePlayerId) || value == GetPlayerAliveRight(CurMessagePlayerId))
                     {
@@ -298,6 +298,7 @@ public class GameManager
         string targetInfo;
         targetInfo = target == -1 ? "" : "对" + target + "号玩家";
         gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
+        SoundManager.PlaySound(cardUsed.cardName);
     }
 
     private void OnCardSend(int playerId, int cardId, int targetId, List<int> lockIds, DirectionEnum dir)
@@ -591,7 +592,7 @@ public class GameManager
         else
         {
             cardUsed = new CardFS(null);
-            cardUsed.cardName = CardNameEnum.Diao_Bao;
+            cardUsed.cardName = CardNameEnum.DiaoBao;
             cardUsed.id = cardUsedId;
         }
         OnCardUse(user, cardUsed);
@@ -661,7 +662,7 @@ public class GameManager
         else
         {
             card = new CardFS(null);
-            card.cardName = CardNameEnum.Shi_Tan;
+            card.cardName = CardNameEnum.ShiTan;
         }
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
@@ -669,6 +670,7 @@ public class GameManager
         string s = string.Format("{0}号玩家对{1}号玩家使用了试探;{2}", user, targetUser, cardInfo);
         gameUI.AddMsg(s);
         gameUI.ShowInfo(s);
+        SoundManager.PlaySound(CardNameEnum.ShiTan);
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
@@ -981,7 +983,7 @@ public class GameManager
                 switch (card)
                 {
                     //使用试探
-                    case CardNameEnum.Shi_Tan:
+                    case CardNameEnum.ShiTan:
                         if (SelectPlayerId != -1 && SelectPlayerId != 0)
                         {
                             ProtoHelper.SendUseCardMessage_ShiTan(SelectCardId, SelectPlayerId, this.seqId);
@@ -992,7 +994,7 @@ public class GameManager
                         }
                         break;
                     //使用威逼, 只打开选择界面， 不发送请求
-                    case CardNameEnum.Wei_Bi:
+                    case CardNameEnum.WeiBi:
                         if (SelectPlayerId != -1 && SelectPlayerId != 0)
                         {
                             gameUI.ShowWeiBiSelect(true);
@@ -1004,7 +1006,7 @@ public class GameManager
                         }
                         break;
                     //使用利诱
-                    case CardNameEnum.Li_You:
+                    case CardNameEnum.LiYou:
                         if (SelectPlayerId != -1)
                         {
                             ProtoHelper.SendUseCardMessage_LiYou(SelectCardId, SelectPlayerId, this.seqId);
@@ -1015,7 +1017,7 @@ public class GameManager
                         }
                         break;
                     //使用平衡
-                    case CardNameEnum.Ping_Heng:
+                    case CardNameEnum.PingHeng:
                         if (SelectPlayerId != -1)
                         {
                             ProtoHelper.SendUseCardMessage_PingHeng(SelectCardId, SelectPlayerId, this.seqId);
@@ -1025,7 +1027,7 @@ public class GameManager
                             Debug.LogError("请选择正确的平衡目标");
                         }
                         break;
-                    case CardNameEnum.Cheng_Qing:
+                    case CardNameEnum.ChengQing:
                         gameUI.playerMessagInfo.OnClickChengQing();
                         break;
                 }
@@ -1035,13 +1037,13 @@ public class GameManager
                 CardNameEnum card = cardsHand[SelectCardId].cardName;
                 switch (card)
                 {
-                    case CardNameEnum.Diao_Bao:
+                    case CardNameEnum.DiaoBao:
                         ProtoHelper.SendUseDiaoBao(SelectCardId, seqId);
                         break;
-                    case CardNameEnum.Jie_Huo:
+                    case CardNameEnum.JieHuo:
                         ProtoHelper.SendUseCardMessage_JieHuo(SelectCardId, seqId);
                         break;
-                    case CardNameEnum.Wu_Dao:
+                    case CardNameEnum.WuDao:
                         if(SelectPlayerId == GetPlayerAliveRight(CurMessagePlayerId) || SelectPlayerId == GetPlayerAliveLeft(CurMessagePlayerId))
                         {
                             ProtoHelper.SendUseCardMessage_WuDao(SelectCardId, SelectPlayerId, seqId);

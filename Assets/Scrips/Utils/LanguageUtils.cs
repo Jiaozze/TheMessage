@@ -9,23 +9,23 @@ public class LanguageUtils
     {
         switch (nameEnum)
         {
-            case CardNameEnum.Wei_Bi:
+            case CardNameEnum.WeiBi:
                 return "威逼";
-            case CardNameEnum.Cheng_Qing:
+            case CardNameEnum.ChengQing:
                 return "澄清";
-            case CardNameEnum.Diao_Bao:
+            case CardNameEnum.DiaoBao:
                 return "调包";
-            case CardNameEnum.Jie_Huo:
+            case CardNameEnum.JieHuo:
                 return "截获";
-            case CardNameEnum.Li_You:
+            case CardNameEnum.LiYou:
                 return "利诱";
-            case CardNameEnum.Ping_Heng:
+            case CardNameEnum.PingHeng:
                 return "平衡";
-            case CardNameEnum.Po_Yi:
+            case CardNameEnum.PoYi:
                 return "破译";
-            case CardNameEnum.Shi_Tan:
+            case CardNameEnum.ShiTan:
                 return "试探";
-            case CardNameEnum.Wu_Dao:
+            case CardNameEnum.WuDao:
                 return "误导";
         }
         return "undifined";
