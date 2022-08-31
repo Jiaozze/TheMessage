@@ -654,7 +654,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void ShowWinInfo(int playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
+    public void ShowWinInfo(List<int> playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
     {
         winInfo.Show(playerId, winners, playerColers, playerTasks);
     }

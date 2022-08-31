@@ -955,7 +955,7 @@ public class GameManager
     }
 
     // 通知谁获胜了
-    public void OnReceiveWinner(int playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
+    public void OnReceiveWinner(List<int> playerId, List<int> winners, List<PlayerColorEnum> playerColers, List<SecretTaskEnum> playerTasks)
     {
         gameUI.ShowWinInfo(playerId, winners, playerColers, playerTasks);
     }

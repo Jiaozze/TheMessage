@@ -52,7 +52,7 @@ public static class ProtoHelper
         {
             send_message_card_toc send_message_card_toc = send_message_card_toc.Parser.ParseFrom(contont);
             List<int> locks = new List<int>();
-            foreach(var lockId in send_message_card_toc.LockPlayerIds)
+            foreach (var lockId in send_message_card_toc.LockPlayerIds)
             {
                 locks.Add((int)lockId);
             }
@@ -294,7 +294,11 @@ public static class ProtoHelper
             Debug.Log(" _______receive________ notify_winner_toc");
 
             notify_winner_toc notify_winner_toc = notify_winner_toc.Parser.ParseFrom(contont);
-            int playerId = (int)notify_winner_toc.DeclarePlayerId;
+            List<int> playerIds = new List<int>();
+            foreach (var playerid in notify_winner_toc.DeclarePlayerIds)
+            {
+                playerIds.Add((int)playerid);
+            }
             List<int> winners = new List<int>();
             foreach (var winner in notify_winner_toc.WinnerIds)
             {
@@ -302,7 +306,7 @@ public static class ProtoHelper
             }
             List<PlayerColorEnum> playerColers = new List<PlayerColorEnum>();
             List<SecretTaskEnum> playerTasks = new List<SecretTaskEnum>();
-            for(int i = 0; i < notify_winner_toc.Identity.Count; i++)
+            for (int i = 0; i < notify_winner_toc.Identity.Count; i++)
             {
                 playerColers.Add((PlayerColorEnum)notify_winner_toc.Identity[i]);
             }
@@ -311,7 +315,7 @@ public static class ProtoHelper
                 playerTasks.Add((SecretTaskEnum)notify_winner_toc.SecretTasks[i]);
             }
 
-            GameManager.Singleton.OnReceiveWinner(playerId, winners, playerColers, playerTasks);
+            GameManager.Singleton.OnReceiveWinner(playerIds, winners, playerColers, playerTasks);
         }
         // 濒死求澄清
         else if (GetIdFromProtoName("wait_for_cheng_qing_toc") == id)
@@ -356,7 +360,7 @@ public static class ProtoHelper
 
             get_room_info_toc get_Room_Info_Toc = get_room_info_toc.Parser.ParseFrom(contont);
             List<string> names = new List<string>();
-            foreach(var name in get_Room_Info_Toc.Names)
+            foreach (var name in get_Room_Info_Toc.Names)
             {
                 names.Add(name);
             }
@@ -369,7 +373,7 @@ public static class ProtoHelper
             Debug.Log(" _______receive________ join_room_toc " + join_room_toc.Position);
 
             GameManager.Singleton.OnAddPlayer(join_room_toc.Name, (int)join_room_toc.Position);
-            
+
         }
         // 通知谁离开的房间
         else if (GetIdFromProtoName("leave_room_toc") == id)
@@ -481,7 +485,7 @@ public static class ProtoHelper
         send_message_card_tos send_message_card_tos = new send_message_card_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)targetPlayer, CardDir = (direction)dir, Seq = seq };
         foreach (var lockPlayer in lockPlayers)
         {
-            if(lockPlayer != 0)
+            if (lockPlayer != 0)
             {
                 send_message_card_tos.LockPlayerId.Add((uint)lockPlayer);
             }
@@ -490,7 +494,7 @@ public static class ProtoHelper
         byte[] proto = send_message_card_tos.ToByteArray();
         SendProto("send_message_card_tos", proto);
     }
-    
+
     // 选择是否接收情报
     public static void SendWhetherReceive(bool isReceive, uint seq)
     {
@@ -528,7 +532,7 @@ public static class ProtoHelper
         byte[] proto = use_po_yi_tos.ToByteArray();
         SendProto("use_jie_huo_tos", proto);
     }
-    public static void SendUseCardMessage_WuDao(int cardId,int target, uint seq)
+    public static void SendUseCardMessage_WuDao(int cardId, int target, uint seq)
     {
         Debug.Log("____send___________________ use_wu_dao_tos, seq:" + seq);
         use_wu_dao_tos use_wu_dao_tos = new use_wu_dao_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)target, Seq = seq };
@@ -562,10 +566,10 @@ public static class ProtoHelper
     {
         Debug.Log("____send___________________ die_give_card_tos, seq:" + seq);
 
-        die_give_card_tos die_give_card_tos = new die_give_card_tos() {TargetPlayerId = (uint)playerId, Seq = seq };
-        if(cardIds != null)
+        die_give_card_tos die_give_card_tos = new die_give_card_tos() { TargetPlayerId = (uint)playerId, Seq = seq };
+        if (cardIds != null)
         {
-            foreach(var id in cardIds)
+            foreach (var id in cardIds)
             {
                 die_give_card_tos.CardId.Add((uint)id);
             }
