@@ -80,6 +80,7 @@ public class GameManager
             gameUI.CheckTargetAvailable();
         }
     }
+
     private int _SelectCardId = -1;
 
     public int SelectPlayerId
@@ -606,6 +607,22 @@ public class GameManager
 
         gameUI.ShowInfo("情报" + colorStr + LanguageUtils.GetCardName(messageCard.cardName) + "被调包了");
         gameUI.AddMsg("情报" + colorStr + LanguageUtils.GetCardName(messageCard.cardName) + "被调包了");
+    }
+
+    public void OnErrorCode(error_code code)
+    {
+        switch(code)
+        {
+            case error_code.ClientVersionNotMatch:
+                gameUI.ShowInfo("客户端版本号不匹配");
+                break;
+            case error_code.NoMoreRoom:
+                gameUI.ShowInfo("没有更多的房间了");
+                break;
+            default:
+                gameUI.ShowInfo("未知错误码 " + (int)code + "  " + code.ToString());
+                break;
+        }
     }
 
     //通知所有人使用破译，并询问是否翻开并摸一张牌（只有黑情报才能翻开）
@@ -1142,6 +1159,11 @@ public class GameManager
         ProtoHelper.SendPoYiShow(show, seqId);
     }
     #endregion
+
+    public void OnServerConnect()
+    {
+        ProtoHelper.SendAddRoom();
+    }
 }
 
 public enum SecretTaskEnum

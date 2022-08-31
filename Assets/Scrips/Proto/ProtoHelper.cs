@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class ProtoHelper
 {
+    private const uint PROTO_VERSION = 1;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //Debug.LogError(id);
@@ -382,6 +383,12 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
         }
+        //errorCode
+        else if(GetIdFromProtoName("error_code_toc") == id)
+        {
+            error_code_toc error_Code_Toc = error_code_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnErrorCode(error_Code_Toc.Code);
+        }
         else
         {
             Debug.LogError("undefine proto:" + id);
@@ -590,6 +597,14 @@ public static class ProtoHelper
         add_robot_tos add_robot_tos = new add_robot_tos();
         byte[] proto = add_robot_tos.ToByteArray();
         SendProto("add_robot_tos", proto);
+    }
+
+    public static void SendAddRoom()
+    {
+        join_room_tos join_Room_Tos = new join_room_tos();
+        join_Room_Tos.Version = PROTO_VERSION;
+        byte[] proto = join_Room_Tos.ToByteArray();
+        SendProto("join_room_tos", proto);
     }
 
     private static void SendProto(string protoName, byte[] proto)

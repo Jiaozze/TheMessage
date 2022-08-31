@@ -45,6 +45,7 @@ public static class NetWork
                 {
                     ProtoHelper.OnReceiveMsg(id, bodyBuffer);
                 });
+                GameManager.Singleton.OnServerConnect();
                 //GameManager.Singleton.gameWindow.SetEnterUI(false);
             }
             catch (Exception e)
