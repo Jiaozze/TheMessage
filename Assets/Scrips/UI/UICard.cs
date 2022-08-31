@@ -79,7 +79,7 @@ public class UICard : MonoBehaviour
             goLock.SetActive(cardInfo.canLock);
 
             image.sprite = Resources.Load<Sprite>("Images/cards/" + cardInfo.cardName.ToString());
-            if (cardInfo.cardName == CardNameEnum.Shi_Tan)
+            if (cardInfo.cardName == CardNameEnum.ShiTan)
             {
                 goShiTan.SetActive(true);
                 string black = cardInfo.shiTanColor.Contains(PlayerColorEnum.Green) ? "+1" : "-1";

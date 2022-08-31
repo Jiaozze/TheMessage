@@ -2,15 +2,15 @@
 
 public enum CardNameEnum
 {
-    Cheng_Qing = 0, // 澄清
-    Shi_Tan = 1, // 试探
-    Wei_Bi = 2, // 威逼
-    Li_You = 3, // 利诱
-    Ping_Heng = 4, // 平衡
-    Po_Yi = 5, // 破译
-    Jie_Huo = 6, // 截获
-    Diao_Bao = 7, // 掉包
-    Wu_Dao = 8, // 误导
+    ChengQing = 0, // 澄清
+    ShiTan = 1, // 试探
+    WeiBi = 2, // 威逼
+    LiYou = 3, // 利诱
+    PingHeng = 4, // 平衡
+    PoYi = 5, // 破译
+    JieHuo = 6, // 截获
+    DiaoBao = 7, // 掉包
+    WuDao = 8, // 误导
 }
 
 public enum CardColorEnum
@@ -71,7 +71,7 @@ public class CardFS
         }
         direction = (DirectionEnum)card.CardDir;
         canLock = card.CanLock;
-        if (cardName == CardNameEnum.Shi_Tan)
+        if (cardName == CardNameEnum.ShiTan)
         {
             // Debug.LogError("==================" + card.CardId);
             this.shiTanColor = new List<PlayerColorEnum>();

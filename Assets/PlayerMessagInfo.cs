@@ -97,11 +97,11 @@ public class PlayerMessagInfo : MonoBehaviour
     {
         var curCard = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId];
 
-        if(GameManager.Singleton.IsWaitSaving != -1 && cardId != 0 && curCard.cardName == CardNameEnum.Cheng_Qing)
+        if(GameManager.Singleton.IsWaitSaving != -1 && cardId != 0 && curCard.cardName == CardNameEnum.ChengQing)
         {
             GameManager.Singleton.SendWhetherSave(true, cardId);
         }
-        else if (cardId != 0 && curCard.cardName == CardNameEnum.Cheng_Qing && GameManager.Singleton.SelectPlayerId != -1)
+        else if (cardId != 0 && curCard.cardName == CardNameEnum.ChengQing && GameManager.Singleton.SelectPlayerId != -1)
         {
             ProtoHelper.SendUseCardMessage_ChengQing(GameManager.Singleton.SelectCardId, GameManager.Singleton.SelectPlayerId, cardId, GameManager.Singleton.seqId);
         }
