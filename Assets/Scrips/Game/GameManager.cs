@@ -471,7 +471,6 @@ public class GameManager
         IsWaitGiveCard = false;
         IsWaitLock = false;
         IsWaitSaving = -1;
-        OnWait(waitingPlayerId, waitSecond);
         if (waitingPlayerId == 0)
         {
             this.seqId = seqId;
@@ -501,6 +500,7 @@ public class GameManager
             gameUI.Players[messagePlayerId]?.OnMessageTurnTo(true);
         }
         CurMessagePlayerId = messagePlayerId;
+        OnWait(waitingPlayerId, waitSecond);
 
         gameUI.HideMessagingCard();
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
