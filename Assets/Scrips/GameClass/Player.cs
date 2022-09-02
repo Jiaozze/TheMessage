@@ -16,10 +16,12 @@ public class Player
     public int cardCount;
     public List<CardFS> messages = new List<CardFS>();
     public bool alive = true;
-    public Player(int id)
+    public RoleBase role;
+    public Player(int id, RoleBase roleBase)
     {
         playerId = id;
         cardCount = 0;
+        role = roleBase;
     }
     public int DrawCard(int count)
     {

@@ -22,120 +22,110 @@ public static partial class FengshengReflection {
   static FengshengReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9mZW5nc2hlbmcucHJvdG8iIAoNam9pbl9yb29tX3RvcxIPCgd2ZXJzaW9u",
-          "GAEgASgNIjcKEWdldF9yb29tX2luZm9fdG9jEg0KBW5hbWVzGAEgAygJEhMK",
-          "C215X3Bvc2l0aW9uGAIgASgNIg8KDWFkZF9yb2JvdF90b3MiLwoNam9pbl9y",
-          "b29tX3RvYxIMCgRuYW1lGAEgASgJEhAKCHBvc2l0aW9uGAIgASgNIiIKDmxl",
-          "YXZlX3Jvb21fdG9jEhAKCHBvc2l0aW9uGAEgASgNIqEBCgRjYXJkEg8KB2Nh",
-          "cmRfaWQYASABKA0SGgoKY2FyZF9jb2xvchgCIAMoDjIGLmNvbG9yEhwKCGNh",
-          "cmRfZGlyGAMgASgOMgouZGlyZWN0aW9uEh0KCWNhcmRfdHlwZRgEIAEoDjIK",
-          "LmNhcmRfdHlwZRIdCg13aG9fZHJhd19jYXJkGAUgAygOMgYuY29sb3ISEAoI",
-          "Y2FuX2xvY2sYBiABKAgiXQoIaW5pdF90b2MSFAoMcGxheWVyX2NvdW50GAEg",
-          "ASgNEhgKCGlkZW50aXR5GAIgASgOMgYuY29sb3ISIQoLc2VjcmV0X3Rhc2sY",
-          "AyABKA4yDC5zZWNyZXRfdGFzayJTCgxhZGRfY2FyZF90b2MSEQoJcGxheWVy",
-          "X2lkGAEgASgNEhoKEnVua25vd25fY2FyZF9jb3VudBgCIAEoDRIUCgVjYXJk",
-          "cxgDIAMoCzIFLmNhcmQiQgoPdXNlX3NoaV90YW5fdG9zEg8KB2NhcmRfaWQY",
-          "ASABKA0SEQoJcGxheWVyX2lkGAIgASgNEgsKA3NlcRgDIAEoDSJPCg91c2Vf",
-          "c2hpX3Rhbl90b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5",
-          "ZXJfaWQYAiABKA0SDwoHY2FyZF9pZBgDIAEoDSJ5ChBzaG93X3NoaV90YW5f",
-          "dG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIg",
-          "ASgNEhMKBGNhcmQYAyABKAsyBS5jYXJkEhYKDndhaXRpbmdfc2Vjb25kGAQg",
-          "ASgNEgsKA3NlcRgFIAEoDSIzChNleGVjdXRlX3NoaV90YW5fdG9zEg8KB2Nh",
-          "cmRfaWQYASADKA0SCwoDc2VxGAIgASgNIj4KE2V4ZWN1dGVfc2hpX3Rhbl90",
-          "b2MSEQoJcGxheWVyX2lkGAEgASgNEhQKDGlzX2RyYXdfY2FyZBgCIAEoCCIy",
-          "ChFzeW5jX2RlY2tfbnVtX3RvYxILCgNudW0YASABKA0SEAoIc2h1ZmZsZWQY",
-          "AiABKAgiOwoQZGlzY2FyZF9jYXJkX3RvYxIRCglwbGF5ZXJfaWQYASABKA0S",
-          "FAoFY2FyZHMYAiADKAsyBS5jYXJkIuoBChBub3RpZnlfcGhhc2VfdG9jEhkK",
-          "EWN1cnJlbnRfcGxheWVyX2lkGAEgASgNEh0KDWN1cnJlbnRfcGhhc2UYAiAB",
-          "KA4yBi5waGFzZRIZChFtZXNzYWdlX3BsYXllcl9pZBgDIAEoDRIkChBtZXNz",
-          "YWdlX2NhcmRfZGlyGAQgASgOMgouZGlyZWN0aW9uEhsKDG1lc3NhZ2VfY2Fy",
-          "ZBgFIAEoCzIFLmNhcmQSGQoRd2FpdGluZ19wbGF5ZXJfaWQYBiABKA0SFgoO",
-          "d2FpdGluZ19zZWNvbmQYByABKA0SCwoDc2VxGAggASgNIiEKEmVuZF9tYWlu",
-          "X3BoYXNlX3RvcxILCgNzZXEYASABKA0iQQoOdXNlX2xpX3lvdV90b3MSDwoH",
-          "Y2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiABKA0SCwoDc2VxGAMgASgN",
-          "Io4BCg51c2VfbGlfeW91X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFy",
-          "Z2V0X3BsYXllcl9pZBgCIAEoDRIaCgtsaV95b3VfY2FyZBgDIAEoCzIFLmNh",
-          "cmQSGwoMbWVzc2FnZV9jYXJkGAQgASgLMgUuY2FyZBIWCg5qb2luX2ludG9f",
-          "aGFuZBgFIAEoCCJEChF1c2VfcGluZ19oZW5nX3RvcxIPCgdjYXJkX2lkGAEg",
-          "ASgNEhEKCXBsYXllcl9pZBgCIAEoDRILCgNzZXEYAyABKA0iXwoRdXNlX3Bp",
-          "bmdfaGVuZ190b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5",
-          "ZXJfaWQYAiABKA0SHQoOcGluZ19oZW5nX2NhcmQYAyABKAsyBS5jYXJkImAK",
-          "DnVzZV93ZWlfYmlfdG9zEg8KB2NhcmRfaWQYASABKA0SEQoJcGxheWVyX2lk",
-          "GAIgASgNEh0KCXdhbnRfdHlwZRgDIAEoDjIKLmNhcmRfdHlwZRILCgNzZXEY",
-          "BCABKA0ipQEKHXdlaV9iaV93YWl0X2Zvcl9naXZlX2NhcmRfdG9jEhMKBGNh",
+          "Cg9mZW5nc2hlbmcucHJvdG8aDGNvbW1vbi5wcm90byIgCg1qb2luX3Jvb21f",
+          "dG9zEg8KB3ZlcnNpb24YASABKA0iNwoRZ2V0X3Jvb21faW5mb190b2MSDQoF",
+          "bmFtZXMYASADKAkSEwoLbXlfcG9zaXRpb24YAiABKA0iDwoNYWRkX3JvYm90",
+          "X3RvcyIvCg1qb2luX3Jvb21fdG9jEgwKBG5hbWUYASABKAkSEAoIcG9zaXRp",
+          "b24YAiABKA0iIgoObGVhdmVfcm9vbV90b2MSEAoIcG9zaXRpb24YASABKA0i",
+          "cwoIaW5pdF90b2MSFAoMcGxheWVyX2NvdW50GAEgASgNEhgKCGlkZW50aXR5",
+          "GAIgASgOMgYuY29sb3ISIQoLc2VjcmV0X3Rhc2sYAyABKA4yDC5zZWNyZXRf",
+          "dGFzaxIUCgVyb2xlcxgEIAMoDjIFLnJvbGUiQAoWbm90aWZ5X3JvbGVfdXBk",
+          "YXRlX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SEwoEcm9sZRgCIAEoDjIFLnJv",
+          "bGUiUwoMYWRkX2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIaChJ1bmtu",
+          "b3duX2NhcmRfY291bnQYAiABKA0SFAoFY2FyZHMYAyADKAsyBS5jYXJkIkIK",
+          "D3VzZV9zaGlfdGFuX3RvcxIPCgdjYXJkX2lkGAEgASgNEhEKCXBsYXllcl9p",
+          "ZBgCIAEoDRILCgNzZXEYAyABKA0iTwoPdXNlX3NoaV90YW5fdG9jEhEKCXBs",
+          "YXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEg8KB2Nh",
+          "cmRfaWQYAyABKA0ieQoQc2hvd19zaGlfdGFuX3RvYxIRCglwbGF5ZXJfaWQY",
+          "ASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRITCgRjYXJkGAMgASgL",
+          "MgUuY2FyZBIWCg53YWl0aW5nX3NlY29uZBgEIAEoDRILCgNzZXEYBSABKA0i",
+          "MwoTZXhlY3V0ZV9zaGlfdGFuX3RvcxIPCgdjYXJkX2lkGAEgAygNEgsKA3Nl",
+          "cRgCIAEoDSI+ChNleGVjdXRlX3NoaV90YW5fdG9jEhEKCXBsYXllcl9pZBgB",
+          "IAEoDRIUCgxpc19kcmF3X2NhcmQYAiABKAgiMgoRc3luY19kZWNrX251bV90",
+          "b2MSCwoDbnVtGAEgASgNEhAKCHNodWZmbGVkGAIgASgIIjsKEGRpc2NhcmRf",
+          "Y2FyZF90b2MSEQoJcGxheWVyX2lkGAEgASgNEhQKBWNhcmRzGAIgAygLMgUu",
+          "Y2FyZCLqAQoQbm90aWZ5X3BoYXNlX3RvYxIZChFjdXJyZW50X3BsYXllcl9p",
+          "ZBgBIAEoDRIdCg1jdXJyZW50X3BoYXNlGAIgASgOMgYucGhhc2USGQoRbWVz",
+          "c2FnZV9wbGF5ZXJfaWQYAyABKA0SJAoQbWVzc2FnZV9jYXJkX2RpchgEIAEo",
+          "DjIKLmRpcmVjdGlvbhIbCgxtZXNzYWdlX2NhcmQYBSABKAsyBS5jYXJkEhkK",
+          "EXdhaXRpbmdfcGxheWVyX2lkGAYgASgNEhYKDndhaXRpbmdfc2Vjb25kGAcg",
+          "ASgNEgsKA3NlcRgIIAEoDSIhChJlbmRfbWFpbl9waGFzZV90b3MSCwoDc2Vx",
+          "GAEgASgNIkEKDnVzZV9saV95b3VfdG9zEg8KB2NhcmRfaWQYASABKA0SEQoJ",
+          "cGxheWVyX2lkGAIgASgNEgsKA3NlcRgDIAEoDSKOAQoOdXNlX2xpX3lvdV90",
+          "b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiAB",
+          "KA0SGgoLbGlfeW91X2NhcmQYAyABKAsyBS5jYXJkEhsKDG1lc3NhZ2VfY2Fy",
+          "ZBgEIAEoCzIFLmNhcmQSFgoOam9pbl9pbnRvX2hhbmQYBSABKAgiRAoRdXNl",
+          "X3BpbmdfaGVuZ190b3MSDwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQY",
+          "AiABKA0SCwoDc2VxGAMgASgNIl8KEXVzZV9waW5nX2hlbmdfdG9jEhEKCXBs",
+          "YXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEh0KDnBp",
+          "bmdfaGVuZ19jYXJkGAMgASgLMgUuY2FyZCJgCg51c2Vfd2VpX2JpX3RvcxIP",
+          "CgdjYXJkX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEoDRIdCgl3YW50X3R5",
+          "cGUYAyABKA4yCi5jYXJkX3R5cGUSCwoDc2VxGAQgASgNIqUBCh13ZWlfYmlf",
+          "d2FpdF9mb3JfZ2l2ZV9jYXJkX3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIR",
+          "CglwbGF5ZXJfaWQYAiABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoDRId",
+          "Cgl3YW50X3R5cGUYBCABKA4yCi5jYXJkX3R5cGUSFgoOd2FpdGluZ19zZWNv",
+          "bmQYBSABKA0SCwoDc2VxGAYgASgNIjQKFHdlaV9iaV9naXZlX2NhcmRfdG9z",
+          "Eg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgNIlgKFHdlaV9iaV9naXZl",
+          "X2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVy",
+          "X2lkGAIgASgNEhMKBGNhcmQYAyABKAsyBS5jYXJkIpIBChl3ZWlfYmlfc2hv",
+          "d19oYW5kX2NhcmRfdG9jEhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXll",
+          "cl9pZBgCIAEoDRIdCgl3YW50X3R5cGUYAyABKA4yCi5jYXJkX3R5cGUSGAoQ",
+          "dGFyZ2V0X3BsYXllcl9pZBgEIAEoDRIUCgVjYXJkcxgFIAMoCzIFLmNhcmQi",
+          "XQoSdXNlX2NoZW5nX3FpbmdfdG9zEg8KB2NhcmRfaWQYASABKA0SEQoJcGxh",
+          "eWVyX2lkGAIgASgNEhYKDnRhcmdldF9jYXJkX2lkGAMgASgNEgsKA3NlcRgE",
+          "IAEoDSJuChJ1c2VfY2hlbmdfcWluZ190b2MSEwoEY2FyZBgBIAEoCzIFLmNh",
+          "cmQSEQoJcGxheWVyX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyAB",
+          "KA0SFgoOdGFyZ2V0X2NhcmRfaWQYBCABKA0ihQEKFXNlbmRfbWVzc2FnZV9j",
+          "YXJkX3RvcxIPCgdjYXJkX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQY",
+          "AiABKA0SFgoObG9ja19wbGF5ZXJfaWQYAyADKA0SHAoIY2FyZF9kaXIYBCAB",
+          "KA4yCi5kaXJlY3Rpb24SCwoDc2VxGAUgASgNIowBChVzZW5kX21lc3NhZ2Vf",
+          "Y2FyZF90b2MSDwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiABKA0S",
+          "GAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoDRIXCg9sb2NrX3BsYXllcl9pZHMY",
+          "BCADKA0SHAoIY2FyZF9kaXIYBSABKA4yCi5kaXJlY3Rpb24iOgoaY2hvb3Nl",
+          "X3doZXRoZXJfcmVjZWl2ZV90b3MSDwoHcmVjZWl2ZRgBIAEoCBILCgNzZXEY",
+          "AiABKA0iJwoSY2hvb3NlX3JlY2VpdmVfdG9jEhEKCXBsYXllcl9pZBgBIAEo",
+          "DSIiChNlbmRfZmlnaHRfcGhhc2VfdG9zEgsKA3NlcRgBIAEoDSI2Cg5ub3Rp",
+          "ZnlfZGllX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SEQoJbG9zZV9nYW1lGAIg",
+          "ASgIIoEBChFub3RpZnlfd2lubmVyX3RvYxIaChJkZWNsYXJlX3BsYXllcl9p",
+          "ZHMYASADKA0SEgoKd2lubmVyX2lkcxgCIAMoDRIYCghpZGVudGl0eRgDIAMo",
+          "DjIGLmNvbG9yEiIKDHNlY3JldF90YXNrcxgEIAMoDjIMLnNlY3JldF90YXNr",
+          "InAKF3dhaXRfZm9yX2NoZW5nX3FpbmdfdG9jEhUKDWRpZV9wbGF5ZXJfaWQY",
+          "ASABKA0SGQoRd2FpdGluZ19wbGF5ZXJfaWQYAiABKA0SFgoOd2FpdGluZ19z",
+          "ZWNvbmQYAyABKA0SCwoDc2VxGAQgASgNIlwKF2NoZW5nX3Fpbmdfc2F2ZV9k",
+          "aWVfdG9zEgsKA3VzZRgBIAEoCBIPCgdjYXJkX2lkGAIgASgNEhYKDnRhcmdl",
+          "dF9jYXJkX2lkGAMgASgNEgsKA3NlcRgEIAEoDSJUChp3YWl0X2Zvcl9kaWVf",
+          "Z2l2ZV9jYXJkX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SFgoOd2FpdGluZ19z",
+          "ZWNvbmQYAiABKA0SCwoDc2VxGAMgASgNIksKEWRpZV9naXZlX2NhcmRfdG9z",
+          "EhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKA0SDwoHY2FyZF9pZBgCIAMoDRIL",
+          "CgNzZXEYAyABKA0icAoYbm90aWZ5X2RpZV9naXZlX2NhcmRfdG9jEhEKCXBs",
+          "YXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEhMKBGNh",
+          "cmQYAyADKAsyBS5jYXJkEhIKCmNhcmRfY291bnQYBCABKA0iLQoNdXNlX3Bv",
+          "X3lpX3RvcxIPCgdjYXJkX2lkGAEgASgNEgsKA3NlcRgCIAEoDSJ5Cg11c2Vf",
+          "cG9feWlfdG9jEhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgC",
+          "IAEoDRIbCgxtZXNzYWdlX2NhcmQYAyABKAsyBS5jYXJkEhYKDndhaXRpbmdf",
+          "c2Vjb25kGAQgASgNEgsKA3NlcRgFIAEoDSIrCg5wb195aV9zaG93X3RvcxIM",
+          "CgRzaG93GAEgASgIEgsKA3NlcRgCIAEoDSJOCg5wb195aV9zaG93X3RvYxIR",
+          "CglwbGF5ZXJfaWQYASABKA0SDAoEc2hvdxgCIAEoCBIbCgxtZXNzYWdlX2Nh",
+          "cmQYAyABKAsyBS5jYXJkIi8KD3VzZV9qaWVfaHVvX3RvcxIPCgdjYXJkX2lk",
+          "GAEgASgNEgsKA3NlcRgCIAEoDSI5Cg91c2VfamllX2h1b190b2MSEwoEY2Fy",
+          "ZBgBIAEoCzIFLmNhcmQSEQoJcGxheWVyX2lkGAIgASgNIjAKEHVzZV9kaWFv",
+          "X2Jhb190b3MSDwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0iVwoQdXNl",
+          "X2RpYW9fYmFvX3RvYxIPCgdjYXJkX2lkGAEgASgNEh8KEG9sZF9tZXNzYWdl",
+          "X2NhcmQYAiABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgDIAEoDSJICg51c2Vf",
+          "d3VfZGFvX3RvcxIPCgdjYXJkX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJf",
+          "aWQYAiABKA0SCwoDc2VxGAMgASgNIlIKDnVzZV93dV9kYW9fdG9jEhMKBGNh",
           "cmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgCIAEoDRIYChB0YXJnZXRf",
-          "cGxheWVyX2lkGAMgASgNEh0KCXdhbnRfdHlwZRgEIAEoDjIKLmNhcmRfdHlw",
-          "ZRIWCg53YWl0aW5nX3NlY29uZBgFIAEoDRILCgNzZXEYBiABKA0iNAoUd2Vp",
-          "X2JpX2dpdmVfY2FyZF90b3MSDwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiAB",
-          "KA0iWAoUd2VpX2JpX2dpdmVfY2FyZF90b2MSEQoJcGxheWVyX2lkGAEgASgN",
-          "EhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SEwoEY2FyZBgDIAEoCzIFLmNh",
-          "cmQikgEKGXdlaV9iaV9zaG93X2hhbmRfY2FyZF90b2MSEwoEY2FyZBgBIAEo",
-          "CzIFLmNhcmQSEQoJcGxheWVyX2lkGAIgASgNEh0KCXdhbnRfdHlwZRgDIAEo",
-          "DjIKLmNhcmRfdHlwZRIYChB0YXJnZXRfcGxheWVyX2lkGAQgASgNEhQKBWNh",
-          "cmRzGAUgAygLMgUuY2FyZCJdChJ1c2VfY2hlbmdfcWluZ190b3MSDwoHY2Fy",
-          "ZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiABKA0SFgoOdGFyZ2V0X2NhcmRf",
-          "aWQYAyABKA0SCwoDc2VxGAQgASgNIm4KEnVzZV9jaGVuZ19xaW5nX3RvYxIT",
-          "CgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0SGAoQdGFy",
-          "Z2V0X3BsYXllcl9pZBgDIAEoDRIWCg50YXJnZXRfY2FyZF9pZBgEIAEoDSKF",
-          "AQoVc2VuZF9tZXNzYWdlX2NhcmRfdG9zEg8KB2NhcmRfaWQYASABKA0SGAoQ",
-          "dGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIWCg5sb2NrX3BsYXllcl9pZBgDIAMo",
-          "DRIcCghjYXJkX2RpchgEIAEoDjIKLmRpcmVjdGlvbhILCgNzZXEYBSABKA0i",
-          "jAEKFXNlbmRfbWVzc2FnZV9jYXJkX3RvYxIPCgdjYXJkX2lkGAEgASgNEhEK",
-          "CXBsYXllcl9pZBgCIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgNEhcK",
-          "D2xvY2tfcGxheWVyX2lkcxgEIAMoDRIcCghjYXJkX2RpchgFIAEoDjIKLmRp",
-          "cmVjdGlvbiI6ChpjaG9vc2Vfd2hldGhlcl9yZWNlaXZlX3RvcxIPCgdyZWNl",
-          "aXZlGAEgASgIEgsKA3NlcRgCIAEoDSInChJjaG9vc2VfcmVjZWl2ZV90b2MS",
-          "EQoJcGxheWVyX2lkGAEgASgNIiIKE2VuZF9maWdodF9waGFzZV90b3MSCwoD",
-          "c2VxGAEgASgNIjYKDm5vdGlmeV9kaWVfdG9jEhEKCXBsYXllcl9pZBgBIAEo",
-          "DRIRCglsb3NlX2dhbWUYAiABKAgigQEKEW5vdGlmeV93aW5uZXJfdG9jEhoK",
-          "EmRlY2xhcmVfcGxheWVyX2lkcxgBIAMoDRISCgp3aW5uZXJfaWRzGAIgAygN",
-          "EhgKCGlkZW50aXR5GAMgAygOMgYuY29sb3ISIgoMc2VjcmV0X3Rhc2tzGAQg",
-          "AygOMgwuc2VjcmV0X3Rhc2sicAoXd2FpdF9mb3JfY2hlbmdfcWluZ190b2MS",
-          "FQoNZGllX3BsYXllcl9pZBgBIAEoDRIZChF3YWl0aW5nX3BsYXllcl9pZBgC",
-          "IAEoDRIWCg53YWl0aW5nX3NlY29uZBgDIAEoDRILCgNzZXEYBCABKA0iXAoX",
-          "Y2hlbmdfcWluZ19zYXZlX2RpZV90b3MSCwoDdXNlGAEgASgIEg8KB2NhcmRf",
-          "aWQYAiABKA0SFgoOdGFyZ2V0X2NhcmRfaWQYAyABKA0SCwoDc2VxGAQgASgN",
-          "IlQKGndhaXRfZm9yX2RpZV9naXZlX2NhcmRfdG9jEhEKCXBsYXllcl9pZBgB",
-          "IAEoDRIWCg53YWl0aW5nX3NlY29uZBgCIAEoDRILCgNzZXEYAyABKA0iSwoR",
-          "ZGllX2dpdmVfY2FyZF90b3MSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoDRIP",
-          "CgdjYXJkX2lkGAIgAygNEgsKA3NlcRgDIAEoDSJwChhub3RpZnlfZGllX2dp",
-          "dmVfY2FyZF90b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5",
-          "ZXJfaWQYAiABKA0SEwoEY2FyZBgDIAMoCzIFLmNhcmQSEgoKY2FyZF9jb3Vu",
-          "dBgEIAEoDSItCg11c2VfcG9feWlfdG9zEg8KB2NhcmRfaWQYASABKA0SCwoD",
-          "c2VxGAIgASgNInkKDXVzZV9wb195aV90b2MSEwoEY2FyZBgBIAEoCzIFLmNh",
-          "cmQSEQoJcGxheWVyX2lkGAIgASgNEhsKDG1lc3NhZ2VfY2FyZBgDIAEoCzIF",
-          "LmNhcmQSFgoOd2FpdGluZ19zZWNvbmQYBCABKA0SCwoDc2VxGAUgASgNIisK",
-          "DnBvX3lpX3Nob3dfdG9zEgwKBHNob3cYASABKAgSCwoDc2VxGAIgASgNIk4K",
-          "DnBvX3lpX3Nob3dfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIMCgRzaG93GAIg",
-          "ASgIEhsKDG1lc3NhZ2VfY2FyZBgDIAEoCzIFLmNhcmQiLwoPdXNlX2ppZV9o",
-          "dW9fdG9zEg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgNIjkKD3VzZV9q",
-          "aWVfaHVvX3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQY",
-          "AiABKA0iMAoQdXNlX2RpYW9fYmFvX3RvcxIPCgdjYXJkX2lkGAEgASgNEgsK",
-          "A3NlcRgCIAEoDSJXChB1c2VfZGlhb19iYW9fdG9jEg8KB2NhcmRfaWQYASAB",
-          "KA0SHwoQb2xkX21lc3NhZ2VfY2FyZBgCIAEoCzIFLmNhcmQSEQoJcGxheWVy",
-          "X2lkGAMgASgNIkgKDnVzZV93dV9kYW9fdG9zEg8KB2NhcmRfaWQYASABKA0S",
-          "GAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRILCgNzZXEYAyABKA0iUgoOdXNl",
-          "X3d1X2Rhb190b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJcGxheWVyX2lk",
-          "GAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKA0qcQoFcGhhc2USDgoK",
-          "RHJhd19QaGFzZRAAEg4KCk1haW5fUGhhc2UQARIUChBTZW5kX1N0YXJ0X1Bo",
-          "YXNlEAISDgoKU2VuZF9QaGFzZRADEg8KC0ZpZ2h0X1BoYXNlEAQSEQoNUmVj",
-          "ZWl2ZV9QaGFzZRAFKoEBCgljYXJkX3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsK",
-          "B1NoaV9UYW4QARIKCgZXZWlfQmkQAhIKCgZMaV9Zb3UQAxINCglQaW5nX0hl",
-          "bmcQBBIJCgVQb19ZaRAFEgsKB0ppZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoK",
-          "Bld1X0RhbxAIKiUKBWNvbG9yEgkKBUJsYWNrEAASBwoDUmVkEAESCAoEQmx1",
-          "ZRACKjUKC3NlY3JldF90YXNrEgoKBktpbGxlchAAEgsKB1N0ZWFsZXIQARIN",
-          "CglDb2xsZWN0b3IQAiooCglkaXJlY3Rpb24SBgoCVXAQABIICgRMZWZ0EAES",
-          "CQoFUmlnaHQQAkIQWg5wcm90b3MvO3Byb3Rvc2IGcHJvdG8z"));
+          "cGxheWVyX2lkGAMgASgNQhBaDnByb3Rvcy87cHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-        new pbr::FileDescriptor[] { },
-        new pbr::GeneratedClrTypeInfo(new[] {typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
+        new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
+        new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::join_room_tos), global::join_room_tos.Parser, new[]{ "Version" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::get_room_info_toc), global::get_room_info_toc.Parser, new[]{ "Names", "MyPosition" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::add_robot_tos), global::add_robot_tos.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::join_room_toc), global::join_room_toc.Parser, new[]{ "Name", "Position" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::leave_room_toc), global::leave_room_toc.Parser, new[]{ "Position" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::card), global::card.Parser, new[]{ "CardId", "CardColor", "CardDir", "CardType", "WhoDrawCard", "CanLock" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::init_toc), global::init_toc.Parser, new[]{ "PlayerCount", "Identity", "SecretTask" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::init_toc), global::init_toc.Parser, new[]{ "PlayerCount", "Identity", "SecretTask", "Roles" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::notify_role_update_toc), global::notify_role_update_toc.Parser, new[]{ "PlayerId", "Role" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::add_card_toc), global::add_card_toc.Parser, new[]{ "PlayerId", "UnknownCardCount", "Cards" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_shi_tan_tos), global::use_shi_tan_tos.Parser, new[]{ "CardId", "PlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_shi_tan_toc), global::use_shi_tan_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "CardId" }, null, null, null, null),
@@ -184,123 +174,6 @@ public static partial class FengshengReflection {
   #endregion
 
 }
-#region Enums
-public enum phase {
-  /// <summary>
-  /// 摸牌阶段
-  /// </summary>
-  [pbr::OriginalName("Draw_Phase")] DrawPhase = 0,
-  /// <summary>
-  /// 出牌阶段
-  /// </summary>
-  [pbr::OriginalName("Main_Phase")] MainPhase = 1,
-  /// <summary>
-  /// 情报传递阶段开始时
-  /// </summary>
-  [pbr::OriginalName("Send_Start_Phase")] SendStartPhase = 2,
-  /// <summary>
-  /// 传递阶段
-  /// </summary>
-  [pbr::OriginalName("Send_Phase")] SendPhase = 3,
-  /// <summary>
-  /// 争夺阶段
-  /// </summary>
-  [pbr::OriginalName("Fight_Phase")] FightPhase = 4,
-  /// <summary>
-  /// 接收阶段
-  /// </summary>
-  [pbr::OriginalName("Receive_Phase")] ReceivePhase = 5,
-}
-
-public enum card_type {
-  /// <summary>
-  /// 澄清
-  /// </summary>
-  [pbr::OriginalName("Cheng_Qing")] ChengQing = 0,
-  /// <summary>
-  /// 试探
-  /// </summary>
-  [pbr::OriginalName("Shi_Tan")] ShiTan = 1,
-  /// <summary>
-  /// 威逼
-  /// </summary>
-  [pbr::OriginalName("Wei_Bi")] WeiBi = 2,
-  /// <summary>
-  /// 利诱
-  /// </summary>
-  [pbr::OriginalName("Li_You")] LiYou = 3,
-  /// <summary>
-  /// 平衡
-  /// </summary>
-  [pbr::OriginalName("Ping_Heng")] PingHeng = 4,
-  /// <summary>
-  /// 破译
-  /// </summary>
-  [pbr::OriginalName("Po_Yi")] PoYi = 5,
-  /// <summary>
-  /// 截获
-  /// </summary>
-  [pbr::OriginalName("Jie_Huo")] JieHuo = 6,
-  /// <summary>
-  /// 调包
-  /// </summary>
-  [pbr::OriginalName("Diao_Bao")] DiaoBao = 7,
-  /// <summary>
-  /// 误导
-  /// </summary>
-  [pbr::OriginalName("Wu_Dao")] WuDao = 8,
-}
-
-public enum color {
-  /// <summary>
-  /// 对于身份，则是绿色（神秘人）；对于卡牌，则是黑色
-  /// </summary>
-  [pbr::OriginalName("Black")] Black = 0,
-  /// <summary>
-  /// 红色
-  /// </summary>
-  [pbr::OriginalName("Red")] Red = 1,
-  /// <summary>
-  /// 蓝色
-  /// </summary>
-  [pbr::OriginalName("Blue")] Blue = 2,
-}
-
-/// <summary>
-/// 神秘人任务
-/// </summary>
-public enum secret_task {
-  /// <summary>
-  /// 你的回合中，一名红色和蓝色情报合计不少于2张的人死亡
-  /// </summary>
-  [pbr::OriginalName("Killer")] Killer = 0,
-  /// <summary>
-  /// 你的回合中，有人宣胜，则你代替他胜利
-  /// </summary>
-  [pbr::OriginalName("Stealer")] Stealer = 1,
-  /// <summary>
-  /// 你获得3张红色情报或者3张蓝色情报
-  /// </summary>
-  [pbr::OriginalName("Collector")] Collector = 2,
-}
-
-public enum direction {
-  /// <summary>
-  /// 向上
-  /// </summary>
-  [pbr::OriginalName("Up")] Up = 0,
-  /// <summary>
-  /// 向左
-  /// </summary>
-  [pbr::OriginalName("Left")] Left = 1,
-  /// <summary>
-  /// 向右
-  /// </summary>
-  [pbr::OriginalName("Right")] Right = 2,
-}
-
-#endregion
-
 #region Messages
 /// <summary>
 /// 申请加入房间
@@ -989,282 +862,6 @@ public sealed partial class leave_room_toc : pb::IMessage<leave_room_toc> {
 }
 
 /// <summary>
-/// 卡牌的结构体
-/// </summary>
-public sealed partial class card : pb::IMessage<card> {
-  private static readonly pb::MessageParser<card> _parser = new pb::MessageParser<card>(() => new card());
-  private pb::UnknownFieldSet _unknownFields;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<card> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[5]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public card() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public card(card other) : this() {
-    cardId_ = other.cardId_;
-    cardColor_ = other.cardColor_.Clone();
-    cardDir_ = other.cardDir_;
-    cardType_ = other.cardType_;
-    whoDrawCard_ = other.whoDrawCard_.Clone();
-    canLock_ = other.canLock_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public card Clone() {
-    return new card(this);
-  }
-
-  /// <summary>Field number for the "card_id" field.</summary>
-  public const int CardIdFieldNumber = 1;
-  private uint cardId_;
-  /// <summary>
-  /// 卡牌ID
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public uint CardId {
-    get { return cardId_; }
-    set {
-      cardId_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "card_color" field.</summary>
-  public const int CardColorFieldNumber = 2;
-  private static readonly pb::FieldCodec<global::color> _repeated_cardColor_codec
-      = pb::FieldCodec.ForEnum(18, x => (int) x, x => (global::color) x);
-  private readonly pbc::RepeatedField<global::color> cardColor_ = new pbc::RepeatedField<global::color>();
-  /// <summary>
-  /// 卡牌颜色（因为可能有双色卡，所以用了repeated）
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<global::color> CardColor {
-    get { return cardColor_; }
-  }
-
-  /// <summary>Field number for the "card_dir" field.</summary>
-  public const int CardDirFieldNumber = 3;
-  private global::direction cardDir_ = global::direction.Up;
-  /// <summary>
-  /// 卡牌上的箭头方向
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public global::direction CardDir {
-    get { return cardDir_; }
-    set {
-      cardDir_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "card_type" field.</summary>
-  public const int CardTypeFieldNumber = 4;
-  private global::card_type cardType_ = global::card_type.ChengQing;
-  /// <summary>
-  /// 卡牌类型
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public global::card_type CardType {
-    get { return cardType_; }
-    set {
-      cardType_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "who_draw_card" field.</summary>
-  public const int WhoDrawCardFieldNumber = 5;
-  private static readonly pb::FieldCodec<global::color> _repeated_whoDrawCard_codec
-      = pb::FieldCodec.ForEnum(42, x => (int) x, x => (global::color) x);
-  private readonly pbc::RepeatedField<global::color> whoDrawCard_ = new pbc::RepeatedField<global::color>();
-  /// <summary>
-  /// （试探卡）哪个身份的人摸1张牌（那么另外的身份一定是弃1张牌）
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<global::color> WhoDrawCard {
-    get { return whoDrawCard_; }
-  }
-
-  /// <summary>Field number for the "can_lock" field.</summary>
-  public const int CanLockFieldNumber = 6;
-  private bool canLock_;
-  /// <summary>
-  /// 是否有锁定标记
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool CanLock {
-    get { return canLock_; }
-    set {
-      canLock_ = value;
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public override bool Equals(object other) {
-    return Equals(other as card);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(card other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (CardId != other.CardId) return false;
-    if(!cardColor_.Equals(other.cardColor_)) return false;
-    if (CardDir != other.CardDir) return false;
-    if (CardType != other.CardType) return false;
-    if(!whoDrawCard_.Equals(other.whoDrawCard_)) return false;
-    if (CanLock != other.CanLock) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (CardId != 0) hash ^= CardId.GetHashCode();
-    hash ^= cardColor_.GetHashCode();
-    if (CardDir != global::direction.Up) hash ^= CardDir.GetHashCode();
-    if (CardType != global::card_type.ChengQing) hash ^= CardType.GetHashCode();
-    hash ^= whoDrawCard_.GetHashCode();
-    if (CanLock != false) hash ^= CanLock.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void WriteTo(pb::CodedOutputStream output) {
-    if (CardId != 0) {
-      output.WriteRawTag(8);
-      output.WriteUInt32(CardId);
-    }
-    cardColor_.WriteTo(output, _repeated_cardColor_codec);
-    if (CardDir != global::direction.Up) {
-      output.WriteRawTag(24);
-      output.WriteEnum((int) CardDir);
-    }
-    if (CardType != global::card_type.ChengQing) {
-      output.WriteRawTag(32);
-      output.WriteEnum((int) CardType);
-    }
-    whoDrawCard_.WriteTo(output, _repeated_whoDrawCard_codec);
-    if (CanLock != false) {
-      output.WriteRawTag(48);
-      output.WriteBool(CanLock);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public int CalculateSize() {
-    int size = 0;
-    if (CardId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardId);
-    }
-    size += cardColor_.CalculateSize(_repeated_cardColor_codec);
-    if (CardDir != global::direction.Up) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CardDir);
-    }
-    if (CardType != global::card_type.ChengQing) {
-      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CardType);
-    }
-    size += whoDrawCard_.CalculateSize(_repeated_whoDrawCard_codec);
-    if (CanLock != false) {
-      size += 1 + 1;
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(card other) {
-    if (other == null) {
-      return;
-    }
-    if (other.CardId != 0) {
-      CardId = other.CardId;
-    }
-    cardColor_.Add(other.cardColor_);
-    if (other.CardDir != global::direction.Up) {
-      CardDir = other.CardDir;
-    }
-    if (other.CardType != global::card_type.ChengQing) {
-      CardType = other.CardType;
-    }
-    whoDrawCard_.Add(other.whoDrawCard_);
-    if (other.CanLock != false) {
-      CanLock = other.CanLock;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(pb::CodedInputStream input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-      switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 8: {
-          CardId = input.ReadUInt32();
-          break;
-        }
-        case 18:
-        case 16: {
-          cardColor_.AddEntriesFrom(input, _repeated_cardColor_codec);
-          break;
-        }
-        case 24: {
-          CardDir = (global::direction) input.ReadEnum();
-          break;
-        }
-        case 32: {
-          CardType = (global::card_type) input.ReadEnum();
-          break;
-        }
-        case 42:
-        case 40: {
-          whoDrawCard_.AddEntriesFrom(input, _repeated_whoDrawCard_codec);
-          break;
-        }
-        case 48: {
-          CanLock = input.ReadBool();
-          break;
-        }
-      }
-    }
-  }
-
-}
-
-/// <summary>
 /// 通知客户端：初始化游戏
 /// </summary>
 public sealed partial class init_toc : pb::IMessage<init_toc> {
@@ -1275,7 +872,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[6]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1295,6 +892,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
     playerCount_ = other.playerCount_;
     identity_ = other.identity_;
     secretTask_ = other.secretTask_;
+    roles_ = other.roles_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1345,6 +943,19 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
     }
   }
 
+  /// <summary>Field number for the "roles" field.</summary>
+  public const int RolesFieldNumber = 4;
+  private static readonly pb::FieldCodec<global::role> _repeated_roles_codec
+      = pb::FieldCodec.ForEnum(34, x => (int) x, x => (global::role) x);
+  private readonly pbc::RepeatedField<global::role> roles_ = new pbc::RepeatedField<global::role>();
+  /// <summary>
+  /// 从自己开始，依次每个人的角色
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::role> Roles {
+    get { return roles_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as init_toc);
@@ -1361,6 +972,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
     if (PlayerCount != other.PlayerCount) return false;
     if (Identity != other.Identity) return false;
     if (SecretTask != other.SecretTask) return false;
+    if(!roles_.Equals(other.roles_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1370,6 +982,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
     if (PlayerCount != 0) hash ^= PlayerCount.GetHashCode();
     if (Identity != global::color.Black) hash ^= Identity.GetHashCode();
     if (SecretTask != global::secret_task.Killer) hash ^= SecretTask.GetHashCode();
+    hash ^= roles_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1395,6 +1008,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
       output.WriteRawTag(24);
       output.WriteEnum((int) SecretTask);
     }
+    roles_.WriteTo(output, _repeated_roles_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1412,6 +1026,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
     if (SecretTask != global::secret_task.Killer) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) SecretTask);
     }
+    size += roles_.CalculateSize(_repeated_roles_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1432,6 +1047,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
     if (other.SecretTask != global::secret_task.Killer) {
       SecretTask = other.SecretTask;
     }
+    roles_.Add(other.roles_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1453,6 +1069,174 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
         }
         case 24: {
           SecretTask = (global::secret_task) input.ReadEnum();
+          break;
+        }
+        case 34:
+        case 32: {
+          roles_.AddEntriesFrom(input, _repeated_roles_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 通知客户端角色变化
+/// </summary>
+public sealed partial class notify_role_update_toc : pb::IMessage<notify_role_update_toc> {
+  private static readonly pb::MessageParser<notify_role_update_toc> _parser = new pb::MessageParser<notify_role_update_toc>(() => new notify_role_update_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<notify_role_update_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public notify_role_update_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public notify_role_update_toc(notify_role_update_toc other) : this() {
+    playerId_ = other.playerId_;
+    role_ = other.role_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public notify_role_update_toc Clone() {
+    return new notify_role_update_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "role" field.</summary>
+  public const int RoleFieldNumber = 2;
+  private global::role role_ = global::role.Unknown;
+  /// <summary>
+  /// 值为unknown=0时表示盖上角色
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::role Role {
+    get { return role_; }
+    set {
+      role_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as notify_role_update_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(notify_role_update_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (Role != other.Role) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (Role != global::role.Unknown) hash ^= Role.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (Role != global::role.Unknown) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Role);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (Role != global::role.Unknown) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Role);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(notify_role_update_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.Role != global::role.Unknown) {
+      Role = other.Role;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Role = (global::role) input.ReadEnum();
           break;
         }
       }

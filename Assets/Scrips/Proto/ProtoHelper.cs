@@ -38,7 +38,12 @@ public static class ProtoHelper
             int playerCount = (int)init_Toc.PlayerCount;
             PlayerColorEnum playerColor = (PlayerColorEnum)init_Toc.Identity;
             SecretTaskEnum secretTask = (SecretTaskEnum)init_Toc.SecretTask;
-            GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask);
+            List<RoleBase> roles = new List<RoleBase>();
+            for(int i = 0; i < init_Toc.Roles.Count; i ++)
+            {
+                roles.Add(AllRoles.GetRole(init_Toc.Roles[i], i));
+            }
+            GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask, roles);
         }
         // 通知客户端，到谁的哪个阶段了
         else if (GetIdFromProtoName("notify_phase_toc") == id)
@@ -279,6 +284,14 @@ public static class ProtoHelper
             CardFS cardUsed = new CardFS(use_wu_dao_toc.Card);
             GameManager.Singleton.OnReceiveUseWuDao(user, target, cardUsed);
         }
+        #region 技能
+        else if(GetIdFromProtoName("skill_xin_si_chao_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_xin_si_chao_toc");
+            skill_xin_si_chao_toc skill_Xin_Si_Chao_Toc = skill_xin_si_chao_toc.Parser.ParseFrom(contont);
+            Skill_XinSiChao.OnReceiveUse((int)skill_Xin_Si_Chao_Toc.PlayerId);
+        }
+        #endregion
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
         {
@@ -585,12 +598,25 @@ public static class ProtoHelper
         SendProto("die_give_card_tos", proto);
     }
 
-    //public static void SendGetRoomInfo()
-    //{
-    //    get_room_info_tos get_room_info_tos = new get_room_info_tos();
-    //    byte[] proto = get_room_info_tos.ToByteArray();
-    //    SendProto("get_room_info_tos", proto);
-    //}
+    #region 技能
+    //奇货可居
+    public static void SendSkill_QiHuoKeJu()
+    {
+
+    }
+    //诡谲
+    public static void SendSkill_GuiJue()
+    {
+
+    }
+    public static void SendSkill_XinSiChao(int cardId, uint seq)
+    {
+        skill_xin_si_chao_tos skill_xin_si_chao_tos = new skill_xin_si_chao_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_xin_si_chao_tos.ToByteArray();
+        
+        SendProto("skill_xin_si_chao_tos", proto);
+    }
+    #endregion
 
     public static void SendAddAI()
     {
