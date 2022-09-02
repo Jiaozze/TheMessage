@@ -13,6 +13,11 @@ public abstract class SkillBase
         GameManager.Singleton.SelectPlayerId = -1;
     }
 
+    public virtual bool CheckTriger()
+    {
+        return false;
+    }
+
     public virtual void Use()
     {
 

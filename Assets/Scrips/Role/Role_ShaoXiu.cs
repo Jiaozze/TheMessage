@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Role_DuanMuJing:RoleBase
+public class Role_ShaoXiu:RoleBase
 {
     public override string name
     {
-        get { return "¶ËÄ¾¾²"; }
+        get { return "ÉÛÐã"; }
     }
 
     public override bool isBack
@@ -14,9 +14,9 @@ public class Role_DuanMuJing:RoleBase
         get { return false; }
     }
 
-    public Role_DuanMuJing(int id)
+    public Role_ShaoXiu(int id)
     {
         playerId = id;
-        skills = new List<SkillBase>() { new UserSkill_XinSiChao(id) };
+        skills = new List<SkillBase>() { new UserSkill_MianLiCangZhen(id) };
     }
 }
