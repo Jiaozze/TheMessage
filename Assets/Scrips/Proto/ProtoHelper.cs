@@ -607,9 +607,23 @@ public static class ProtoHelper
     }
 
     #region 技能
-    //奇货可居
-    public static void SendSkill_QiHuoKeJu()
+    //接收阶段，轮到自己，选择什么都不做
+    public static void SendEndReceive(uint seq)
     {
+        Debug.Log("____send___________________ end_receive_phase_tos, seq:" + seq);
+
+        end_receive_phase_tos end_Receive_Phase_Tos = new end_receive_phase_tos() { Seq = seq };
+        byte[] proto = end_Receive_Phase_Tos.ToByteArray();
+        SendProto("end_receive_phase_tos", proto);
+    }
+    //奇货可居
+    public static void SendSkill_QiHuoKeJu(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_qi_huo_ke_ju_tos, seq:" + seq);
+
+        skill_qi_huo_ke_ju_tos skill_qi_huo_ke_ju_tos = new skill_qi_huo_ke_ju_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_qi_huo_ke_ju_tos.ToByteArray();
+        SendProto("skill_qi_huo_ke_ju_tos", proto);
 
     }
     //诡谲
