@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 端木静【新思潮】：出牌阶段限一次，你可以弃置一张手牌，然后摸两张牌。
-public class Skill_XinSiChao : SkillBase
+public class UserSkill_XinSiChao : SkillBase
 {
     public override string name { get { return "新思潮"; } }
     public override bool canUser
@@ -18,7 +18,7 @@ public class Skill_XinSiChao : SkillBase
 
     private int selectCardId = 0;
 
-    public Skill_XinSiChao(int id)
+    public UserSkill_XinSiChao(int id)
     {
         playerId = id;
     }
@@ -43,7 +43,6 @@ public class Skill_XinSiChao : SkillBase
 
     public override void Use()
     {
-        Debug.LogError(selectCardId);
         if(selectCardId > 0)
         {
             ProtoHelper.SendSkill_XinSiChao(selectCardId, GameManager.Singleton.seqId);

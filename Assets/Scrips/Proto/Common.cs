@@ -26,7 +26,7 @@ public static partial class CommonReflection {
           "YXJkX2NvbG9yGAIgAygOMgYuY29sb3ISHAoIY2FyZF9kaXIYAyABKA4yCi5k",
           "aXJlY3Rpb24SHQoJY2FyZF90eXBlGAQgASgOMgouY2FyZF90eXBlEh0KDXdo",
           "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCrp",
-          "AQoEcm9sZRILCgd1bmtub3duEAASDQoJbWFvX2J1X21hEAQSFwoTZmVpX3l1",
+          "AQoEcm9sZRILCgd1bmtub3duEAASDQoJbWFvX2J1X2JhEAQSFwoTZmVpX3l1",
           "YW5fbG9uZ19jaHVhbhAHEgwKCHdhbmdfa3VpEAwSCwoHaGFuX21laRAOEhIK",
           "DnpoZW5nX3dlbl94aWFuEA8SDAoIZ3VpX2ppYW8QERIMCghzaGFvX3hpdRAS",
           "EhEKDWppbl9zaGVuZ19odW8QExIPCgtiYWlfZmVpX2ZlaRAVEhAKDGR1YW5f",
@@ -59,7 +59,7 @@ public enum role {
   /// <summary>
   /// 毛不拔
   /// </summary>
-  [pbr::OriginalName("mao_bu_ma")] MaoBuMa = 4,
+  [pbr::OriginalName("mao_bu_ba")] MaoBuBa = 4,
   /// <summary>
   /// 肥圆龙川
   /// </summary>

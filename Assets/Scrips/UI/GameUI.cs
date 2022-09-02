@@ -15,6 +15,7 @@ public class GameUI : MonoBehaviour
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
     public PlayerMessagInfo playerMessagInfo;
+
     public WinInfo winInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
@@ -283,7 +284,7 @@ public class GameUI : MonoBehaviour
             Debug.LogError("不在自己的相应时间");
             return;
         }
-        if(GameManager.Singleton.IsUsingSkill)
+        if (GameManager.Singleton.IsUsingSkill)
         {
             GameManager.Singleton.selectSkill.Use();
             return;
@@ -351,6 +352,7 @@ public class GameUI : MonoBehaviour
             Debug.LogError("不在自己的相应时间");
             return;
         }
+
         if(GameManager.Singleton.IsUsingSkill)
         {
             GameManager.Singleton.selectSkill.Cancel();

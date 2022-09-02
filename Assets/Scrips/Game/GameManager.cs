@@ -506,10 +506,20 @@ public class GameManager
         }
         else if (phase == PhaseEnum.Receive_Phase)
         {
-            players[messagePlayerId].AddMessage(message);
-            gameUI.ShowAddMessage(messagePlayerId, message, true);
-            gameUI.Players[messagePlayerId].RefreshMessage();
-            gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
+            if(waitSecond == 0)
+            {
+                players[messagePlayerId].AddMessage(message);
+                gameUI.ShowAddMessage(messagePlayerId, message, true);
+                gameUI.Players[messagePlayerId].RefreshMessage();
+                gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
+            }
+            else if(waitingPlayerId == SelfPlayerId)
+            {
+                foreach(var skill in players[SelfPlayerId].role.skills)
+                {
+                    if (skill.CheckTriger()) break;
+                }
+            }
         }
 
         //Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
