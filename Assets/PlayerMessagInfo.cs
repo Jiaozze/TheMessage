@@ -20,6 +20,10 @@ public class PlayerMessagInfo : MonoBehaviour
     private void OnDisable()
     {
         cardId = 0;
+        if (GameManager.Singleton.IsUsingSkill && GameManager.Singleton.selectSkill != null)
+        {
+            GameManager.Singleton.selectSkill.OnMessageInfoClose();
+        }
     }
 
     public void Show(int playerId, bool showChengQing = false)
@@ -56,6 +60,10 @@ public class PlayerMessagInfo : MonoBehaviour
                 {
                     butChengQing.interactable = false;
                     cardId = 0;
+                }
+                if(GameManager.Singleton.IsUsingSkill && GameManager.Singleton.selectSkill != null)
+                {
+                    GameManager.Singleton.selectSkill.OnMessageSelect(playerId, cardId);
                 }
             });
             items[msg.id] = (card);

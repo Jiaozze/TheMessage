@@ -34,6 +34,12 @@ public class UserSkill_MianLiCangZhen : SkillBase
 
     public override void PrepareUse()
     {
+        if (GameManager.Singleton.cardsHand.Count == 0)
+        {
+            Cancel();
+            return;
+        }
+
         if (GameManager.Singleton.selectSkill == this)
         {
             return;
@@ -100,7 +106,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
         GameManager.Singleton.IsUsingSkill = false;
         GameManager.Singleton.selectSkill = null;
         GameManager.Singleton.gameUI.ShowPhase();
-
+        ProtoHelper.SendEndReceive(GameManager.Singleton.seqId);
     }
 
     public override void OnUse()
