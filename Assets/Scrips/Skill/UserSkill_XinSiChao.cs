@@ -6,7 +6,7 @@ using UnityEngine;
 public class UserSkill_XinSiChao : SkillBase
 {
     public override string name { get { return "ÐÂË¼³±"; } }
-    public override bool canUser
+    public override bool canUse
     {
         get
         {
@@ -24,7 +24,7 @@ public class UserSkill_XinSiChao : SkillBase
     }
     public override void PrepareUse()
     {
-        if(!canUser)
+        if(!canUse)
         {
             return;
         }

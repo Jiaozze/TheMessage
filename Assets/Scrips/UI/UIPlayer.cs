@@ -75,7 +75,7 @@ public class UIPlayer : MonoBehaviour
             skillButtons[i].transform.Find("Text").GetComponent<Text>().text = skill.name;
             skillButtons[i].onClick.RemoveAllListeners();
             skillButtons[i].onClick.AddListener(() => { skill.PrepareUse(); });
-            skillButtons[i].interactable = skill.canUser;
+            skillButtons[i].interactable = skill.canUse;
         }
     }
 
@@ -86,7 +86,7 @@ public class UIPlayer : MonoBehaviour
             SkillBase skill = GameManager.Singleton.players[playerId].role.skills[i];
             skillButtons[i].gameObject.SetActive(true);
             skillButtons[i].transform.Find("Text").GetComponent<Text>().text = skill.name;
-            skillButtons[i].interactable = skill.canUser;
+            skillButtons[i].interactable = skill.canUse;
         }
     }
 

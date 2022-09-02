@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class SkillBase
 {
     public abstract string name { get; }
-    public abstract bool canUser { get; }
+    public abstract bool canUse { get; }
     public int playerId;
     public virtual void PrepareUse()
     {
@@ -34,6 +34,10 @@ public abstract class SkillBase
     }
 
     public virtual void OnMessageSelect(int playerId, int cardId)
+    {
+
+    }
+    public virtual void OnMessageInfoClose()
     {
 
     }
