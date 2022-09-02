@@ -283,6 +283,11 @@ public class GameUI : MonoBehaviour
             Debug.LogError("不在自己的相应时间");
             return;
         }
+        if(GameManager.Singleton.IsUsingSkill)
+        {
+            GameManager.Singleton.selectSkill.Use();
+            return;
+        }
 
         if (GameManager.Singleton.IsWaitGiveCard)
         {
@@ -345,6 +350,10 @@ public class GameUI : MonoBehaviour
         {
             Debug.LogError("不在自己的相应时间");
             return;
+        }
+        if(GameManager.Singleton.IsUsingSkill)
+        {
+            GameManager.Singleton.selectSkill.Cancel();
         }
         if (GameManager.Singleton.IsWaitSaving != -1)
         {

@@ -23,11 +23,14 @@ public class GameManager
     public int IsWaitSaving { get; private set; }
     public bool IsWaitLock { get; private set; }
     public bool IsWaitGiveCard { get; private set; }
+    public bool IsUsingSkill { get; set; }
 
     public List<int> cardsToGive = new List<int>();
     #endregion
 
     public List<int> lockedPlayer = null;
+
+    public SkillBase selectSkill;
     public int SelectCardId
     {
         get { return _SelectCardId; }
@@ -36,6 +39,11 @@ public class GameManager
             if (IsWaitLock)
             {
                 Debug.LogError("发情报选择是否锁定时，点牌无效");
+                return;
+            }
+            if(IsUsingSkill)
+            {
+                selectSkill.OnCardSelect(value);
                 return;
             }
             if (IsWaitGiveCard)
@@ -88,6 +96,12 @@ public class GameManager
         get { return _SelectPlayerId; }
         set
         {
+            if (IsUsingSkill)
+            {
+                selectSkill.OnPlayerSelect(value);
+                return;
+            }
+
             gameUI.HidePlayerMessageInfo();
             if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
             if (_SelectPlayerId == value)
@@ -220,12 +234,12 @@ public class GameManager
     {
 
     }
-    public void InitPlayers(int num)
+    public void InitPlayers(int num, List<RoleBase> roles)
     {
         players.Clear();
         for (int i = 0; i < num; i++)
         {
-            Player player = new Player(i);
+            Player player = new Player(i, roles[i]);
             players.Add(i, player);
         }
     }
@@ -368,14 +382,14 @@ public class GameManager
         roomUI.OnPlayerLeave(position);
     }
     // 通知客户端：初始化游戏
-    public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask)
+    public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles)
     {
         gameUI.gameObject.SetActive(true);
         roomUI.gameObject.SetActive(false);
 
         task = secretTask;
 
-        InitPlayers(player_num);
+        InitPlayers(player_num, roles);
         players[SelfPlayerId].playerColor = new List<PlayerColorEnum>() { playerColor };
         gameUI.InitPlayers(player_num);
 

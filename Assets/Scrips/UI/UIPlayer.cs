@@ -8,6 +8,8 @@ public class UIPlayer : MonoBehaviour
 {
     public Animator animator;
     public Button button;
+    public Button butSkill1;
+    public Button butSkill2;
     public Text textPhase;
     public Text textPlayerId;
     public Text textCardCount;
@@ -27,10 +29,14 @@ public class UIPlayer : MonoBehaviour
 
 
     private int playerId;
+    private List<Button> skillButtons;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        skillButtons = new List<Button>() { butSkill1, butSkill2 };
+        butSkill1.gameObject.SetActive(false);
+        butSkill2.gameObject.SetActive(false);
         goMask.SetActive(false);
         goDie.SetActive(false);
         goLock.SetActive(false);
@@ -51,10 +57,37 @@ public class UIPlayer : MonoBehaviour
         goTurnOn.SetActive(false);
         goMessageOn.SetActive(false);
         playerId = id;
-        textPlayerId.text = "" + id + "ºÅÍæ¼Ò";
+        //textPlayerId.text = "" + id + "ºÅÍæ¼Ò";
+        textPlayerId.text = GameManager.Singleton.players[id].role.name;
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
+        InitSkill();
+    }
+
+    public void InitSkill()
+    {
+
+        for (int i = 0; i < GameManager.Singleton.players[playerId].role.skills.Count; i++)
+        {
+            SkillBase skill = GameManager.Singleton.players[playerId].role.skills[i];
+            skillButtons[i].gameObject.SetActive(true);
+            skillButtons[i].transform.Find("Text").GetComponent<Text>().text = skill.name;
+            skillButtons[i].onClick.RemoveAllListeners();
+            skillButtons[i].onClick.AddListener(() => { skill.PrepareUse(); });
+            skillButtons[i].interactable = skill.canUser;
+        }
+    }
+
+    public void RefreshSkillState()
+    {
+        for (int i = 0; i < GameManager.Singleton.players[playerId].role.skills.Count; i++)
+        {
+            SkillBase skill = GameManager.Singleton.players[playerId].role.skills[i];
+            skillButtons[i].gameObject.SetActive(true);
+            skillButtons[i].transform.Find("Text").GetComponent<Text>().text = skill.name;
+            skillButtons[i].interactable = skill.canUser;
+        }
     }
 
     public void OnClickMessage()
@@ -69,7 +102,7 @@ public class UIPlayer : MonoBehaviour
     public void OnDrawCard(int totalCount, int count)
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
-        if(playerId != GameManager.SelfPlayerId)
+        if (playerId != GameManager.SelfPlayerId)
         {
             if (count > 1)
             {
@@ -174,7 +207,7 @@ public class UIPlayer : MonoBehaviour
 
     internal void SetBanClick(bool v)
     {
-        if(!goDie.activeSelf)
+        if (!goDie.activeSelf)
         {
             goMask.SetActive(v);
         }
