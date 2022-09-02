@@ -41,7 +41,7 @@ public class GameManager
                 Debug.LogError("发情报选择是否锁定时，点牌无效");
                 return;
             }
-            if(IsUsingSkill)
+            if (IsUsingSkill)
             {
                 selectSkill.OnCardSelect(value);
                 return;
@@ -164,11 +164,11 @@ public class GameManager
                 }
             }
             // 情报争夺阶段选择误导目标
-            else if(curPhase == PhaseEnum.Fight_Phase && cardsHand.ContainsKey(_SelectCardId))
+            else if (curPhase == PhaseEnum.Fight_Phase && cardsHand.ContainsKey(_SelectCardId))
             {
-                if(cardsHand[_SelectCardId].cardName == CardNameEnum.WuDao)
+                if (cardsHand[_SelectCardId].cardName == CardNameEnum.WuDao)
                 {
-                    if(value == GetPlayerAliveLeft(CurMessagePlayerId) || value == GetPlayerAliveRight(CurMessagePlayerId))
+                    if (value == GetPlayerAliveLeft(CurMessagePlayerId) || value == GetPlayerAliveRight(CurMessagePlayerId))
                     {
                         _SelectPlayerId = value;
                         gameUI.Players[_SelectPlayerId].OnSelect(true);
@@ -221,8 +221,8 @@ public class GameManager
                 gameUI = windowGo.AddComponent<GameUI>();
             }
         }
-        
-        if(roomUI == null && roomGo != null)
+
+        if (roomUI == null && roomGo != null)
         {
             roomUI = roomGo.GetComponent<RoomUI>();
         }
@@ -284,10 +284,10 @@ public class GameManager
     public int GetPlayerAliveRight(int PlayerId)
     {
         int id = (PlayerId + 1) % players.Count;
-        while(!players[id].alive)
+        while (!players[id].alive)
         {
             id = (id + 1) % players.Count;
-            if(id == PlayerId)
+            if (id == PlayerId)
             {
                 return id;
             }
@@ -341,14 +341,14 @@ public class GameManager
         else if (dir == DirectionEnum.Right) dirStr = "右";
 
         gameUI.AddMsg(string.Format("{0}号玩家向{1}号玩家传出一张情报，方向向{2}", playerId, targetId, dirStr));
-        foreach(var id in lockIds)
+        foreach (var id in lockIds)
         {
             gameUI.AddMsg("" + id + "号玩家被锁定了");
         }
     }
     private void OnWait(int playerId, int waitSeconds)
     {
-        if(CurWaitingPlayerId == SelfPlayerId)
+        if (CurWaitingPlayerId == SelfPlayerId)
         {
             gameUI.OnWaiting(0);
         }
@@ -356,7 +356,7 @@ public class GameManager
         {
             gameUI.Players[CurWaitingPlayerId].OnWaiting(0);
         }
-        if(playerId == SelfPlayerId)
+        if (playerId == SelfPlayerId)
         {
             gameUI.OnWaiting(waitSeconds);
         }
@@ -466,63 +466,12 @@ public class GameManager
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
+        //Debug.Log(" playerId " + playerId + " messagePlayerId " + messagePlayerId + " waitingPlayerId " + waitingPlayerId + " phase " + phase.ToString());
+        int lastTurnPlayerId = CurTurnPlayerId;
         IsWaitGiveCard = false;
         IsWaitLock = false;
         IsWaitSaving = -1;
-        gameUI.HideMessagingCard();
-        gameUI.weiBiGiveCard.gameObject.SetActive(false);
-        gameUI.Players[CurTurnPlayerId].HidePhase();
-        gameUI.Players[playerId].SetPhase(phase);
-        if (playerId != CurTurnPlayerId)
-        {
-            lockedPlayer = null;
-            gameUI.ClearLock();
-            gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
-        }
-        if (phase == PhaseEnum.Send_Start_Phase)
-        {
-            gameUI.InitMessageSenderPos(playerId);
-            gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
-        }
-        else if (phase == PhaseEnum.Send_Phase)
-        {
-            gameUI.ShowMessagingCard(message, messagePlayerId, true);
-            if(messagePlayerId == SelfPlayerId && playerId != SelfPlayerId)
-            {
-                gameUI.ShowNextMessagePlayer(messageCardDir);
-            }
-            if (cardsHand.ContainsKey(message.id))
-            {
-                cardsHand.Remove(message.id);
-                gameUI.DisCards(new List<CardFS>() { message });
-            }
-            //string dir;
-
-            gameUI.AddMsg(string.Format("情报到达{0}号玩家，方向{1}", messagePlayerId, messageCardDir.ToString()));
-        }
-        else if (phase == PhaseEnum.Fight_Phase)
-        {
-            gameUI.ShowMessagingCard(message, messagePlayerId, true);
-        }
-        else if (phase == PhaseEnum.Receive_Phase)
-        {
-            if(waitSecond == 0)
-            {
-                players[messagePlayerId].AddMessage(message);
-                gameUI.ShowAddMessage(messagePlayerId, message, true);
-                gameUI.Players[messagePlayerId].RefreshMessage();
-                gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
-            }
-            else if(waitingPlayerId == SelfPlayerId)
-            {
-                foreach(var skill in players[SelfPlayerId].role.skills)
-                {
-                    if (skill.CheckTriger()) break;
-                }
-            }
-        }
-
-        //Debug.Log("____________________OnTurn:" + playerId + "," + messagePlayerId + "," + waitingPlayerId);
+        OnWait(waitingPlayerId, waitSecond);
         if (waitingPlayerId == 0)
         {
             this.seqId = seqId;
@@ -553,7 +502,59 @@ public class GameManager
         }
         CurMessagePlayerId = messagePlayerId;
 
-        OnWait(waitingPlayerId, waitSecond);
+        gameUI.HideMessagingCard();
+        gameUI.weiBiGiveCard.gameObject.SetActive(false);
+        gameUI.Players[lastTurnPlayerId].HidePhase();
+        gameUI.Players[playerId].SetPhase(phase);
+        if (playerId != lastTurnPlayerId)
+        {
+            lockedPlayer = null;
+            gameUI.ClearLock();
+            gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
+        }
+        if (phase == PhaseEnum.Send_Start_Phase)
+        {
+            gameUI.InitMessageSenderPos(playerId);
+            gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
+        }
+        else if (phase == PhaseEnum.Send_Phase)
+        {
+            gameUI.ShowMessagingCard(message, messagePlayerId, true);
+            if (messagePlayerId == SelfPlayerId && playerId != SelfPlayerId)
+            {
+                gameUI.ShowNextMessagePlayer(messageCardDir);
+            }
+            if (cardsHand.ContainsKey(message.id))
+            {
+                cardsHand.Remove(message.id);
+                gameUI.DisCards(new List<CardFS>() { message });
+            }
+            //string dir;
+
+            gameUI.AddMsg(string.Format("情报到达{0}号玩家，方向{1}", messagePlayerId, messageCardDir.ToString()));
+        }
+        else if (phase == PhaseEnum.Fight_Phase)
+        {
+            gameUI.ShowMessagingCard(message, messagePlayerId, true);
+        }
+        else if (phase == PhaseEnum.Receive_Phase)
+        {
+            if (waitSecond == 0)
+            {
+                players[messagePlayerId].AddMessage(message);
+                gameUI.ShowAddMessage(messagePlayerId, message, true);
+                gameUI.Players[messagePlayerId].RefreshMessage();
+                gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
+            }
+            else if (waitingPlayerId == SelfPlayerId)
+            {
+                foreach (var skill in players[SelfPlayerId].role.skills)
+                {
+                    if (skill.CheckTriger()) break;
+                }
+            }
+        }
+
         gameUI.ShowPhase();
     }
 
@@ -573,15 +574,15 @@ public class GameManager
         OnCardSend(playerId, cardId, targetId, locakIds, dir);
         string sLock = "";
         string sDir = "";
-        if(locakIds.Count > 0)
+        if (locakIds.Count > 0)
         {
             sLock = " 并锁定玩家";
-            foreach(var id in locakIds)
+            foreach (var id in locakIds)
             {
                 sLock += " " + id;
             }
         }
-        switch(dir)
+        switch (dir)
         {
             case DirectionEnum.Left:
                 sDir = "向左";
@@ -610,7 +611,7 @@ public class GameManager
     public void OnReceiveUseDiaoBao(int user, int cardUsedId, CardFS messageCard)
     {
         CardFS cardUsed;
-        if(user == SelfPlayerId)
+        if (user == SelfPlayerId)
         {
             cardUsed = cardsHand[cardUsedId];
         }
@@ -635,7 +636,7 @@ public class GameManager
 
     public void OnErrorCode(error_code code)
     {
-        switch(code)
+        switch (code)
         {
             case error_code.ClientVersionNotMatch:
                 gameUI.ShowInfo("客户端版本号不匹配");
@@ -655,11 +656,11 @@ public class GameManager
         seqId = seq;
         OnCardUse(user, cardUsed);
         OnWait(user, waitingTime);
-        if(user == SelfPlayerId)
+        if (user == SelfPlayerId)
         {
             gameUI.ShowPoYiResult(messageCard);
             string colorStr = "";
-            foreach(var color in messageCard.color)
+            foreach (var color in messageCard.color)
             {
                 colorStr = colorStr + LanguageUtils.GetColorName(color);
             }
@@ -668,7 +669,7 @@ public class GameManager
     }
     public void OnReceivePoYiShow(int user, bool show, CardFS messageCard)
     {
-        if(show)
+        if (show)
         {
             string colorStr = "";
             foreach (var color in messageCard.color)
@@ -879,9 +880,9 @@ public class GameManager
         if (players.ContainsKey(target))
         {
             CardFS message = new CardFS(null);
-            foreach(var card in players[target].messages)
+            foreach (var card in players[target].messages)
             {
-                if(card.id == targetCardId)
+                if (card.id == targetCardId)
                 {
                     messageInfo = LanguageUtils.GetColorsName(card.color) + LanguageUtils.GetCardName(card.cardName);
                     message = card;
@@ -950,7 +951,7 @@ public class GameManager
         }
         else
         {
-            gameUI.ShowInfo("" + playerId +"号玩家死亡，可以选择交给一名玩家至多三张牌");
+            gameUI.ShowInfo("" + playerId + "号玩家死亡，可以选择交给一名玩家至多三张牌");
         }
         IsWaitSaving = -1;
         gameUI.ShowPhase();
@@ -985,7 +986,7 @@ public class GameManager
         }
         if (SelfPlayerId == playerId)
         {
-            foreach(var cardGiven in cards)
+            foreach (var cardGiven in cards)
             {
                 cardsHand.Remove(cardGiven.id);
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
@@ -1085,7 +1086,7 @@ public class GameManager
                         ProtoHelper.SendUseCardMessage_JieHuo(SelectCardId, seqId);
                         break;
                     case CardNameEnum.WuDao:
-                        if(SelectPlayerId == GetPlayerAliveRight(CurMessagePlayerId) || SelectPlayerId == GetPlayerAliveLeft(CurMessagePlayerId))
+                        if (SelectPlayerId == GetPlayerAliveRight(CurMessagePlayerId) || SelectPlayerId == GetPlayerAliveLeft(CurMessagePlayerId))
                         {
                             ProtoHelper.SendUseCardMessage_WuDao(SelectCardId, SelectPlayerId, seqId);
                         }
@@ -1121,7 +1122,7 @@ public class GameManager
             }
             else if (!IsWaitLock)
             {
-                if(SelectPlayerId < 1)
+                if (SelectPlayerId < 1)
                 {
                     SelectCardId = -1;
                     SelectPlayerId = -1;

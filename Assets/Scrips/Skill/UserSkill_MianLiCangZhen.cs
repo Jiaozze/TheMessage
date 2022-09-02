@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UserSkill_MianLiCangZhen :SkillBase
+public class UserSkill_MianLiCangZhen : SkillBase
 {
     public override string name { get { return "绵里藏针"; } }
-    public override bool canUser { get { return false; } }
+    public override bool canUse { get { return false; } }
 
     private int selectCardId;
     public UserSkill_MianLiCangZhen(int id)
@@ -15,15 +15,15 @@ public class UserSkill_MianLiCangZhen :SkillBase
     public override bool CheckTriger()
     {
         //GameManager.Singleton.gameUI.ShowPhase("是否发动技能-绵里藏针");
-        if(GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
+        if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             return false;
         }
-        if(GameManager.Singleton.CurTurnPlayerId != GameManager.SelfPlayerId)
+        if (GameManager.Singleton.CurTurnPlayerId != GameManager.SelfPlayerId)
         {
             return false;
         }
-        if(GameManager.Singleton.curPhase != PhaseEnum.Receive_Phase)
+        if (GameManager.Singleton.curPhase != PhaseEnum.Receive_Phase)
         {
             return false;
         }
@@ -34,7 +34,7 @@ public class UserSkill_MianLiCangZhen :SkillBase
 
     public override void PrepareUse()
     {
-        if(GameManager.Singleton.selectSkill == this)
+        if (GameManager.Singleton.selectSkill == this)
         {
             return;
         }
@@ -45,7 +45,7 @@ public class UserSkill_MianLiCangZhen :SkillBase
     }
     public override void Use()
     {
-        if(selectCardId > 0 && GameManager.Singleton.cardsHand[selectCardId].color.Contains(CardColorEnum.Black))
+        if (selectCardId > 0 && GameManager.Singleton.cardsHand[selectCardId].color.Contains(CardColorEnum.Black))
         {
             ProtoHelper.SendSkill_MianLiCangZhen(selectCardId, GameManager.Singleton.CurMessagePlayerId, GameManager.Singleton.seqId);
         }
@@ -57,7 +57,7 @@ public class UserSkill_MianLiCangZhen :SkillBase
 
     public override void OnCardSelect(int cardId)
     {
-        if(!GameManager.Singleton.cardsHand[cardId].color.Contains(CardColorEnum.Black))
+        if (!GameManager.Singleton.cardsHand[cardId].color.Contains(CardColorEnum.Black))
         {
             GameManager.Singleton.gameUI.ShowInfo("请选择一张黑色手牌");
             return;
@@ -130,6 +130,7 @@ public class UserSkill_MianLiCangZhen :SkillBase
         GameManager.Singleton.players[targetPlayerId].AddMessage(card);
 
         GameManager.Singleton.gameUI.ShowAddMessage(targetPlayerId, card, false);
+        GameManager.Singleton.gameUI.Players[targetPlayerId].RefreshMessage();
 
         string s = "" + playerId + "号玩家使用了技能绵里藏针";
         GameManager.Singleton.gameUI.ShowInfo(s);
