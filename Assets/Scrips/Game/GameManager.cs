@@ -31,6 +31,8 @@ public class GameManager
     public List<int> lockedPlayer = null;
 
     public SkillBase selectSkill;
+
+    public CardFS messageReceived;
     public int SelectCardId
     {
         get { return _SelectCardId; }
@@ -471,6 +473,7 @@ public class GameManager
         IsWaitGiveCard = false;
         IsWaitLock = false;
         IsWaitSaving = -1;
+        messageReceived = null;
         if (waitingPlayerId == 0)
         {
             this.seqId = seqId;
@@ -548,6 +551,7 @@ public class GameManager
             }
             else if (waitingPlayerId == SelfPlayerId)
             {
+                messageReceived = message;
                 foreach (var skill in players[SelfPlayerId].role.skills)
                 {
                     if (skill.CheckTriger()) break;
