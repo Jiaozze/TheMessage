@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Äã½ÓÊÕË«É«Çé±¨ºó£¬¿ÉÒÔÓÃÒ»ÕÅÊÖÅÆÓë¸ÃÇé±¨Ãæ³¯ÉÏ»¥»»
+//ä½ æ¥æ”¶åŒè‰²æƒ…æŠ¥åï¼Œå¯ä»¥ç”¨ä¸€å¼ æ‰‹ç‰Œä¸è¯¥æƒ…æŠ¥é¢æœä¸Šäº’æ¢
 public class UserSkill_JinShen : SkillBase
 {
-    public override string name { get { return "½÷É÷"; } }
+    public override string name { get { return "è°¨æ…"; } }
     public override bool canUse { get { return false; } }
 
     private int selectCardId;
@@ -15,7 +15,7 @@ public class UserSkill_JinShen : SkillBase
     }
     public override bool CheckTriger()
     {
-        //GameManager.Singleton.gameUI.ShowPhase("ÊÇ·ñ·¢¶¯¼¼ÄÜ-ÃàÀï²ØÕë");
+        //GameManager.Singleton.gameUI.ShowPhase("æ˜¯å¦å‘åŠ¨æŠ€èƒ½-ç»µé‡Œè—é’ˆ");
         if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             return false;
@@ -45,7 +45,7 @@ public class UserSkill_JinShen : SkillBase
         base.PrepareUse();
         GameManager.Singleton.IsUsingSkill = true;
         GameManager.Singleton.selectSkill = this;
-        GameManager.Singleton.gameUI.ShowPhase("¿ÉÒÔÓÃÒ»ÕÅÊÖÅÆÓë¸ÃÇé±¨Ãæ³¯ÉÏ»¥»»");
+        GameManager.Singleton.gameUI.ShowPhase("å¯ä»¥ç”¨ä¸€å¼ æ‰‹ç‰Œä¸è¯¥æƒ…æŠ¥é¢æœä¸Šäº’æ¢");
     }
     public override void Use()
     {
@@ -55,7 +55,7 @@ public class UserSkill_JinShen : SkillBase
         }
         else
         {
-            GameManager.Singleton.gameUI.ShowInfo("ÇëÑ¡ÔñÒ»ÕÅÊÖÅÆ");
+            GameManager.Singleton.gameUI.ShowInfo("è¯·é€‰æ‹©ä¸€å¼ æ‰‹ç‰Œ");
         }
     }
 
@@ -130,8 +130,9 @@ public class UserSkill_JinShen : SkillBase
             GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { message });
         }
         GameManager.Singleton.players[playerId].RemoveMessage(message.id);
+        GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
 
-        string s = "" + playerId + "ºÅÍæ¼ÒÊ¹ÓÃÁË¼¼ÄÜÃàÀï²ØÕë";
+        string s = "" + playerId + "å·ç©å®¶ä½¿ç”¨äº†æŠ€èƒ½è°¨æ…";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }
