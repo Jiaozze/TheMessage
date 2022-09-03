@@ -305,6 +305,12 @@ public static class ProtoHelper
             CardFS card = new CardFS(skill_jin_shen_toc.Card);
             UserSkill_JinShen.OnReceiveUse((int)skill_jin_shen_toc.PlayerId, card);
         }
+        else if (GetIdFromProtoName("skill_qi_huo_ke_ju_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_qi_huo_ke_ju_toc");
+            skill_qi_huo_ke_ju_toc skill_qi_huo_ke_ju_toc = skill_qi_huo_ke_ju_toc.Parser.ParseFrom(contont);
+            UserSkill_QiHuoKeJu.OnReceiveUse((int)skill_qi_huo_ke_ju_toc.PlayerId, (int)skill_qi_huo_ke_ju_toc.CardId);
+        }
         #endregion
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
