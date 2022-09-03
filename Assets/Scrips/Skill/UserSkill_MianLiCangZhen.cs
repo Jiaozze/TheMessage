@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//你传出的情报被接收后，可以将一张黑色手牌置入接收者的情报区，然后摸一张牌
 public class UserSkill_MianLiCangZhen : SkillBase
 {
     public override string name { get { return "绵里藏针"; } }

@@ -1,21 +1,21 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ä½ æ¥æ”¶åŒè‰²æƒ…æŠ¥åï¼Œå¯ä»¥ä»ä½ çš„æƒ…æŠ¥åŒºé€‰æ‹©ä¸€å¼ æƒ…æŠ¥åŠ å…¥æ‰‹ç‰Œ
-public class UserSkill_QiHuoKeJu : SkillBase
+//Äã½ÓÊÕË«É«Çé±¨ºó£¬¿ÉÒÔÓÃÒ»ÕÅÊÖÅÆÓë¸ÃÇé±¨Ãæ³¯ÉÏ»¥»»
+public class UserSkill_JinShen : SkillBase
 {
-    public override string name { get { return "å¥‡è´§å¯å±…"; } }
+    public override string name { get { return "½÷É÷"; } }
     public override bool canUse { get { return false; } }
 
     private int selectCardId;
-    public UserSkill_QiHuoKeJu(int id)
+    public UserSkill_JinShen(int id)
     {
         playerId = id;
     }
     public override bool CheckTriger()
     {
-        //GameManager.Singleton.gameUI.ShowPhase("æ˜¯å¦å‘åŠ¨æŠ€èƒ½-ç»µé‡Œè—é’ˆ");
+        //GameManager.Singleton.gameUI.ShowPhase("ÊÇ·ñ·¢¶¯¼¼ÄÜ-ÃàÀï²ØÕë");
         if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             return false;
@@ -32,35 +32,49 @@ public class UserSkill_QiHuoKeJu : SkillBase
 
     public override void PrepareUse()
     {
-        if(GameManager.Singleton.players[GameManager.SelfPlayerId].messages.Count == 0)
+        if (GameManager.Singleton.cardsHand.Count == 0)
         {
             Cancel();
             return;
         }
+
         if (GameManager.Singleton.selectSkill == this)
         {
             return;
         }
         base.PrepareUse();
-        GameManager.Singleton.gameUI.ShowPlayerMessageInfo(GameManager.SelfPlayerId);
         GameManager.Singleton.IsUsingSkill = true;
         GameManager.Singleton.selectSkill = this;
-        GameManager.Singleton.gameUI.ShowPhase("å¯ä»¥å‘åŠ¨æŠ€èƒ½ä»ä½ çš„æƒ…æŠ¥åŒºé€‰æ‹©ä¸€å¼ æƒ…æŠ¥åŠ å…¥æ‰‹ç‰Œ");
+        GameManager.Singleton.gameUI.ShowPhase("¿ÉÒÔÓÃÒ»ÕÅÊÖÅÆÓë¸ÃÇé±¨Ãæ³¯ÉÏ»¥»»");
     }
     public override void Use()
     {
-        if(selectCardId > 0)
+        if (selectCardId > 0)
         {
-            ProtoHelper.SendSkill_QiHuoKeJu(selectCardId, GameManager.Singleton.seqId);
+            ProtoHelper.SendSkill_JinShen(selectCardId, GameManager.Singleton.seqId);
         }
         else
         {
-            GameManager.Singleton.gameUI.ShowInfo("è¯·é€‰æ‹©è¦åŠ å…¥æ‰‹ç‰Œçš„æƒ…æŠ¥");
+            GameManager.Singleton.gameUI.ShowInfo("ÇëÑ¡ÔñÒ»ÕÅÊÖÅÆ");
         }
     }
 
     public override void OnCardSelect(int cardId)
     {
+        if (selectCardId > 0)
+        {
+            GameManager.Singleton.gameUI.Cards[selectCardId].OnSelect(false);
+        }
+
+        if (selectCardId == cardId)
+        {
+            selectCardId = 0;
+        }
+        else
+        {
+            selectCardId = cardId;
+            GameManager.Singleton.gameUI.Cards[cardId].OnSelect(true);
+        }
 
     }
 
@@ -71,57 +85,53 @@ public class UserSkill_QiHuoKeJu : SkillBase
 
     public override void OnMessageSelect(int playerId, int cardId)
     {
-        selectCardId = 0;
-    }
 
-    public override void OnMessageInfoClose()
-    {
-        Cancel();
     }
 
     public override void Cancel()
     {
-        selectCardId = 0;
+        if (selectCardId > 0)
+        {
+            GameManager.Singleton.gameUI.Cards[selectCardId].OnSelect(false);
+            selectCardId = 0;
+        }
         GameManager.Singleton.IsUsingSkill = false;
         GameManager.Singleton.selectSkill = null;
         GameManager.Singleton.gameUI.ShowPhase();
-        GameManager.Singleton.gameUI.HidePlayerMessageInfo();
-
         ProtoHelper.SendEndReceive(GameManager.Singleton.seqId);
     }
 
     public override void OnUse()
     {
-        selectCardId = 0;
+        if (selectCardId > 0)
+        {
+            GameManager.Singleton.gameUI.Cards[selectCardId].OnSelect(false);
+            selectCardId = 0;
+        }
         GameManager.Singleton.IsUsingSkill = false;
         GameManager.Singleton.selectSkill = null;
         GameManager.Singleton.gameUI.ShowPhase();
-        GameManager.Singleton.gameUI.HidePlayerMessageInfo();
     }
 
-    public static void OnReceiveUse(int playerId, int cardId)
+    public static void OnReceiveUse(int playerId, CardFS card)
     {
-        GameManager.Singleton.players[playerId].DrawCard(1);
+        GameManager.Singleton.players[playerId].AddMessage(card);
 
+        var message = GameManager.Singleton.messageReceived;
         if (playerId == GameManager.SelfPlayerId)
         {
             if (GameManager.Singleton.selectSkill != null)
             {
                 GameManager.Singleton.selectSkill.OnUse();
             }
-            foreach (var card in GameManager.Singleton.players[playerId].messages)
-            {
-                if (card.id == cardId)
-                {
-                    GameManager.Singleton.cardsHand.Add(cardId, card);
-                    GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { card });
-                }
-            }
+            GameManager.Singleton.cardsHand.Add(message.id, message);
+            GameManager.Singleton.cardsHand.Remove(card.id);
+            GameManager.Singleton.gameUI.Cards.Remove(card.id);
+            GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { message });
         }
-        GameManager.Singleton.players[playerId].RemoveMessage(cardId);
-        GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
+        GameManager.Singleton.players[playerId].RemoveMessage(message.id);
 
-        string s = "" + playerId + "å·ç©å®¶ä½¿ç”¨äº†æŠ€èƒ½å¥‡è´§å¯å±…";
+        string s = "" + playerId + "ºÅÍæ¼ÒÊ¹ÓÃÁË¼¼ÄÜÃàÀï²ØÕë";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

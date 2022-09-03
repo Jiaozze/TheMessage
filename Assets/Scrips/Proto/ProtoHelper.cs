@@ -298,7 +298,13 @@ public static class ProtoHelper
             CardFS card = new CardFS(skill_mian_li_cang_zhen_toc.Card);
             UserSkill_MianLiCangZhen.OnReceiveUse((int)skill_mian_li_cang_zhen_toc.PlayerId, (int)skill_mian_li_cang_zhen_toc.TargetPlayerId, card);
         }
-
+        else if (GetIdFromProtoName("skill_jin_shen_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jin_shen_toc");
+            skill_jin_shen_toc skill_jin_shen_toc = skill_jin_shen_toc.Parser.ParseFrom(contont);
+            CardFS card = new CardFS(skill_jin_shen_toc.Card);
+            UserSkill_JinShen.OnReceiveUse((int)skill_jin_shen_toc.PlayerId, card);
+        }
         #endregion
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
@@ -641,6 +647,17 @@ public static class ProtoHelper
 
         SendProto("skill_mian_li_cang_zhen_tos", proto);
     }
+    //谨慎
+    public static void SendSkill_JinShen(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jin_shen_tos, seq:" + seq);
+
+        skill_jin_shen_tos skill_jin_shen_tos = new skill_jin_shen_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_jin_shen_tos.ToByteArray();
+
+        SendProto("skill_jin_shen_tos", proto);
+    }
+
     //新思潮
     public static void SendSkill_XinSiChao(int cardId, uint seq)
     {
