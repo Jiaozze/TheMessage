@@ -15,7 +15,7 @@ public class GameUI : MonoBehaviour
     public GameObject goWeiBiSelect;
     public WeiBiGiveCard weiBiGiveCard;
     public PlayerMessagInfo playerMessagInfo;
-
+    public DirectSelect directSelect;
     public WinInfo winInfo;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
@@ -47,6 +47,7 @@ public class GameUI : MonoBehaviour
 
     private void Awake()
     {
+        directSelect.gameObject.SetActive(false);
         goDirect.SetActive(false);
         slider.gameObject.SetActive(false);
         itemCardUI.gameObject.SetActive(false);
@@ -803,12 +804,19 @@ public class GameUI : MonoBehaviour
             kv.Value.SetBanClick(false);
         }
 
+        directSelect.gameObject.SetActive(false);
+
         if (GameManager.Singleton.SelectCardId != -1)
         {
             var card = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId];
             if (GameManager.Singleton.IsWaitLock)
             {
                 //传情报锁定时，不需要限定目标
+            }
+            else if (GameManager.Singleton.players[GameManager.SelfPlayerId].role.name == "老鳖" 
+                && GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase && GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId)
+            {
+                directSelect.gameObject.SetActive(true);
             }
             else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.WuDao)
             {

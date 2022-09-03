@@ -504,6 +504,7 @@ public class GameManager
         }
         CurMessagePlayerId = messagePlayerId;
         OnWait(waitingPlayerId, waitSecond);
+        gameUI.ShowPhase();
 
         gameUI.HideMessagingCard();
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
@@ -558,8 +559,6 @@ public class GameManager
                 }
             }
         }
-
-        gameUI.ShowPhase();
     }
 
     public void OnReceiveUseWuDao(int user, int target, CardFS cardUsed)
@@ -1121,7 +1120,13 @@ public class GameManager
                     return;
                 }
 
-                ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), cardsHand[SelectCardId].direction, seqId);
+                DirectionEnum direction = cardsHand[SelectCardId].direction;
+                if(players[SelfPlayerId].role is Role_LaoBie)
+                {
+                    var role = players[SelfPlayerId].role as Role_LaoBie;
+                    direction = role.direction;
+                }
+                ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), direction, seqId);
                 SelectCardId = -1;
             }
             else if (!IsWaitLock)
@@ -1143,7 +1148,13 @@ public class GameManager
             {
                 IsWaitLock = false;
                 int lockId = SelectPlayerId > 0 ? SelectPlayerId : 0;
-                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { lockId }, cardsHand[SelectCardId].direction, seqId);
+                DirectionEnum direction = cardsHand[SelectCardId].direction;
+                if (players[SelfPlayerId].role is Role_LaoBie)
+                {
+                    var role = players[SelfPlayerId].role as Role_LaoBie;
+                    direction = role.direction;
+                }
+                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { lockId }, direction, seqId);
                 SelectCardId = -1;
             }
         }

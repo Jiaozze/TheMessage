@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Role_Unknown : RoleBase
+public class Role_LaoBie : RoleBase
 {
+    public DirectionEnum direction;
+
     public override string name
     {
-        get { return ""; }
+        get { return "老鳖"; }
     }
 
     public override bool isBack
@@ -14,7 +16,7 @@ public class Role_Unknown : RoleBase
         get { return true; }
     }
 
-    public Role_Unknown(int id)
+    public Role_LaoBie(int id)
     {
         playerId = id;
         skills = new List<SkillBase>() { };
