@@ -101,6 +101,7 @@ public class UserSkill_QiHuoKeJu : SkillBase
 
     public static void OnReceiveUse(int playerId, int cardId)
     {
+        string cardStr = "";
         GameManager.Singleton.players[playerId].DrawCard(1);
 
         if (playerId == GameManager.SelfPlayerId)
@@ -118,10 +119,19 @@ public class UserSkill_QiHuoKeJu : SkillBase
                 }
             }
         }
+        foreach(var message in GameManager.Singleton.players[playerId].messages)
+        {
+            if(message.id == cardId)
+            {
+                cardStr = message.GetCardInfo();
+                break;
+            }
+        }
+
         GameManager.Singleton.players[playerId].RemoveMessage(cardId);
         GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
 
-        string s = "" + playerId + "号玩家使用了技能奇货可居";
+        string s = "" + playerId + "号玩家使用了技能奇货可居,将情报区的" + cardStr + "置入手牌";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

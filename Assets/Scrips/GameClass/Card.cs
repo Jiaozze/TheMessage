@@ -82,4 +82,15 @@ public class CardFS
 
         }
     }
+
+    public string GetCardInfo()
+    {
+        string s = " ";
+        foreach (var color in color)
+        {
+            s = s + LanguageUtils.GetColorName(color);
+        }
+        s += LanguageUtils.GetCardName(cardName);
+        return s;
+    }
 }

@@ -118,6 +118,8 @@ public class UserSkill_JinShen : SkillBase
         GameManager.Singleton.players[playerId].AddMessage(card);
 
         var message = GameManager.Singleton.messageReceived;
+        string messageStr = message.GetCardInfo();
+        string cardStr = card.GetCardInfo();
         if (playerId == GameManager.SelfPlayerId)
         {
             if (GameManager.Singleton.selectSkill != null)
@@ -132,7 +134,7 @@ public class UserSkill_JinShen : SkillBase
         GameManager.Singleton.players[playerId].RemoveMessage(message.id);
         GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
 
-        string s = "" + playerId + "号玩家使用了技能谨慎";
+        string s = string.Format("{0}号玩家使用了技能谨慎，将情报{1}与手牌{2}互换", playerId, messageStr, cardStr);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

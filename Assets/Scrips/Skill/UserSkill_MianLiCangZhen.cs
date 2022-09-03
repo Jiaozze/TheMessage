@@ -139,7 +139,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
         GameManager.Singleton.gameUI.ShowAddMessage(targetPlayerId, card, false);
         GameManager.Singleton.gameUI.Players[targetPlayerId].RefreshMessage();
 
-        string s = "" + playerId + "号玩家使用了技能绵里藏针";
+        string s = string.Format("{0}号玩家使用了技能绵里藏针,将一张{1}置入{2}号玩家情报区",playerId, card.GetCardInfo(), targetPlayerId);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }
