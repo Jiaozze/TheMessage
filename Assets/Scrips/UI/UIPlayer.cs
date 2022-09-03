@@ -58,7 +58,7 @@ public class UIPlayer : MonoBehaviour
         goMessageOn.SetActive(false);
         playerId = id;
         //textPlayerId.text = "" + id + "ºÅÍæ¼Ò";
-        textPlayerId.text = GameManager.Singleton.players[id].role.name;
+        textPlayerId.text = GameManager.Singleton.players[id].role.name == "" ? "" + id + "ºÅÍæ¼Ò" : GameManager.Singleton.players[id].role.name;
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
@@ -67,7 +67,10 @@ public class UIPlayer : MonoBehaviour
 
     public void InitSkill()
     {
-
+        if(playerId != GameManager.SelfPlayerId)
+        {
+            return;
+        }
         for (int i = 0; i < GameManager.Singleton.players[playerId].role.skills.Count; i++)
         {
             SkillBase skill = GameManager.Singleton.players[playerId].role.skills[i];
