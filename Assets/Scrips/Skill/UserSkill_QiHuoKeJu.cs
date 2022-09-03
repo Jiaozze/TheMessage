@@ -71,7 +71,7 @@ public class UserSkill_QiHuoKeJu : SkillBase
 
     public override void OnMessageSelect(int playerId, int cardId)
     {
-        selectCardId = 0;
+        selectCardId = cardId;
     }
 
     public override void OnMessageInfoClose()
