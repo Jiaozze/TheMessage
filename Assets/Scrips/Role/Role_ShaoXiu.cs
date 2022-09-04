@@ -8,6 +8,8 @@ public class Role_ShaoXiu:RoleBase
     {
         get { return "ÉÛÐã"; }
     }
+    public override bool isWoman => true;
+
     public override string spritName
     {
         get { return "ShaoXiu"; }
