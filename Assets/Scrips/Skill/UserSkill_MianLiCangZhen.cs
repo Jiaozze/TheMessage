@@ -131,12 +131,12 @@ public class UserSkill_MianLiCangZhen : SkillBase
                 GameManager.Singleton.selectSkill.OnUse();
             }
             GameManager.Singleton.cardsHand.Remove(card.id);
-            GameManager.Singleton.gameUI.Cards.Remove(card.id);
+            GameManager.Singleton.gameUI.DisCards(new List<CardFS>() { card });
         }
         GameManager.Singleton.players[playerId].cardCount = GameManager.Singleton.players[playerId].cardCount - 1;
         GameManager.Singleton.players[targetPlayerId].AddMessage(card);
 
-        GameManager.Singleton.gameUI.ShowAddMessage(targetPlayerId, card, false);
+        GameManager.Singleton.gameUI.ShowAddMessage(targetPlayerId, card, false, playerId);
         GameManager.Singleton.gameUI.Players[targetPlayerId].RefreshMessage();
 
         string s = string.Format("{0}号玩家使用了技能绵里藏针,将一张{1}置入{2}号玩家情报区",playerId, card.GetCardInfo(), targetPlayerId);
