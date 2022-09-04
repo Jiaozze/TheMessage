@@ -11,6 +11,11 @@ public class Role_LaoBie : RoleBase
         get { return "老鳖"; }
     }
 
+    public override string spritName
+    {
+        get { return "LaoBie"; }
+    }
+
     public override bool isBack
     {
         get { return true; }

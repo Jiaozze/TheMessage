@@ -8,7 +8,10 @@ public class Role_JinShengHuo : RoleBase
     {
         get { return "½ğÉú»ğ"; }
     }
-
+    public override string spritName
+    {
+        get { return "JinShengHuo"; }
+    }
     public override bool isBack
     {
         get { return false; }
