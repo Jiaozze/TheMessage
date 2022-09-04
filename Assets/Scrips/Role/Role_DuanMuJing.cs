@@ -8,6 +8,7 @@ public class Role_DuanMuJing:RoleBase
     {
         get { return "¶ËÄ¾¾²"; }
     }
+    public override bool isWoman => true;
     public override string spritName
     {
         get { return "DuanMuJing"; }

@@ -315,7 +315,7 @@ public class GameManager
         string targetInfo;
         targetInfo = target == -1 ? "" : "对" + target + "号玩家";
         gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
-        SoundManager.PlaySound(cardUsed.cardName);
+        SoundManager.PlaySound(cardUsed.cardName, players[user].role.isWoman);
     }
 
     private void OnCardSend(int playerId, int cardId, int targetId, List<int> lockIds, DirectionEnum dir)
@@ -715,7 +715,7 @@ public class GameManager
         string s = string.Format("{0}号玩家对{1}号玩家使用了试探;{2}", user, targetUser, cardInfo);
         gameUI.AddMsg(s);
         gameUI.ShowInfo(s);
-        SoundManager.PlaySound(CardNameEnum.ShiTan);
+        SoundManager.PlaySound(CardNameEnum.ShiTan, players[user].role.isWoman);
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
