@@ -8,7 +8,10 @@ public class Role_ShaoXiu:RoleBase
     {
         get { return "…€–„"; }
     }
-
+    public override string spritName
+    {
+        get { return "ShaoXiu"; }
+    }
     public override bool isBack
     {
         get { return false; }

@@ -14,6 +14,14 @@ public class Role_Unknown : RoleBase
         get { return true; }
     }
 
+    public override string spritName
+    {
+        get
+        {
+            return "";
+        }
+    }
+
     public Role_Unknown(int id)
     {
         playerId = id;

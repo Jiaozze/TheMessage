@@ -8,7 +8,10 @@ public class Role_MaoBuBa : RoleBase
     {
         get { return "Ã«²»°Î"; }
     }
-
+    public override string spritName
+    {
+        get { return "MaoBuBa"; }
+    }
     public override bool isBack
     {
         get { return false; }

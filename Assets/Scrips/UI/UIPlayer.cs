@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIPlayer : MonoBehaviour
 {
     public Animator animator;
+    public Image imgRole;
     public Button button;
     public Button butSkill1;
     public Button butSkill2;
@@ -63,6 +64,19 @@ public class UIPlayer : MonoBehaviour
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
         InitSkill();
+        var path = GameManager.Singleton.players[id].role.spritName;
+        if(!string.IsNullOrEmpty(path))
+        {
+            Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Images/Role");
+            foreach (Sprite sprite in sprites)
+            {
+                if (sprite.name == path)
+                {
+                    imgRole.sprite = sprite;
+                    break;
+                }
+            }
+        }
     }
 
     public void InitSkill()

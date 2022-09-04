@@ -2341,6 +2341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8139540596543019616}
+  imgRole: {fileID: 2044960400205325777}
   button: {fileID: 8235261328749021572}
   butSkill1: {fileID: 2255739615106843606}
   butSkill2: {fileID: 1741994467299130762}
