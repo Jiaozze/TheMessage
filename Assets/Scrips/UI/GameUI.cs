@@ -731,7 +731,7 @@ public class GameUI : MonoBehaviour
         butSure.interactable = canSure;
     }
 
-    public void ShowAddMessage(int messagePlayerId, CardFS message, bool isSend)
+    public void ShowAddMessage(int messagePlayerId, CardFS message, bool isSend, int fromPlayer = -1)
     {
         if (isSend)
         {
@@ -749,12 +749,21 @@ public class GameUI : MonoBehaviour
         }
         else
         {
+            Vector3 from = textDeckCount.transform.position;
+            if(fromPlayer == 0)
+            {
+                from = transCards.position;
+            }
+            else if(fromPlayer > 0)
+            {
+                from = Players[fromPlayer].transform.position;
+            }
             var card = GameObject.Instantiate(itemCardUI, transform);
-            card.transform.position = textDeckCount.transform.position;
+            card.transform.position = from;
             card.transform.localScale = new Vector3(0.5f, 0.5f);
             card.SetInfo(message);
             card.gameObject.SetActive(true);
-            StartCoroutine(DoMove(card.transform, card.transform.position, Players[messagePlayerId].transform.position, 0.05f, () => { Destroy(card.gameObject); }, 1f));
+            StartCoroutine(DoMove(card.transform, from, Players[messagePlayerId].transform.position, 0.05f, () => { Destroy(card.gameObject); }, 1f));
         }
     }
 
