@@ -78,6 +78,11 @@ public class UserSkill_XinSiChao : SkillBase
 
     }
 
+    public override void OnTurnEnd()
+    {
+        usedCount = 0;
+    }
+
     public override void Cancel()
     {
         if (selectCardId > 0)

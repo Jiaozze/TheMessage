@@ -302,20 +302,23 @@ public class GameManager
         {
             players[user].DisCard(1);
         }
-        if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
+        if(cardUsed != null)
         {
-            cardsHand.Remove(cardUsed.id);
-            SelectCardId = -1;
+            if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
+            {
+                cardsHand.Remove(cardUsed.id);
+                SelectCardId = -1;
+            }
+            else if (user == SelfPlayerId && !cardsHand.ContainsKey(cardUsed.id))
+            {
+                Debug.LogError("no card in hand," + cardUsed.id);
+            }
+            gameUI.OnUseCard(user, target, cardUsed);
+            string targetInfo;
+            targetInfo = target == -1 ? "" : "对" + target + "号玩家";
+            gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
+            SoundManager.PlaySound(cardUsed.cardName, players[user].role.isWoman);
         }
-        else if (user == SelfPlayerId && !cardsHand.ContainsKey(cardUsed.id))
-        {
-            Debug.LogError("no card in hand," + cardUsed.id);
-        }
-        gameUI.OnUseCard(user, target, cardUsed);
-        string targetInfo;
-        targetInfo = target == -1 ? "" : "对" + target + "号玩家";
-        gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
-        SoundManager.PlaySound(cardUsed.cardName, players[user].role.isWoman);
     }
 
     private void OnCardSend(int playerId, int cardId, int targetId, List<int> lockIds, DirectionEnum dir)
@@ -515,6 +518,13 @@ public class GameManager
             lockedPlayer = null;
             gameUI.ClearLock();
             gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
+            if(lastTurnPlayerId == SelfPlayerId)
+            {
+                foreach (var skill in players[SelfPlayerId].role.skills)
+                {
+                    skill.OnTurnEnd();
+                }
+            }
         }
         if (phase == PhaseEnum.Send_Start_Phase)
         {
