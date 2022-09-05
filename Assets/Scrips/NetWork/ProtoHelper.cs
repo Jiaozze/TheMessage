@@ -39,7 +39,7 @@ public static class ProtoHelper
             PlayerColorEnum playerColor = (PlayerColorEnum)init_Toc.Identity;
             SecretTaskEnum secretTask = (SecretTaskEnum)init_Toc.SecretTask;
             List<RoleBase> roles = new List<RoleBase>();
-            for(int i = 0; i < init_Toc.Roles.Count; i ++)
+            for (int i = 0; i < init_Toc.Roles.Count; i++)
             {
                 roles.Add(AllRoles.GetRole(init_Toc.Roles[i], i));
             }
@@ -136,7 +136,7 @@ public static class ProtoHelper
 
             int user = (int)use_Li_You_Toc.PlayerId;
             int target = (int)use_Li_You_Toc.TargetPlayerId;
-            CardFS cardLiYou = new CardFS(use_Li_You_Toc.LiYouCard);
+            CardFS cardLiYou = use_Li_You_Toc.LiYouCard == null ? null : new CardFS(use_Li_You_Toc.LiYouCard);
             CardFS cardMessage = new CardFS(use_Li_You_Toc.MessageCard);
             GameManager.Singleton.OnRecerveUseLiYou(user, target, cardLiYou, cardMessage, use_Li_You_Toc.JoinIntoHand);
         }
@@ -177,7 +177,7 @@ public static class ProtoHelper
             wei_bi_show_hand_card_toc wei_Bi_Show_Hand_Card_Toc = wei_bi_show_hand_card_toc.Parser.ParseFrom(contont);
             int user = (int)wei_Bi_Show_Hand_Card_Toc.PlayerId;
             int target = (int)wei_Bi_Show_Hand_Card_Toc.TargetPlayerId;
-            CardFS cardUsed = new CardFS(wei_Bi_Show_Hand_Card_Toc.Card);
+            CardFS cardUsed = wei_Bi_Show_Hand_Card_Toc.Card == null ? null : new CardFS(wei_Bi_Show_Hand_Card_Toc.Card);
             List<CardFS> cards = new List<CardFS>();
             foreach (var card in wei_Bi_Show_Hand_Card_Toc.Cards)
             {
@@ -196,7 +196,7 @@ public static class ProtoHelper
             wei_bi_wait_for_give_card_toc wei_bi_wait_for_give_card_toc = wei_bi_wait_for_give_card_toc.Parser.ParseFrom(contont);
             int user = (int)wei_bi_wait_for_give_card_toc.PlayerId;
             int target = (int)wei_bi_wait_for_give_card_toc.TargetPlayerId;
-            CardFS cardUsed = new CardFS(wei_bi_wait_for_give_card_toc.Card);
+            CardFS cardUsed = wei_bi_wait_for_give_card_toc.Card == null ? null : new CardFS(wei_bi_wait_for_give_card_toc.Card);
 
             int waitTime = (int)wei_bi_wait_for_give_card_toc.WaitingSecond;
             uint seq = wei_bi_wait_for_give_card_toc.Seq;
@@ -285,12 +285,14 @@ public static class ProtoHelper
             GameManager.Singleton.OnReceiveUseWuDao(user, target, cardUsed);
         }
         #region 技能
-        else if(GetIdFromProtoName("skill_xin_si_chao_toc") == id)
+        //端木静【新思潮】
+        else if (GetIdFromProtoName("skill_xin_si_chao_toc") == id)
         {
             Debug.Log(" _______receive________ skill_xin_si_chao_toc");
             skill_xin_si_chao_toc skill_Xin_Si_Chao_Toc = skill_xin_si_chao_toc.Parser.ParseFrom(contont);
             UserSkill_XinSiChao.OnReceiveUse((int)skill_Xin_Si_Chao_Toc.PlayerId);
         }
+        //邵秀【绵里藏针】
         else if (GetIdFromProtoName("skill_mian_li_cang_zhen_toc") == id)
         {
             Debug.Log(" _______receive________ skill_mian_li_cang_zhen_toc");
@@ -298,6 +300,7 @@ public static class ProtoHelper
             CardFS card = new CardFS(skill_mian_li_cang_zhen_toc.Card);
             UserSkill_MianLiCangZhen.OnReceiveUse((int)skill_mian_li_cang_zhen_toc.PlayerId, (int)skill_mian_li_cang_zhen_toc.TargetPlayerId, card);
         }
+        // 金生火【谨慎】
         else if (GetIdFromProtoName("skill_jin_shen_toc") == id)
         {
             Debug.Log(" _______receive________ skill_jin_shen_toc");
@@ -305,11 +308,20 @@ public static class ProtoHelper
             CardFS card = new CardFS(skill_jin_shen_toc.Card);
             UserSkill_JinShen.OnReceiveUse((int)skill_jin_shen_toc.PlayerId, card);
         }
+        // 毛不拔【奇货可居】
         else if (GetIdFromProtoName("skill_qi_huo_ke_ju_toc") == id)
         {
             Debug.Log(" _______receive________ skill_qi_huo_ke_ju_toc");
             skill_qi_huo_ke_ju_toc skill_qi_huo_ke_ju_toc = skill_qi_huo_ke_ju_toc.Parser.ParseFrom(contont);
             UserSkill_QiHuoKeJu.OnReceiveUse((int)skill_qi_huo_ke_ju_toc.PlayerId, (int)skill_qi_huo_ke_ju_toc.CardId);
+        }
+        // 肥原龙川【诡诈】
+        else if (GetIdFromProtoName("skill_gui_zha_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_gui_zha_toc");
+            skill_gui_zha_toc skill_gui_zha_toc = skill_gui_zha_toc.Parser.ParseFrom(contont);
+            UserSkill_GuiZha_LiYou.OnReceiveUse((int)skill_gui_zha_toc.PlayerId, (int)skill_gui_zha_toc.TargetPlayerId, (CardNameEnum)skill_gui_zha_toc.CardType);
+            //UserSkill_QiHuoKeJu.OnReceiveUse((int)skill_gui_zha_toc.PlayerId, (int)skill_gui_zha_toc.CardId);
         }
         #endregion
         // 通知客户端谁死亡了
@@ -417,7 +429,7 @@ public static class ProtoHelper
             GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
         }
         //errorCode
-        else if(GetIdFromProtoName("error_code_toc") == id)
+        else if (GetIdFromProtoName("error_code_toc") == id)
         {
             error_code_toc error_Code_Toc = error_code_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnErrorCode(error_Code_Toc.Code);
@@ -638,9 +650,14 @@ public static class ProtoHelper
         SendProto("skill_qi_huo_ke_ju_tos", proto);
 
     }
-    //诡谲
-    public static void SendSkill_GuiJue()
+    // 肥原龙川【诡诈】
+    public static void SendSkill_GuiZha(int target,CardNameEnum cardType, CardNameEnum cardWant, uint seq)
     {
+        Debug.Log("____send___________________ skill_gui_zha_tos, seq:" + seq);
+
+        skill_gui_zha_tos skill_gui_zha_tos = new skill_gui_zha_tos() { TargetPlayerId = (uint)target, CardType = (card_type)cardType, WantType = (card_type)cardWant,  Seq = seq };
+        byte[] proto = skill_gui_zha_tos.ToByteArray();
+        SendProto("skill_gui_zha_tos", proto);
 
     }
     //绵里藏针

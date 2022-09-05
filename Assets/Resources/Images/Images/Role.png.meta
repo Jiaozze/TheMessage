@@ -22,7 +22,7 @@ TextureImporter:
     second: Role_5
   - first:
       213: 5122093653365719457
-    second: Role_6
+    second: FeiYuanLongChuan
   - first:
       213: 7236561614953209135
     second: Role_7
@@ -259,7 +259,7 @@ TextureImporter:
       name: MaoBuBa
       rect:
         serializedVersion: 2
-        x: 2232
+        x: 2244
         y: 2064
         width: 744
         height: 1032
@@ -319,7 +319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Role_6
+      name: FeiYuanLongChuan
       rect:
         serializedVersion: 2
         x: 4464

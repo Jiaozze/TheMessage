@@ -10,13 +10,41 @@ public class WeiBiSelect : MonoBehaviour
     public Toggle togDiaoBao;
     public Toggle togChengQing;
 
+    public CardNameEnum cardWant;
+
+    private void Awake()
+    {
+        OnToggle();
+    }
+
     public void OnClickCancel()
     {
         gameObject.SetActive(false);
     }
 
+    public void OnToggle()
+    {
+        if (togChengQing.isOn) cardWant = CardNameEnum.ChengQing;
+        else if (togDiaoBao.isOn) cardWant = CardNameEnum.DiaoBao;
+        else if (togJieHuo.isOn) cardWant = CardNameEnum.JieHuo;
+        else if (togWuDao.isOn) cardWant = CardNameEnum.WuDao;
+    }
+
     public void OnClickSure()
     {
+        if(GameManager.Singleton.IsUsingSkill)
+        {
+            if(GameManager.Singleton.selectSkill is UserSkill_GuiZha_WeiBi)
+            {
+                GameManager.Singleton.selectSkill.Use();
+            }
+            else
+            {
+                GameManager.Singleton.selectSkill.Cancel();
+            }
+            return;
+        }
+
         var curCard = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId];
         if (curCard.cardName == CardNameEnum.WeiBi && GameManager.Singleton.SelectPlayerId != -1 && GameManager.Singleton.SelectPlayerId != 0)
         {
