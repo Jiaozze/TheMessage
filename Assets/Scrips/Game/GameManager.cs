@@ -496,6 +496,10 @@ public class GameManager
         {
             gameUI.ShowWeiBiSelect(false);
         }
+        else
+        {
+            gameUI.Players[SelfPlayerId].RefreshSkillState();
+        }
 
         if (CurMessagePlayerId != messagePlayerId)
         {
