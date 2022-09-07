@@ -227,7 +227,7 @@ public class GameUI : MonoBehaviour
         }
 
     }
-    public void DisCards(List<CardFS> cards)
+    public void RemoveCards(List<CardFS> cards)
     {
         foreach (var card in cards)
         {

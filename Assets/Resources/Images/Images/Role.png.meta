@@ -37,7 +37,7 @@ TextureImporter:
     second: Role_10
   - first:
       213: 2339586953132074006
-    second: Role_11
+    second: WangKui
   - first:
       213: -8094751458461406781
     second: Role_12
@@ -424,7 +424,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Role_11
+      name: WangKui
       rect:
         serializedVersion: 2
         x: 744

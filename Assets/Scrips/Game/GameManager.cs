@@ -545,7 +545,7 @@ public class GameManager
             if (cardsHand.ContainsKey(message.id))
             {
                 cardsHand.Remove(message.id);
-                gameUI.DisCards(new List<CardFS>() { message });
+                gameUI.RemoveCards(new List<CardFS>() { message });
             }
             //string dir;
 

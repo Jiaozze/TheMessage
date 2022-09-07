@@ -323,6 +323,14 @@ public static class ProtoHelper
             UserSkill_GuiZha_LiYou.OnReceiveUse((int)skill_gui_zha_toc.PlayerId, (int)skill_gui_zha_toc.TargetPlayerId, (CardNameEnum)skill_gui_zha_toc.CardType);
             //UserSkill_QiHuoKeJu.OnReceiveUse((int)skill_gui_zha_toc.PlayerId, (int)skill_gui_zha_toc.CardId);
         }
+        // 王魁【以牙还牙】
+        else if(GetIdFromProtoName("skill_yi_ya_huan_ya_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_yi_ya_huan_ya_toc");
+            skill_yi_ya_huan_ya_toc skill_Yi_Ya_Huan_Ya_Toc = skill_yi_ya_huan_ya_toc.Parser.ParseFrom(contont);
+            CardFS card = new CardFS(skill_Yi_Ya_Huan_Ya_Toc.Card);
+            UserSkill_YiYaHuanYa.OnReceiveUse((int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId, (int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId, card);
+        }
         #endregion
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
@@ -650,6 +658,15 @@ public static class ProtoHelper
         SendProto("skill_qi_huo_ke_ju_tos", proto);
 
     }
+    // 王魁【以牙还牙】
+    public static void SendSkill_YiYaHuanYa(int cardId, int target, uint seq)
+    {
+        Debug.Log("____send___________________ skill_yi_ya_huan_ya_tos, seq:" + seq);
+        skill_yi_ya_huan_ya_tos skill_yi_ya_huan_ya_tos = new skill_yi_ya_huan_ya_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)target, Seq = seq };
+        byte[] proto = skill_yi_ya_huan_ya_tos.ToByteArray();
+        SendProto("skill_yi_ya_huan_ya_tos", proto);
+    }
+
     // 肥原龙川【诡诈】
     public static void SendSkill_GuiZha(int target,CardNameEnum cardType, CardNameEnum cardWant, uint seq)
     {

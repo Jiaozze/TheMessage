@@ -131,7 +131,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
                 GameManager.Singleton.selectSkill.OnUse();
             }
             GameManager.Singleton.cardsHand.Remove(card.id);
-            GameManager.Singleton.gameUI.DisCards(new List<CardFS>() { card });
+            GameManager.Singleton.gameUI.RemoveCards(new List<CardFS>() { card });
         }
         GameManager.Singleton.players[playerId].cardCount = GameManager.Singleton.players[playerId].cardCount - 1;
         GameManager.Singleton.players[targetPlayerId].AddMessage(card);
