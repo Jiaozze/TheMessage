@@ -268,9 +268,9 @@ public static class ProtoHelper
         {
             Debug.Log(" _______receive________ use_jie_huo_toc");
 
-            use_jie_huo_toc use_diao_bao_toc = use_jie_huo_toc.Parser.ParseFrom(contont);
-            int user = (int)use_diao_bao_toc.PlayerId;
-            CardFS cardUsed = new CardFS(use_diao_bao_toc.Card);
+            use_jie_huo_toc use_jie_huo_toc = use_jie_huo_toc.Parser.ParseFrom(contont);
+            int user = (int)use_jie_huo_toc.PlayerId;
+            CardFS cardUsed = use_jie_huo_toc.Card == null ? null : new CardFS(use_jie_huo_toc.Card);
             GameManager.Singleton.OnReceiveUseJieHuo(user, cardUsed);
         }
         // 通知所有人使用误导
@@ -324,12 +324,26 @@ public static class ProtoHelper
             //UserSkill_QiHuoKeJu.OnReceiveUse((int)skill_gui_zha_toc.PlayerId, (int)skill_gui_zha_toc.CardId);
         }
         // 王魁【以牙还牙】
-        else if(GetIdFromProtoName("skill_yi_ya_huan_ya_toc") == id)
+        else if (GetIdFromProtoName("skill_yi_ya_huan_ya_toc") == id)
         {
             Debug.Log(" _______receive________ skill_yi_ya_huan_ya_toc");
             skill_yi_ya_huan_ya_toc skill_Yi_Ya_Huan_Ya_Toc = skill_yi_ya_huan_ya_toc.Parser.ParseFrom(contont);
             CardFS card = new CardFS(skill_Yi_Ya_Huan_Ya_Toc.Card);
-            UserSkill_YiYaHuanYa.OnReceiveUse((int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId, (int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId, card);
+            UserSkill_YiYaHuanYa.OnReceiveUse((int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId, (int)skill_Yi_Ya_Huan_Ya_Toc.TargetPlayerId, card);
+        }
+        // 鄭文先【偷天】：争夺阶段你可以翻开此角色牌，然后视为你使用了一张【截获】。
+        else if (GetIdFromProtoName("skill_tou_tian_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_tou_tian_toc");
+            skill_tou_tian_toc skill_tou_tian_toc = skill_tou_tian_toc.Parser.ParseFrom(contont);
+            UserSkill_TouTian.OnReceiveUse((int)skill_tou_tian_toc.PlayerId);
+        }
+        // 鄭文先 【换日】：你使用【调包】或【破译】后，可以将你的角色牌翻至面朝下。
+        else if (GetIdFromProtoName("skill_huan_ri_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_huan_ri_toc");
+            skill_huan_ri_toc skill_Yi_Ya_Huan_Ya_Toc = skill_huan_ri_toc.Parser.ParseFrom(contont);
+            UserSkill_HuanRi.OnReceiveUse((int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId);
         }
         #endregion
         // 通知客户端谁死亡了
@@ -648,6 +662,16 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 鄭文先【偷天】：争夺阶段你可以翻开此角色牌，然后视为你使用了一张【截获】。
+    public static void SendSkill_TouTian(uint seq)
+    {
+        Debug.Log("____send___________________ skill_tou_tian_tos, seq:" + seq);
+
+        skill_tou_tian_tos skill_tou_tian_tos = new skill_tou_tian_tos() { Seq = seq };
+        byte[] proto = skill_tou_tian_tos.ToByteArray();
+        SendProto("skill_tou_tian_tos", proto);
+    }
+
     //奇货可居
     public static void SendSkill_QiHuoKeJu(int cardId, uint seq)
     {

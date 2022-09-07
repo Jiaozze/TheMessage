@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Role_LaoBie : RoleBase
+public class Role_ZhengWenXian : RoleBase
 {
     public DirectionEnum direction;
 
     public override string name
     {
-        get { return "老鳖"; }
+        get { return "鄭文先"; }
     }
 
     public override string spritName
     {
-        get { return "LaoBie"; }
+        get { return "ZhengWenXian"; }
     }
 
     public override bool isBack
     {
-        get { return false; }
+        get;
+        set;
     }
 
-    public Role_LaoBie(int id)
+    public Role_ZhengWenXian(int id)
     {
         playerId = id;
-        skills = new List<SkillBase>() { };
+        skills = new List<SkillBase>() { new UserSkill_TouTian(id), new UserSkill_HuanRi(id) };
     }
 }
