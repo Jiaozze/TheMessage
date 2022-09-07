@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +12,8 @@ public class AllRoles
         {
             case role.FeiYuanLongChuan:
                 return new Role_FeiYuanLongChuan(i);
+            case role.WangKui:
+                return new Role_WangKui(i);
             case role.LaoBie:
                 return new Role_LaoBie(i);
             case role.JinShengHuo:
