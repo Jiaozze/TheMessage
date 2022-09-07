@@ -63,9 +63,14 @@ public class UIPlayer : MonoBehaviour
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
+        InitRole();
         InitSkill();
-        var path = GameManager.Singleton.players[id].role.spritName;
-        if(!string.IsNullOrEmpty(path))
+    }
+
+    public void InitRole()
+    {
+        var path = GameManager.Singleton.players[playerId].role.spritName;
+        if (!string.IsNullOrEmpty(path))
         {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Images/Role");
             foreach (Sprite sprite in sprites)
@@ -228,5 +233,11 @@ public class UIPlayer : MonoBehaviour
         {
             goMask.SetActive(v);
         }
+    }
+
+    public void OnTurnBack(bool v)
+    {
+        //TODO
+        throw new NotImplementedException();
     }
 }

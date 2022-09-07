@@ -9,7 +9,8 @@ public abstract class RoleBase
     public virtual bool isWoman { get; }
     public virtual bool isBack
     {
-        get { return false; }
+        get;
+        set;
     }
 
     public int playerId;

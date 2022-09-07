@@ -298,12 +298,12 @@ public class GameManager
     }
     private void OnCardUse(int user, CardFS cardUsed, int target = -1)
     {
-        if (players.ContainsKey(user))
-        {
-            players[user].DisCard(1);
-        }
         if(cardUsed != null)
         {
+            if (players.ContainsKey(user))
+            {
+                players[user].DisCard(1);
+            }
             if (user == SelfPlayerId && cardsHand.ContainsKey(cardUsed.id))
             {
                 cardsHand.Remove(cardUsed.id);
@@ -496,10 +496,6 @@ public class GameManager
         {
             gameUI.ShowWeiBiSelect(false);
         }
-        else
-        {
-            gameUI.Players[SelfPlayerId].RefreshSkillState();
-        }
 
         if (CurMessagePlayerId != messagePlayerId)
         {
@@ -513,6 +509,7 @@ public class GameManager
         OnWait(waitingPlayerId, waitSecond);
         gameUI.ShowPhase();
 
+        gameUI.Players[SelfPlayerId].RefreshSkillState();
         gameUI.HideMessagingCard();
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
         gameUI.Players[lastTurnPlayerId].HidePhase();
