@@ -345,6 +345,14 @@ public static class ProtoHelper
             skill_huan_ri_toc skill_Yi_Ya_Huan_Ya_Toc = skill_huan_ri_toc.Parser.ParseFrom(contont);
             UserSkill_HuanRi.OnReceiveUse((int)skill_Yi_Ya_Huan_Ya_Toc.PlayerId);
         }
+        // 广播使用【明饵】：你传出的红色或蓝色情报被接收后，你和接收者各摸一张牌。
+        else if (GetIdFromProtoName("skill_ming_er_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_ming_er_toc");
+            skill_ming_er_toc skill_ming_er_toc = skill_ming_er_toc.Parser.ParseFrom(contont);
+            UserSkill_MingEr.OnReceiveUse((int)skill_ming_er_toc.PlayerId);
+        }
+
         #endregion
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)

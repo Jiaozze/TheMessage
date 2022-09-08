@@ -24,6 +24,6 @@ public class Role_LaoBie : RoleBase
     public Role_LaoBie(int id)
     {
         playerId = id;
-        skills = new List<SkillBase>() { };
+        skills = new List<SkillBase>() { new UserSkill_LianLuo(id), new UserSkill_MingEr(id) };
     }
 }
