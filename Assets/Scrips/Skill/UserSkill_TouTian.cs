@@ -11,7 +11,10 @@ public class UserSkill_TouTian : SkillBase
             {
                 return false;
             }
-
+            if(GameManager.Singleton.CurMessagePlayerId == GameManager.SelfPlayerId)
+            {
+                return false;
+            }
             if (GameManager.Singleton.curPhase != PhaseEnum.Fight_Phase)
             {
                 return false;

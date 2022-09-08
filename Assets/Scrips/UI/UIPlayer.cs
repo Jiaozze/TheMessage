@@ -238,6 +238,7 @@ public class UIPlayer : MonoBehaviour
 
     public void OnTurnBack(bool isBack)
     {
+        textPlayerId.text = GameManager.Singleton.players[playerId].role.name == "" ? "" + playerId + "ºÅÍæ¼Ò" : GameManager.Singleton.players[playerId].role.name;
         animator.SetTrigger("TurnBack");
         if(isBack)
         {
