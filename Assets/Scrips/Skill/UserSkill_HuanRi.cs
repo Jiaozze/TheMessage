@@ -34,8 +34,8 @@ public class UserSkill_HuanRi : SkillBase
 
     public static void OnReceiveUse(int playerId)
     {
-        GameManager.Singleton.players[playerId].role.isBack = true;
-        GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(true);
+        //GameManager.Singleton.players[playerId].role.isBack = true;
+        //GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(true);
 
 
         string s = string.Format("{0}号玩家使用了技能换日,将角色翻至面朝下", playerId);

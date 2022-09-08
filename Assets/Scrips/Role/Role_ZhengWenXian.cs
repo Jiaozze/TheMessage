@@ -25,6 +25,7 @@ public class Role_ZhengWenXian : RoleBase
     public Role_ZhengWenXian(int id)
     {
         playerId = id;
+        isBack = true;
         skills = new List<SkillBase>() { new UserSkill_TouTian(id), new UserSkill_HuanRi(id) };
     }
 }

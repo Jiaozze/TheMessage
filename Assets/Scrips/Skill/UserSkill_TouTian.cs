@@ -67,16 +67,16 @@ public class UserSkill_TouTian : SkillBase
                 GameManager.Singleton.selectSkill.OnUse();
             }
         }
-        if(GameManager.Singleton.players[playerId].role is Role_Unknown)
-        {
-            GameManager.Singleton.players[playerId].role = new Role_ZhengWenXian(playerId);
-            GameManager.Singleton.gameUI.Players[playerId].InitRole();
-        }
-        GameManager.Singleton.players[playerId].role.isBack = false;
-        GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(false);
+        //if(GameManager.Singleton.players[playerId].role is Role_Unknown)
+        //{
+        //    GameManager.Singleton.players[playerId].role = new Role_ZhengWenXian(playerId);
+        //    GameManager.Singleton.gameUI.Players[playerId].InitRole();
+        //}
+        //GameManager.Singleton.players[playerId].role.isBack = false;
+        //GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(false);
 
 
-        string s = string.Format("{0}号玩家使用了技能偷天，视为使用了一张截获", playerId);
+        string s = string.Format("{0}号玩家使用了技能偷天，将角色翻面，视为使用了一张截获", playerId);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }
