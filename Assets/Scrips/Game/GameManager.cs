@@ -468,6 +468,12 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家摸了{1}张牌", id, num));
     }
 
+    public void OnReceivePlayerUpDate(int playerId, role role)
+    {
+        players[playerId].UpdateRole(role);
+        gameUI.Players[playerId].OnTurnBack(players[playerId].role.isBack);
+    }
+
     // 通知客户端，到谁的哪个阶段了
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {

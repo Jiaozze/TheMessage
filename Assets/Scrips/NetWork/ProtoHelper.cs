@@ -284,6 +284,13 @@ public static class ProtoHelper
             CardFS cardUsed = new CardFS(use_wu_dao_toc.Card);
             GameManager.Singleton.OnReceiveUseWuDao(user, target, cardUsed);
         }
+        // 通知客户端角色变化
+        else if (GetIdFromProtoName("notify_role_update_toc") == id)
+        {
+            Debug.Log(" _______receive________ notify_role_update_toc");
+            notify_role_update_toc notify_role_update_toc = notify_role_update_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnReceivePlayerUpDate((int)notify_role_update_toc.PlayerId, notify_role_update_toc.Role );
+        }
         #region 技能
         //端木静【新思潮】
         else if (GetIdFromProtoName("skill_xin_si_chao_toc") == id)

@@ -69,6 +69,7 @@ public class UIPlayer : MonoBehaviour
 
     public void InitRole()
     {
+        if (GameManager.Singleton.players[playerId].role.isBack) return;
         var path = GameManager.Singleton.players[playerId].role.spritName;
         if (!string.IsNullOrEmpty(path))
         {
@@ -235,9 +236,18 @@ public class UIPlayer : MonoBehaviour
         }
     }
 
-    public void OnTurnBack(bool v)
+    public void OnTurnBack(bool isBack)
     {
-        //TODO
-        throw new NotImplementedException();
+        animator.SetTrigger("TurnBack");
+        if(isBack)
+        {
+            string path = "Images/role/role";
+            Sprite sprite = Resources.Load<Sprite>(path);
+            imgRole.sprite = sprite;
+        }
+        else
+        {
+            InitRole();
+        }
     }
 }

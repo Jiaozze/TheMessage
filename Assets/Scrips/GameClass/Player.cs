@@ -79,4 +79,27 @@ public class Player
     {
         return messages.Count;
     }
+
+    internal void UpdateRole(role role)
+    {
+        if(this.role is Role_Unknown)
+        {
+            if(role != role.Unknown)
+            {
+                this.role = AllRoles.GetRole(role, playerId);
+                this.role.isBack = false;
+            }
+        }
+        else
+        {
+            if(role == role.Unknown)
+            {
+                this.role.isBack = true;
+            }
+            else
+            {
+                this.role.isBack = false;
+            }
+        }
+    }
 }
