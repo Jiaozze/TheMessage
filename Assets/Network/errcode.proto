@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "protos/;protos";
+option java_package = "com.fengsheng.protos";
 
 message error_code_toc {
   error_code      code = 1;
