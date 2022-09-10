@@ -9,7 +9,7 @@ public class Role_FeiYuanLongChuan : RoleBase
     {
         get { return "·ÊÔ­Áú´¨"; }
     }
-    public override bool isWoman => true;
+    public override bool isWoman => false;
     public override string spritName
     {
         get { return "FeiYuanLongChuan"; }
