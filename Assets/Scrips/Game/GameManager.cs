@@ -820,7 +820,10 @@ public class GameManager
                 cardsHand[card.id] = (card);
                 gameUI.DrawCards(new List<CardFS>() { card });
             }
-            gameUI.ShowAddMessage(user, card, false);
+            else
+            {
+                gameUI.ShowAddMessage(user, card, false);
+            }
         }
         else
         {

@@ -64,7 +64,7 @@ TextureImporter:
     second: Role_19
   - first:
       213: 8024479293415480036
-    second: Role_20
+    second: BaiFeiFei
   - first:
       213: -1809954252066225699
     second: DuanMuJing
@@ -613,7 +613,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Role_20
+      name: BaiFeiFei
       rect:
         serializedVersion: 2
         x: 0

@@ -392,6 +392,20 @@ public static class ProtoHelper
             skill_ru_gui_toc skill_ru_gui_toc = skill_ru_gui_toc.Parser.ParseFrom(contont);
             UserSkill_RuGui.OnReceiveUse((int)skill_ru_gui_toc.PlayerId, (int)skill_ru_gui_toc.CardId);
         }
+        // 广播使用【怜悯】
+        else if (GetIdFromProtoName("skill_lian_min_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_lian_min_toc");
+            skill_lian_min_toc skill_lian_min_toc = skill_lian_min_toc.Parser.ParseFrom(contont);
+            UserSkill_LianMin.OnReceiveUse((int)skill_lian_min_toc.PlayerId, (int)skill_lian_min_toc.CardId, (int)skill_lian_min_toc.TargetPlayerId);
+        }
+        // 广播使用【腹黑】：你传出的黑色情报被接收后，你摸一张牌。
+        else if (GetIdFromProtoName("skill_fu_hei_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_fu_hei_toc");
+            skill_fu_hei_toc skill_fu_hei_toc = skill_fu_hei_toc.Parser.ParseFrom(contont);
+            UserSkill_FuHei.OnReceiveUse((int)skill_fu_hei_toc.PlayerId);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -811,6 +825,16 @@ public static class ProtoHelper
         byte[] proto = skill_ru_gui_tos.ToByteArray();
 
         SendProto("skill_ru_gui_tos", proto);
+    }
+    // 白菲菲【怜悯】：你传出的非黑色情报被接收后，可以从你或接收者的情报区选择一张黑色情报加入你的手牌。
+    public static void SendSkill_LianMin(int playerId, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_lian_min_tos, seq:" + seq);
+
+        skill_lian_min_tos skill_lian_min_tos = new skill_lian_min_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_lian_min_tos.ToByteArray();
+
+        SendProto("skill_lian_min_tos", proto);
     }
 
     #endregion
