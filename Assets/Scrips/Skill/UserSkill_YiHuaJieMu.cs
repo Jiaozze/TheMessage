@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//你接收双色情报后，可以从你的情报区选择一张情报加入手牌
+// 韩梅【移花接木】：争夺阶段，你可以翻开此角色牌，然后从一名角色的情报区选择一张情报，将其置入另一名角色的情报区，若如此做会让其收集三张或更多同色情报，则改为将该情牌加入你的手牌。
 public class UserSkill_YiHuaJieMu : SkillBase
 {
     public override string name { get { return "移花接木"; } }
@@ -25,7 +25,7 @@ public class UserSkill_YiHuaJieMu : SkillBase
         }
     }
 
-    public override string Des => "移花接木:你接收双色情报后，可以从你的情报区选择一张情报加入手牌\n";
+    public override string Des => "移花接木:争夺阶段，你可以翻开此角色牌，然后从一名角色的情报区选择一张情报，将其置入另一名角色的情报区，若如此做会让其收集三张或更多同色情报，则改为将该情牌加入你的手牌\n";
 
     private int selectMessageId = 0;
     private int messagePlayerId = -1;
@@ -47,7 +47,7 @@ public class UserSkill_YiHuaJieMu : SkillBase
         //    return;
         //}
         base.PrepareUse();
-        GameManager.Singleton.gameUI.ShowPlayerMessageInfo(GameManager.SelfPlayerId);
+        //GameManager.Singleton.gameUI.ShowPlayerMessageInfo(GameManager.SelfPlayerId);
         GameManager.Singleton.IsUsingSkill = true;
         GameManager.Singleton.selectSkill = this;
         GameManager.Singleton.gameUI.ShowPhase("发动技能移花接木，选择一名角色将他的一张情报移至另一名角色情报区");
@@ -104,6 +104,11 @@ public class UserSkill_YiHuaJieMu : SkillBase
         }
         else
         {
+            if(GameManager.Singleton.players[PlayerId].messages.Count < 1)
+            {
+                GameManager.Singleton.gameUI.ShowInfo("该玩家没有情报可以移动");
+                return;
+            }
             selectMessageId = 0;
             messagePlayerId = -1;
             GameManager.Singleton.gameUI.ShowPlayerMessageInfo(PlayerId);
