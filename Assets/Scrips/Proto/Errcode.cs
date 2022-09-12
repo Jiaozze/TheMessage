@@ -25,8 +25,8 @@ public static partial class ErrcodeReflection {
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
           "cmFtcxgDIAMoCSo8CgplcnJvcl9jb2RlEhwKGGNsaWVudF92ZXJzaW9uX25v",
-          "dF9tYXRjaBAAEhAKDG5vX21vcmVfcm9vbRABQhBaDnByb3Rvcy87cHJvdG9z",
-          "YgZwcm90bzM="));
+          "dF9tYXRjaBAAEhAKDG5vX21vcmVfcm9vbRABQhYKFGNvbS5mZW5nc2hlbmcu",
+          "cHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {

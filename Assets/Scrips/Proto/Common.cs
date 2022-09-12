@@ -39,8 +39,8 @@ public static partial class CommonReflection {
           "SHVvEAYSDAoIRGlhb19CYW8QBxIKCgZXdV9EYW8QCColCgVjb2xvchIJCgVC",
           "bGFjaxAAEgcKA1JlZBABEggKBEJsdWUQAio1CgtzZWNyZXRfdGFzaxIKCgZL",
           "aWxsZXIQABILCgdTdGVhbGVyEAESDQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0",
-          "aW9uEgYKAlVwEAASCAoETGVmdBABEgkKBVJpZ2h0EAJCEFoOcHJvdG9zLztw",
-          "cm90b3NiBnByb3RvMw=="));
+          "aW9uEgYKAlVwEAASCAoETGVmdBABEgkKBVJpZ2h0EAJCFgoUY29tLmZlbmdz",
+          "aGVuZy5wcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {

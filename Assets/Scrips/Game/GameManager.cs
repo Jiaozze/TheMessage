@@ -936,21 +936,12 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家濒死向{1}号玩家请求澄清", playerId, waitingPlayer));
         gameUI.ShowPhase();
     }
-
-    // 通知客户端谁死亡了
-    public void OnReceivePlayerDied(int playerId, bool loseGame)
+    // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
+    public void OnReceivePlayerDying(int playerId, bool loseGame)
     {
         IsWaitSaving = -1;
         players[playerId].alive = false;
         gameUI.Players[playerId].OnDie(loseGame);
-        List<CardFS> messages = new List<CardFS>();
-        string cardsStr = "";
-        foreach (var message in players[playerId].messages)
-        {
-            messages.Add(message);
-        }
-        players[playerId].messages.Clear();
-        gameUI.OnPlayerMessageRemove(playerId, messages);
 
         if (loseGame)
         {
@@ -960,6 +951,19 @@ public class GameManager
         {
             gameUI.AddMsg(string.Format("{0}号玩家阵亡", playerId));
         }
+    }
+    // 通知客户端谁死亡了（通知客户端弃掉所有情报）
+    public void OnReceivePlayerDied(int playerId)
+    {
+        IsWaitSaving = -1;
+        List<CardFS> messages = new List<CardFS>();
+        string cardsStr = "";
+        foreach (var message in players[playerId].messages)
+        {
+            messages.Add(message);
+        }
+        players[playerId].messages.Clear();
+        gameUI.OnPlayerMessageRemove(playerId, messages);
     }
 
     public void OnReceiveDieGiveingCard(int playerId, int waitingSecond, uint seq)
