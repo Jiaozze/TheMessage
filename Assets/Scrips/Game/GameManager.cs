@@ -794,6 +794,7 @@ public class GameManager
                 players[user].cardCount += 1;
 
                 gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}加入手牌", user, LanguageUtils.GetCardName(card.cardName)));
+                gameManager.gameUI.Players[user].RefreshCardCount();
             }
 
             if (user == SelfPlayerId)

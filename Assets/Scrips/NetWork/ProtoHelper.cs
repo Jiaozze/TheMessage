@@ -359,7 +359,17 @@ public static class ProtoHelper
             skill_ming_er_toc skill_ming_er_toc = skill_ming_er_toc.Parser.ParseFrom(contont);
             UserSkill_MingEr.OnReceiveUse((int)skill_ming_er_toc.PlayerId);
         }
-
+        // 广播使用【移花接木】争夺阶段，你可以翻开此角色牌，然后从一名角色的情报区选择一张情报，将其置入另一名角色的情报区，若如此做会让其收集三张或更多同色情报，则改为将该情牌加入你的手牌。
+        else if (GetIdFromProtoName("skill_yi_hua_jie_mu_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_yi_hua_jie_mu_toc");
+            skill_yi_hua_jie_mu_toc skill_yi_hua_jie_mu_toc = skill_yi_hua_jie_mu_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_yi_hua_jie_mu_toc.PlayerId;
+            int cardId = (int)skill_yi_hua_jie_mu_toc.CardId;
+            int from = (int)skill_yi_hua_jie_mu_toc.FromPlayerId;
+            int to = (int)skill_yi_hua_jie_mu_toc.ToPlayerId;
+            UserSkill_YiHuaJieMu.OnReceiveUse(playerId, cardId, from, to, skill_yi_hua_jie_mu_toc.JoinIntoHand);
+        }
         #endregion
         // 通知客户端谁死亡了
         else if (GetIdFromProtoName("notify_die_toc") == id)
@@ -746,6 +756,17 @@ public static class ProtoHelper
         byte[] proto = skill_xin_si_chao_tos.ToByteArray();
         
         SendProto("skill_xin_si_chao_tos", proto);
+    }
+
+    public static void SendSkill_YiHuaJieMu(int from, int to, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_yi_hua_jie_mu_tos, seq:" + seq);
+
+        skill_yi_hua_jie_mu_tos skill_yi_hua_jie_mu_tos = new skill_yi_hua_jie_mu_tos() { CardId = (uint)cardId, FromPlayerId = (uint)from, ToPlayerId = (uint)to, Seq = seq };
+        byte[] proto = skill_yi_hua_jie_mu_tos.ToByteArray();
+
+        SendProto("skill_yi_hua_jie_mu_tos", proto);
+
     }
     #endregion
 
