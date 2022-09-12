@@ -632,6 +632,10 @@ public class GameUI : MonoBehaviour
     private Coroutine hideInfoCorout;
     public void ShowInfo(string info)
     {
+        if(!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
         textMidInfo.text = infoStr == null ? info : infoStr + "\n" + info;
         textMidInfo.gameObject.SetActive(true);
         infoStr = info;

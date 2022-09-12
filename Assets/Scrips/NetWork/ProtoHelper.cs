@@ -526,6 +526,8 @@ public static class ProtoHelper
         //errorCode
         else if (GetIdFromProtoName("error_code_toc") == id)
         {
+            Debug.Log(" _______receive________ error_code_toc ");
+
             error_code_toc error_Code_Toc = error_code_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnErrorCode(error_Code_Toc.Code);
         }

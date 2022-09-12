@@ -674,6 +674,7 @@ public class GameManager
 
     public void OnErrorCode(error_code code)
     {
+        //TODO 提示层级需要优化
         switch (code)
         {
             case error_code.ClientVersionNotMatch:
