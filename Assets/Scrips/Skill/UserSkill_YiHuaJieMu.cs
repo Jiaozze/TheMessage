@@ -180,8 +180,15 @@ public class UserSkill_YiHuaJieMu : SkillBase
         {
             GameManager.Singleton.players[playerId].cardCount += 1;
             GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
-            GameManager.Singleton.gameUI.ShowAddMessage(playerId, messageCard, false, from);
-
+            if (GameManager.SelfPlayerId != playerId)
+            {
+                GameManager.Singleton.gameUI.ShowAddMessage(playerId, messageCard, false, from);
+            }
+            if (playerId == GameManager.SelfPlayerId)
+            {
+                GameManager.Singleton.cardsHand.Add(cardId, messageCard);
+                GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { messageCard });
+            }
             string s = string.Format("{0}号玩家使用了技能移花接木,将{1}号玩家情报区的{2}置入手牌", playerId, from, cardStr);
             GameManager.Singleton.gameUI.ShowInfo(s);
             GameManager.Singleton.gameUI.AddMsg(s);
