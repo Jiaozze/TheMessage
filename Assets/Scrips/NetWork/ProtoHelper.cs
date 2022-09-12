@@ -370,6 +370,29 @@ public static class ProtoHelper
             int to = (int)skill_yi_hua_jie_mu_toc.ToPlayerId;
             UserSkill_YiHuaJieMu.OnReceiveUse(playerId, cardId, from, to, skill_yi_hua_jie_mu_toc.JoinIntoHand);
         }
+        // 广播使用【视死】：你接收黑色情报后，摸两张牌
+        else if (GetIdFromProtoName("skill_shi_si_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_shi_si_toc");
+            skill_shi_si_toc skill_shi_si_toc = skill_shi_si_toc.Parser.ParseFrom(contont);
+            UserSkill_ShiSi.OnReceiveUse((int)skill_shi_si_toc.PlayerId);
+        }
+
+        // 广播询问客户端使用【如归】
+        else if (GetIdFromProtoName("skill_wait_for_ru_gui_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_ru_gui_toc");
+            skill_wait_for_ru_gui_toc skill_wait_for_ru_gui_toc = skill_wait_for_ru_gui_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnReceiveWaitSkillRuGui((int)skill_wait_for_ru_gui_toc.PlayerId, (int)skill_wait_for_ru_gui_toc.WaitingSecond, skill_wait_for_ru_gui_toc.Seq);
+        }
+        // 广播使用【如归】
+        else if (GetIdFromProtoName("skill_ru_gui_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_ru_gui_toc");
+            skill_ru_gui_toc skill_ru_gui_toc = skill_ru_gui_toc.Parser.ParseFrom(contont);
+            UserSkill_RuGui.OnReceiveUse((int)skill_ru_gui_toc.PlayerId, (int)skill_ru_gui_toc.CardId);
+        }
+
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
         else if (GetIdFromProtoName("notify_die_toc") == id)
@@ -768,7 +791,7 @@ public static class ProtoHelper
         
         SendProto("skill_xin_si_chao_tos", proto);
     }
-
+    // 移花接木
     public static void SendSkill_YiHuaJieMu(int from, int to, int cardId, uint seq)
     {
         Debug.Log("____send___________________ skill_yi_hua_jie_mu_tos, seq:" + seq);
@@ -779,6 +802,17 @@ public static class ProtoHelper
         SendProto("skill_yi_hua_jie_mu_tos", proto);
 
     }
+    // 老汉【如归】：你死亡前，可以将你情报区中的一张情报置入当前回合角色的情报区中。
+    public static void SendSkill_RuGui(bool used, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_ru_gui_tos, seq:" + seq);
+
+        skill_ru_gui_tos skill_ru_gui_tos = new skill_ru_gui_tos() { CardId = (uint)cardId, Enable = used, Seq = seq };
+        byte[] proto = skill_ru_gui_tos.ToByteArray();
+
+        SendProto("skill_ru_gui_tos", proto);
+    }
+
     #endregion
 
     public static void SendAddAI()

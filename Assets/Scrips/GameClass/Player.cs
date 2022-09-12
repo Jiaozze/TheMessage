@@ -58,6 +58,7 @@ public class Player
             if (messages[i].id == targetCardId)
             {
                 messages.RemoveAt(i);
+                break;
             }
         }
     }
