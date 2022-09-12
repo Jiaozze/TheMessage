@@ -72,7 +72,8 @@ public static partial class RoleReflection {
           "cGxheWVyX2lkGAIgASgNEgsKA3NlcRgDIAEoDSJUChRza2lsbF96aHVhbl9q",
           "aWFvX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SDwoHY2FyZF9pZBgCIAEoDRIY",
           "ChB0YXJnZXRfcGxheWVyX2lkGAMgASgNIiYKEXNraWxsX21pbmdfZXJfdG9j",
-          "EhEKCXBsYXllcl9pZBgBIAEoDUIQWg5wcm90b3MvO3Byb3Rvc2IGcHJvdG8z"));
+          "EhEKCXBsYXllcl9pZBgBIAEoDUIWChRjb20uZmVuZ3NoZW5nLnByb3Rvc2IG",
+          "cHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {

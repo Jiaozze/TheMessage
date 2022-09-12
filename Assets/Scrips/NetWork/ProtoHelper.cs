@@ -371,15 +371,26 @@ public static class ProtoHelper
             UserSkill_YiHuaJieMu.OnReceiveUse(playerId, cardId, from, to, skill_yi_hua_jie_mu_toc.JoinIntoHand);
         }
         #endregion
-        // 通知客户端谁死亡了
+        // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
+        else if (GetIdFromProtoName("notify_die_toc") == id)
+        {
+            Debug.Log(" _______receive________ notify_dying_toc");
+
+            notify_dying_toc notify_die_toc = notify_dying_toc.Parser.ParseFrom(contont);
+            int playerId = (int)notify_die_toc.PlayerId;
+            bool loseGame = notify_die_toc.LoseGame;
+            GameManager.Singleton.OnReceivePlayerDying(playerId, loseGame);
+        }
+
+        // 通知客户端谁死亡了（通知客户端弃掉所有情报）
         else if (GetIdFromProtoName("notify_die_toc") == id)
         {
             Debug.Log(" _______receive________ notify_die_toc");
 
             notify_die_toc notify_die_toc = notify_die_toc.Parser.ParseFrom(contont);
             int playerId = (int)notify_die_toc.PlayerId;
-            bool loseGame = notify_die_toc.LoseGame;
-            GameManager.Singleton.OnReceivePlayerDied(playerId, loseGame);
+            //bool loseGame = notify_die_toc.LoseGame;
+            GameManager.Singleton.OnReceivePlayerDied(playerId);
         }
         // 通知客户端谁胜利了
         else if (GetIdFromProtoName("notify_winner_toc") == id)
@@ -439,7 +450,7 @@ public static class ProtoHelper
             int playerId = (int)wait_for_die_give_card_toc.PlayerId;
             int targetPlayerId = (int)wait_for_die_give_card_toc.TargetPlayerId;
             List<CardFS> cards = new List<CardFS>();
-            int cardCount = (int)wait_for_die_give_card_toc.CardCount;
+            int cardCount = (int)wait_for_die_give_card_toc.UnknownCardCount;
             foreach (var card in wait_for_die_give_card_toc.Card)
             {
                 cards.Add(new CardFS(card));
