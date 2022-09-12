@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIPlayer : MonoBehaviour
+public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Animator animator;
     public Image imgRole;
@@ -250,5 +251,24 @@ public class UIPlayer : MonoBehaviour
         {
             InitRole();
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        string info = "";
+        info += GameManager.Singleton.players[playerId].role.name + "\n";
+        if(!(GameManager.Singleton.players[playerId].role is Role_Unknown))
+        {
+            foreach(var skill in GameManager.Singleton.players[playerId].role.skills)
+            {
+                info += skill.Des;
+            }
+        }
+        GameUI.ShowDesInfo(info, eventData.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GameUI.HideDesInfo();
     }
 }

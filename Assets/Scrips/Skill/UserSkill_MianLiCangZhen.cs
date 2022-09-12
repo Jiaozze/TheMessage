@@ -1,12 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Äã´«³öµÄÇé±¨±»½ÓÊÕºó£¬¿ÉÒÔ½«Ò»ÕÅºÚÉ«ÊÖÅÆÖÃÈë½ÓÊÕÕßµÄÇé±¨Çø£¬È»ºóÃşÒ»ÕÅÅÆ
+//ä½ ä¼ å‡ºçš„æƒ…æŠ¥è¢«æ¥æ”¶åï¼Œå¯ä»¥å°†ä¸€å¼ é»‘è‰²æ‰‹ç‰Œç½®å…¥æ¥æ”¶è€…çš„æƒ…æŠ¥åŒºï¼Œç„¶åæ‘¸ä¸€å¼ ç‰Œ
 public class UserSkill_MianLiCangZhen : SkillBase
 {
-    public override string name { get { return "ÃàÀï²ØÕë"; } }
+    public override string name { get { return "ç»µé‡Œè—é’ˆ"; } }
     public override bool canUse { get { return false; } }
+
+    public override string Des => "ç»µé‡Œè—é’ˆ:ä½ ä¼ å‡ºçš„æƒ…æŠ¥è¢«æ¥æ”¶åï¼Œå¯ä»¥å°†ä¸€å¼ é»‘è‰²æ‰‹ç‰Œç½®å…¥æ¥æ”¶è€…çš„æƒ…æŠ¥åŒºï¼Œç„¶åæ‘¸ä¸€å¼ ç‰Œ\n";
 
     private int selectCardId;
     public UserSkill_MianLiCangZhen(int id)
@@ -15,7 +17,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
     }
     public override bool CheckTriger()
     {
-        //GameManager.Singleton.gameUI.ShowPhase("ÊÇ·ñ·¢¶¯¼¼ÄÜ-ÃàÀï²ØÕë");
+        //GameManager.Singleton.gameUI.ShowPhase("æ˜¯å¦å‘åŠ¨æŠ€èƒ½-ç»µé‡Œè—é’ˆ");
         if (GameManager.Singleton.CurWaitingPlayerId != GameManager.SelfPlayerId)
         {
             return false;
@@ -48,7 +50,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
         base.PrepareUse();
         GameManager.Singleton.IsUsingSkill = true;
         GameManager.Singleton.selectSkill = this;
-        GameManager.Singleton.gameUI.ShowPhase("¿ÉÒÔ·¢¶¯¼¼ÄÜ½«Ò»ÕÅºÚÉ«ÊÖÅÆÖÃÈë½ÓÊÕÕßµÄÇé±¨Çø²¢ÃşÒ»ÕÅÅÆ");
+        GameManager.Singleton.gameUI.ShowPhase("å¯ä»¥å‘åŠ¨æŠ€èƒ½å°†ä¸€å¼ é»‘è‰²æ‰‹ç‰Œç½®å…¥æ¥æ”¶è€…çš„æƒ…æŠ¥åŒºå¹¶æ‘¸ä¸€å¼ ç‰Œ");
     }
     public override void Use()
     {
@@ -58,7 +60,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
         }
         else
         {
-            GameManager.Singleton.gameUI.ShowInfo("ÇëÑ¡ÔñÒ»ÕÅºÚÉ«ÊÖÅÆ");
+            GameManager.Singleton.gameUI.ShowInfo("è¯·é€‰æ‹©ä¸€å¼ é»‘è‰²æ‰‹ç‰Œ");
         }
     }
 
@@ -66,7 +68,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
     {
         if (!GameManager.Singleton.cardsHand[cardId].color.Contains(CardColorEnum.Black))
         {
-            GameManager.Singleton.gameUI.ShowInfo("ÇëÑ¡ÔñÒ»ÕÅºÚÉ«ÊÖÅÆ");
+            GameManager.Singleton.gameUI.ShowInfo("è¯·é€‰æ‹©ä¸€å¼ é»‘è‰²æ‰‹ç‰Œ");
             return;
         }
 
@@ -139,7 +141,7 @@ public class UserSkill_MianLiCangZhen : SkillBase
         GameManager.Singleton.gameUI.ShowAddMessage(targetPlayerId, card, false, playerId);
         GameManager.Singleton.gameUI.Players[targetPlayerId].RefreshMessage();
 
-        string s = string.Format("{0}ºÅÍæ¼ÒÊ¹ÓÃÁË¼¼ÄÜÃàÀï²ØÕë,½«Ò»ÕÅ{1}ÖÃÈë{2}ºÅÍæ¼ÒÇé±¨Çø",playerId, card.GetCardInfo(), targetPlayerId);
+        string s = string.Format("{0}å·ç©å®¶ä½¿ç”¨äº†æŠ€èƒ½ç»µé‡Œè—é’ˆ,å°†ä¸€å¼ {1}ç½®å…¥{2}å·ç©å®¶æƒ…æŠ¥åŒº",playerId, card.GetCardInfo(), targetPlayerId);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

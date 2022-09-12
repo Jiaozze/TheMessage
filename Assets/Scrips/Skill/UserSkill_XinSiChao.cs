@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ¶ËÄ¾¾²¡¾ĞÂË¼³±¡¿£º³öÅÆ½×¶ÎÏŞÒ»´Î£¬Äã¿ÉÒÔÆúÖÃÒ»ÕÅÊÖÅÆ£¬È»ºóÃşÁ½ÕÅÅÆ¡£
+// ç«¯æœ¨é™ã€æ–°æ€æ½®ã€‘ï¼šå‡ºç‰Œé˜¶æ®µé™ä¸€æ¬¡ï¼Œä½ å¯ä»¥å¼ƒç½®ä¸€å¼ æ‰‹ç‰Œï¼Œç„¶åæ‘¸ä¸¤å¼ ç‰Œã€‚
 public class UserSkill_XinSiChao : SkillBase
 {
-    public override string name { get { return "ĞÂË¼³±"; } }
+    public override string name { get { return "æ–°æ€æ½®"; } }
     public override bool canUse
     {
         get
@@ -13,6 +13,8 @@ public class UserSkill_XinSiChao : SkillBase
             return usedCount < 1 && playerId == GameManager.SelfPlayerId && GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId && GameManager.Singleton.curPhase == PhaseEnum.Main_Phase;
         }
     }
+
+    public override string Des => "æ–°æ€æ½®ï¼šå‡ºç‰Œé˜¶æ®µé™ä¸€æ¬¡ï¼Œä½ å¯ä»¥å¼ƒç½®ä¸€å¼ æ‰‹ç‰Œï¼Œç„¶åæ‘¸ä¸¤å¼ ç‰Œã€‚\n";
 
     private int usedCount = 0;
 
@@ -37,7 +39,7 @@ public class UserSkill_XinSiChao : SkillBase
         {
             GameManager.Singleton.IsUsingSkill = true;
             GameManager.Singleton.selectSkill = this;
-            GameManager.Singleton.gameUI.ShowPhase("ÇëÑ¡ÔñÒ»ÕÅÅÆÆúµô£¬È»ºóÃş2ÕÅÅÆ");
+            GameManager.Singleton.gameUI.ShowPhase("è¯·é€‰æ‹©ä¸€å¼ ç‰Œå¼ƒæ‰ï¼Œç„¶åæ‘¸2å¼ ç‰Œ");
         }
     }
 
@@ -110,7 +112,7 @@ public class UserSkill_XinSiChao : SkillBase
                 GameManager.Singleton.selectSkill.OnUse();
             }
         }
-        string s = "" + playerId + "ºÅÍæ¼ÒÊ¹ÓÃÁË¼¼ÄÜĞÂË¼³±";
+        string s = "" + playerId + "å·ç©å®¶ä½¿ç”¨äº†æŠ€èƒ½æ–°æ€æ½®";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

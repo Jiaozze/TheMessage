@@ -8,6 +8,8 @@ public class UserSkill_YiYaHuanYa : SkillBase
     public override string name { get { return "奇货可居"; } }
     public override bool canUse { get { return false; } }
 
+    public override string Des => "以牙还牙：你接收黑色情报后，可以将一张黑色手牌置入情报传出者或其相邻角色的情报区，然后摸一张牌。";
+
     private int selectCardId;
     private int selectPlayerId = -1;
     public UserSkill_YiYaHuanYa(int id)

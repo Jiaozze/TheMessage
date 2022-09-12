@@ -8,6 +8,8 @@ public class UserSkill_QiHuoKeJu : SkillBase
     public override string name { get { return "奇货可居"; } }
     public override bool canUse { get { return false; } }
 
+    public override string Des => "奇货可居:你接收双色情报后，可以从你的情报区选择一张情报加入手牌\n";
+
     private int selectCardId;
     public UserSkill_QiHuoKeJu(int id)
     {

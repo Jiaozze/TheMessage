@@ -7,6 +7,8 @@ public abstract class SkillBase
 {
     public abstract string name { get; }
     public abstract bool canUse { get; }
+    public abstract string Des { get; }
+
     public int playerId;
     public virtual void PrepareUse()
     {
