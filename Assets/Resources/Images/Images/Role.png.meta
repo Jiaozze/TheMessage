@@ -73,7 +73,7 @@ TextureImporter:
     second: Role_22
   - first:
       213: 8468174801239264280
-    second: Role_23
+    second: LaoHan
   - first:
       213: -5439698129345292861
     second: Role_24
@@ -676,7 +676,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Role_23
+      name: LaoHan
       rect:
         serializedVersion: 2
         x: 2232

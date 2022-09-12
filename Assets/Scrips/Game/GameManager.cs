@@ -627,6 +627,24 @@ public class GameManager
         gameUI.ShowInfo(s);
         gameUI.AddMsg(s);
     }
+
+    internal void OnReceiveWaitSkillRuGui(int playerId, int waitSeconds, uint seq)
+    {
+        seqId = seq;
+        OnWait(playerId, waitSeconds);
+        if(playerId == SelfPlayerId)
+        {
+            foreach(var skill in players[SelfPlayerId].role.skills)
+            {
+                if(skill is UserSkill_RuGui)
+                {
+                    var ruGui = skill as UserSkill_RuGui;
+                    ruGui.PrepareUse();
+                }
+            }
+        }
+    }
+
     // 通知所有人使用调包
     public void OnReceiveUseDiaoBao(int user, int cardUsedId, CardFS messageCard)
     {
