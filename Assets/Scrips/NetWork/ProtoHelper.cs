@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class ProtoHelper
 {
-    private const uint PROTO_VERSION = 3;
+    private const uint PROTO_VERSION = 4;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //Debug.LogError(id);
