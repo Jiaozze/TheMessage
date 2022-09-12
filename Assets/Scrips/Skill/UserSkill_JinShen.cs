@@ -8,6 +8,8 @@ public class UserSkill_JinShen : SkillBase
     public override string name { get { return "谨慎"; } }
     public override bool canUse { get { return false; } }
 
+    public override string Des => "谨慎:你接收双色情报后，可以用一张手牌与该情报面朝上互换\n";
+
     private int selectCardId;
     public UserSkill_JinShen(int id)
     {

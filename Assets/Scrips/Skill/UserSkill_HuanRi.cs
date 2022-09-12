@@ -8,6 +8,8 @@ public class UserSkill_HuanRi : SkillBase
     public override string name { get { return "换日"; } }
     public override bool canUse { get { return false; } }
 
+    public override string Des => "换日:你使用【调包】或【破译】后，可以将你的角色牌翻至面朝下。\n";
+
     public UserSkill_HuanRi(int id)
     {
         playerId = id;

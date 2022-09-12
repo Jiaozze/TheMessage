@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ·ÊÔ­Áú´¨¡¾¹îÕ©¡¿£º³öÅÆ½×¶ÎÏŞÒ»´Î£¬Äã¿ÉÒÔÖ¸¶¨Ò»Ãû½ÇÉ«£¬È»ºóÊÓÎªÄã¶ÔÆäÊ¹ÓÃÁËÒ»ÕÅ¡¾Íş±Æ¡¿»ò¡¾ÀûÓÕ¡¿¡£
+// è‚¥åŸé¾™å·ã€è¯¡è¯ˆã€‘ï¼šå‡ºç‰Œé˜¶æ®µé™ä¸€æ¬¡ï¼Œä½ å¯ä»¥æŒ‡å®šä¸€åè§’è‰²ï¼Œç„¶åè§†ä¸ºä½ å¯¹å…¶ä½¿ç”¨äº†ä¸€å¼ ã€å¨é€¼ã€‘æˆ–ã€åˆ©è¯±ã€‘ã€‚
 public class UserSkill_GuiZha_WeiBi : SkillBase
 {
-    public override string name { get { return "¹îÕ©-Íş±Æ"; } }
+    public override string name { get { return "è¯¡è¯ˆ-å¨é€¼"; } }
     public override bool canUse
     {
         get
@@ -13,6 +13,8 @@ public class UserSkill_GuiZha_WeiBi : SkillBase
             return usedCount < 1 && playerId == GameManager.SelfPlayerId && GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId && GameManager.Singleton.curPhase == PhaseEnum.Main_Phase;
         }
     }
+
+    public override string Des => "";
 
     private int usedCount = 0;
 
@@ -41,7 +43,7 @@ public class UserSkill_GuiZha_WeiBi : SkillBase
             }
             GameManager.Singleton.IsUsingSkill = true;
             GameManager.Singleton.selectSkill = this;
-            GameManager.Singleton.gameUI.ShowPhase("ÕıÔÚÊ¹ÓÃ¼¼ÄÜ¡¾¹îÕ©¡¿£¬ÇëÑ¡ÔñÒ»ÃûÍæ¼Ò×öÎªÀûÓÕÄ¿±ê");
+            GameManager.Singleton.gameUI.ShowPhase("æ­£åœ¨ä½¿ç”¨æŠ€èƒ½ã€è¯¡è¯ˆã€‘ï¼Œè¯·é€‰æ‹©ä¸€åç©å®¶åšä¸ºåˆ©è¯±ç›®æ ‡");
         }
     }
 
@@ -63,7 +65,7 @@ public class UserSkill_GuiZha_WeiBi : SkillBase
         }
         else
         {
-            GameManager.Singleton.gameUI.ShowInfo("ÇëÑ¡ÔñÒ»ÃûÍæ¼Ò×öÎªÍş±ÆÄ¿±ê");
+            GameManager.Singleton.gameUI.ShowInfo("è¯·é€‰æ‹©ä¸€åç©å®¶åšä¸ºå¨é€¼ç›®æ ‡");
         }
     }
 

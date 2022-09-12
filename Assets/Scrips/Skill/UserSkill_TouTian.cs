@@ -26,6 +26,8 @@ public class UserSkill_TouTian : SkillBase
             return true;
         } }
 
+    public override string Des => "偷天:争夺阶段你可以翻开此角色牌，然后视为你使用了一张【截获】。\n";
+
     public UserSkill_TouTian(int id)
     {
         playerId = id;

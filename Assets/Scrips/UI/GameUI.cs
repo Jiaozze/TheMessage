@@ -38,6 +38,8 @@ public class GameUI : MonoBehaviour
     public Transform transCardsUsed;
     public Transform transCardsDised;
     public Slider slider;
+    public GameObject goDesInfo;
+    public Text textDesInfo;
 
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
@@ -47,6 +49,7 @@ public class GameUI : MonoBehaviour
 
     private void Awake()
     {
+        goDesInfo.SetActive(false);
         directSelect.gameObject.SetActive(false);
         goDirect.SetActive(false);
         slider.gameObject.SetActive(false);
@@ -61,6 +64,21 @@ public class GameUI : MonoBehaviour
         weiBiGiveCard.gameObject.SetActive(false);
         playerMessagInfo.gameObject.SetActive(false);
     }
+
+    internal static void HideDesInfo()
+    {
+        //Debug.Log("0");
+        GameManager.Singleton.gameUI.goDesInfo.gameObject.SetActive(false);
+    }
+
+    internal static void ShowDesInfo(string info, Vector2 position)
+    {
+        //Debug.Log(info);
+        GameManager.Singleton.gameUI.textDesInfo.text = info;
+        GameManager.Singleton.gameUI.goDesInfo.gameObject.SetActive(true);
+        GameManager.Singleton.gameUI.goDesInfo.transform.position = position;
+    }
+
     public void InitPlayers(int num)
     {
         if (Players.Count > 0)

@@ -25,6 +25,8 @@ public class UserSkill_YiHuaJieMu : SkillBase
         }
     }
 
+    public override string Des => "移花接木:你接收双色情报后，可以从你的情报区选择一张情报加入手牌\n";
+
     private int selectMessageId = 0;
     private int messagePlayerId = -1;
     private int selectPlayerId = -1;

@@ -6,7 +6,7 @@ public class Role_Unknown : RoleBase
 {
     public override string name
     {
-        get { return ""; }
+        get { return "Î´Öª½ÇÉ«"; }
     }
 
     public override bool isBack

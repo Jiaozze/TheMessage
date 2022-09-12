@@ -1,8 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//¡¾Ã÷¶ü¡¿£ºÄã´«³öµÄºìÉ«»òÀ¶É«Çé±¨±»½ÓÊÕºó£¬ÄãºÍ½ÓÊÕÕß¸÷ÃşÒ»ÕÅÅÆ
+//ã€æ˜é¥µã€‘ï¼šä½ ä¼ å‡ºçš„çº¢è‰²æˆ–è“è‰²æƒ…æŠ¥è¢«æ¥æ”¶åï¼Œä½ å’Œæ¥æ”¶è€…å„æ‘¸ä¸€å¼ ç‰Œ
 public class UserSkill_MingEr : SkillBase
 {
     public UserSkill_MingEr(int id)
@@ -10,13 +10,15 @@ public class UserSkill_MingEr : SkillBase
         playerId = id;
     }
 
-    public override string name => "Ã÷¶ü";
+    public override string name => "æ˜é¥µ";
 
     public override bool canUse => false;
 
+    public override string Des => "æ˜é¥µï¼šä½ ä¼ å‡ºçš„çº¢è‰²æˆ–è“è‰²æƒ…æŠ¥è¢«æ¥æ”¶åï¼Œä½ å’Œæ¥æ”¶è€…å„æ‘¸ä¸€å¼ ç‰Œ\n";
+
     public static void OnReceiveUse(int playerId)
     {
-        string s = "" + playerId + "ºÅÍæ¼Ò·¢¶¯ÁË¼¼ÄÜÃ÷¶ü";
+        string s = "" + playerId + "å·ç©å®¶å‘åŠ¨äº†æŠ€èƒ½æ˜é¥µ";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
 
