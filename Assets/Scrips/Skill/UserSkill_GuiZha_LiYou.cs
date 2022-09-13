@@ -103,6 +103,10 @@ public class UserSkill_GuiZha_LiYou : SkillBase
         usedCount = usedCount + 1;
         Cancel();
     }
+    public override void OnTurnEnd()
+    {
+        usedCount = 0;
+    }
 
     public static void OnReceiveUse(int playerId, int tatgetId, CardNameEnum cardName)
     {
