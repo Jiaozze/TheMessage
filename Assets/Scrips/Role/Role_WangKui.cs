@@ -20,6 +20,6 @@ public class Role_WangKui : RoleBase
     public Role_WangKui(int id)
     {
         playerId = id;
-        skills = new List<SkillBase>() { new UserSkill_GuiZha_LiYou(id), new UserSkill_GuiZha_WeiBi(id)  };
+        skills = new List<SkillBase>() { new UserSkill_YiYaHuanYa(id)  };
     }
 }
