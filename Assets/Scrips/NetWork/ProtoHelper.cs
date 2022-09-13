@@ -843,6 +843,8 @@ public static class ProtoHelper
 
     public static void SendAddAI()
     {
+        Debug.Log("____send___________________ add_robot_tos");
+
         add_robot_tos add_robot_tos = new add_robot_tos();
         byte[] proto = add_robot_tos.ToByteArray();
         SendProto("add_robot_tos", proto);

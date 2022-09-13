@@ -130,7 +130,9 @@ public class UserSkill_JinShen : SkillBase
             }
             GameManager.Singleton.cardsHand.Add(message.id, message);
             GameManager.Singleton.cardsHand.Remove(card.id);
+            var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
             GameManager.Singleton.gameUI.Cards.Remove(card.id);
+            GameObject.Destroy(cardUI.gameObject);
             GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { message });
         }
         GameManager.Singleton.players[playerId].RemoveMessage(message.id);
