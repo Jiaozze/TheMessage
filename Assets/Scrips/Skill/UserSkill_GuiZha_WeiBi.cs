@@ -115,4 +115,9 @@ public class UserSkill_GuiZha_WeiBi : SkillBase
         usedCount = usedCount + 1;
         Cancel();
     }
+
+    public override void OnTurnEnd()
+    {
+        usedCount = 0;
+    }
 }
