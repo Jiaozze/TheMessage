@@ -121,7 +121,7 @@ public class GameManager
             {
                 if (value == SelfPlayerId)
                 {
-                    Debug.LogError("不能选自己作为目标");
+                    gameUI.ShowInfo("不能选自己作为目标");
                 }
                 else if (gameUI.Players.ContainsKey(value))
                 {
@@ -1191,6 +1191,11 @@ public class GameManager
             }
             else
             {
+                if(SelectPlayerId < 1)
+                {
+                    gameUI.ShowInfo("请选择要锁定的目标或者点取消不锁定");
+                    return;
+                }
                 IsWaitLock = false;
                 int lockId = SelectPlayerId > 0 ? SelectPlayerId : 0;
                 DirectionEnum direction = cardsHand[SelectCardId].direction;
