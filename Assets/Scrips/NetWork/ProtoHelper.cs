@@ -858,7 +858,14 @@ public static class ProtoHelper
         SendProto("add_robot_tos", proto);
     }
 
+    public static void SendRemoveAI()
+    {
+        Debug.Log("____send___________________ remove_robot_tos");
 
+        remove_robot_tos remove_robot_tos = new remove_robot_tos();
+        byte[] proto = remove_robot_tos.ToByteArray();
+        SendProto("remove_robot_tos", proto);
+    }
     public static void SendPlayRecord(string recordId)
     {
         Debug.Log("____send___________________ display_record_tos");

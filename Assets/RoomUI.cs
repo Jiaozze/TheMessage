@@ -10,6 +10,7 @@ public class RoomUI : MonoBehaviour
     public GameObject goRoomInfo;
     public GameObject goRoomItem;
     public GameObject goLoginButton;
+    public GameObject goRecord;
     public InputField recordId;
 
     private List<GameObject> items = new List<GameObject>();
@@ -39,11 +40,15 @@ public class RoomUI : MonoBehaviour
     {
         ProtoHelper.SendAddAI();
     }
-
+    public void OnClickRemoveAI()
+    {
+        ProtoHelper.SendRemoveAI();
+    }
     public void OnRoomInfo(List<string> names, int index)
     {
         goRoomInfo.SetActive(true);
         goLoginButton.SetActive(false);
+        goRecord.SetActive(false);
         if(items.Count > 0)
         {
             foreach(var go in items)
@@ -59,6 +64,7 @@ public class RoomUI : MonoBehaviour
             go.transform.Find("Text").GetComponent<Text>().text = name;
             items.Add(go);
         }
+        items[index].transform.Find("Image").GetComponent<Image>().color = Color.cyan;
         Debug.Log(items.Count);
     }
 
