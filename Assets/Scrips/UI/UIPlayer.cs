@@ -12,6 +12,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Button button;
     public Button butSkill1;
     public Button butSkill2;
+    public Button butSkill3;
     public Text textPhase;
     public Text textPlayerId;
     public Text textCardCount;
@@ -36,9 +37,10 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     // Start is called before the first frame update
     void Awake()
     {
-        skillButtons = new List<Button>() { butSkill1, butSkill2 };
+        skillButtons = new List<Button>() { butSkill1, butSkill2, butSkill3 };
         butSkill1.gameObject.SetActive(false);
         butSkill2.gameObject.SetActive(false);
+        butSkill3.gameObject.SetActive(false);
         goMask.SetActive(false);
         goDie.SetActive(false);
         goLock.SetActive(false);
