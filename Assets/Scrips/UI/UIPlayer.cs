@@ -59,8 +59,8 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         goTurnOn.SetActive(false);
         goMessageOn.SetActive(false);
         playerId = id;
-        //textPlayerId.text = "" + id + "ºÅÍæ¼Ò";
-        textPlayerId.text = GameManager.Singleton.players[id].role.name == "" ? "" + id + "ºÅÍæ¼Ò" : GameManager.Singleton.players[id].role.name;
+        textPlayerId.text = GameManager.Singleton.players[id].playerName;
+        //textPlayerId.text = GameManager.Singleton.players[id].role.name == "" ? "" + id + "ºÅÍæ¼Ò" : GameManager.Singleton.players[id].role.name;
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
@@ -249,7 +249,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnTurnBack(bool isBack)
     {
-        textPlayerId.text = GameManager.Singleton.players[playerId].role.name == "" ? "" + playerId + "ºÅÍæ¼Ò" : GameManager.Singleton.players[playerId].role.name;
+        //textPlayerId.text = GameManager.Singleton.players[playerId].role.name == "" ? "" + playerId + "ºÅÍæ¼Ò" : GameManager.Singleton.players[playerId].role.name;
         animator.SetTrigger("TurnBack");
         if (isBack)
         {

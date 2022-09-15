@@ -39,11 +39,16 @@ public static class ProtoHelper
             PlayerColorEnum playerColor = (PlayerColorEnum)init_Toc.Identity;
             SecretTaskEnum secretTask = (SecretTaskEnum)init_Toc.SecretTask;
             List<RoleBase> roles = new List<RoleBase>();
+            List<string> names = new List<string>();
             for (int i = 0; i < init_Toc.Roles.Count; i++)
             {
                 roles.Add(AllRoles.GetRole(init_Toc.Roles[i], i));
             }
-            GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask, roles);
+            for (int i = 0; i < init_Toc.Names.Count; i++)
+            {
+                names.Add(init_Toc.Names[i]);
+            }
+            GameManager.Singleton.OnReceiveGameStart(playerCount, playerColor, secretTask, roles, names);
         }
         // 通知客户端，到谁的哪个阶段了
         else if (GetIdFromProtoName("notify_phase_toc") == id)
@@ -875,9 +880,9 @@ public static class ProtoHelper
         SendProto("display_record_tos", proto);
     }
 
-    public static void SendAddRoom()
+    public static void SendAddRoom(string name = "")
     {
-        join_room_tos join_Room_Tos = new join_room_tos();
+        join_room_tos join_Room_Tos = new join_room_tos() { Name = name};
         join_Room_Tos.Version = PROTO_VERSION;
         byte[] proto = join_Room_Tos.ToByteArray();
         SendProto("join_room_tos", proto);
