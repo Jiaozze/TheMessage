@@ -1066,13 +1066,27 @@ public class GameManager
     {
         seqId = seq;
         OnWait(userId, waitingSeconds);
+        players[userId].cardCount += players[diePlayerId].cardCount;
+        players[diePlayerId].cardCount = 0;
         if(userId == SelfPlayerId)
         {
+            foreach (var card in cards)
+            {
+                cardsHand[card.id] = card;
+            }
+            gameUI.DrawCards(cards);
+
             foreach (var skill in players[SelfPlayerId].role.skills)
             {
-                //if(skill is users)
+                if (skill is UserSkill_ChengZhi)
+                {
+                    UserSkill_ChengZhi.dieColor = playerColor;
+                    UserSkill_ChengZhi.dieTask = secretTask;
+                    skill.PrepareUse();
+                }
             }
         }
+
     }
     #endregion
 
