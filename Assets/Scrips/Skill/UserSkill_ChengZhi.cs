@@ -70,6 +70,9 @@ public class UserSkill_ChengZhi : SkillBase
             }
             GameManager.Singleton.players[diePlayerId].playerColor = new List<PlayerColorEnum>();
             GameManager.Singleton.gameUI.Players[playerId].playerColor.SetColor(GameManager.Singleton.players[playerId].playerColor);
+            GameManager.Singleton.gameUI.Players[playerId].playerColor.goTogBlue.isOn = GameManager.Singleton.gameUI.Players[diePlayerId].playerColor.goTogBlue.isOn;
+            GameManager.Singleton.gameUI.Players[playerId].playerColor.goTogGreen.isOn = GameManager.Singleton.gameUI.Players[diePlayerId].playerColor.goTogGreen.isOn;
+            GameManager.Singleton.gameUI.Players[playerId].playerColor.goTogRed.isOn = GameManager.Singleton.gameUI.Players[diePlayerId].playerColor.goTogRed.isOn;
             GameManager.Singleton.gameUI.Players[diePlayerId].playerColor.SetColor(GameManager.Singleton.players[diePlayerId].playerColor);
 
             string s = string.Format("{0}号玩家发动了承志, 获得死亡玩家{1}号的身份牌", playerId, diePlayerId);

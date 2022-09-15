@@ -2272,9 +2272,9 @@ MonoBehaviour:
   colorBlue: {fileID: 8664989325326422695}
   colorGreen: {fileID: 4707447379582227555}
   goToggles: {fileID: 2875797254440496387}
-  goTogRed: {fileID: 6079897256377799153}
-  goTogBlue: {fileID: 7651595772499205013}
-  goTogGreen: {fileID: 5233976234863022158}
+  goTogRed: {fileID: 1590796895892972723}
+  goTogBlue: {fileID: 4273122845825164505}
+  goTogGreen: {fileID: 8249432458463161276}
 --- !u!114 &1697684949955116923
 MonoBehaviour:
   m_ObjectHideFlags: 0

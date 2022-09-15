@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,9 @@ public class UIPlayerColor : MonoBehaviour
     public Slider colorBlue;
     public Slider colorGreen;
     public GameObject goToggles;
-    public GameObject goTogRed;
-    public GameObject goTogBlue;
-    public GameObject goTogGreen;
+    public Toggle goTogRed;
+    public Toggle goTogBlue;
+    public Toggle goTogGreen;
 
     private List<PlayerColorEnum> playerColors = new List<PlayerColorEnum>();
     // Start is called before the first frame update
@@ -35,9 +36,9 @@ public class UIPlayerColor : MonoBehaviour
         colorBlue.value = haveBlue ? (haveRed ? (haveGreen ? 0.66f : 0.5f):1) : 0;
         colorGreen.value = haveGreen ? ((haveRed || haveBlue) ? ((haveRed && haveBlue) ? 0.33f : 0.5f) : 1) : 0;
 
-        goTogRed.SetActive(haveRed);
-        goTogBlue.SetActive(haveBlue);
-        goTogGreen.SetActive(haveGreen);
+        goTogRed.gameObject.SetActive(haveRed);
+        goTogBlue.gameObject.SetActive(haveBlue);
+        goTogGreen.gameObject.SetActive(haveGreen);
     }
 
     public void OnClick()
@@ -47,9 +48,9 @@ public class UIPlayerColor : MonoBehaviour
         {
             goToggles.SetActive(false);            
         }
-        else if(playerColors.Count > 1)
-        {
-            goToggles.SetActive(true);
-        }
+        //else if(playerColors.Count > 1)
+        //{
+        //    goToggles.SetActive(true);
+        //}
     }
 }
