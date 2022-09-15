@@ -331,6 +331,12 @@ public class GameUI : MonoBehaviour
         //自己开始传情报阶段
         else if (GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase)
         {
+            if (GameManager.Singleton.IsWaitLock && GameManager.Singleton.SelectPlayerId < 1)
+            {
+                ShowInfo("请选择要锁定的目标或者点取消不锁定");
+                return;
+            }
+
             GameManager.Singleton.SendMessage();
         }
         //情报传递阶段，情报到自己面前时

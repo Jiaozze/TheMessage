@@ -106,9 +106,11 @@ public class GameManager
 
             gameUI.HidePlayerMessageInfo();
             if (gameUI.Players.ContainsKey(_SelectPlayerId)) gameUI.Players[_SelectPlayerId].OnSelect(false);
+            _SelectPlayerId = -1;
             if (_SelectPlayerId == value)
             {
                 _SelectPlayerId = -1;
+                return;
             }
 
             // 取消选中玩家
@@ -1211,11 +1213,6 @@ public class GameManager
             }
             else
             {
-                if(SelectPlayerId < 1)
-                {
-                    gameUI.ShowInfo("请选择要锁定的目标或者点取消不锁定");
-                    return;
-                }
                 IsWaitLock = false;
                 int lockId = SelectPlayerId > 0 ? SelectPlayerId : 0;
                 DirectionEnum direction = cardsHand[SelectCardId].direction;
