@@ -523,13 +523,21 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
         }
-        //errorCode
-        else if (GetIdFromProtoName("error_code_toc") == id)
+        // 通知谁离开的房间
+        else if (GetIdFromProtoName("leave_room_toc") == id)
         {
-            Debug.Log(" _______receive________ error_code_toc ");
+            leave_room_toc leave_room_toc = leave_room_toc.Parser.ParseFrom(contont);
 
-            error_code_toc error_Code_Toc = error_code_toc.Parser.ParseFrom(contont);
-            GameManager.Singleton.OnErrorCode(error_Code_Toc.Code);
+            GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
+        }
+        //通知客户端录像存好了
+        else if (GetIdFromProtoName("save_record_success_toc") == id)
+        {
+            Debug.Log(" _______receive________ save_record_success_toc ");
+
+            save_record_success_toc error_Code_Toc = save_record_success_toc.Parser.ParseFrom(contont);
+            UnityEngine.GUIUtility.systemCopyBuffer = error_Code_Toc.RecordId;
+            GameManager.Singleton.gameUI.ShowInfo("录像已成功保存，录像Id已复制到粘贴板");
         }
         else
         {
@@ -848,6 +856,16 @@ public static class ProtoHelper
         add_robot_tos add_robot_tos = new add_robot_tos();
         byte[] proto = add_robot_tos.ToByteArray();
         SendProto("add_robot_tos", proto);
+    }
+
+
+    public static void SendPlayRecord(string recordId)
+    {
+        Debug.Log("____send___________________ display_record_tos");
+
+        display_record_tos display_record_tos = new display_record_tos() { Version = PROTO_VERSION, RecordId = recordId };
+        byte[] proto = display_record_tos.ToByteArray();
+        SendProto("display_record_tos", proto);
     }
 
     public static void SendAddRoom()
