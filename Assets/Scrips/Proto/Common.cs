@@ -25,22 +25,23 @@ public static partial class CommonReflection {
           "Cgxjb21tb24ucHJvdG8ioQEKBGNhcmQSDwoHY2FyZF9pZBgBIAEoDRIaCgpj",
           "YXJkX2NvbG9yGAIgAygOMgYuY29sb3ISHAoIY2FyZF9kaXIYAyABKA4yCi5k",
           "aXJlY3Rpb24SHQoJY2FyZF90eXBlGAQgASgOMgouY2FyZF90eXBlEh0KDXdo",
-          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCrp",
+          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCr7",
           "AQoEcm9sZRILCgd1bmtub3duEAASDQoJbWFvX2J1X2JhEAQSFwoTZmVpX3l1",
           "YW5fbG9uZ19jaHVhbhAHEgwKCHdhbmdfa3VpEAwSCwoHaGFuX21laRAOEhIK",
           "DnpoZW5nX3dlbl94aWFuEA8SDAoIZ3VpX2ppYW8QERIMCghzaGFvX3hpdRAS",
-          "EhEKDWppbl9zaGVuZ19odW8QExIPCgtiYWlfZmVpX2ZlaRAVEhAKDGR1YW5f",
-          "bXVfamluZxAWEgsKB2xhb19oYW4QGBIRCg1iYWlfeGlhb19uaWFuEBkSCwoH",
-          "bGFvX2JpZRAaKnEKBXBoYXNlEg4KCkRyYXdfUGhhc2UQABIOCgpNYWluX1Bo",
-          "YXNlEAESFAoQU2VuZF9TdGFydF9QaGFzZRACEg4KClNlbmRfUGhhc2UQAxIP",
-          "CgtGaWdodF9QaGFzZRAEEhEKDVJlY2VpdmVfUGhhc2UQBSqBAQoJY2FyZF90",
-          "eXBlEg4KCkNoZW5nX1FpbmcQABILCgdTaGlfVGFuEAESCgoGV2VpX0JpEAIS",
-          "CgoGTGlfWW91EAMSDQoJUGluZ19IZW5nEAQSCQoFUG9fWWkQBRILCgdKaWVf",
-          "SHVvEAYSDAoIRGlhb19CYW8QBxIKCgZXdV9EYW8QCColCgVjb2xvchIJCgVC",
-          "bGFjaxAAEgcKA1JlZBABEggKBEJsdWUQAio1CgtzZWNyZXRfdGFzaxIKCgZL",
-          "aWxsZXIQABILCgdTdGVhbGVyEAESDQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0",
-          "aW9uEgYKAlVwEAASCAoETGVmdBABEgkKBVJpZ2h0EAJCFgoUY29tLmZlbmdz",
-          "aGVuZy5wcm90b3NiBnByb3RvMw=="));
+          "EhEKDWppbl9zaGVuZ19odW8QExIQCgxndV94aWFvX21lbmcQFBIPCgtiYWlf",
+          "ZmVpX2ZlaRAVEhAKDGR1YW5fbXVfamluZxAWEgsKB2xhb19oYW4QGBIRCg1i",
+          "YWlfeGlhb19uaWFuEBkSCwoHbGFvX2JpZRAaKnEKBXBoYXNlEg4KCkRyYXdf",
+          "UGhhc2UQABIOCgpNYWluX1BoYXNlEAESFAoQU2VuZF9TdGFydF9QaGFzZRAC",
+          "Eg4KClNlbmRfUGhhc2UQAxIPCgtGaWdodF9QaGFzZRAEEhEKDVJlY2VpdmVf",
+          "UGhhc2UQBSqBAQoJY2FyZF90eXBlEg4KCkNoZW5nX1FpbmcQABILCgdTaGlf",
+          "VGFuEAESCgoGV2VpX0JpEAISCgoGTGlfWW91EAMSDQoJUGluZ19IZW5nEAQS",
+          "CQoFUG9fWWkQBRILCgdKaWVfSHVvEAYSDAoIRGlhb19CYW8QBxIKCgZXdV9E",
+          "YW8QCCo6CgVjb2xvchIJCgVCbGFjaxAAEgcKA1JlZBABEggKBEJsdWUQAhIT",
+          "Cg9IYXNfTm9fSWRlbnRpdHkQAyo1CgtzZWNyZXRfdGFzaxIKCgZLaWxsZXIQ",
+          "ABILCgdTdGVhbGVyEAESDQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0aW9uEgYK",
+          "AlVwEAASCAoETGVmdBABEgkKBVJpZ2h0EAJCFgoUY29tLmZlbmdzaGVuZy5w",
+          "cm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -88,6 +89,10 @@ public enum role {
   /// 金生火
   /// </summary>
   [pbr::OriginalName("jin_sheng_huo")] JinShengHuo = 19,
+  /// <summary>
+  /// 顾小梦
+  /// </summary>
+  [pbr::OriginalName("gu_xiao_meng")] GuXiaoMeng = 20,
   /// <summary>
   /// 白菲菲
   /// </summary>
@@ -189,6 +194,10 @@ public enum color {
   /// 蓝色
   /// </summary>
   [pbr::OriginalName("Blue")] Blue = 2,
+  /// <summary>
+  /// 失去身份
+  /// </summary>
+  [pbr::OriginalName("Has_No_Identity")] HasNoIdentity = 3,
 }
 
 /// <summary>

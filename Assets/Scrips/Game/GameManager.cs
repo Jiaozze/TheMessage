@@ -386,6 +386,12 @@ public class GameManager
     {
         roomUI.OnPlayerLeave(position);
     }
+
+    public void OnTaskChange(SecretTaskEnum secretTask)
+    {
+        task = secretTask;
+        gameUI.SetTask(task);
+    }
     // 通知客户端：初始化游戏
     public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles, List<string> names)
     {
@@ -626,23 +632,6 @@ public class GameManager
         string s = "" + playerId + "号玩家选择了接收情报，正在询问所有人是否响应";
         gameUI.ShowInfo(s);
         gameUI.AddMsg(s);
-    }
-
-    internal void OnReceiveWaitSkillRuGui(int playerId, int waitSeconds, uint seq)
-    {
-        seqId = seq;
-        OnWait(playerId, waitSeconds);
-        if(playerId == SelfPlayerId)
-        {
-            foreach(var skill in players[SelfPlayerId].role.skills)
-            {
-                if(skill is UserSkill_RuGui)
-                {
-                    var ruGui = skill as UserSkill_RuGui;
-                    ruGui.PrepareUse();
-                }
-            }
-        }
     }
 
     // 通知所有人使用调包
@@ -950,6 +939,7 @@ public class GameManager
         if (waitingPlayer == SelfPlayerId)
         {
             IsWaitSaving = playerId;
+            gameUI.Players[SelfPlayerId].RefreshSkillState();
         }
         else
         {
@@ -1053,6 +1043,36 @@ public class GameManager
     }
     #endregion
 
+    #region 通知询问是否使用技能
+    public void OnReceiveWaitSkillRuGui(int playerId, int waitSeconds, uint seq)
+    {
+        seqId = seq;
+        OnWait(playerId, waitSeconds);
+        if (playerId == SelfPlayerId)
+        {
+            foreach (var skill in players[SelfPlayerId].role.skills)
+            {
+                if (skill is UserSkill_RuGui)
+                {
+                    var ruGui = skill as UserSkill_RuGui;
+                    ruGui.PrepareUse();
+                }
+            }
+        }
+    }
+    public void OnReceiveWaitSkillChengZhi(int userId, int diePlayerId, List<CardFS> cards, PlayerColorEnum playerColor, SecretTaskEnum secretTask, int waitingSeconds, uint seq)
+    {
+        seqId = seq;
+        OnWait(userId, waitingSeconds);
+        if(userId == SelfPlayerId)
+        {
+            foreach (var skill in players[SelfPlayerId].role.skills)
+            {
+                //if(skill is users)
+            }
+        }
+    }
+    #endregion
 
     #region 向服务器发送请求
     public void SendEndWaiting()

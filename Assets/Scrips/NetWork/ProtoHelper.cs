@@ -395,7 +395,7 @@ public static class ProtoHelper
         {
             Debug.Log(" _______receive________ skill_ru_gui_toc");
             skill_ru_gui_toc skill_ru_gui_toc = skill_ru_gui_toc.Parser.ParseFrom(contont);
-            UserSkill_RuGui.OnReceiveUse((int)skill_ru_gui_toc.PlayerId, (int)skill_ru_gui_toc.CardId);
+            UserSkill_RuGui.OnReceiveUse((int)skill_ru_gui_toc.PlayerId, (int)skill_ru_gui_toc.CardId, skill_ru_gui_toc.Enable);
         }
         // 广播使用【怜悯】
         else if (GetIdFromProtoName("skill_lian_min_toc") == id)
@@ -411,7 +411,39 @@ public static class ProtoHelper
             skill_fu_hei_toc skill_fu_hei_toc = skill_fu_hei_toc.Parser.ParseFrom(contont);
             UserSkill_FuHei.OnReceiveUse((int)skill_fu_hei_toc.PlayerId);
         }
-
+        // 顾小梦【集智】：一名角色濒死时，或争夺阶段，你可以翻开此角色牌，然后摸四张牌。
+        else if (GetIdFromProtoName("skill_ji_zhi_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_ji_zhi_toc");
+            skill_ji_zhi_toc skill_ji_zhi_toc = skill_ji_zhi_toc.Parser.ParseFrom(contont);
+            UserSkill_JiZhi.OnReceiveUse((int)skill_ji_zhi_toc.PlayerId);
+        }
+        // 广播询问客户端使用【承志】
+        else if (GetIdFromProtoName("skill_wait_for_cheng_zhi_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_cheng_zhi_toc");
+            skill_wait_for_cheng_zhi_toc skill_wait_for_cheng_zhi_toc = skill_wait_for_cheng_zhi_toc.Parser.ParseFrom(contont);
+            int userId = (int)skill_wait_for_cheng_zhi_toc.PlayerId;
+            int diePlayerId = (int)skill_wait_for_cheng_zhi_toc.DiePlayerId;
+            //int cardsCount = (int)skill_wait_for_cheng_zhi_toc.UnknownCardCount;
+            List<CardFS> cards = new List<CardFS>();
+            foreach(var card in skill_wait_for_cheng_zhi_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            PlayerColorEnum playerColor = (PlayerColorEnum)skill_wait_for_cheng_zhi_toc.Identity;
+            SecretTaskEnum secretTask = (SecretTaskEnum)skill_wait_for_cheng_zhi_toc.SecretTask;
+            int waitingSeconds = (int)skill_wait_for_cheng_zhi_toc.WaitingSecond;
+            
+            GameManager.Singleton.OnReceiveWaitSkillChengZhi(userId, diePlayerId, cards: cards, playerColor, secretTask, waitingSeconds, skill_wait_for_cheng_zhi_toc.Seq);
+        }
+        // 广播使用【承志】
+        else if (GetIdFromProtoName("skill_cheng_zhi_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_cheng_zhi_toc");
+            skill_cheng_zhi_toc skill_cheng_zhi_toc = skill_cheng_zhi_toc.Parser.ParseFrom(contont);
+            UserSkill_ChengZhi.OnReceiveUse((int)skill_cheng_zhi_toc.PlayerId, (int)skill_cheng_zhi_toc.DiePlayerId, skill_cheng_zhi_toc.Enable);
+        }
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
         else if (GetIdFromProtoName("notify_die_toc") == id)
@@ -750,6 +782,26 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 顾小梦【集智】：一名角色濒死时，或争夺阶段，你可以翻开此角色牌，然后摸四张牌。
+    public static void SendSkill_JiZhi(uint seq)
+    {
+        Debug.Log("____send___________________ skill_ji_zhi_tos, seq:" + seq);
+
+        skill_ji_zhi_tos skill_ji_zhi_tos = new skill_ji_zhi_tos() { Seq = seq };
+        byte[] proto = skill_ji_zhi_tos.ToByteArray();
+        SendProto("skill_ji_zhi_tos", proto);
+
+    }
+    // 顾小梦【承志】：一名其他角色死亡前，若此角色牌已翻开，则你获得其所有手牌，并查看其身份牌，你可以获得该身份牌，并将你原本的身份牌面朝下移出游戏。
+    public static void SendSkill_ChengZhi(bool use, uint seq)
+    {
+        Debug.Log("____send___________________ skill_cheng_zhi_tos, seq:" + seq);
+
+        skill_cheng_zhi_tos skill_cheng_zhi_tos = new skill_cheng_zhi_tos() { Enable = use, Seq = seq };
+        byte[] proto = skill_cheng_zhi_tos.ToByteArray();
+        SendProto("skill_cheng_zhi_tos", proto);
+    }
+
     // 鄭文先【偷天】：争夺阶段你可以翻开此角色牌，然后视为你使用了一张【截获】。
     public static void SendSkill_TouTian(uint seq)
     {

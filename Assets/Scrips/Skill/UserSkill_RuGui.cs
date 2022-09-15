@@ -75,34 +75,36 @@ public class UserSkill_RuGui : SkillBase
         GameManager.Singleton.gameUI.ShowPhase();
     }
 
-    public static void OnReceiveUse(int playerId, int cardId)
+    public static void OnReceiveUse(int playerId, int cardId, bool enable)
     {
-        string cardInfo = "";
-        foreach(var message in GameManager.Singleton.players[playerId].messages)
-        {
-            if(message.id == cardId)
-            {
-                int toPlayer = GameManager.Singleton.CurTurnPlayerId;
-                GameManager.Singleton.players[playerId].RemoveMessage(cardId);
-                GameManager.Singleton.players[toPlayer].AddMessage(message);
-                GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
-                GameManager.Singleton.gameUI.Players[toPlayer].RefreshMessage();
-                GameManager.Singleton.gameUI.ShowAddMessage(toPlayer, message, false, playerId);
-                cardInfo = message.GetCardInfo();
-                break;
-            }
-        }
-
-        if(playerId == GameManager.SelfPlayerId)
+        if (playerId == GameManager.SelfPlayerId)
         {
             if (GameManager.Singleton.selectSkill != null)
             {
                 GameManager.Singleton.selectSkill.OnUse();
             }
         }
+        if(enable)
+        {
+            string cardInfo = "";
+            foreach (var message in GameManager.Singleton.players[playerId].messages)
+            {
+                if (message.id == cardId)
+                {
+                    int toPlayer = GameManager.Singleton.CurTurnPlayerId;
+                    GameManager.Singleton.players[playerId].RemoveMessage(cardId);
+                    GameManager.Singleton.players[toPlayer].AddMessage(message);
+                    GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
+                    GameManager.Singleton.gameUI.Players[toPlayer].RefreshMessage();
+                    GameManager.Singleton.gameUI.ShowAddMessage(toPlayer, message, false, playerId);
+                    cardInfo = message.GetCardInfo();
+                    break;
+                }
+            }
 
-        string s = string.Format("{0}号玩家发动了如归, 将情报{1}放入当前回合角色情报区", playerId, cardInfo);
-        GameManager.Singleton.gameUI.ShowInfo(s);
-        GameManager.Singleton.gameUI.AddMsg(s);
+            string s = string.Format("{0}号玩家发动了如归, 将情报{1}放入当前回合角色情报区", playerId, cardInfo);
+            GameManager.Singleton.gameUI.ShowInfo(s);
+            GameManager.Singleton.gameUI.AddMsg(s);
+        }
     }
 }

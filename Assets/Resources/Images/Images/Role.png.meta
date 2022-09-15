@@ -61,7 +61,7 @@ TextureImporter:
     second: JinShengHuo
   - first:
       213: 8444090138223666791
-    second: Role_19
+    second: GuXiaoMeng
   - first:
       213: 8024479293415480036
     second: BaiFeiFei
@@ -592,7 +592,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Role_19
+      name: GuXiaoMeng
       rect:
         serializedVersion: 2
         x: 6696
