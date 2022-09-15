@@ -1068,7 +1068,9 @@ public class GameManager
         OnWait(userId, waitingSeconds);
         players[userId].cardCount += players[diePlayerId].cardCount;
         players[diePlayerId].cardCount = 0;
-        if(userId == SelfPlayerId)
+        gameUI.Players[userId].RefreshCardCount();
+        gameUI.Players[diePlayerId].RefreshCardCount();
+        if (userId == SelfPlayerId)
         {
             foreach (var card in cards)
             {
