@@ -10,6 +10,8 @@ public class AllRoles
 
         switch (role)
         {
+            case role.GuXiaoMeng:
+                return new Role_GuXiaoMeng(i);
             case role.BaiFeiFei:
                 return new Role_BaiFeiFei(i);
             case role.LaoHan:
