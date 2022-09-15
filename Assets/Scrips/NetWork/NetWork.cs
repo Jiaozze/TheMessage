@@ -16,7 +16,7 @@ public static class NetWork
     static byte[] bufferEx = new byte[9999];
     static EasyThread easyThread = Unity.Threading.EasyThread.GetInstance();
 
-    public static void Init(string ipStr = "")
+    public static void Init(string ipStr = "", Action callback = null)
     {
 #if UNITY_EDITOR
         //ipStr = "192.168.124.3";
@@ -45,7 +45,11 @@ public static class NetWork
                 {
                     ProtoHelper.OnReceiveMsg(id, bodyBuffer);
                 });
-                GameManager.Singleton.OnServerConnect();
+                if(callback != null)
+                {
+                    callback.Invoke();
+                }
+                //GameManager.Singleton.OnServerConnect();
                 //GameManager.Singleton.gameWindow.SetEnterUI(false);
             }
             catch (Exception e)

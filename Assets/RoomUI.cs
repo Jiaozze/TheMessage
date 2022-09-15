@@ -10,6 +10,7 @@ public class RoomUI : MonoBehaviour
     public GameObject goRoomInfo;
     public GameObject goRoomItem;
     public GameObject goLoginButton;
+    public InputField recordId;
 
     private List<GameObject> items = new List<GameObject>();
 
@@ -25,8 +26,13 @@ public class RoomUI : MonoBehaviour
     }
     public void OnClickJoinRoom()
     {
-        NetWork.Init(ip);
+        NetWork.Init(ip, () => { GameManager.Singleton.OnServerConnect(); });
         //ProtoHelper.SendGetRoomInfo();
+    }
+
+    public void OnClickRecord()
+    {       
+        NetWork.Init(ip, () =>{ ProtoHelper.SendPlayRecord(recordId.text); });        
     }
 
     public void OnClickAddAI()

@@ -24,9 +24,11 @@ public static partial class ErrcodeReflection {
         string.Concat(
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
-          "cmFtcxgDIAMoCSo8CgplcnJvcl9jb2RlEhwKGGNsaWVudF92ZXJzaW9uX25v",
-          "dF9tYXRjaBAAEhAKDG5vX21vcmVfcm9vbRABQhYKFGNvbS5mZW5nc2hlbmcu",
-          "cHJvdG9zYgZwcm90bzM="));
+          "cmFtcxgDIAMoCSqJAQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
+          "b3RfbWF0Y2gQABIQCgxub19tb3JlX3Jvb20QARIVChFyZWNvcmRfbm90X2V4",
+          "aXN0cxACEhYKEmxvYWRfcmVjb3JkX2ZhaWxlZBADEhwKGHJlY29yZF92ZXJz",
+          "aW9uX25vdF9tYXRjaBAEQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90",
+          "bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -46,6 +48,18 @@ public enum error_code {
   /// 没有更多的房间了
   /// </summary>
   [pbr::OriginalName("no_more_room")] NoMoreRoom = 1,
+  /// <summary>
+  /// 录像不存在
+  /// </summary>
+  [pbr::OriginalName("record_not_exists")] RecordNotExists = 2,
+  /// <summary>
+  /// 读取录像失败了
+  /// </summary>
+  [pbr::OriginalName("load_record_failed")] LoadRecordFailed = 3,
+  /// <summary>
+  /// 录像的版本号不匹配，，int_params[0]为录像的版本号
+  /// </summary>
+  [pbr::OriginalName("record_version_not_match")] RecordVersionNotMatch = 4,
 }
 
 #endregion
