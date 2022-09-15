@@ -236,12 +236,12 @@ public class GameManager
     {
 
     }
-    public void InitPlayers(int num, List<RoleBase> roles)
+    public void InitPlayers(int num, List<RoleBase> roles, List<string> names)
     {
         players.Clear();
         for (int i = 0; i < num; i++)
         {
-            Player player = new Player(i, roles[i]);
+            Player player = new Player(i, roles[i], names[i]);
             players.Add(i, player);
         }
     }
@@ -387,14 +387,14 @@ public class GameManager
         roomUI.OnPlayerLeave(position);
     }
     // 通知客户端：初始化游戏
-    public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles)
+    public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles, List<string> names)
     {
         gameUI.gameObject.SetActive(true);
         roomUI.gameObject.SetActive(false);
 
         task = secretTask;
 
-        InitPlayers(player_num, roles);
+        InitPlayers(player_num, roles, names);
         players[SelfPlayerId].playerColor = new List<PlayerColorEnum>() { playerColor };
         gameUI.InitPlayers(player_num);
 

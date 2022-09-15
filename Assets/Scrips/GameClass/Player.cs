@@ -12,6 +12,7 @@ public enum PlayerColorEnum
 public class Player
 {
     public int playerId;
+    public string playerName;
     public List<PlayerColorEnum> playerColor = new List<PlayerColorEnum>() { PlayerColorEnum.Blue, PlayerColorEnum.Green, PlayerColorEnum.Red };
     public int cardCount;
     public List<CardFS> messages = new List<CardFS>();
@@ -21,9 +22,10 @@ public class Player
         {
             return "";
         } }
-    public Player(int id, RoleBase roleBase)
+    public Player(int id, RoleBase roleBase, string name)
     {
         playerId = id;
+        playerName = name;
         cardCount = 0;
         role = roleBase;
     }
