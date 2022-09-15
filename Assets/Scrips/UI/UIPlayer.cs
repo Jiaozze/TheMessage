@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     public Animator animator;
     public Image imgRole;
@@ -32,7 +32,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private int playerId;
     private List<Button> skillButtons;
-
+    private string roleDes = "";
     // Start is called before the first frame update
     void Awake()
     {
@@ -84,11 +84,21 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 }
             }
         }
+        roleDes = "";
+        roleDes += GameManager.Singleton.players[playerId].role.name + "\n";
+        if (!(GameManager.Singleton.players[playerId].role is Role_Unknown))
+        {
+            foreach (var skill in GameManager.Singleton.players[playerId].role.skills)
+            {
+                roleDes += skill.Des;
+            }
+        }
+
     }
 
     public void InitSkill()
     {
-        if(playerId != GameManager.SelfPlayerId)
+        if (playerId != GameManager.SelfPlayerId)
         {
             return;
         }
@@ -241,7 +251,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         textPlayerId.text = GameManager.Singleton.players[playerId].role.name == "" ? "" + playerId + "ºÅÍæ¼Ò" : GameManager.Singleton.players[playerId].role.name;
         animator.SetTrigger("TurnBack");
-        if(isBack)
+        if (isBack)
         {
             string path = "Images/role/role";
             Sprite sprite = Resources.Load<Sprite>(path);
@@ -255,6 +265,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+#if UNITY_STANDALONE
         string info = "";
         info += GameManager.Singleton.players[playerId].role.name + "\n";
         if(!(GameManager.Singleton.players[playerId].role is Role_Unknown))
@@ -265,10 +276,39 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
         GameUI.ShowDesInfo(info, eventData.position);
+#endif
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+#if UNITY_STANDALONE
         GameUI.HideDesInfo();
+#endif
     }
+    private Coroutine showInfoCorout;
+    public void OnPointerUp(PointerEventData eventData)
+    {
+#if UNITY_ANDROID
+        GameUI.HideDesInfo();
+        if(showInfoCorout!=null)
+        {
+            StopCoroutine(showInfoCorout);
+        }
+#endif
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+#if UNITY_ANDROID
+        showInfoCorout = StartCoroutine(ShowInfo(eventData));
+        GameUI.ShowDesInfo(roleDes, eventData.position);
+#endif
+    }
+
+    private IEnumerator ShowInfo(PointerEventData eventData)
+    {
+        yield return new WaitForSeconds(1f);
+        GameUI.ShowDesInfo(roleDes, eventData.position);
+    }
+
 }

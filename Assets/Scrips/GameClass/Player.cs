@@ -12,11 +12,15 @@ public enum PlayerColorEnum
 public class Player
 {
     public int playerId;
-    public List<PlayerColorEnum>  playerColor = new List<PlayerColorEnum>() { PlayerColorEnum.Blue, PlayerColorEnum.Green, PlayerColorEnum.Red };
+    public List<PlayerColorEnum> playerColor = new List<PlayerColorEnum>() { PlayerColorEnum.Blue, PlayerColorEnum.Green, PlayerColorEnum.Red };
     public int cardCount;
     public List<CardFS> messages = new List<CardFS>();
     public bool alive = true;
     public RoleBase role;
+    public string name { get
+        {
+            return "";
+        } }
     public Player(int id, RoleBase roleBase)
     {
         playerId = id;
