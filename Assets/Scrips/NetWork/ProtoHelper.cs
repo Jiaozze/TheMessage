@@ -560,12 +560,19 @@ public static class ProtoHelper
 
             GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
         }
-        // 通知谁离开的房间
-        else if (GetIdFromProtoName("leave_room_toc") == id)
+        // 广播房间加一个位置
+        else if (GetIdFromProtoName("add_one_position_toc") == id)
         {
-            leave_room_toc leave_room_toc = leave_room_toc.Parser.ParseFrom(contont);
+            add_one_position_toc add_one_position_toc = add_one_position_toc.Parser.ParseFrom(contont);
 
-            GameManager.Singleton.OnPlayerLeave((int)leave_room_toc.Position);
+            GameManager.Singleton.roomUI.OnAddPositon();
+        }
+        // 广播房间减少一个位置
+        else if (GetIdFromProtoName("remove_one_position_toc") == id)
+        {
+            remove_one_position_toc remove_one_position_toc = remove_one_position_toc.Parser.ParseFrom(contont);
+
+            GameManager.Singleton.roomUI.OnRemovePosition((int)remove_one_position_toc.Position);
         }
         //通知客户端录像存好了
         else if (GetIdFromProtoName("save_record_success_toc") == id)
@@ -905,7 +912,22 @@ public static class ProtoHelper
     }
 
     #endregion
+    public static void SendAddPosition()
+    {
+        Debug.Log("____send___________________ add_one_position_tos");
 
+        add_one_position_tos add_one_position_tos = new add_one_position_tos();
+        byte[] proto = add_one_position_tos.ToByteArray();
+        SendProto("add_one_position_tos", proto);
+    }
+    public static void SendRemovePosion()
+    {
+        Debug.Log("____send___________________ remove_one_position_tos");
+
+        remove_one_position_tos remove_one_position_tos = new remove_one_position_tos();
+        byte[] proto = remove_one_position_tos.ToByteArray();
+        SendProto("remove_one_position_tos", proto);
+    }
     public static void SendAddAI()
     {
         Debug.Log("____send___________________ add_robot_tos");
