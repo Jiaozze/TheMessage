@@ -48,9 +48,9 @@ public class UIPlayerColor : MonoBehaviour
         {
             goToggles.SetActive(false);            
         }
-        //else if(playerColors.Count > 1)
-        //{
-        //    goToggles.SetActive(true);
-        //}
+        else
+        {
+            goToggles.SetActive(true);
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Animator animator;
     public Image imgRole;
@@ -288,7 +288,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 #endif
     }
     private Coroutine showInfoCorout;
-    public void OnPointerUp(PointerEventData eventData)
+    public void PointerUp()
     {
 #if UNITY_ANDROID
         GameUI.HideDesInfo();
@@ -299,18 +299,18 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 #endif
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void PointerDown()
     {
 #if UNITY_ANDROID
-        showInfoCorout = StartCoroutine(ShowInfo(eventData));
-        GameUI.ShowDesInfo(roleDes, eventData.position);
+        showInfoCorout = StartCoroutine(ShowInfo());
+        //GameUI.ShowDesInfo(roleDes, eventData.position);
 #endif
     }
 
-    private IEnumerator ShowInfo(PointerEventData eventData)
+    private IEnumerator ShowInfo()
     {
         yield return new WaitForSeconds(1f);
-        GameUI.ShowDesInfo(roleDes, eventData.position);
+        GameUI.ShowDesInfo(roleDes, transform.position);
     }
 
 }
