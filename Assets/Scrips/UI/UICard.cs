@@ -88,7 +88,7 @@ public class UICard : MonoBehaviour
                 //textShitan.text = "<color=#0000FF>" + blue + "</color>\n"
                 //    + "<color=#FF0000>" + red + "</color>\n"
                 //    + "<color=#000000>" + black + "</color>";
-                textShitan.text = blue + "\n" + red + "\n" + "<color=#000000>" + black + "</color>";
+                textShitan.text = blue + "  " + red + "  " + "<color=#000000>" + black + "</color>";
             }
             else
             {
