@@ -49,6 +49,15 @@ public class RoomUI : MonoBehaviour
     {
         ProtoHelper.SendRemoveAI();
     }
+
+    public void OnClickRemovePosition()
+    {
+        ProtoHelper.SendRemovePosion();
+    }
+    public void OnClickAddPosition()
+    {
+        ProtoHelper.SendAddPosition();
+    }
     public void OnRoomInfo(List<string> names, int index)
     {
         goRoomInfo.SetActive(true);
@@ -75,13 +84,26 @@ public class RoomUI : MonoBehaviour
 
     public void OnAddPlayer(string name, int index)
     {
-        //Debug.Log(index);
-        //Debug.Log(items.Count);
         items[index].transform.Find("Text").GetComponent<Text>().text = name;
     }
 
     public void OnPlayerLeave(int index)
     {
         items[index].transform.Find("Text").GetComponent<Text>().text = "";
+    }
+
+    public void OnAddPositon()
+    {
+        var go = GameObject.Instantiate(goRoomItem, goRoomItem.transform.parent);
+        go.SetActive(true);
+        go.transform.Find("Text").GetComponent<Text>().text = "";
+        items.Add(go);
+    }
+
+    public void OnRemovePosition(int index)
+    {
+        var go = items[index];
+        items.RemoveAt(index);
+        Destroy(go);
     }
 }

@@ -24,11 +24,11 @@ public static partial class ErrcodeReflection {
         string.Concat(
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
-          "cmFtcxgDIAMoCSqJAQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
+          "cmFtcxgDIAMoCSqcAQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
           "b3RfbWF0Y2gQABIQCgxub19tb3JlX3Jvb20QARIVChFyZWNvcmRfbm90X2V4",
           "aXN0cxACEhYKEmxvYWRfcmVjb3JkX2ZhaWxlZBADEhwKGHJlY29yZF92ZXJz",
-          "aW9uX25vdF9tYXRjaBAEQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90",
-          "bzM="));
+          "aW9uX25vdF9tYXRjaBAEEhEKDW5hbWVfdG9vX2xvbmcQBUIWChRjb20uZmVu",
+          "Z3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -60,6 +60,10 @@ public enum error_code {
   /// 录像的版本号不匹配，，int_params[0]为录像的版本号
   /// </summary>
   [pbr::OriginalName("record_version_not_match")] RecordVersionNotMatch = 4,
+  /// <summary>
+  /// 玩家名字太长了
+  /// </summary>
+  [pbr::OriginalName("name_too_long")] NameTooLong = 5,
 }
 
 #endregion
