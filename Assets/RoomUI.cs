@@ -18,6 +18,7 @@ public class RoomUI : MonoBehaviour
 
     private void Awake()
     {
+        playerName.text = PlayerPrefs.GetString("PlayerName", "");
         GameManager.Singleton.Init();
         goRoomItem.SetActive(false);
     }
@@ -28,6 +29,7 @@ public class RoomUI : MonoBehaviour
     }
     public void OnClickJoinRoom()
     {
+        PlayerPrefs.SetString("PlayerName", playerName.text);
         NetWork.Init(ip, () => {
             ProtoHelper.SendAddRoom(playerName.text);
         });
