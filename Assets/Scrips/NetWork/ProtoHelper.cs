@@ -8,8 +8,9 @@ public static class ProtoHelper
     private const uint PROTO_VERSION = 6;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
-        //Debug.LogError(id);
-        // 通知客户端：某个玩家摸了一张卡
+        //GetIdFromProtoName("wait_for_select_role_toc");
+            //Debug.LogError(id);
+            // 通知客户端：某个玩家摸了一张卡
         if (GetIdFromProtoName("add_card_toc") == id)
         {
             //Debug.LogError("add_card_toc");
@@ -583,6 +584,22 @@ public static class ProtoHelper
             UnityEngine.GUIUtility.systemCopyBuffer = error_Code_Toc.RecordId;
             GameManager.Singleton.gameUI.ShowInfo("录像已成功保存，录像Id已复制到粘贴板");
         }
+        // 等待客户端选角色
+        else if (GetIdFromProtoName("wait_for_select_role_toc") == id)
+        {
+            Debug.Log(" _______receive________ wait_for_select_role_toc ");
+
+            wait_for_select_role_toc wait_for_select_role_toc = wait_for_select_role_toc.Parser.ParseFrom(contont);
+            int playerCount = (int)wait_for_select_role_toc.PlayerCount;
+            PlayerColorEnum playerColor = (PlayerColorEnum)wait_for_select_role_toc.Identity;
+            SecretTaskEnum secretTask = (SecretTaskEnum)wait_for_select_role_toc.SecretTask;
+            List<role> roles = new List<role>();
+            foreach(var role in wait_for_select_role_toc.Roles)
+            {
+                roles.Add(role);
+            }
+            GameManager.Singleton.OnReceiveChooseRole(playerCount, playerColor, secretTask, roles);
+        }
         else
         {
             Debug.LogError("undefine proto:" + id);
@@ -962,6 +979,12 @@ public static class ProtoHelper
         SendProto("join_room_tos", proto);
     }
 
+    public static void SendSelectRole(role roleSelect)
+    {
+        select_role_tos join_Room_Tos = new select_role_tos() { Role = roleSelect };
+        byte[] proto = join_Room_Tos.ToByteArray();
+        SendProto("select_role_tos", proto);
+    }
     private static void SendProto(string protoName, byte[] proto)
     {
         int protoId = GetIdFromProtoName(protoName);
@@ -995,7 +1018,7 @@ public static class ProtoHelper
                 hash = (ushort)(hash + ((hash) << 5) + ch + (ch << 7));
             }
             proto_name_id.Add(protoName, (int)hash);
-            //Debug.LogError("protoName:" + hash);
+            //Debug.LogError("protoName:" + protoName + "," + hash);
             return (int)hash;
         }
     }

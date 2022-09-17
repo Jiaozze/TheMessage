@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.Collections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class GameUI : MonoBehaviour
     public PlayerMessagInfo playerMessagInfo;
     public DirectSelect directSelect;
     public WinInfo winInfo;
+    public RoleSelect roleSelect;
     public UIPlayer itemPlayerUI;
     public UICard itemCardUI;
     public UICard messageCard;
@@ -49,6 +51,7 @@ public class GameUI : MonoBehaviour
 
     private void Awake()
     {
+        roleSelect.gameObject.SetActive(false);
         goDesInfo.SetActive(false);
         directSelect.gameObject.SetActive(false);
         goDirect.SetActive(false);
@@ -79,7 +82,17 @@ public class GameUI : MonoBehaviour
         GameManager.Singleton.gameUI.goDesInfo.transform.position = position;
     }
 
-    public void InitPlayers(int num)
+    public void ShowChooseRole(PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<role> roles)
+    {
+        roleSelect.Show(playerColor, secretTask, roles);
+    }
+
+    public void HideChooseRole()
+    {
+        roleSelect.gameObject.SetActive(false);
+    }
+
+    public void InitPlayers(int num, bool initRole = false)
     {
         if (Players.Count > 0)
         {
@@ -94,25 +107,28 @@ public class GameUI : MonoBehaviour
         topNum = num - 1 - 2 * leftNum;
 
         var self = GameObject.Instantiate(itemPlayerUI, transPlayerSelf);
-        self.Init(0);
         Players[0] = self;
         for (int i = 1; i < leftNum + 1; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, rightPlayerGrid.transform);
-            player.Init(i);
             Players[i] = player;
         }
         for (int i = 1 + leftNum; i < 1 + leftNum + topNum; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, topPlayerGrid.transform);
-            player.Init(i);
             Players[i] = player;
         }
         for (int i = 1 + leftNum + topNum; i < 1 + leftNum + topNum + leftNum; i++)
         {
             var player = GameObject.Instantiate(itemPlayerUI, leftPlayerGrid.transform);
-            player.Init(i);
             Players[i] = player;
+        }
+        if(initRole)
+        {
+            for(int i = 0; i < Players.Count; i ++)
+            {
+                Players[i].Init(i); 
+            }
         }
         leftPlayerGrid.spacing = new Vector2(0, (leftPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - leftPlayerGrid.cellSize.y * leftNum) / leftNum);
         rightPlayerGrid.spacing = new Vector2(0, (rightPlayerGrid.GetComponent<RectTransform>().sizeDelta.y - rightPlayerGrid.cellSize.y * leftNum) / leftNum);
