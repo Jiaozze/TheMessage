@@ -17,13 +17,13 @@ public class GameManager
     public int CurMessagePlayerId { get; private set; }
     public int CurWaitingPlayerId { get; private set; }
 
-    public bool IsBingShiTan { get; private set; }
 
     #region 特殊状态 有人求澄清 传情报时选择锁定目标 死亡给牌
     public int IsWaitSaving { get; private set; }
     public bool IsWaitLock { get; private set; }
     public bool IsWaitGiveCard { get; private set; }
     public bool IsUsingSkill { get; set; }
+    public bool IsBingShiTan { get; private set; }
 
     public List<int> cardsToGive = new List<int>();
     #endregion
@@ -89,6 +89,20 @@ public class GameManager
 
             gameUI.CheckTargetAvailable();
         }
+    }
+
+    internal void Reset()
+    {
+        SelectCardId = -1;
+        SelectPlayerId = -1;
+        CurTurnPlayerId = 0;
+        CurMessagePlayerId = 0;
+        CurWaitingPlayerId = 0;
+        IsBingShiTan = false;
+        IsUsingSkill = false;
+        IsWaitGiveCard = false;
+        IsWaitLock = false;
+        IsWaitSaving = -1;
     }
 
     private int _SelectCardId = -1;
@@ -829,7 +843,6 @@ public class GameManager
         }
     }
     // 通知客户端使用平衡的结果 //弃牌部分走 OnReceiveDiscards
-    private bool isPingheng;
     public void OnReceiveUsePingHeng(int user, int target, CardFS cardUsed)
     {
         OnCardUse(user, cardUsed, target);

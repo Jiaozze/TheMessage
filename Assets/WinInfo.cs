@@ -49,6 +49,7 @@ public class WinInfo : MonoBehaviour
 
     public void Restart()
     {
+        GameManager.Singleton.Reset();
         NetWork.Dispose();
         SceneManager.LoadScene("TheMessage");
     }
