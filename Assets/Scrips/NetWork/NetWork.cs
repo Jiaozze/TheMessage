@@ -55,7 +55,7 @@ public static class NetWork
             catch (Exception e)
             {
                 //GameManager.Singleton.gameWindow.SetEnterUI(true);
-                //GameManager.Singleton.gameWindow.ShowTip("连接服务器失败！");
+                GameManager.Singleton.OnNetWorkErr();
                 Debug.LogError("连接服务器失败！" + e);
             }
         }
