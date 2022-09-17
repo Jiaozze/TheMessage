@@ -519,6 +519,11 @@ public class GameManager
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
         //Debug.Log(" playerId " + playerId + " messagePlayerId " + messagePlayerId + " waitingPlayerId " + waitingPlayerId + " phase " + phase.ToString());
+        if(IsUsingSkill || selectSkill != null)
+        {
+            IsUsingSkill = false;
+            selectSkill.Cancel();
+        }
         int lastTurnPlayerId = CurTurnPlayerId;
         IsWaitGiveCard = false;
         IsWaitLock = false;
