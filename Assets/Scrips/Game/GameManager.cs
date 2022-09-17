@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -89,6 +90,13 @@ public class GameManager
 
             gameUI.CheckTargetAvailable();
         }
+    }
+
+    internal void OnNetWorkErr()
+    {
+        gameUI.ShowInfo("连接错误");
+        Reset();
+        SceneManager.LoadScene("TheMessage");
     }
 
     internal void Reset()
