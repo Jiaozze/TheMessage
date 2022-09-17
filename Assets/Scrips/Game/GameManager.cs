@@ -708,7 +708,7 @@ public class GameManager
                 gameUI.ShowInfo("没有更多的房间了");
                 break;
             default:
-                gameUI.ShowInfo("未知错误码 " + (int)code + "  " + code.ToString());
+                gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;
         }
     }
