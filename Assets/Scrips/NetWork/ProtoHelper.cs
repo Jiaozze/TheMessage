@@ -600,6 +600,15 @@ public static class ProtoHelper
             }
             GameManager.Singleton.OnReceiveChooseRole(playerCount, playerColor, secretTask, roles);
         }
+        //errorCode
+        else if (GetIdFromProtoName("error_code_toc") == id)
+        {
+            Debug.Log(" _______receive________ error_code_toc ");
+
+            error_code_toc error_Code_Toc = error_code_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnErrorCode(error_Code_Toc.Code);
+        }
+
         else
         {
             Debug.LogError("undefine proto:" + id);
