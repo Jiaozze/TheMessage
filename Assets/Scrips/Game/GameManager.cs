@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Google.Protobuf.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -416,17 +417,27 @@ public class GameManager
         task = secretTask;
         gameUI.SetTask(task);
     }
+    // 等待客户端选角色
+    public void OnReceiveChooseRole(int playerCount, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<role> roles)
+    {
+        gameUI.gameObject.SetActive(true);
+        roomUI.gameObject.SetActive(false);
+
+        gameUI.InitPlayers(playerCount);
+        gameUI.ShowChooseRole(playerColor, secretTask, roles);
+    }
     // 通知客户端：初始化游戏
     public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles, List<string> names)
     {
         gameUI.gameObject.SetActive(true);
-        roomUI.gameObject.SetActive(false);
+        roomUI.gameObject.SetActive(false); 
+        gameUI.HideChooseRole();
 
         task = secretTask;
 
         InitPlayers(player_num, roles, names);
         players[SelfPlayerId].playerColor = new List<PlayerColorEnum>() { playerColor };
-        gameUI.InitPlayers(player_num);
+        gameUI.InitPlayers(player_num, true);
 
         InitCards(new List<CardFS>());
         gameUI.InitCards(0);
@@ -953,6 +964,7 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}号玩家的情报{1}被烧毁", target, messageInfo));
 
     }
+
 
     // 濒死求澄清
     public void OnReceiveWaitSaving(int playerId, int waitingPlayer, int waitingSecond, uint seq)
