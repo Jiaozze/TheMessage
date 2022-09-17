@@ -730,6 +730,7 @@ public class GameManager
             }
             gameUI.AddMsg(string.Format("情报被翻开，{0} {1}", colorStr, LanguageUtils.GetCardName(messageCard.cardName)));
         }
+        gameUI.poYiResult.gameObject.SetActive(false);
     }
 
     private List<PlayerColorEnum> shiTanColor;
