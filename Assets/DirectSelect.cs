@@ -24,6 +24,10 @@ public class DirectSelect : MonoBehaviour
         if (role is Role_LaoBie)
         {
             Role_LaoBie role_LaoBie = role as Role_LaoBie;
+            if(GameManager.Singleton.cardsHand.ContainsKey(GameManager.Singleton.SelectCardId))
+            {
+                role_LaoBie.direction = GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId].direction;
+            }
             switch (role_LaoBie.direction)
             {
                 case DirectionEnum.Left:
