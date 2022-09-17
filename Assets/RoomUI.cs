@@ -31,7 +31,7 @@ public class RoomUI : MonoBehaviour
     {
         PlayerPrefs.SetString("PlayerName", playerName.text);
         NetWork.Init(ip, () => {
-            ProtoHelper.SendAddRoom(playerName.text);
+            ProtoHelper.SendAddRoom(playerName.text, SystemInfo.deviceUniqueIdentifier);
         });
         //ProtoHelper.SendGetRoomInfo();
     }

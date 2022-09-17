@@ -954,9 +954,9 @@ public static class ProtoHelper
         SendProto("display_record_tos", proto);
     }
 
-    public static void SendAddRoom(string name = "")
+    public static void SendAddRoom(string name = "", string deviceId = "")
     {
-        join_room_tos join_Room_Tos = new join_room_tos() { Name = name};
+        join_room_tos join_Room_Tos = new join_room_tos() { Name = name, Device = deviceId};
         join_Room_Tos.Version = PROTO_VERSION;
         byte[] proto = join_Room_Tos.ToByteArray();
         SendProto("join_room_tos", proto);
