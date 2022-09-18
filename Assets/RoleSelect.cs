@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,5 +76,17 @@ public class RoleSelect : MonoBehaviour
         {
             GameManager.Singleton.gameUI.ShowInfo("请选择一个角色");
         }
+    }
+
+    internal void OnRoleSelect(role role)
+    {
+        foreach(var kv in items)
+        {
+            if(kv.Key != role)
+            {
+                kv.Value.gameObject.SetActive(false);
+            }
+        }
+        butSuer.gameObject.SetActive(false);
     }
 }

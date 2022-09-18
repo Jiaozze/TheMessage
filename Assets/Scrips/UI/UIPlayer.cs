@@ -268,16 +268,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
 #if UNITY_STANDALONE
-        string info = "";
-        info += GameManager.Singleton.players[playerId].role.name + "\n";
-        if(!(GameManager.Singleton.players[playerId].role is Role_Unknown))
-        {
-            foreach(var skill in GameManager.Singleton.players[playerId].role.skills)
-            {
-                info += skill.Des;
-            }
-        }
-        GameUI.ShowDesInfo(info, eventData.position);
+        GameUI.ShowDesInfo(roleDes, eventData.position);
 #endif
     }
 
