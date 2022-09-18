@@ -178,7 +178,7 @@ public class UserSkill_YiYaHuanYa : SkillBase
         GameManager.Singleton.gameUI.ShowAddMessage(target, card, false, playerId);
         GameManager.Singleton.gameUI.Players[target].RefreshMessage();
 
-        string s = string.Format("{0}号玩家使用了技能以牙还牙,将一张{1}放入{2}号玩家情报区");
+        string s = string.Format("{0}使用了技能以牙还牙,将一张{1}放入{2}号玩家情报区", GameManager.Singleton.players[playerId].name, cardStr, GameManager.Singleton.players[target].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

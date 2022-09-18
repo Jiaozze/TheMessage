@@ -189,7 +189,7 @@ public class UserSkill_YiHuaJieMu : SkillBase
                 GameManager.Singleton.cardsHand.Add(cardId, messageCard);
                 GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { messageCard });
             }
-            string s = string.Format("{0}号玩家使用了技能移花接木,将{1}号玩家情报区的{2}置入手牌", playerId, from, cardStr);
+            string s = string.Format("{0}使用了技能移花接木,将{1}号玩家情报区的{2}置入手牌", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[from].name, cardStr);
             GameManager.Singleton.gameUI.ShowInfo(s);
             GameManager.Singleton.gameUI.AddMsg(s);
         }
@@ -199,7 +199,7 @@ public class UserSkill_YiHuaJieMu : SkillBase
             GameManager.Singleton.gameUI.Players[to].RefreshMessage();
             GameManager.Singleton.gameUI.ShowAddMessage(to, messageCard, false, from);
 
-            string s = string.Format("{0}号玩家使用了技能移花接木,将{1}号玩家情报区的{2}移至{3}号情报区", playerId, from, cardStr, to);
+            string s = string.Format("{0}使用了技能移花接木,将{1}情报区的{2}移至{3}情报区", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[from].name, cardStr, GameManager.Singleton.players[to].name);
             GameManager.Singleton.gameUI.ShowInfo(s);
             GameManager.Singleton.gameUI.AddMsg(s);
 

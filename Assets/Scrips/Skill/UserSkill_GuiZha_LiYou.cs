@@ -120,7 +120,7 @@ public class UserSkill_GuiZha_LiYou : SkillBase
                 }
             }
         }
-        string s = string.Format("{0}号玩家对{1}号玩家使用了技能诡诈，视为使用了一张{2}", playerId, tatgetId, LanguageUtils.GetCardName(cardName));
+        string s = string.Format("{0}对{1}使用了技能诡诈，视为使用了一张{2}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[tatgetId].name, LanguageUtils.GetCardName(cardName));
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

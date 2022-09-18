@@ -13,7 +13,7 @@ public class WeiBiGiveCard : MonoBehaviour
     {
         gameObject.SetActive(true);
         this.cardWant = cardWant;
-        text.text = string.Format( "请选择一张{0}交给{1}号玩家", LanguageUtils.GetCardName(cardWant), user);
+        text.text = string.Format( "请选择一张{0}交给{1}", LanguageUtils.GetCardName(cardWant), GameManager.Singleton.players[user].name);
 
         TimeDown(waitTime);
     }

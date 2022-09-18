@@ -81,7 +81,7 @@ public class UserSkill_TouTian : SkillBase
         //GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(false);
 
 
-        string s = string.Format("{0}号玩家使用了技能偷天，将角色翻面，视为使用了一张截获", playerId);
+        string s = string.Format("{0}使用了技能偷天，将角色翻面，视为使用了一张截获", GameManager.Singleton.players[playerId].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }
