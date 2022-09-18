@@ -879,7 +879,7 @@ public static class ProtoHelper
     {
         Debug.Log("____send___________________ skill_mian_li_cang_zhen_tos, seq:" + seq);
 
-        skill_mian_li_cang_zhen_tos skill_mian_li_cang_zhen_tos = new skill_mian_li_cang_zhen_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)targetId, Seq = seq };
+        skill_mian_li_cang_zhen_tos skill_mian_li_cang_zhen_tos = new skill_mian_li_cang_zhen_tos() { CardId = (uint)cardId, Seq = seq };
         byte[] proto = skill_mian_li_cang_zhen_tos.ToByteArray();
 
         SendProto("skill_mian_li_cang_zhen_tos", proto);
