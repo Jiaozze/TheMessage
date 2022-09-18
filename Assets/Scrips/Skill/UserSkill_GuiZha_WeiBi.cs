@@ -43,7 +43,7 @@ public class UserSkill_GuiZha_WeiBi : SkillBase
             }
             GameManager.Singleton.IsUsingSkill = true;
             GameManager.Singleton.selectSkill = this;
-            GameManager.Singleton.gameUI.ShowPhase("正在使用技能【诡诈】，请选择一名玩家做为利诱目标");
+            GameManager.Singleton.gameUI.ShowPhase("正在使用技能【诡诈】，请选择一名玩家做为威逼目标");
         }
     }
 

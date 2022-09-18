@@ -25,7 +25,7 @@ public class UserSkill_ChengZhi : SkillBase
         GameManager.Singleton.selectSkill = this;
         string taskString = dieColor == PlayerColorEnum.Green ? " 机密任务为:" + LanguageUtils.GetTaskName(dieTask) : "";
         GameManager.Singleton.gameUI.ShowPhase("触发技能承志，死亡角色身份为" + LanguageUtils.GetIdentityName(dieColor) + ",是否获得该身份牌");
-        GameManager.Singleton.gameUI.ShowPlayerMessageInfo(GameManager.SelfPlayerId);
+        //GameManager.Singleton.gameUI.ShowPlayerMessageInfo(GameManager.SelfPlayerId);
     }
 
     public override void Use()
