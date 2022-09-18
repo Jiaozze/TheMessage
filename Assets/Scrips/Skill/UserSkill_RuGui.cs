@@ -102,7 +102,7 @@ public class UserSkill_RuGui : SkillBase
                 }
             }
 
-            string s = string.Format("{0}号玩家发动了如归, 将情报{1}放入当前回合角色情报区", playerId, cardInfo);
+            string s = string.Format("{0}发动了如归, 将情报{1}放入当前回合角色情报区", GameManager.Singleton.players[playerId].name, cardInfo);
             GameManager.Singleton.gameUI.ShowInfo(s);
             GameManager.Singleton.gameUI.AddMsg(s);
         }

@@ -112,7 +112,7 @@ public class UserSkill_XinSiChao : SkillBase
                 GameManager.Singleton.selectSkill.OnUse();
             }
         }
-        string s = "" + playerId + "号玩家使用了技能新思潮";
+        string s = "" + GameManager.Singleton.players[playerId].name + "使用了技能新思潮";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

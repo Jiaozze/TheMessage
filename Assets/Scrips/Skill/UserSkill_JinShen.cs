@@ -138,7 +138,7 @@ public class UserSkill_JinShen : SkillBase
         GameManager.Singleton.players[playerId].RemoveMessage(message.id);
         GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
 
-        string s = string.Format("{0}号玩家使用了技能谨慎，将情报{1}与手牌{2}互换", playerId, messageStr, cardStr);
+        string s = string.Format("{0}使用了技能谨慎，将情报{1}与手牌{2}互换", GameManager.Singleton.players[playerId].name, messageStr, cardStr);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

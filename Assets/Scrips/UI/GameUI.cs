@@ -685,7 +685,7 @@ public class GameUI : MonoBehaviour
         }
         else if (GameManager.Singleton.IsWaitSaving != -1)
         {
-            textPhase.text = "" + GameManager.Singleton.IsWaitSaving + "号玩家濒死，向" + GameManager.Singleton.CurWaitingPlayerId + "号请求澄清";
+            textPhase.text = "" + GameManager.Singleton.players[GameManager.Singleton.IsWaitSaving].name + "濒死，向" + GameManager.Singleton.players[GameManager.Singleton.CurWaitingPlayerId].name + "请求澄清";
         }
         else if (GameManager.Singleton.IsWaitGiveCard)
         {
@@ -700,7 +700,7 @@ public class GameUI : MonoBehaviour
             else
             {
                 textPhase.text = "";
-                ShowInfo("" + GameManager.Singleton.CurWaitingPlayerId + "号玩家进入情报传递阶段，正在准备传递的情报");
+                ShowInfo("" + GameManager.Singleton.players[GameManager.Singleton.CurWaitingPlayerId].name + "进入情报传递阶段，正在准备传递的情报");
             }
         }
         else

@@ -29,7 +29,7 @@ public class PlayerMessagInfo : MonoBehaviour
     public void Show(int playerId, bool showChengQing = false)
     {
         gameObject.SetActive(true);
-        textTittle.text = "" + playerId + "号玩家的情报";
+        textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的情报";
 
         foreach (var kv in items)
         {
@@ -75,7 +75,7 @@ public class PlayerMessagInfo : MonoBehaviour
     public void ShowHandCard(int playerId, List<CardFS> cards)
     {
         gameObject.SetActive(true);
-        textTittle.text = "" + playerId + "号玩家的手牌";
+        textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的手牌";
 
         foreach (var kv in items)
         {

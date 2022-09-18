@@ -77,7 +77,7 @@ public class UserSkill_JiZhi : SkillBase
         //GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(false);
 
 
-        string s = string.Format("{0}号玩家使用了技能集智，将角色翻面", playerId);
+        string s = string.Format("{0}使用了技能集智，将角色翻面", GameManager.Singleton.players[playerId].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

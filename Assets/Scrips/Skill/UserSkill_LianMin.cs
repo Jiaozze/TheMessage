@@ -210,7 +210,7 @@ public class UserSkill_LianMin : SkillBase
             GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { messageCard });
         }
 
-        string s = string.Format("{0}号玩家使用了技能怜悯,将{1}号玩家情报区的{2}置入手牌", playerId, targetPlayerId, cardStr);
+        string s = string.Format("{0}使用了技能怜悯,将{1}情报区的{2}置入手牌", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetPlayerId].name, cardStr);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

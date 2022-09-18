@@ -133,7 +133,7 @@ public class UserSkill_QiHuoKeJu : SkillBase
         GameManager.Singleton.players[playerId].RemoveMessage(cardId);
         GameManager.Singleton.gameUI.Players[playerId].RefreshMessage();
 
-        string s = "" + playerId + "号玩家使用了技能奇货可居,将情报区的" + cardStr + "置入手牌";
+        string s = "" + GameManager.Singleton.players[playerId].name + "使用了技能奇货可居,将情报区的" + cardStr + "置入手牌";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

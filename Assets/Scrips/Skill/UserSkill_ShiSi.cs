@@ -18,7 +18,7 @@ public class UserSkill_ShiSi : SkillBase
 
     public static void OnReceiveUse(int playerId)
     {
-        string s = "" + playerId + "号玩家发动了视死";
+        string s = "" + GameManager.Singleton.players[playerId].name + "发动了视死";
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }

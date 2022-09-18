@@ -340,8 +340,8 @@ public class GameManager
             }
             gameUI.OnUseCard(user, target, cardUsed);
             string targetInfo;
-            targetInfo = target == -1 ? "" : "对" + target + "号玩家";
-            gameUI.AddMsg(string.Format("{0}号玩家{1}使用了{2};", user, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
+            targetInfo = target == -1 ? "" : "对" + GameManager.Singleton.players[target].name;
+            gameUI.AddMsg(string.Format("{0}{1}使用了{2};", GameManager.Singleton.players[user].name, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
             SoundManager.PlaySound(cardUsed.cardName, players[user].role.isWoman);
         }
     }
@@ -370,10 +370,10 @@ public class GameManager
         else if (dir == DirectionEnum.Left) dirStr = "左";
         else if (dir == DirectionEnum.Right) dirStr = "右";
 
-        gameUI.AddMsg(string.Format("{0}号玩家向{1}号玩家传出一张情报，方向向{2}", playerId, targetId, dirStr));
+        gameUI.AddMsg(string.Format("{0}向{1}传出一张情报，方向向{2}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, dirStr));
         foreach (var id in lockIds)
         {
-            gameUI.AddMsg("" + id + "号玩家被锁定了");
+            gameUI.AddMsg("" + GameManager.Singleton.players[id].name + "被锁定了");
         }
     }
     private void OnWait(int playerId, int waitSeconds)
@@ -495,7 +495,7 @@ public class GameManager
         }
         gameUI.DisCard(cards, playerId);
 
-        gameUI.AddMsg(string.Format("{0}号玩家弃了{1}张牌; {2}", playerId, cards.Count, cardInfo));
+        gameUI.AddMsg(string.Format("{0}弃了{1}张牌; {2}", GameManager.Singleton.players[playerId].name, cards.Count, cardInfo));
 
     }
     //其他角色摸牌
@@ -506,7 +506,7 @@ public class GameManager
         {
             gameUI.Players[id].OnDrawCard(total, num);
         }
-        gameUI.AddMsg(string.Format("{0}号玩家摸了{1}张牌", id, num));
+        gameUI.AddMsg(string.Format("{0}摸了{1}张牌", GameManager.Singleton.players[id].name, num));
     }
 
     public void OnReceivePlayerUpDate(int playerId, role role)
@@ -570,7 +570,7 @@ public class GameManager
         {
             lockedPlayer = null;
             gameUI.ClearLock();
-            gameUI.AddMsg(string.Format("{0}号玩家回合开始", playerId));
+            gameUI.AddMsg(string.Format("{0}回合开始", GameManager.Singleton.players[playerId].name));
             if(lastTurnPlayerId == SelfPlayerId)
             {
                 foreach (var skill in players[SelfPlayerId].role.skills)
@@ -582,7 +582,7 @@ public class GameManager
         if (phase == PhaseEnum.Send_Start_Phase)
         {
             gameUI.InitMessageSenderPos(playerId);
-            gameUI.AddMsg(string.Format("{0}号玩家开始传递情报", playerId));
+            gameUI.AddMsg(string.Format("{0}开始传递情报", GameManager.Singleton.players[playerId].name));
         }
         else if (phase == PhaseEnum.Send_Phase)
         {
@@ -598,7 +598,7 @@ public class GameManager
             }
             //string dir;
 
-            gameUI.AddMsg(string.Format("情报到达{0}号玩家，方向{1}", messagePlayerId, messageCardDir.ToString()));
+            gameUI.AddMsg(string.Format("情报到达{0}，方向{1}", GameManager.Singleton.players[messagePlayerId].name, messageCardDir.ToString()));
         }
         else if (phase == PhaseEnum.Fight_Phase)
         {
@@ -611,7 +611,7 @@ public class GameManager
                 players[messagePlayerId].AddMessage(message);
                 gameUI.ShowAddMessage(messagePlayerId, message, true);
                 gameUI.Players[messagePlayerId].RefreshMessage();
-                gameUI.AddMsg(string.Format("{0}号玩家接收情报", messagePlayerId));
+                gameUI.AddMsg(string.Format("{0}接收情报", GameManager.Singleton.players[messagePlayerId].name));
             }
             else if (waitingPlayerId == SelfPlayerId)
             {
@@ -660,7 +660,7 @@ public class GameManager
                 sDir = "向上";
                 break;
         }
-        string s = string.Format("{0}号玩家向{1}号玩家传出情报,方向{2}{3}", playerId, targetId, sDir, sLock);
+        string s = string.Format("{0}向{1}传出情报,方向{2}{3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, sDir, sLock);
         gameUI.ShowInfo(s);
         gameUI.AddMsg(s);
     }
@@ -669,7 +669,7 @@ public class GameManager
     public void OnReceiveMessageAccept(int playerId)
     {
         gameUI.OnMessageAccept(playerId);
-        string s = "" + playerId + "号玩家选择了接收情报，正在询问所有人是否响应";
+        string s = "" + GameManager.Singleton.players[playerId].name + "选择了接收情报，正在询问所有人是否响应";
         gameUI.ShowInfo(s);
         gameUI.AddMsg(s);
     }
@@ -778,7 +778,7 @@ public class GameManager
         //Debug.LogError("________________ OnRecerveUseShiTan," + cardId);
         gameUI.OnUseCard(user, targetUser, card);
 
-        string s = string.Format("{0}号玩家对{1}号玩家使用了试探;{2}", user, targetUser, cardInfo);
+        string s = string.Format("{0}对{1}使用了试探;{2}", GameManager.Singleton.players[user].name, GameManager.Singleton.players[targetUser].name, cardInfo);
         gameUI.AddMsg(s);
         gameUI.ShowInfo(s);
         SoundManager.PlaySound(CardNameEnum.ShiTan, players[user].role.isWoman);
@@ -827,7 +827,7 @@ public class GameManager
             shiTanColor = null;
         }
 
-        string s = isDrawCard ? "" + playerId + "号玩家被试探摸了一张牌" : "" + playerId + "号玩家被试探弃了一张牌";
+        string s = isDrawCard ? "" + GameManager.Singleton.players[playerId].name + "被试探摸了一张牌" : "" + GameManager.Singleton.players[playerId].name + "被试探弃了一张牌";
         gameUI.ShowInfo(s);
     }
     // 通知客户端使用利诱的结果
@@ -842,7 +842,7 @@ public class GameManager
             {
                 players[user].cardCount += 1;
 
-                gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}加入手牌", user, LanguageUtils.GetCardName(card.cardName)));
+                gameUI.AddMsg(string.Format("{0}将牌堆顶的{1}加入手牌", GameManager.Singleton.players[user].name, LanguageUtils.GetCardName(card.cardName)));
                 gameManager.gameUI.Players[user].RefreshCardCount();
             }
 
@@ -863,7 +863,7 @@ public class GameManager
                 players[target].AddMessage(card);
                 gameUI.ShowAddMessage(target, card, false);
                 gameUI.Players[target].RefreshMessage();
-                gameUI.AddMsg(string.Format("{0}号玩家将牌堆顶的{1}收为情报", target, LanguageUtils.GetCardName(card.cardName)));
+                gameUI.AddMsg(string.Format("{0}将牌堆顶的{1}收为情报", GameManager.Singleton.players[target].name, LanguageUtils.GetCardName(card.cardName)));
             }
         }
     }
@@ -888,13 +888,13 @@ public class GameManager
                 cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
             gameUI.ShowHandCard(target, cards);
-            gameUI.AddMsg(string.Format("{0}号玩家向你展示了手牌，{1}", target, cardInfo));
+            gameUI.AddMsg(string.Format("{0}向你展示了手牌，{1}", GameManager.Singleton.players[target].name, cardInfo));
         }
         else
         {
-            gameUI.AddMsg(string.Format("{0}号玩家没有{1}，向{2}号玩家展示了手牌", target, LanguageUtils.GetCardName(cardWant), user));
+            gameUI.AddMsg(string.Format("{0}没有{1}，向{2}展示了手牌", GameManager.Singleton.players[target].name, LanguageUtils.GetCardName(cardWant), GameManager.Singleton.players[user].name));
         }
-        gameUI.ShowInfo(string.Format("{0}号玩家没有{1}，向{2}号玩家展示了手牌", target, LanguageUtils.GetCardName(cardWant), user));
+        gameUI.ShowInfo(string.Format("{0}没有{1}，向{2}展示了手牌", GameManager.Singleton.players[target].name, LanguageUtils.GetCardName(cardWant), GameManager.Singleton.players[user].name));
     }
     // 通知所有人威逼等待给牌
     public void OnReceiveUseWeiBiGiveCard(int user, int target, CardFS cardUsed, CardNameEnum cardWant, int waitTime, uint seq)
@@ -940,7 +940,7 @@ public class GameManager
         }
         gameUI.GiveCards(target, user, new List<CardFS>() { cardGiven });
 
-        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家一张牌", target, user));
+        gameUI.AddMsg(string.Format("{0}给了{1}一张牌", GameManager.Singleton.players[target].name, GameManager.Singleton.players[user].name));
     }
 
     // 通知所有人澄清
@@ -966,7 +966,7 @@ public class GameManager
             gameUI.OnPlayerMessageRemove(target, new List<CardFS>() { message });
         }
         gameUI.HidePlayerMessageInfo();
-        gameUI.AddMsg(string.Format("{0}号玩家的情报{1}被烧毁", target, messageInfo));
+        gameUI.AddMsg(string.Format("{0}的情报{1}被烧毁", GameManager.Singleton.players[target].name, messageInfo));
 
     }
 
@@ -986,7 +986,7 @@ public class GameManager
         {
             IsWaitSaving = -1;
         }
-        gameUI.AddMsg(string.Format("{0}号玩家濒死向{1}号玩家请求澄清", playerId, waitingPlayer));
+        gameUI.AddMsg(string.Format("{0}濒死向{1}请求澄清", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[waitingPlayer].name));
         gameUI.ShowPhase();
     }
     // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -998,11 +998,11 @@ public class GameManager
 
         if (loseGame)
         {
-            gameUI.AddMsg(string.Format("{0}号玩家游戏失败", playerId));
+            gameUI.AddMsg(string.Format("{0}游戏失败", GameManager.Singleton.players[playerId].name));
         }
         else
         {
-            gameUI.AddMsg(string.Format("{0}号玩家阵亡", playerId));
+            gameUI.AddMsg(string.Format("{0}阵亡", GameManager.Singleton.players[playerId].name));
         }
     }
     // 通知客户端谁死亡了（通知客户端弃掉所有情报）
@@ -1029,12 +1029,12 @@ public class GameManager
         }
         else
         {
-            gameUI.ShowInfo("" + playerId + "号玩家死亡，可以选择交给一名玩家至多三张牌");
+            gameUI.ShowInfo("" + playerId + "死亡，可以选择交给一名玩家至多三张牌");
         }
         IsWaitSaving = -1;
         gameUI.ShowPhase();
         OnWait(playerId, waitingSecond);
-        gameUI.AddMsg(string.Format("等待{0}号玩家托付手牌", playerId));
+        gameUI.AddMsg(string.Format("等待{0}托付手牌", GameManager.Singleton.players[playerId].name));
     }
     public void OnReceiveDieGivenCard(int playerId, int targetPlayerId, int cardCount, List<CardFS> cards)
     {
@@ -1072,7 +1072,7 @@ public class GameManager
         }
         gameUI.GiveCards(playerId, targetPlayerId, cards);
 
-        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家{2}张牌 {3}", playerId, targetPlayerId, count, cardsInfo));
+        gameUI.AddMsg(string.Format("{0}给了{1}{2}张牌 {3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetPlayerId].name, count, cardsInfo));
 
     }
 

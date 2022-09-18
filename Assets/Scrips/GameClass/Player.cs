@@ -20,8 +20,11 @@ public class Player
     public RoleBase role;
     public string name { get
         {
-            return "";
-        } }
+            return string.Format("{0}ºÅÍæ¼Ò({1})", playerId, role.name);
+            //return string.Format("{0}({1})", playerName, role.name);
+        }
+    }
+
     public Player(int id, RoleBase roleBase, string name)
     {
         playerId = id;

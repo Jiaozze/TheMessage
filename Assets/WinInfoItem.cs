@@ -19,7 +19,7 @@ public class WinInfoItem : MonoBehaviour
         goWin.SetActive(isWin);
         goLose.SetActive(!isWin);
         goDeclare.SetActive(isDeclare);
-        textName.text = "" + winnerId + "ºÅÍæ¼Ò";
+        textName.text = "" + GameManager.Singleton.players[winnerId].name;
         textIdentity.text = LanguageUtils.GetIdentityName(playerColorEnum);
         if(playerColorEnum == PlayerColorEnum.Green)
         {

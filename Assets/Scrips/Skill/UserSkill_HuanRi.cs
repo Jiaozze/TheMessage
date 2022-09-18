@@ -40,7 +40,7 @@ public class UserSkill_HuanRi : SkillBase
         //GameManager.Singleton.gameUI.Players[playerId].OnTurnBack(true);
 
 
-        string s = string.Format("{0}号玩家使用了技能换日,将角色翻至面朝下", playerId);
+        string s = string.Format("{0}使用了技能换日,将角色翻至面朝下", GameManager.Singleton.players[playerId].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }
