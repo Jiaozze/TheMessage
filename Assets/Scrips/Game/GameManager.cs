@@ -587,6 +587,10 @@ public class GameManager
         if (phase == PhaseEnum.Send_Start_Phase)
         {
             gameUI.InitMessageSenderPos(playerId);
+            if(CurTurnPlayerId == SelfPlayerId)
+            {
+                gameUI.CheckTargetAvailable();
+            }
             gameUI.AddMsg(string.Format("{0}开始传递情报", GameManager.Singleton.players[playerId].name));
         }
         else if (phase == PhaseEnum.Send_Phase)

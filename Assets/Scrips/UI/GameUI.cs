@@ -602,15 +602,15 @@ public class GameUI : MonoBehaviour
         goDirect.SetActive(true);
         if (messageCardDir == DirectionEnum.Up)
         {
-            transDir.rotation = Quaternion.Euler(0, 0, 180);
+            transDir.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (messageCardDir == DirectionEnum.Left)
         {
-            transDir.rotation = Quaternion.Euler(0, 0, -90);
+            transDir.rotation = Quaternion.Euler(0, 0, 90);
         }
         else if (messageCardDir == DirectionEnum.Right)
         {
-            transDir.rotation = Quaternion.Euler(0, 0, 90);
+            transDir.rotation = Quaternion.Euler(0, 0, -90);
         }
     }
     public void ShowMessagingCard(CardFS message, int messagePlayerId = -1, bool move = false)
@@ -869,7 +869,7 @@ public class GameUI : MonoBehaviour
             else if (GameManager.Singleton.players[GameManager.SelfPlayerId].role.name == "老鳖" 
                 && GameManager.Singleton.curPhase == PhaseEnum.Send_Start_Phase && GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId)
             {
-                directSelect.gameObject.SetActive(true);
+                directSelect.Check();
             }
             else if (GameManager.Singleton.curPhase == PhaseEnum.Fight_Phase && card.cardName == CardNameEnum.WuDao)
             {
