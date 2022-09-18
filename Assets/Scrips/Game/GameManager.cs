@@ -940,7 +940,7 @@ public class GameManager
         }
         gameUI.GiveCards(target, user, new List<CardFS>() { cardGiven });
 
-        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家一张牌{2}", target, user, LanguageUtils.GetCardName(cardGiven.cardName)));
+        gameUI.AddMsg(string.Format("{0}号玩家给了{1}号玩家一张牌", target, user));
     }
 
     // 通知所有人澄清
