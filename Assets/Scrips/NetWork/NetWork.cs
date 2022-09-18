@@ -10,6 +10,7 @@ using Unity.Threading;
 public static class NetWork
 {
     public static string EVENT_RECEIVE = "ReceiveMsg";
+    public static string EVENT_NNET_ERR = "NetWorkError";
     static Socket socket;
     static Thread thread;
     //static List<ArraySegment<byte>> buffers = new List<ArraySegment<byte>>();
@@ -41,11 +42,16 @@ public static class NetWork
                 {
                     ProtoHelper.OnReceiveMsg(id, bodyBuffer);
                 });
-                easyThread.childRemote.On<int, byte[]>(EVENT_RECEIVE, (id, bodyBuffer) =>
+                easyThread.mainRemote.On(EVENT_NNET_ERR, () =>
                 {
-                    ProtoHelper.OnReceiveMsg(id, bodyBuffer);
+                    GameManager.Singleton.OnNetWorkErr();
                 });
-                if(callback != null)
+
+                //easyThread.childRemote.On<int, byte[]>(EVENT_RECEIVE, (id, bodyBuffer) =>
+                //{
+                //    ProtoHelper.OnReceiveMsg(id, bodyBuffer);
+                //});
+                if (callback != null)
                 {
                     callback.Invoke();
                 }
@@ -83,6 +89,8 @@ public static class NetWork
             }
             catch (Exception ex)
             {
+                easyThread.mainRemote.Send(EVENT_NNET_ERR);
+                //GameManager.Singleton.OnNetWorkErr();
                 Debug.LogError(ex);
                 break;
             }

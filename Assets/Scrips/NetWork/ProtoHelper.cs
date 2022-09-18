@@ -600,6 +600,15 @@ public static class ProtoHelper
             }
             GameManager.Singleton.OnReceiveChooseRole(playerCount, playerColor, secretTask, roles);
         }
+        // 通知客户端选角色成功了
+        else if (GetIdFromProtoName("select_role_toc") == id)
+        {
+            Debug.Log(" _______receive________ select_role_toc ");
+
+            select_role_toc select_role_toc = select_role_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnReceiveChooseRoleSuccess(select_role_toc.Role);
+        }
+
         //errorCode
         else if (GetIdFromProtoName("error_code_toc") == id)
         {

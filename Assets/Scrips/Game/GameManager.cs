@@ -426,6 +426,11 @@ public class GameManager
         gameUI.InitPlayers(playerCount);
         gameUI.ShowChooseRole(playerColor, secretTask, roles);
     }
+    public  void OnReceiveChooseRoleSuccess(role role)
+    {
+        gameUI.roleSelect.OnRoleSelect(role);
+    }
+
     // 通知客户端：初始化游戏
     public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles, List<string> names)
     {
