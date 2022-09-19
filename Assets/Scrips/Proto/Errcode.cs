@@ -24,11 +24,11 @@ public static partial class ErrcodeReflection {
         string.Concat(
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
-          "cmFtcxgDIAMoCSqcAQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
+          "cmFtcxgDIAMoCSq0AQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
           "b3RfbWF0Y2gQABIQCgxub19tb3JlX3Jvb20QARIVChFyZWNvcmRfbm90X2V4",
           "aXN0cxACEhYKEmxvYWRfcmVjb3JkX2ZhaWxlZBADEhwKGHJlY29yZF92ZXJz",
-          "aW9uX25vdF9tYXRjaBAEEhEKDW5hbWVfdG9vX2xvbmcQBUIWChRjb20uZmVu",
-          "Z3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
+          "aW9uX25vdF9tYXRjaBAEEhEKDW5hbWVfdG9vX2xvbmcQBRIWChJqb2luX3Jv",
+          "b21fdG9vX2Zhc3QQBkIWChRjb20uZmVuZ3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -64,6 +64,10 @@ public enum error_code {
   /// 玩家名字太长了
   /// </summary>
   [pbr::OriginalName("name_too_long")] NameTooLong = 5,
+  /// <summary>
+  /// 加入房间的请求太快了
+  /// </summary>
+  [pbr::OriginalName("join_room_too_fast")] JoinRoomTooFast = 6,
 }
 
 #endregion

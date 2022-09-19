@@ -327,7 +327,7 @@ public class GameManager
         }
         return id;
     }
-    private void OnCardUse(int user, CardFS cardUsed, int target = -1)
+    public void OnCardUse(int user, CardFS cardUsed, int target = -1)
     {
         if(cardUsed != null)
         {
@@ -1100,6 +1100,7 @@ public class GameManager
     #endregion
 
     #region 通知询问是否使用技能
+
     public void OnReceiveWaitSkillRuGui(int playerId, int waitSeconds, uint seq)
     {
         seqId = seq;
@@ -1112,6 +1113,23 @@ public class GameManager
                 {
                     var ruGui = skill as UserSkill_RuGui;
                     ruGui.PrepareUse();
+                }
+            }
+        }
+    }
+    // 广播询问客户端使用【遗信】
+    public void OnReceiveWaitSkillYiXin(int playerId, int waitSeconds, uint seq)
+    {
+        seqId = seq;
+        OnWait(playerId, waitSeconds);
+        if (playerId == SelfPlayerId)
+        {
+            foreach (var skill in players[SelfPlayerId].role.skills)
+            {
+                if (skill is UserSkill_YiXin)
+                {
+                    var yiXin = skill as UserSkill_YiXin;
+                    yiXin.PrepareUse();
                 }
             }
         }

@@ -445,6 +445,50 @@ public static class ProtoHelper
             skill_cheng_zhi_toc skill_cheng_zhi_toc = skill_cheng_zhi_toc.Parser.ParseFrom(contont);
             UserSkill_ChengZhi.OnReceiveUse((int)skill_cheng_zhi_toc.PlayerId, (int)skill_cheng_zhi_toc.DiePlayerId, skill_cheng_zhi_toc.Enable);
         }
+        // 广播使用【就计】A：你被【试探】【威逼】或【利诱】指定为目标后，你可以翻开此角色牌，然后摸两张牌。
+        else if (GetIdFromProtoName("skill_jiu_ji_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jiu_ji_a_toc");
+            skill_jiu_ji_a_toc skill_jiu_ji_a_toc = skill_jiu_ji_a_toc.Parser.ParseFrom(contont);
+            UserSkill_JiuJi.OnReceiveUseA((int)skill_jiu_ji_a_toc.PlayerId);
+        }
+        // 广播使用【就计】B：并在触发此技能的卡牌结算后，将其加入你的手牌。
+        else if (GetIdFromProtoName("skill_jiu_ji_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jiu_ji_b_toc");
+            skill_jiu_ji_b_toc skill_jiu_ji_b_toc = skill_jiu_ji_b_toc.Parser.ParseFrom(contont);
+            CardFS card = skill_jiu_ji_b_toc.Card != null ? new CardFS(skill_jiu_ji_b_toc.Card) : null;
+            UserSkill_JiuJi.OnReceiveUseB((int)skill_jiu_ji_b_toc.PlayerId, card, skill_jiu_ji_b_toc.UnknownCardCount);
+        }
+        // 广播使用【城府】：【试探】和【威逼】对你无效。
+        else if (GetIdFromProtoName("skill_cheng_fu_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_cheng_fu_toc");
+            skill_cheng_fu_toc skill_cheng_fu_toc = skill_cheng_fu_toc.Parser.ParseFrom(contont);
+            CardFS card = null;
+            if(skill_cheng_fu_toc.Card != null)
+            {
+                card = new CardFS(skill_cheng_fu_toc.Card);
+            }
+            UserSkill_ChengFu.OnReceiveUse((int)skill_cheng_fu_toc.PlayerId, (int)skill_cheng_fu_toc.FromPlayerId, card, (int)skill_cheng_fu_toc.UnknownCardCount);
+        }
+        // 广播询问客户端使用【遗信】
+        else if (GetIdFromProtoName("skill_wait_for_yi_xin_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_yi_xin_toc");
+            skill_wait_for_yi_xin_toc skill_wait_for_yi_xin_toc = skill_wait_for_yi_xin_toc.Parser.ParseFrom(contont);
+            //UserSkill_ChengZhi.OnReceiveUse((int)skill_cheng_zhi_toc.PlayerId);
+            GameManager.Singleton.OnReceiveWaitSkillYiXin((int)skill_wait_for_yi_xin_toc.PlayerId, (int)skill_wait_for_yi_xin_toc.WaitingSecond, skill_wait_for_yi_xin_toc.Seq);
+        }
+        // 广播使用【遗信】
+        else if (GetIdFromProtoName("skill_yi_xin_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_yi_xin_toc");
+            skill_yi_xin_toc skill_yi_xin_toc = skill_yi_xin_toc.Parser.ParseFrom(contont);
+            CardFS card = new CardFS(skill_yi_xin_toc.Card);
+            UserSkill_YiXin.OnReceiveUse((int)skill_yi_xin_toc.PlayerId, (int)skill_yi_xin_toc.TargetPlayerId, card, skill_yi_xin_toc.Enable);
+        }
+
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
         else if (GetIdFromProtoName("notify_die_toc") == id)
@@ -823,6 +867,14 @@ public static class ProtoHelper
         end_receive_phase_tos end_Receive_Phase_Tos = new end_receive_phase_tos() { Seq = seq };
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
+    }
+    // 李宁玉【遗信】：你死亡前，可以将一张手牌置入另一名角色的情报区。
+    public static void SendSkill_YiXin(bool use, int playerId, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_yi_xin_tos, seq:" + seq);
+        skill_yi_xin_tos skill_ji_zhi_tos = new skill_yi_xin_tos() { Enable = use, CardId = (uint)cardId, TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_ji_zhi_tos.ToByteArray();
+        SendProto("skill_yi_xin_tos", proto);
     }
     // 顾小梦【集智】：一名角色濒死时，或争夺阶段，你可以翻开此角色牌，然后摸四张牌。
     public static void SendSkill_JiZhi(uint seq)
