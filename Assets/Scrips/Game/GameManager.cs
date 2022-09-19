@@ -112,6 +112,8 @@ public class GameManager
         IsWaitGiveCard = false;
         IsWaitLock = false;
         IsWaitSaving = -1;
+        cardsToGive = new List<int>();
+        gameManager = null;
     }
 
     private int _SelectCardId = -1;
