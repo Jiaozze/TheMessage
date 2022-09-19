@@ -17,6 +17,9 @@ public class PlayerMessagInfo : MonoBehaviour
     {
     }
 
+    private void OnEnable()
+    {
+    }
     private void OnDisable()
     {
         cardId = 0;
@@ -29,6 +32,7 @@ public class PlayerMessagInfo : MonoBehaviour
     public void Show(int playerId, bool showChengQing = false)
     {
         gameObject.SetActive(true);
+        Debug.LogError(playerId);
         textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的情报";
 
         foreach (var kv in items)
@@ -38,16 +42,17 @@ public class PlayerMessagInfo : MonoBehaviour
         items.Clear();
 
         int i = GameManager.Singleton.players[playerId].messages.Count;
-        foreach(var msg in GameManager.Singleton.players[playerId].messages)
+        foreach (var msg in GameManager.Singleton.players[playerId].messages)
         {
             UICard card = GameObject.Instantiate(itemCardUI, grid.transform);
             card.Init(i, msg);
-            card.SetMessage(() => { 
-                if(items.ContainsKey(cardId))
+            card.SetMessage(() =>
+            {
+                if (items.ContainsKey(cardId))
                 {
                     items[cardId].OnSelect(false);
                 }
-                if(cardId != msg.id)
+                if (cardId != msg.id)
                 {
                     cardId = msg.id;
                     if (items.ContainsKey(cardId))
@@ -61,7 +66,7 @@ public class PlayerMessagInfo : MonoBehaviour
                     butChengQing.interactable = false;
                     cardId = 0;
                 }
-                if(GameManager.Singleton.IsUsingSkill && GameManager.Singleton.selectSkill != null)
+                if (GameManager.Singleton.IsUsingSkill && GameManager.Singleton.selectSkill != null)
                 {
                     GameManager.Singleton.selectSkill.OnMessageSelect(playerId, cardId);
                 }
@@ -70,6 +75,18 @@ public class PlayerMessagInfo : MonoBehaviour
         }
 
         butChengQing.gameObject.SetActive(showChengQing);
+        if (GameManager.Singleton.CurWaitingPlayerId == GameManager.SelfPlayerId
+    && GameManager.Singleton.curPhase == PhaseEnum.Main_Phase
+    //&& GameManager.Singleton.SelectPlayerId != playerId
+    && GameManager.Singleton.SelectCardId != -1
+    && GameManager.Singleton.cardsHand[GameManager.Singleton.SelectCardId].cardName == CardNameEnum.ChengQing)
+        {
+            if(GameManager.Singleton.SelectPlayerId != playerId)
+            {
+                GameManager.Singleton.SelectPlayerId = playerId;
+            }
+            butChengQing.gameObject.SetActive(true);
+        }
     }
 
     public void ShowHandCard(int playerId, List<CardFS> cards)

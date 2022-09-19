@@ -187,8 +187,12 @@ public class GameManager
                         {
                             _SelectPlayerId = value;
                             gameUI.Players[_SelectPlayerId].OnSelect(true);
+                            gameUI.ShowPlayerMessageInfo(_SelectPlayerId, true);
                         }
-                        gameUI.ShowPlayerMessageInfo(_SelectPlayerId, true);
+                        else
+                        {
+                            gameUI.ShowInfo("请选择有黑情报的角色作为澄清目标");
+                        }
                         break;
                 }
             }
