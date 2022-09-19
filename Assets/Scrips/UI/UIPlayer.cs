@@ -72,6 +72,16 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void InitRole()
     {
+        roleDes = "";
+        roleDes += GameManager.Singleton.players[playerId].role.name + "\n";
+        if (!(GameManager.Singleton.players[playerId].role is Role_Unknown))
+        {
+            foreach (var skill in GameManager.Singleton.players[playerId].role.skills)
+            {
+                roleDes += skill.Des;
+            }
+        }
+
         if (GameManager.Singleton.players[playerId].role.isBack) return;
         var path = GameManager.Singleton.players[playerId].role.spritName;
         if (!string.IsNullOrEmpty(path))
@@ -86,16 +96,6 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 }
             }
         }
-        roleDes = "";
-        roleDes += GameManager.Singleton.players[playerId].role.name + "\n";
-        if (!(GameManager.Singleton.players[playerId].role is Role_Unknown))
-        {
-            foreach (var skill in GameManager.Singleton.players[playerId].role.skills)
-            {
-                roleDes += skill.Des;
-            }
-        }
-
     }
 
     public void InitSkill()
