@@ -90,10 +90,10 @@ public static partial class RoleReflection {
           "X3hpbl90b2MSEQoJcGxheWVyX2lkGAEgASgNEhYKDndhaXRpbmdfc2Vjb25k",
           "GAIgASgNEgsKA3NlcRgDIAEoDSJaChBza2lsbF95aV94aW5fdG9zEg4KBmVu",
           "YWJsZRgBIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEg8KB2NhcmRf",
-          "aWQYAyABKA0SCwoDc2VxGAQgASgNImAKEHNraWxsX3lpX3hpbl90b2MSEQoJ",
-          "cGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SDwoH",
-          "Y2FyZF9pZBgDIAEoDRIOCgZlbmFibGUYBCABKAhCFgoUY29tLmZlbmdzaGVu",
-          "Zy5wcm90b3NiBnByb3RvMw=="));
+          "aWQYAyABKA0SCwoDc2VxGAQgASgNImQKEHNraWxsX3lpX3hpbl90b2MSEQoJ",
+          "cGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SEwoE",
+          "Y2FyZBgDIAEoCzIFLmNhcmQSDgoGZW5hYmxlGAQgASgIQhYKFGNvbS5mZW5n",
+          "c2hlbmcucHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -137,7 +137,7 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiu_ji_b_toc), global::skill_jiu_ji_b_toc.Parser, new[]{ "PlayerId", "Card", "UnknownCardCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_wait_for_yi_xin_toc), global::skill_wait_for_yi_xin_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_yi_xin_tos), global::skill_yi_xin_tos.Parser, new[]{ "Enable", "TargetPlayerId", "CardId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_yi_xin_toc), global::skill_yi_xin_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "CardId", "Enable" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_yi_xin_toc), global::skill_yi_xin_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Card", "Enable" }, null, null, null, null)
         }));
   }
   #endregion
@@ -7364,7 +7364,7 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
   public skill_yi_xin_toc(skill_yi_xin_toc other) : this() {
     playerId_ = other.playerId_;
     targetPlayerId_ = other.targetPlayerId_;
-    cardId_ = other.cardId_;
+    card_ = other.card_ != null ? other.card_.Clone() : null;
     enable_ = other.enable_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -7396,14 +7396,14 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
     }
   }
 
-  /// <summary>Field number for the "card_id" field.</summary>
-  public const int CardIdFieldNumber = 3;
-  private uint cardId_;
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 3;
+  private global::card card_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public uint CardId {
-    get { return cardId_; }
+  public global::card Card {
+    get { return card_; }
     set {
-      cardId_ = value;
+      card_ = value;
     }
   }
 
@@ -7436,7 +7436,7 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
     }
     if (PlayerId != other.PlayerId) return false;
     if (TargetPlayerId != other.TargetPlayerId) return false;
-    if (CardId != other.CardId) return false;
+    if (!object.Equals(Card, other.Card)) return false;
     if (Enable != other.Enable) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -7446,7 +7446,7 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
     int hash = 1;
     if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
-    if (CardId != 0) hash ^= CardId.GetHashCode();
+    if (card_ != null) hash ^= Card.GetHashCode();
     if (Enable != false) hash ^= Enable.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -7469,9 +7469,9 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
       output.WriteRawTag(16);
       output.WriteUInt32(TargetPlayerId);
     }
-    if (CardId != 0) {
-      output.WriteRawTag(24);
-      output.WriteUInt32(CardId);
+    if (card_ != null) {
+      output.WriteRawTag(26);
+      output.WriteMessage(Card);
     }
     if (Enable != false) {
       output.WriteRawTag(32);
@@ -7491,8 +7491,8 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
     if (TargetPlayerId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
     }
-    if (CardId != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardId);
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
     }
     if (Enable != false) {
       size += 1 + 1;
@@ -7514,8 +7514,11 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
     if (other.TargetPlayerId != 0) {
       TargetPlayerId = other.TargetPlayerId;
     }
-    if (other.CardId != 0) {
-      CardId = other.CardId;
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
+      }
+      Card.MergeFrom(other.Card);
     }
     if (other.Enable != false) {
       Enable = other.Enable;
@@ -7539,8 +7542,11 @@ public sealed partial class skill_yi_xin_toc : pb::IMessage<skill_yi_xin_toc> {
           TargetPlayerId = input.ReadUInt32();
           break;
         }
-        case 24: {
-          CardId = input.ReadUInt32();
+        case 26: {
+          if (card_ == null) {
+            Card = new global::card();
+          }
+          input.ReadMessage(Card);
           break;
         }
         case 32: {
