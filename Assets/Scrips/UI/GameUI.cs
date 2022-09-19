@@ -410,6 +410,7 @@ public class GameUI : MonoBehaviour
         }
         if (GameManager.Singleton.IsWaitLock)
         {
+            GameManager.Singleton.SelectPlayerId = -1;
             GameManager.Singleton.SendMessage();
             return;
         }
