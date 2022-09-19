@@ -40,6 +40,12 @@ public class UserSkill_TouTian : SkillBase
     public override void PrepareUse()
     {
         base.PrepareUse();
+        if (canUse && GameManager.Singleton.selectSkill == this)
+        {
+            GameManager.Singleton.selectSkill.Cancel();
+            return;
+        }
+
         GameManager.Singleton.IsUsingSkill = true;
         GameManager.Singleton.selectSkill = this;
         GameManager.Singleton.gameUI.ShowPhase("是否翻面发动技能偷天，视为使用一张截获");
