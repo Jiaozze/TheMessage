@@ -85,7 +85,7 @@ TextureImporter:
     second: Role_26
   - first:
       213: 316905588391558921
-    second: Role_27
+    second: LiNingYu
   - first:
       213: -7671840515048553749
     second: Role_28
@@ -760,7 +760,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Role_27
+      name: LiNingYu
       rect:
         serializedVersion: 2
         x: 5208
