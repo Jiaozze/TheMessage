@@ -167,7 +167,7 @@ public class GameManager
                         if (value == SelfPlayerId)
                         {
                             string name = LanguageUtils.GetCardName(cardsHand[_SelectCardId].cardName);
-                            Debug.LogError("不能选自己作为" + name + "的目标");
+                            gameUI.ShowInfo("不能选自己作为" + name + "的目标");
                         }
                         else if (gameUI.Players.ContainsKey(value))
                         {

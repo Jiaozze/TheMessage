@@ -397,6 +397,7 @@ public class GameUI : MonoBehaviour
         if(GameManager.Singleton.IsUsingSkill)
         {
             GameManager.Singleton.selectSkill.Cancel();
+            return;
         }
         if (GameManager.Singleton.IsWaitSaving != -1)
         {
