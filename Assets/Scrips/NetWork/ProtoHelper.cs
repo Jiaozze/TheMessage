@@ -491,7 +491,7 @@ public static class ProtoHelper
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
-        else if (GetIdFromProtoName("notify_die_toc") == id)
+        else if (GetIdFromProtoName("notify_dying_toc") == id)
         {
             Debug.Log(" _______receive________ notify_dying_toc");
 

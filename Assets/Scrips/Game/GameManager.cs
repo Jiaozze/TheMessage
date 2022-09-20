@@ -621,6 +621,7 @@ public class GameManager
         }
         else if (phase == PhaseEnum.Receive_Phase)
         {
+            messageReceived = message;
             if (waitSecond == 0)
             {
                 players[messagePlayerId].AddMessage(message);
@@ -630,7 +631,6 @@ public class GameManager
             }
             else if (waitingPlayerId == SelfPlayerId)
             {
-                messageReceived = message;
                 foreach (var skill in players[SelfPlayerId].role.skills)
                 {
                     if (skill.CheckTriger()) break;
