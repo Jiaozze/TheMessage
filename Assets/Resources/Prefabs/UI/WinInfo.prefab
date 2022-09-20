@@ -776,48 +776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3951610281102736090}
     m_Modifications:
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_Text
-      value: asd
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227069904865, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3324365227506148501, guid: 430e47e29d59b814b81c176f91507e55,
-        type: 3}
-      propertyPath: m_Text
-      value: 'aaaaaaaaaaaaaaaaaaa
-
-'
-      objectReference: {fileID: 0}
     - target: {fileID: 3324365227827583860, guid: 430e47e29d59b814b81c176f91507e55,
         type: 3}
       propertyPath: m_Name
