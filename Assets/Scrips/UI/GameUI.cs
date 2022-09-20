@@ -567,7 +567,7 @@ public class GameUI : MonoBehaviour
 
     public void ShowTopCard(CardFS card)
     {
-        Debug.LogError("展示了牌堆顶的牌，" + card.cardName);
+        Debug.Log("展示了牌堆顶的牌，" + card.cardName);
     }
 
     public void ShowWeiBiSelect(bool show)
