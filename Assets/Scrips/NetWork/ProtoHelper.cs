@@ -689,6 +689,15 @@ public static class ProtoHelper
             auto_play_toc auto_play_toc = auto_play_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnReceiveTuoGuan(auto_play_toc.Enable);
         }
+        // 心跳：服务器回复客户端
+        else if (GetIdFromProtoName("heart_toc") == id)
+        {
+            //Debug.Log(" _______receive________ heart_toc ");
+
+            //auto_play_toc auto_play_toc = auto_play_toc.Parser.ParseFrom(contont);
+            //GameManager.Singleton.OnReceiveTuoGuan(auto_play_toc.Enable);
+        }
+
         //errorCode
         else if (GetIdFromProtoName("error_code_toc") == id)
         {
