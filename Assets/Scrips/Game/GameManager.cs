@@ -1163,6 +1163,13 @@ public class GameManager
         }
 
     }
+    public void OnReceiveWaitSkillJingMeng(int playerId, int targetPlayerId, List<CardFS> cards, int waitSeconds, uint seq)
+    {
+        seqId = seq;
+        OnWait(playerId, waitSeconds);
+
+        UserSkill_JingMeng.OnReceiveUseA(playerId, targetPlayerId, cards);
+    }
     #endregion
 
     #region 向服务器发送请求

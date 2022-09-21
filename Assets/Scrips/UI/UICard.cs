@@ -39,7 +39,7 @@ public class UICard : MonoBehaviour
         });
     }
 
-    public void SetMessage(UnityEngine.Events.UnityAction onClick)
+    public void SetClickAction(UnityEngine.Events.UnityAction onClick)
     {
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(onClick);

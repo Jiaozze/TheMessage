@@ -477,7 +477,6 @@ public static class ProtoHelper
         {
             Debug.Log(" _______receive________ skill_wait_for_yi_xin_toc");
             skill_wait_for_yi_xin_toc skill_wait_for_yi_xin_toc = skill_wait_for_yi_xin_toc.Parser.ParseFrom(contont);
-            //UserSkill_ChengZhi.OnReceiveUse((int)skill_cheng_zhi_toc.PlayerId);
             GameManager.Singleton.OnReceiveWaitSkillYiXin((int)skill_wait_for_yi_xin_toc.PlayerId, (int)skill_wait_for_yi_xin_toc.WaitingSecond, skill_wait_for_yi_xin_toc.Seq);
         }
         // 广播使用【遗信】
@@ -488,6 +487,36 @@ public static class ProtoHelper
             CardFS card = new CardFS(skill_yi_xin_toc.Card);
             UserSkill_YiXin.OnReceiveUse((int)skill_yi_xin_toc.PlayerId, (int)skill_yi_xin_toc.TargetPlayerId, card, skill_yi_xin_toc.Enable);
         }
+        // 广播使用【知音】：你接收红色或蓝色情报后，你和传出者各摸一张牌
+        else if (GetIdFromProtoName("skill_zhi_yin_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_zhi_yin_toc");
+            skill_zhi_yin_toc skill_zhi_yin_toc = skill_zhi_yin_toc.Parser.ParseFrom(contont);
+            UserSkill_ZhiYin.OnReceiveUse((int)skill_zhi_yin_toc.PlayerId);
+        }
+        // 程小蝶【惊梦】A：你接收黑色情报后，可以查看一名角色的手牌。
+        else if (GetIdFromProtoName("skill_jing_meng_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jing_meng_a_toc");
+            skill_jing_meng_a_toc skill_jing_meng_a_toc = skill_jing_meng_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jing_meng_a_toc.PlayerId;
+            int targetId = (int)skill_jing_meng_a_toc.TargetPlayerId;
+            int waitSeconds = (int)skill_jing_meng_a_toc.WaitingSecond;
+            List<CardFS> cards = new List<CardFS>();
+            foreach(var card in skill_jing_meng_a_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            GameManager.Singleton.OnReceiveWaitSkillJingMeng(playerId, targetId, cards, waitSeconds, skill_jing_meng_a_toc.Seq);
+        }
+        // 广播使用【惊梦】B，弃牌走弃牌协议
+        else if (GetIdFromProtoName("skill_jing_meng_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jing_meng_b_toc");
+            skill_jing_meng_b_toc skill_jing_meng_b_toc = skill_jing_meng_b_toc.Parser.ParseFrom(contont);
+            UserSkill_JingMeng.OnReceiveUseB((int)skill_jing_meng_b_toc.PlayerId, (int)skill_jing_meng_b_toc.TargetPlayerId);
+        }
+
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -867,6 +896,26 @@ public static class ProtoHelper
         end_receive_phase_tos end_Receive_Phase_Tos = new end_receive_phase_tos() { Seq = seq };
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
+    }
+    // 程小蝶【惊梦】A：你接收黑色情报后，可以查看一名角色的手牌。
+    public static void SendSkill_JingMengA(int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jing_meng_a_tos, playerId:" + playerId);
+
+        skill_jing_meng_a_tos skill_jing_meng_a_tos = new skill_jing_meng_a_tos() { TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_jing_meng_a_tos.ToByteArray();
+        SendProto("skill_jing_meng_a_tos", proto);
+
+    }
+    // 程小蝶【惊梦】B：然后从中选择一张弃置。
+    public static void SendSkill_JingMengB(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jing_meng_b_tos, cardId:" + cardId);
+
+        skill_jing_meng_b_tos skill_jing_meng_b_tos = new skill_jing_meng_b_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_jing_meng_b_tos.ToByteArray();
+        SendProto("skill_jing_meng_b_tos", proto);
+
     }
     // 李宁玉【遗信】：你死亡前，可以将一张手牌置入另一名角色的情报区。
     public static void SendSkill_YiXin(bool use, int playerId, int cardId, uint seq)

@@ -24,11 +24,12 @@ public static partial class ErrcodeReflection {
         string.Concat(
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
-          "cmFtcxgDIAMoCSq0AQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
+          "cmFtcxgDIAMoCSrKAQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
           "b3RfbWF0Y2gQABIQCgxub19tb3JlX3Jvb20QARIVChFyZWNvcmRfbm90X2V4",
           "aXN0cxACEhYKEmxvYWRfcmVjb3JkX2ZhaWxlZBADEhwKGHJlY29yZF92ZXJz",
           "aW9uX25vdF9tYXRjaBAEEhEKDW5hbWVfdG9vX2xvbmcQBRIWChJqb2luX3Jv",
-          "b21fdG9vX2Zhc3QQBkIWChRjb20uZmVuZ3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
+          "b21fdG9vX2Zhc3QQBhIUChByb2JvdF9ub3RfYWxsb3dzEAdCFgoUY29tLmZl",
+          "bmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -68,6 +69,10 @@ public enum error_code {
   /// 加入房间的请求太快了
   /// </summary>
   [pbr::OriginalName("join_room_too_fast")] JoinRoomTooFast = 6,
+  /// <summary>
+  /// 禁止添加机器人
+  /// </summary>
+  [pbr::OriginalName("robot_not_allows")] RobotNotAllows = 7,
 }
 
 #endregion

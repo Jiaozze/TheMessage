@@ -13,6 +13,7 @@ public class PlayerMessagInfo : MonoBehaviour
     private Dictionary<int, UICard> items = new Dictionary<int, UICard>();
 
     private int cardId = 0;
+    private bool isShowHand = false;
     private void Awake()
     {
     }
@@ -27,10 +28,18 @@ public class PlayerMessagInfo : MonoBehaviour
         {
             GameManager.Singleton.selectSkill.OnMessageInfoClose();
         }
+        isShowHand = false;
     }
 
     public void Show(int playerId, bool showChengQing = false)
     {
+        if (isShowHand)
+        {
+            //展示其他角色手牌和情报用的一个ui，展示手牌的时候就不让展示情报了
+            GameManager.Singleton.gameUI.ShowInfo("正在展示手牌无法查看情报");
+            return;
+        }
+
         gameObject.SetActive(true);
         Debug.LogError(playerId);
         textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的情报";
@@ -46,7 +55,7 @@ public class PlayerMessagInfo : MonoBehaviour
         {
             UICard card = GameObject.Instantiate(itemCardUI, grid.transform);
             card.Init(i, msg);
-            card.SetMessage(() =>
+            card.SetClickAction(() =>
             {
                 if (items.ContainsKey(cardId))
                 {
@@ -91,6 +100,7 @@ public class PlayerMessagInfo : MonoBehaviour
 
     public void ShowHandCard(int playerId, List<CardFS> cards)
     {
+        isShowHand = true;
         gameObject.SetActive(true);
         textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的手牌";
 
@@ -100,13 +110,44 @@ public class PlayerMessagInfo : MonoBehaviour
         }
         items.Clear();
 
-        int i = cards.Count;
+        UserSkill_JingMeng skill_JingMeng = null;
+        if (GameManager.Singleton.selectSkill is UserSkill_JingMeng)
+        {
+            skill_JingMeng = GameManager.Singleton.selectSkill as UserSkill_JingMeng;
+        }
 
+        int i = cards.Count;
         foreach (var cardFS in cards)
         {
             UICard card = GameObject.Instantiate(itemCardUI, grid.transform);
             card.Init(i, cardFS);
             items[cardFS.id] = (card);
+            if(skill_JingMeng != null)
+            {
+                card.SetClickAction(() =>
+                {
+                    if (items.ContainsKey(cardId))
+                    {
+                        items[cardId].OnSelect(false);
+                    }
+                    if (cardId != cardFS.id)
+                    {
+                        cardId = cardFS.id;
+                        if (items.ContainsKey(cardId))
+                        {
+                            items[cardId].OnSelect(true);
+                        }
+                        butChengQing.interactable = true;
+                    }
+                    else
+                    {
+                        butChengQing.interactable = false;
+                        cardId = 0;
+                    }
+
+                    skill_JingMeng.OnClickOthersCard(playerId, cardId);
+                });
+            }
         }
 
         butChengQing.gameObject.SetActive(false);
