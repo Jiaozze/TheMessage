@@ -14,7 +14,7 @@ public class UserSkill_JingMeng : SkillBase
     public override string Des => "惊梦:你接收黑色情报后，可以查看一名角色的手牌，然后从中选择一张弃置\n";
 
     private int selectPlayerId;
-    private List<CardFS> cards;
+    public List<CardFS> cards;
     private int selectCardId;
     public UserSkill_JingMeng(int id)
     {

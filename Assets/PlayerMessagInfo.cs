@@ -21,6 +21,7 @@ public class PlayerMessagInfo : MonoBehaviour
     private void OnEnable()
     {
     }
+
     private void OnDisable()
     {
         cardId = 0;
@@ -156,6 +157,15 @@ public class PlayerMessagInfo : MonoBehaviour
 
     public void Hide()
     {
+        if(isShowHand && GameManager.Singleton.IsUsingSkill && GameManager.Singleton.selectSkill is UserSkill_JingMeng)
+        {
+            UserSkill_JingMeng skill_JingMeng = GameManager.Singleton.selectSkill as UserSkill_JingMeng;
+            if(skill_JingMeng.cards != null)
+            {
+                GameManager.Singleton.gameUI.ShowInfo("请选择一张牌弃置");
+                return;
+            }
+        }
         gameObject.SetActive(false);
     }
 
