@@ -18,7 +18,7 @@ public class Role_Unknown : RoleBase
     {
         get
         {
-            return "";
+            return "Unknown";
         }
     }
 

@@ -82,19 +82,17 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
-        if (GameManager.Singleton.players[playerId].role.isBack) return;
+        if (GameManager.Singleton.players[playerId].role.isBack)
+        {
+            imgRole.gameObject.SetActive(false);
+            return;
+        }
         var path = GameManager.Singleton.players[playerId].role.spritName;
         if (!string.IsNullOrEmpty(path))
         {
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Images/Role");
-            foreach (Sprite sprite in sprites)
-            {
-                if (sprite.name == path)
-                {
-                    imgRole.sprite = sprite;
-                    break;
-                }
-            }
+            Sprite sprite = Resources.Load<Sprite>("Images/role/" + path);
+            imgRole.sprite = sprite;
+            imgRole.gameObject.SetActive(true);
         }
     }
 
@@ -255,9 +253,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         animator.SetTrigger("TurnBack");
         if (isBack)
         {
-            string path = "Images/role/role";
-            Sprite sprite = Resources.Load<Sprite>(path);
-            imgRole.sprite = sprite;
+            imgRole.gameObject.SetActive(false);
         }
         else
         {

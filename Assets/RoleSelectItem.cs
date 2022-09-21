@@ -24,15 +24,8 @@ public class RoleSelectItem : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         var path = roleBase.spritName;
         if (!string.IsNullOrEmpty(path))
         {
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Images/Images/Role");
-            foreach (Sprite sprite in sprites)
-            {
-                if (sprite.name == path)
-                {
-                    imgRole.sprite = sprite;
-                    break;
-                }
-            }
+            Sprite sprite = Resources.Load<Sprite>("Images/role/" + path);
+            imgRole.sprite = sprite;
         }
 
         button.onClick.AddListener(p);
