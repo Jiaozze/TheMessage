@@ -574,6 +574,7 @@ public class GameManager
 
         gameUI.Players[SelfPlayerId].RefreshSkillState();
         gameUI.HideMessagingCard();
+        gameUI.poYiResult.gameObject.SetActive(false);
         gameUI.weiBiGiveCard.gameObject.SetActive(false);
         gameUI.Players[lastTurnPlayerId].HidePhase();
         gameUI.Players[playerId].SetPhase(phase);
