@@ -133,6 +133,7 @@ public static class NetWork
             {
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
+                socket = null;
                 thread.Abort();
                 easyThread.StopThread();
                 thread = null;
@@ -147,7 +148,10 @@ public static class NetWork
 
     public static void Send(byte[] buffer)
     {
-        socket.Send(buffer);
+        if(socket != null)
+        {
+            socket.Send(buffer);
+        }
     }
 
 }

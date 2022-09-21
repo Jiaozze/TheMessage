@@ -1104,6 +1104,14 @@ public static class ProtoHelper
         byte[] proto = join_Room_Tos.ToByteArray();
         SendProto("select_role_tos", proto);
     }
+
+    public static void SendHeart()
+    {
+        Debug.Log("heart_tos");
+        heart_tos heart_tos = new heart_tos() { };
+        byte[] proto = heart_tos.ToByteArray();
+        SendProto("heart_tos", proto);
+    }
     private static void SendProto(string protoName, byte[] proto)
     {
         int protoId = GetIdFromProtoName(protoName);

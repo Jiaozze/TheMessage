@@ -15,6 +15,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Button butSkill3;
     public Text textPhase;
     public Text textPlayerId;
+    public Text textPlayerName;
     public Text textCardCount;
     public Text textMessageRedCount;
     public Text textMessageBlueCount;
@@ -61,8 +62,8 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         goTurnOn.SetActive(false);
         goMessageOn.SetActive(false);
         playerId = id;
-        textPlayerId.text = GameManager.Singleton.players[id].playerName;
-        //textPlayerId.text = GameManager.Singleton.players[id].role.name == "" ? "" + id + "ºÅÍæ¼Ò" : GameManager.Singleton.players[id].role.name;
+        textPlayerName.text = GameManager.Singleton.players[id].playerName;
+        textPlayerId.text = LanguageUtils.IdToWord(id);
         textCardCount.text = "0";
         playerColor.SetColor(GameManager.Singleton.players[id].playerColor);
         RefreshMessage();
