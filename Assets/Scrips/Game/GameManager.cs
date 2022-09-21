@@ -764,7 +764,7 @@ public class GameManager
         gameUI.poYiResult.gameObject.SetActive(false);
     }
 
-    private List<PlayerColorEnum> shiTanColor;
+    public List<PlayerColorEnum> shiTanColor;
     // 通知客户端，谁对谁使用了试探
     public void OnRecerveUseShiTan(int user, int targetUser, int cardId = 0)
     {
