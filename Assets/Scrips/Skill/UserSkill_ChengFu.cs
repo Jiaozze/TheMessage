@@ -29,6 +29,7 @@ public class UserSkill_ChengFu : SkillBase
             if(card.cardName == CardNameEnum.ShiTan)
             {
                 GameManager.Singleton.OnRecerveUseShiTan(userId, playerId, card.id);
+                GameManager.Singleton.shiTanColor = null;
                 cardName = "试探无效";
             }
             else if(card.cardName == CardNameEnum.WeiBi)
