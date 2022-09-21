@@ -11,7 +11,7 @@ public class GameManager
     public RoomUI roomUI;
     public Dictionary<int, Player> players = new Dictionary<int, Player>();
     public Dictionary<int, CardFS> cardsHand = new Dictionary<int, CardFS>(); //<id, card>
-
+    public bool isTuoGuan;
     public PhaseEnum curPhase { get; private set; }
     public SecretTaskEnum task { get; private set; }
 
@@ -1090,6 +1090,12 @@ public class GameManager
 
         gameUI.AddMsg(string.Format("{0}给了{1}{2}张牌 {3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetPlayerId].name, count, cardsInfo));
 
+    }
+
+    internal void OnReceiveTuoGuan(bool enable)
+    {
+        isTuoGuan = enable;
+        gameUI.textTuoGuan.text = isTuoGuan ? "托管中" : "托管";
     }
 
     // 通知谁获胜了

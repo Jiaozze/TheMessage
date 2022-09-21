@@ -681,7 +681,14 @@ public static class ProtoHelper
             select_role_toc select_role_toc = select_role_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnReceiveChooseRoleSuccess(select_role_toc.Role);
         }
+        // 托管返回
+        else if (GetIdFromProtoName("auto_play_toc") == id)
+        {
+            Debug.Log(" _______receive________ auto_play_toc ");
 
+            auto_play_toc auto_play_toc = auto_play_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.OnReceiveTuoGuan(auto_play_toc.Enable);
+        }
         //errorCode
         else if (GetIdFromProtoName("error_code_toc") == id)
         {
@@ -1105,6 +1112,14 @@ public static class ProtoHelper
         SendProto("select_role_tos", proto);
     }
 
+    public static void SendTuoGuan(bool enable)
+    {
+        Debug.Log("____send___________________ auto_play_tos");
+
+        auto_play_tos auto_play_tos = new auto_play_tos() { Enable = enable };
+        byte[] proto = auto_play_tos.ToByteArray();
+        SendProto("auto_play_tos", proto);
+    }
     public static void SendHeart()
     {
         Debug.Log("heart_tos");
