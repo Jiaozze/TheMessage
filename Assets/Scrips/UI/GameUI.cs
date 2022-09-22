@@ -75,6 +75,8 @@ public class GameUI : MonoBehaviour
 
     public Text textDesInfo;
 
+    public ScrollRect scrollRect;
+
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
 
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
@@ -414,9 +416,15 @@ public class GameUI : MonoBehaviour
         textDeckCount.text = "" + num;
     }
 
+    private IEnumerator scrollToBottom () {
+        yield return null;
+        scrollRect.verticalNormalizedPosition = 0;
+    }
+
     public void AddMsg(string v)
-    {
-        textInfo.text = textInfo.text + "\n" + v;
+    {   
+        textInfo.text = textInfo.text + v + "\n" ;
+        StartCoroutine(scrollToBottom());
         //Debug.Log(v);
         //throw new NotImplementedException();
     }
