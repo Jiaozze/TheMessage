@@ -537,7 +537,61 @@ public static class ProtoHelper
             CardFS card = new CardFS(skill_jie_dao_sha_ren_b_toc.Card);
             UserSkill_JieDaoShaRen.OnReceiveUseB(playerId, targetId, card);
         }
+        // 广播使用【交际】A 出牌阶段限一次，你可以抽取一名角色的最多两张手牌。
+        else if (GetIdFromProtoName("skill_jiao_ji_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jiao_ji_a_toc");
+            skill_jiao_ji_a_toc skill_jiao_ji_a_toc = skill_jiao_ji_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jiao_ji_a_toc.PlayerId;
+            int targetId = (int)skill_jiao_ji_a_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach(var card in skill_jiao_ji_a_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            //UserSkill_JieDaoShaRen.OnReceiveUseB(playerId, targetId, card);
+        }
+        // 广播使用【交际】B 然后将等量手牌交给该角色。你每收集一张黑色情报，便可以少交一张牌。
+        else if (GetIdFromProtoName("skill_jiao_ji_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jiao_ji_b_toc");
+            skill_jiao_ji_b_toc skill_jiao_ji_b_toc = skill_jiao_ji_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jiao_ji_b_toc.PlayerId;
+            int targetId = (int)skill_jiao_ji_b_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in skill_jiao_ji_b_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            //UserSkill_JieDaoShaRen.OnReceiveUseB(playerId, targetId, card);
+        }
+        // 鬼脚【急送】：争夺阶段限一次，你可以弃置两张手牌，或从你的情报区弃置一张非黑色情报，然后将待收情报移至一名角色面前。
+        else if (GetIdFromProtoName("skill_ji_song_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_ji_song_toc");
+            skill_ji_song_toc skill_ji_song_toc = skill_ji_song_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_ji_song_toc.PlayerId;
+            int targetId = (int)skill_ji_song_toc.TargetPlayerId;
+            CardFS card = new CardFS(skill_ji_song_toc.MessageCard);
 
+        }
+        // 广播询问客户端使用【转交】
+        else if (GetIdFromProtoName("skill_wait_for_zhuan_jiao_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_zhuan_jiao_toc");
+            skill_wait_for_zhuan_jiao_toc skill_wait_for_zhuan_jiao_toc = skill_wait_for_zhuan_jiao_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_wait_for_zhuan_jiao_toc.PlayerId;
+
+        }
+        // 白小年【转交】：你使用一张手牌后，可以从你的情报区选择一张非黑色情报，将其置入另一名角色的情报区，然后你摸两张牌。你不能通过此技能让任何角色收集三张或更多同色情报。
+        else if (GetIdFromProtoName("skill_zhuan_jiao_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_zhuan_jiao_toc");
+            skill_zhuan_jiao_toc skill_ji_song_toc = skill_zhuan_jiao_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_ji_song_toc.PlayerId;
+            int targetId = (int)skill_ji_song_toc.TargetPlayerId;
+            int cardId = (int)skill_ji_song_toc.CardId;
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -934,6 +988,55 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 白小年【转交】：你使用一张手牌后，可以从你的情报区选择一张非黑色情报，将其置入另一名角色的情报区，然后你摸两张牌。你不能通过此技能让任何角色收集三张或更多同色情报。
+    public static void SendSkill_ZhuanJiao(bool enable, int playerId, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_zhuan_jiao_tos, playerId:" + playerId);
+
+        skill_zhuan_jiao_tos skill_zhuan_jiao_tos = new skill_zhuan_jiao_tos() { Enable = enable, CardId = (uint)cardId, TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_zhuan_jiao_tos.ToByteArray();
+        SendProto("skill_zhuan_jiao_tos", proto);
+    }
+    // 鬼脚【急送】：争夺阶段限一次，你可以弃置两张手牌，或从你的情报区弃置一张非黑色情报，然后将待收情报移至一名角色面前。
+    public static void SendSkill_JiSong(int playerId, List<int> cardId, int messageId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_ji_song_tos, playerId:" + playerId);
+
+        skill_ji_song_tos skill_ji_song_tos = new skill_ji_song_tos() { MessageCard = (uint)messageId, TargetPlayerId = (uint)playerId, Seq = seq };
+        if(cardId.Count > 0)
+        {
+            foreach(var id in cardId)
+            {
+                skill_ji_song_tos.CardIds.Add((uint)id);
+            }
+        }
+        byte[] proto = skill_ji_song_tos.ToByteArray();
+        SendProto("skill_ji_song_tos", proto);
+    }
+
+    // 裴玲【交际】A：出牌阶段限一次，你可以抽取一名角色的最多两张手牌。
+    public static void SendSkill_JiaoJiA(int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jiao_ji_a_tos, playerId:" + playerId);
+
+        skill_jiao_ji_a_tos skill_jiao_ji_a_tos = new skill_jiao_ji_a_tos() { TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_jiao_ji_a_tos.ToByteArray();
+        SendProto("skill_jiao_ji_a_tos", proto);
+    }
+    // 裴玲【交际】B：然后将等量手牌交给该角色。你每收集一张黑色情报，便可以少交一张牌。
+    public static void SendSkill_JiaoJiB(List<int> cardsId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jiao_ji_b_tos ");
+
+        skill_jiao_ji_b_tos skill_jiao_ji_b_tos = new skill_jiao_ji_b_tos() { Seq = seq };
+        foreach(var id in cardsId)
+        {
+            skill_jiao_ji_b_tos.CardIds.Add((uint)id);
+        }
+        byte[] proto = skill_jiao_ji_b_tos.ToByteArray();
+        SendProto("skill_jiao_ji_b_tos", proto);
+    }
+
     // 商玉【借刀杀人】A：争夺阶段，你可以翻开此角色牌，然后抽取另一名角色的一张手牌并展示之。若展示的牌是非黑色，则你摸一张牌。
     public static void SendSkill_JieDaoShaRenA(int playerId, uint seq)
     {
