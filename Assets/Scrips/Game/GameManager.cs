@@ -382,7 +382,7 @@ public class GameManager
             gameUI.AddMsg("" + GameManager.Singleton.players[id].name + "被锁定了");
         }
     }
-    private void OnWait(int playerId, int waitSeconds)
+    public void OnWait(int playerId, int waitSeconds)
     {
         if (CurWaitingPlayerId == SelfPlayerId)
         {

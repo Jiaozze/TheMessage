@@ -1087,9 +1087,9 @@ public class GameUI : MonoBehaviour
         slider.gameObject.SetActive(false);
     }
 
-    public void ShowHandCard(int target, List<CardFS> cards)
+    public void ShowHandCard(int target, List<CardFS> cards, string s = "")
     {
-        playerMessagInfo.ShowHandCard(target, cards);
+        playerMessagInfo.ShowHandCard(target, cards, s);
     }
 
     public void CheckTargetAvailable()

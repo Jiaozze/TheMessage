@@ -25,24 +25,24 @@ public static partial class CommonReflection {
           "Cgxjb21tb24ucHJvdG8ioQEKBGNhcmQSDwoHY2FyZF9pZBgBIAEoDRIaCgpj",
           "YXJkX2NvbG9yGAIgAygOMgYuY29sb3ISHAoIY2FyZF9kaXIYAyABKA4yCi5k",
           "aXJlY3Rpb24SHQoJY2FyZF90eXBlGAQgASgOMgouY2FyZF90eXBlEh0KDXdo",
-          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCqf",
+          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCq7",
           "AgoEcm9sZRILCgd1bmtub3duEAASEgoOY2hlbmdfeGlhb19kaWUQAhINCglt",
-          "YW9fYnVfYmEQBBIXChNmZWlfeXVhbl9sb25nX2NodWFuEAcSDAoId2FuZ19r",
-          "dWkQDBILCgdoYW5fbWVpEA4SEgoOemhlbmdfd2VuX3hpYW4QDxIMCghndWlf",
-          "amlhbxAREgwKCHNoYW9feGl1EBISEQoNamluX3NoZW5nX2h1bxATEhAKDGd1",
-          "X3hpYW9fbWVuZxAUEg8KC2JhaV9mZWlfZmVpEBUSEAoMZHVhbl9tdV9qaW5n",
-          "EBYSCwoHbGFvX2hhbhAYEhEKDWJhaV94aWFvX25pYW4QGRILCgdsYW9fYmll",
-          "EBoSDgoKbGlfbmluZ195dRAcKnEKBXBoYXNlEg4KCkRyYXdfUGhhc2UQABIO",
-          "CgpNYWluX1BoYXNlEAESFAoQU2VuZF9TdGFydF9QaGFzZRACEg4KClNlbmRf",
-          "UGhhc2UQAxIPCgtGaWdodF9QaGFzZRAEEhEKDVJlY2VpdmVfUGhhc2UQBSqB",
-          "AQoJY2FyZF90eXBlEg4KCkNoZW5nX1FpbmcQABILCgdTaGlfVGFuEAESCgoG",
-          "V2VpX0JpEAISCgoGTGlfWW91EAMSDQoJUGluZ19IZW5nEAQSCQoFUG9fWWkQ",
-          "BRILCgdKaWVfSHVvEAYSDAoIRGlhb19CYW8QBxIKCgZXdV9EYW8QCCo6CgVj",
-          "b2xvchIJCgVCbGFjaxAAEgcKA1JlZBABEggKBEJsdWUQAhITCg9IYXNfTm9f",
-          "SWRlbnRpdHkQAyo1CgtzZWNyZXRfdGFzaxIKCgZLaWxsZXIQABILCgdTdGVh",
-          "bGVyEAESDQoJQ29sbGVjdG9yEAIqKAoJZGlyZWN0aW9uEgYKAlVwEAASCAoE",
-          "TGVmdBABEgkKBVJpZ2h0EAJCFgoUY29tLmZlbmdzaGVuZy5wcm90b3NiBnBy",
-          "b3RvMw=="));
+          "YW9fYnVfYmEQBBIXChNmZWlfeXVhbl9sb25nX2NodWFuEAcSDAoIcGVpX2xp",
+          "bmcQCBIMCgh3YW5nX2t1aRAMEgsKB2hhbl9tZWkQDhISCg56aGVuZ193ZW5f",
+          "eGlhbhAPEgwKCGd1aV9qaWFvEBESDAoIc2hhb194aXUQEhIRCg1qaW5fc2hl",
+          "bmdfaHVvEBMSEAoMZ3VfeGlhb19tZW5nEBQSDwoLYmFpX2ZlaV9mZWkQFRIQ",
+          "CgxkdWFuX211X2ppbmcQFhILCgdsYW9faGFuEBgSEQoNYmFpX3hpYW9fbmlh",
+          "bhAZEgsKB2xhb19iaWUQGhIOCgpsaV9uaW5nX3l1EBwSDAoIc2hhbmdfeXUQ",
+          "HipxCgVwaGFzZRIOCgpEcmF3X1BoYXNlEAASDgoKTWFpbl9QaGFzZRABEhQK",
+          "EFNlbmRfU3RhcnRfUGhhc2UQAhIOCgpTZW5kX1BoYXNlEAMSDwoLRmlnaHRf",
+          "UGhhc2UQBBIRCg1SZWNlaXZlX1BoYXNlEAUqgQEKCWNhcmRfdHlwZRIOCgpD",
+          "aGVuZ19RaW5nEAASCwoHU2hpX1RhbhABEgoKBldlaV9CaRACEgoKBkxpX1lv",
+          "dRADEg0KCVBpbmdfSGVuZxAEEgkKBVBvX1lpEAUSCwoHSmllX0h1bxAGEgwK",
+          "CERpYW9fQmFvEAcSCgoGV3VfRGFvEAgqOgoFY29sb3ISCQoFQmxhY2sQABIH",
+          "CgNSZWQQARIICgRCbHVlEAISEwoPSGFzX05vX0lkZW50aXR5EAMqNQoLc2Vj",
+          "cmV0X3Rhc2sSCgoGS2lsbGVyEAASCwoHU3RlYWxlchABEg0KCUNvbGxlY3Rv",
+          "chACKigKCWRpcmVjdGlvbhIGCgJVcBAAEggKBExlZnQQARIJCgVSaWdodBAC",
+          "QhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -70,6 +70,10 @@ public enum role {
   /// 肥圆龙川
   /// </summary>
   [pbr::OriginalName("fei_yuan_long_chuan")] FeiYuanLongChuan = 7,
+  /// <summary>
+  /// 裴玲
+  /// </summary>
+  [pbr::OriginalName("pei_ling")] PeiLing = 8,
   /// <summary>
   /// 王魁
   /// </summary>
@@ -122,6 +126,10 @@ public enum role {
   /// 李宁玉
   /// </summary>
   [pbr::OriginalName("li_ning_yu")] LiNingYu = 28,
+  /// <summary>
+  /// 商玉
+  /// </summary>
+  [pbr::OriginalName("shang_yu")] ShangYu = 30,
 }
 
 public enum phase {

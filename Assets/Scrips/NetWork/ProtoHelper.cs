@@ -516,6 +516,27 @@ public static class ProtoHelper
             skill_jing_meng_b_toc skill_jing_meng_b_toc = skill_jing_meng_b_toc.Parser.ParseFrom(contont);
             UserSkill_JingMeng.OnReceiveUseB((int)skill_jing_meng_b_toc.PlayerId, (int)skill_jing_meng_b_toc.TargetPlayerId);
         }
+        // 广播使用【借刀杀人】A 争夺阶段，你可以翻开此角色牌，然后抽取另一名角色的一张手牌并展示之。若展示的牌是非黑色，则你摸一张牌。
+        else if (GetIdFromProtoName("skill_jie_dao_sha_ren_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jie_dao_sha_ren_a_toc");
+            skill_jie_dao_sha_ren_a_toc skill_jie_dao_sha_ren_a_toc = skill_jie_dao_sha_ren_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jie_dao_sha_ren_a_toc.PlayerId;
+            int targetId = (int)skill_jie_dao_sha_ren_a_toc.TargetPlayerId;
+            CardFS card = new CardFS(skill_jie_dao_sha_ren_a_toc.Card);
+            int waitSeconds = (int)skill_jie_dao_sha_ren_a_toc.WaitingSecond;
+            UserSkill_JieDaoShaRen.OnReceiveUseA(playerId, targetId, card, waitSeconds, skill_jie_dao_sha_ren_a_toc.Seq);
+        }
+        // 广播使用【借刀杀人】B
+        else if (GetIdFromProtoName("skill_jie_dao_sha_ren_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jie_dao_sha_ren_b_toc");
+            skill_jie_dao_sha_ren_b_toc skill_jie_dao_sha_ren_b_toc = skill_jie_dao_sha_ren_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jie_dao_sha_ren_b_toc.PlayerId;
+            int targetId = (int)skill_jie_dao_sha_ren_b_toc.TargetPlayerId;
+            CardFS card = new CardFS(skill_jie_dao_sha_ren_b_toc.Card);
+            UserSkill_JieDaoShaRen.OnReceiveUseB(playerId, targetId, card);
+        }
 
 
         #endregion
@@ -912,6 +933,24 @@ public static class ProtoHelper
         end_receive_phase_tos end_Receive_Phase_Tos = new end_receive_phase_tos() { Seq = seq };
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
+    }
+    // 商玉【借刀杀人】A：争夺阶段，你可以翻开此角色牌，然后抽取另一名角色的一张手牌并展示之。若展示的牌是非黑色，则你摸一张牌。
+    public static void SendSkill_JieDaoShaRenA(int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jie_dao_sha_ren_a_tos, playerId:" + playerId);
+
+        skill_jie_dao_sha_ren_a_tos skill_jie_dao_sha_ren_a_tos = new skill_jie_dao_sha_ren_a_tos() { TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_jie_dao_sha_ren_a_tos.ToByteArray();
+        SendProto("skill_jie_dao_sha_ren_a_tos", proto);
+    }
+    // 商玉【借刀杀人】B：若展示的牌是黑色，则你可以将其置入一名角色的情报区，并将你的角色牌翻至面朝下。
+    public static void SendSkill_JieDaoShaRenB(bool enable, int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jie_dao_sha_ren_b_tos, playerId:" + playerId);
+
+        skill_jie_dao_sha_ren_b_tos skill_jie_dao_sha_ren_b_tos = new skill_jie_dao_sha_ren_b_tos() { Enable = enable, TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_jie_dao_sha_ren_b_tos.ToByteArray();
+        SendProto("skill_jie_dao_sha_ren_b_tos", proto);
     }
     // 程小蝶【惊梦】A：你接收黑色情报后，可以查看一名角色的手牌。
     public static void SendSkill_JingMengA(int playerId, uint seq)

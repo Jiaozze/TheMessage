@@ -99,11 +99,18 @@ public class PlayerMessagInfo : MonoBehaviour
         }
     }
 
-    public void ShowHandCard(int playerId, List<CardFS> cards)
+    public void ShowHandCard(int playerId, List<CardFS> cards, string title = "")
     {
         isShowHand = true;
         gameObject.SetActive(true);
-        textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的手牌";
+        if(string.IsNullOrEmpty(title))
+        {
+            textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的手牌";
+        }
+        else
+        {
+            textTittle.text = title;
+        }
 
         foreach (var kv in items)
         {
