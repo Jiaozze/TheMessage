@@ -1145,6 +1145,17 @@ public class GameManager
     {
         seqId = seq;
         OnWait(userId, waitingSeconds);
+
+        if(diePlayerId == 0 || cards.Count != 0){
+            gameUI.GiveCards(diePlayerId, userId, cards);
+        }else{
+            List<CardFS> unknownCards = new List<CardFS>();
+            for(int i=0 ;i < players[diePlayerId].cardCount; i++){
+                unknownCards.Add(new CardFS(null));
+            }
+            gameUI.GiveCards(diePlayerId, userId, unknownCards);
+        }
+
         players[userId].cardCount += players[diePlayerId].cardCount;
         players[diePlayerId].cardCount = 0;
         gameUI.Players[userId].RefreshCardCount();

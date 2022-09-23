@@ -357,6 +357,7 @@ public class GameUI : MonoBehaviour
                 fromPos =
                     Players[from].transform.position + new Vector3(i * 20, 0);
             }
+            uICard.SetInfo(cards[i]);
             uICard.gameObject.SetActive(true);
             StartCoroutine(DoMove(uICard.transform,
             fromPos,
