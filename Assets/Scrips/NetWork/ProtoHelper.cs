@@ -549,7 +549,7 @@ public static class ProtoHelper
             {
                 cards.Add(new CardFS(card));
             }
-            //UserSkill_JieDaoShaRen.OnReceiveUseB(playerId, targetId, card);
+            UserSkill_JiaoJi.OnReceiveUseA(playerId, targetId, cards, (int)skill_jiao_ji_a_toc.UnknownCardCount, (int)skill_jiao_ji_a_toc.WaitingSecond, skill_jiao_ji_a_toc.Seq);
         }
         // 广播使用【交际】B 然后将等量手牌交给该角色。你每收集一张黑色情报，便可以少交一张牌。
         else if (GetIdFromProtoName("skill_jiao_ji_b_toc") == id)
@@ -563,7 +563,7 @@ public static class ProtoHelper
             {
                 cards.Add(new CardFS(card));
             }
-            //UserSkill_JieDaoShaRen.OnReceiveUseB(playerId, targetId, card);
+            UserSkill_JiaoJi.OnReceiveUseB(playerId, targetId, cards, (int)skill_jiao_ji_b_toc.UnknownCardCount);
         }
         // 鬼脚【急送】：争夺阶段限一次，你可以弃置两张手牌，或从你的情报区弃置一张非黑色情报，然后将待收情报移至一名角色面前。
         else if (GetIdFromProtoName("skill_ji_song_toc") == id)
