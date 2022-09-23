@@ -199,9 +199,6 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnDie(bool loseGame)
     {
-        textMessageRedCount.text = "0";
-        textMessageBlueCount.text = "0";
-        textMessageBlackCount.text = "0";
         goDie.SetActive(true);
         goLose.SetActive(loseGame);
     }

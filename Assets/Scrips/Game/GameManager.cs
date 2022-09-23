@@ -1032,6 +1032,7 @@ public class GameManager
             messages.Add(message);
         }
         players[playerId].messages.Clear();
+        gameUI.Players[playerId].RefreshMessage();
         gameUI.OnPlayerMessageRemove(playerId, messages);
     }
 
