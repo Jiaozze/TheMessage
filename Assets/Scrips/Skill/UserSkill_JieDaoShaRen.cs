@@ -152,7 +152,7 @@ public class UserSkill_JieDaoShaRen : SkillBase
                 {
                     GameManager.Singleton.IsUsingSkill = true;
                     GameManager.Singleton.selectSkill = userSkill_JieDaoShaRen;
-                    GameManager.Singleton.gameUI.ShowPhase("是否将抽取的牌置入一名角色的情报区，并将你的角色牌翻至面朝下");
+                    GameManager.Singleton.gameUI.ShowPhase("是否将抽取的" + LanguageUtils.GetColorsName(card.color) + LanguageUtils.GetCardName(card.cardName) + "置入一名角色的情报区，并将你的角色牌翻至面朝下");
                 }
                 else
                 {
