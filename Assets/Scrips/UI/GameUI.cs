@@ -147,10 +147,11 @@ public class GameUI : MonoBehaviour
     public void ShowChooseRole(
         PlayerColorEnum playerColor,
         SecretTaskEnum secretTask,
-        List<role> roles
+        List<role> roles,
+        int playerCount
     )
     {
-        roleSelect.Show(playerColor, secretTask, roles);
+        roleSelect.Show(playerColor, secretTask, roles, playerCount);
     }
 
     public void HideChooseRole()

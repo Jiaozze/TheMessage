@@ -430,7 +430,7 @@ public class GameManager
         roomUI.gameObject.SetActive(false);
 
         gameUI.InitPlayers(playerCount);
-        gameUI.ShowChooseRole(playerColor, secretTask, roles);
+        gameUI.ShowChooseRole(playerColor, secretTask, roles, playerCount);
     }
     public  void OnReceiveChooseRoleSuccess(role role)
     {
