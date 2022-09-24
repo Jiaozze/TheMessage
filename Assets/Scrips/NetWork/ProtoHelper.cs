@@ -514,7 +514,8 @@ public static class ProtoHelper
         {
             Debug.Log(" _______receive________ skill_jing_meng_b_toc");
             skill_jing_meng_b_toc skill_jing_meng_b_toc = skill_jing_meng_b_toc.Parser.ParseFrom(contont);
-            UserSkill_JingMeng.OnReceiveUseB((int)skill_jing_meng_b_toc.PlayerId, (int)skill_jing_meng_b_toc.TargetPlayerId);
+            CardFS card = new CardFS(skill_jing_meng_b_toc.Card);
+            UserSkill_JingMeng.OnReceiveUseB((int)skill_jing_meng_b_toc.PlayerId, (int)skill_jing_meng_b_toc.TargetPlayerId, card);
         }
         // 广播使用【借刀杀人】A 争夺阶段，你可以翻开此角色牌，然后抽取另一名角色的一张手牌并展示之。若展示的牌是非黑色，则你摸一张牌。
         else if (GetIdFromProtoName("skill_jie_dao_sha_ren_a_toc") == id)

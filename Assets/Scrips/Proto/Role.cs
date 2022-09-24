@@ -98,27 +98,27 @@ public static partial class RoleReflection {
           "EhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgN",
           "EhQKBWNhcmRzGAMgAygLMgUuY2FyZBIWCg53YWl0aW5nX3NlY29uZBgEIAEo",
           "DRILCgNzZXEYBSABKA0iNQoVc2tpbGxfamluZ19tZW5nX2JfdG9zEg8KB2Nh",
-          "cmRfaWQYASABKA0SCwoDc2VxGAIgASgNIkQKFXNraWxsX2ppbmdfbWVuZ19i",
+          "cmRfaWQYASABKA0SCwoDc2VxGAIgASgNIlkKFXNraWxsX2ppbmdfbWVuZ19i",
           "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgC",
-          "IAEoDSJEChtza2lsbF9qaWVfZGFvX3NoYV9yZW5fYV90b3MSGAoQdGFyZ2V0",
-          "X3BsYXllcl9pZBgBIAEoDRILCgNzZXEYAiABKA0ihAEKG3NraWxsX2ppZV9k",
-          "YW9fc2hhX3Jlbl9hX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0",
-          "X3BsYXllcl9pZBgCIAEoDRITCgRjYXJkGAMgASgLMgUuY2FyZBIWCg53YWl0",
-          "aW5nX3NlY29uZBgEIAEoDRILCgNzZXEYBSABKA0iVAobc2tpbGxfamllX2Rh",
-          "b19zaGFfcmVuX2JfdG9zEg4KBmVuYWJsZRgBIAEoCBIYChB0YXJnZXRfcGxh",
-          "eWVyX2lkGAIgASgNEgsKA3NlcRgDIAEoDSJfChtza2lsbF9qaWVfZGFvX3No",
-          "YV9yZW5fYl90b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5",
-          "ZXJfaWQYAiABKA0SEwoEY2FyZBgDIAEoCzIFLmNhcmQiPAoTc2tpbGxfamlh",
-          "b19qaV9hX3RvcxIYChB0YXJnZXRfcGxheWVyX2lkGAEgASgNEgsKA3NlcRgC",
-          "IAEoDSKZAQoTc2tpbGxfamlhb19qaV9hX3RvYxIRCglwbGF5ZXJfaWQYASAB",
-          "KA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIUCgVjYXJkcxgDIAMoCzIF",
-          "LmNhcmQSGgoSdW5rbm93bl9jYXJkX2NvdW50GAQgASgNEhYKDndhaXRpbmdf",
-          "c2Vjb25kGAUgASgNEgsKA3NlcRgGIAEoDSI0ChNza2lsbF9qaWFvX2ppX2Jf",
-          "dG9zEhAKCGNhcmRfaWRzGAEgAygNEgsKA3NlcRgCIAEoDSJ0ChNza2lsbF9q",
-          "aWFvX2ppX2JfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxh",
-          "eWVyX2lkGAIgASgNEhQKBWNhcmRzGAMgAygLMgUuY2FyZBIaChJ1bmtub3du",
-          "X2NhcmRfY291bnQYBCABKA1CFgoUY29tLmZlbmdzaGVuZy5wcm90b3NiBnBy",
-          "b3RvMw=="));
+          "IAEoDRITCgRjYXJkGAMgASgLMgUuY2FyZCJEChtza2lsbF9qaWVfZGFvX3No",
+          "YV9yZW5fYV90b3MSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoDRILCgNzZXEY",
+          "AiABKA0ihAEKG3NraWxsX2ppZV9kYW9fc2hhX3Jlbl9hX3RvYxIRCglwbGF5",
+          "ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRITCgRjYXJk",
+          "GAMgASgLMgUuY2FyZBIWCg53YWl0aW5nX3NlY29uZBgEIAEoDRILCgNzZXEY",
+          "BSABKA0iVAobc2tpbGxfamllX2Rhb19zaGFfcmVuX2JfdG9zEg4KBmVuYWJs",
+          "ZRgBIAEoCBIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEgsKA3NlcRgDIAEo",
+          "DSJfChtza2lsbF9qaWVfZGFvX3NoYV9yZW5fYl90b2MSEQoJcGxheWVyX2lk",
+          "GAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SEwoEY2FyZBgDIAEo",
+          "CzIFLmNhcmQiPAoTc2tpbGxfamlhb19qaV9hX3RvcxIYChB0YXJnZXRfcGxh",
+          "eWVyX2lkGAEgASgNEgsKA3NlcRgCIAEoDSKZAQoTc2tpbGxfamlhb19qaV9h",
+          "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgC",
+          "IAEoDRIUCgVjYXJkcxgDIAMoCzIFLmNhcmQSGgoSdW5rbm93bl9jYXJkX2Nv",
+          "dW50GAQgASgNEhYKDndhaXRpbmdfc2Vjb25kGAUgASgNEgsKA3NlcRgGIAEo",
+          "DSI0ChNza2lsbF9qaWFvX2ppX2JfdG9zEhAKCGNhcmRfaWRzGAEgAygNEgsK",
+          "A3NlcRgCIAEoDSJ0ChNza2lsbF9qaWFvX2ppX2JfdG9jEhEKCXBsYXllcl9p",
+          "ZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEhQKBWNhcmRzGAMg",
+          "AygLMgUuY2FyZBIaChJ1bmtub3duX2NhcmRfY291bnQYBCABKA1CFgoUY29t",
+          "LmZlbmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -167,7 +167,7 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jing_meng_a_tos), global::skill_jing_meng_a_tos.Parser, new[]{ "TargetPlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jing_meng_a_toc), global::skill_jing_meng_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jing_meng_b_tos), global::skill_jing_meng_b_tos.Parser, new[]{ "CardId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jing_meng_b_toc), global::skill_jing_meng_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jing_meng_b_toc), global::skill_jing_meng_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Card" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jie_dao_sha_ren_a_tos), global::skill_jie_dao_sha_ren_a_tos.Parser, new[]{ "TargetPlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jie_dao_sha_ren_a_toc), global::skill_jie_dao_sha_ren_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Card", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jie_dao_sha_ren_b_tos), global::skill_jie_dao_sha_ren_b_tos.Parser, new[]{ "Enable", "TargetPlayerId", "Seq" }, null, null, null, null),
@@ -8318,6 +8318,7 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
   public skill_jing_meng_b_toc(skill_jing_meng_b_toc other) : this() {
     playerId_ = other.playerId_;
     targetPlayerId_ = other.targetPlayerId_;
+    card_ = other.card_ != null ? other.card_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -8348,6 +8349,20 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
     }
   }
 
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 3;
+  private global::card card_;
+  /// <summary>
+  /// 用于客户端战报显示，弃牌走弃牌协议
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::card Card {
+    get { return card_; }
+    set {
+      card_ = value;
+    }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as skill_jing_meng_b_toc);
@@ -8363,6 +8378,7 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
     }
     if (PlayerId != other.PlayerId) return false;
     if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (!object.Equals(Card, other.Card)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -8371,6 +8387,7 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
     int hash = 1;
     if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (card_ != null) hash ^= Card.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -8392,6 +8409,10 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
       output.WriteRawTag(16);
       output.WriteUInt32(TargetPlayerId);
     }
+    if (card_ != null) {
+      output.WriteRawTag(26);
+      output.WriteMessage(Card);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -8405,6 +8426,9 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
     }
     if (TargetPlayerId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -8423,6 +8447,12 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
     if (other.TargetPlayerId != 0) {
       TargetPlayerId = other.TargetPlayerId;
     }
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
+      }
+      Card.MergeFrom(other.Card);
+    }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -8440,6 +8470,13 @@ public sealed partial class skill_jing_meng_b_toc : pb::IMessage<skill_jing_meng
         }
         case 16: {
           TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 26: {
+          if (card_ == null) {
+            Card = new global::card();
+          }
+          input.ReadMessage(Card);
           break;
         }
       }
