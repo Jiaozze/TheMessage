@@ -198,9 +198,9 @@ public class UserSkill_JieDaoShaRen : SkillBase
             }
 
             GameManager.Singleton.cardsHand.Remove(card.id);
-            //var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
-            //GameManager.Singleton.gameUI.Cards.Remove(card.id);
-            //GameObject.Destroy(cardUI.gameObject);
+            var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
+            GameManager.Singleton.gameUI.Cards.Remove(card.id);
+            GameObject.Destroy(cardUI.gameObject);
         }
 
 
