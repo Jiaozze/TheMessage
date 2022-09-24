@@ -728,6 +728,25 @@ public class GameManager
             case error_code.NoMoreRoom:
                 gameUI.ShowInfo("没有更多的房间了");
                 break;
+            case error_code.RecordNotExists:
+                gameUI.ShowInfo("录像不存在");
+                break;
+            case error_code.LoadRecordFailed:
+                gameUI.ShowInfo("读取录像失败了");
+                break;
+            case error_code.RecordVersionNotMatch:
+                gameUI.ShowInfo("录像的版本号不匹配");
+                break;
+            case error_code.NameTooLong:
+                gameUI.ShowInfo("玩家名字太长了");
+                break;
+            case error_code.JoinRoomTooFast:
+                gameUI.ShowInfo("加入房间的请求太快了");
+                break;
+            case error_code.RobotNotAllowed:
+                gameUI.ShowInfo("禁止添加机器人");
+                break;
+
             default:
                 gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;
@@ -1355,7 +1374,7 @@ public class GameManager
 
     public void SendDoWeiBi(int cardId)
     {
-        Debug.LogError("威逼给牌" + cardId);
+        //Debug.LogError("威逼给牌" + cardId);
         ProtoHelper.SendDoWeiBi(cardId, seqId);
         SelectCardId = -1;
     }
