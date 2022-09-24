@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class ProtoHelper
 {
-    private const uint PROTO_VERSION = 9;
+    private const uint PROTO_VERSION = 10;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //GetIdFromProtoName("wait_for_select_role_toc");
