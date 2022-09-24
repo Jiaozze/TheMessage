@@ -239,6 +239,17 @@ public class UserSkill_JiaoJi : SkillBase
             {
                 cardStr += LanguageUtils.GetCardName(card.cardName);
             }
+            GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, cards);
+        }
+        else
+        {
+            List<CardFS> unknownCards = new List<CardFS>();
+            for (int i = 0; i < unknowCount; i++)
+            {
+                unknownCards.Add(new CardFS(null));
+            }
+            GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, unknownCards);
+
         }
 
         string s = string.Format("{0}对{1}使用了技能交际，抽取了{2}张牌{3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, cardCount, cardStr);
@@ -284,6 +295,18 @@ public class UserSkill_JiaoJi : SkillBase
             {
                 cardStr += LanguageUtils.GetCardName(card.cardName);
             }
+            GameManager.Singleton.gameUI.ShowCardsMove(playerId, targetId, cards);
+
+        }
+        else
+        {
+            List<CardFS> unknownCards = new List<CardFS>();
+            for (int i = 0; i < unknowCount; i++)
+            {
+                unknownCards.Add(new CardFS(null));
+            }
+            GameManager.Singleton.gameUI.ShowCardsMove(playerId, targetId, unknownCards);
+
         }
 
         string s = string.Format("{0}向{1}交还了{2}张牌{3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, cardCount, cardStr);
