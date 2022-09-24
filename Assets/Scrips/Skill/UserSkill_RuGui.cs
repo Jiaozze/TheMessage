@@ -28,6 +28,11 @@ public class UserSkill_RuGui : SkillBase
 
     public override void OnMessageSelect(int playerId, int cardId)
     {
+        if (playerId != GameManager.SelfPlayerId)
+        {
+            GameManager.Singleton.gameUI.ShowPlayerMessageInfo(GameManager.SelfPlayerId);
+            return;
+        }
         base.OnMessageSelect(playerId, cardId);
         selectMessageId = cardId;
     }

@@ -581,7 +581,7 @@ public static class ProtoHelper
             Debug.Log(" _______receive________ skill_wait_for_zhuan_jiao_toc");
             skill_wait_for_zhuan_jiao_toc skill_wait_for_zhuan_jiao_toc = skill_wait_for_zhuan_jiao_toc.Parser.ParseFrom(contont);
             int playerId = (int)skill_wait_for_zhuan_jiao_toc.PlayerId;
-
+            UserSkill_ZhuanJiao.OnReceiveWaitUse(playerId, (int)skill_wait_for_zhuan_jiao_toc.WaitingSecond, skill_wait_for_zhuan_jiao_toc.Seq);
         }
         // 白小年【转交】：你使用一张手牌后，可以从你的情报区选择一张非黑色情报，将其置入另一名角色的情报区，然后你摸两张牌。你不能通过此技能让任何角色收集三张或更多同色情报。
         else if (GetIdFromProtoName("skill_zhuan_jiao_toc") == id)
@@ -591,6 +591,7 @@ public static class ProtoHelper
             int playerId = (int)skill_ji_song_toc.PlayerId;
             int targetId = (int)skill_ji_song_toc.TargetPlayerId;
             int cardId = (int)skill_ji_song_toc.CardId;
+            UserSkill_ZhuanJiao.OnReceiveUse(playerId, cardId, targetId);
         }
 
         #endregion
