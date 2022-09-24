@@ -332,7 +332,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void GiveCards(int from, int to, List<CardFS> cards)
+    public void ShowCardsMove(int from, int to, List<CardFS> cards)
     {
         for (int i = 0; i < cards.Count; i++)
         {

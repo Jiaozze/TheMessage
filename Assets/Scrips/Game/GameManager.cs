@@ -954,7 +954,7 @@ public class GameManager
         {
             cardsHand.Remove(cardGiven.id);
         }
-        gameUI.GiveCards(target, user, new List<CardFS>() { cardGiven });
+        gameUI.ShowCardsMove(target, user, new List<CardFS>() { cardGiven });
 
         gameUI.AddMsg(string.Format("{0}给了{1}一张牌", GameManager.Singleton.players[target].name, GameManager.Singleton.players[user].name));
     }
@@ -1087,7 +1087,7 @@ public class GameManager
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
             }
         }
-        gameUI.GiveCards(playerId, targetPlayerId, cards);
+        gameUI.ShowCardsMove(playerId, targetPlayerId, cards);
 
         gameUI.AddMsg(string.Format("{0}给了{1}{2}张牌 {3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetPlayerId].name, count, cardsInfo));
 
@@ -1148,13 +1148,13 @@ public class GameManager
         OnWait(userId, waitingSeconds);
 
         if(diePlayerId == 0 || cards.Count != 0){
-            gameUI.GiveCards(diePlayerId, userId, cards);
+            gameUI.ShowCardsMove(diePlayerId, userId, cards);
         }else{
             List<CardFS> unknownCards = new List<CardFS>();
             for(int i=0 ;i < players[diePlayerId].cardCount; i++){
                 unknownCards.Add(new CardFS(null));
             }
-            gameUI.GiveCards(diePlayerId, userId, unknownCards);
+            gameUI.ShowCardsMove(diePlayerId, userId, unknownCards);
         }
 
         players[userId].cardCount += players[diePlayerId].cardCount;
