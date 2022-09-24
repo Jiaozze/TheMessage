@@ -583,7 +583,7 @@ public class GameManager
             lockedPlayer = null;
             gameUI.ClearLock();
             gameUI.AddMsg(string.Format("{0}回合开始", GameManager.Singleton.players[playerId].name));
-            if(lastTurnPlayerId == SelfPlayerId)
+            //if(lastTurnPlayerId == SelfPlayerId)
             {
                 foreach (var skill in players[SelfPlayerId].role.skills)
                 {

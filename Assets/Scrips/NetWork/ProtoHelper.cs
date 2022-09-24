@@ -572,8 +572,13 @@ public static class ProtoHelper
             skill_ji_song_toc skill_ji_song_toc = skill_ji_song_toc.Parser.ParseFrom(contont);
             int playerId = (int)skill_ji_song_toc.PlayerId;
             int targetId = (int)skill_ji_song_toc.TargetPlayerId;
-            CardFS card = new CardFS(skill_ji_song_toc.MessageCard);
+            CardFS card = null;
+            if (skill_ji_song_toc.MessageCard != null)
+            {
+                card = new CardFS(skill_ji_song_toc.MessageCard);
+            }
 
+            UserSkill_JiSong.OnReceiveUse(playerId, targetId, card);
         }
         // 广播询问客户端使用【转交】
         else if (GetIdFromProtoName("skill_wait_for_zhuan_jiao_toc") == id)
