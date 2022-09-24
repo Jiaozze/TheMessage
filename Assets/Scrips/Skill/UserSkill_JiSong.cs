@@ -127,7 +127,7 @@ public class UserSkill_JiSong : SkillBase
 
     public override void Use()
     {
-        if(selectPlayerId > 0)
+        if(selectPlayerId > -1)
         {
             if(selectMessageId > 0 && !GameManager.Singleton.players[GameManager.SelfPlayerId].messages[selectMessageId].color.Contains(CardColorEnum.Black))
             {
