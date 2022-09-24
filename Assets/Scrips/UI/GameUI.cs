@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
+    public InfoShow infoShow;
     public Text textPhase;
 
     public GameObject goTask;
@@ -37,7 +38,7 @@ public class GameUI : MonoBehaviour
 
     public Text textInfo;
 
-    public Text textMidInfo;
+    //public Text textMidInfo;
 
     public Text textDeckCount;
 
@@ -828,29 +829,9 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    private string infoStr = null;
-
-    private Coroutine hideInfoCorout;
-
     public void ShowInfo(string info)
     {
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
-        textMidInfo.text = infoStr == null ? info : infoStr + "\n" + info;
-        textMidInfo.gameObject.SetActive(true);
-        infoStr = info;
-        hideInfoCorout = StartCoroutine(HideInfo());
-    }
-
-    private IEnumerator HideInfo()
-    {
-        string s = infoStr;
-        yield return new WaitForSeconds(2);
-        infoStr = null;
-        textMidInfo.text = textMidInfo.text.Replace(s, "");
-        //textMidInfo.gameObject.SetActive(false);
+        infoShow.ShowInfo(info);
     }
 
     public void ShowPhase(string info = null)
