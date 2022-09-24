@@ -1070,7 +1070,7 @@ public class GameManager
             gameUI.Players[playerId].RefreshCardCount();
         }
 
-        if (targetPlayerId == SelfPlayerId)
+        if (SelfPlayerId == targetPlayerId)
         {
             foreach (var cardGiven in cards)
             {
@@ -1078,13 +1078,15 @@ public class GameManager
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
             }
             gameUI.DrawCards(cards);
-        }
-        if (SelfPlayerId == playerId)
-        {
+        } else  if (SelfPlayerId == playerId) {
             foreach (var cardGiven in cards)
             {
                 cardsHand.Remove(cardGiven.id);
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
+            }
+        } else {
+            for(int i=0 ;i < cardCount; i++){
+                cards.Add(new CardFS(null));
             }
         }
         gameUI.ShowCardsMove(playerId, targetPlayerId, cards);
