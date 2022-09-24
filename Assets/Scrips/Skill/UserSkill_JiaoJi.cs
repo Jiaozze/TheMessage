@@ -246,9 +246,9 @@ public class UserSkill_JiaoJi : SkillBase
             foreach (var card in cards)
             {
                 GameManager.Singleton.cardsHand.Remove(card.id);
-                var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
-                GameManager.Singleton.gameUI.Cards.Remove(card.id);
-                GameObject.Destroy(cardUI.gameObject);
+                //var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
+                //GameManager.Singleton.gameUI.Cards.Remove(card.id);
+                //GameObject.Destroy(cardUI.gameObject);
             }
         }
 
@@ -294,9 +294,9 @@ public class UserSkill_JiaoJi : SkillBase
             foreach (var card in cards)
             {
                 GameManager.Singleton.cardsHand.Remove(card.id);
-                var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
-                GameManager.Singleton.gameUI.Cards.Remove(card.id);
-                GameObject.Destroy(cardUI.gameObject);
+                //var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
+                //GameManager.Singleton.gameUI.Cards.Remove(card.id);
+                //GameObject.Destroy(cardUI.gameObject);
             }
         }
         else if (targetId == GameManager.SelfPlayerId)

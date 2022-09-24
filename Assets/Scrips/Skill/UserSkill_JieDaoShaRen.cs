@@ -132,6 +132,7 @@ public class UserSkill_JieDaoShaRen : SkillBase
         GameManager.Singleton.players[targetId].cardCount -= 1;
         GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
         GameManager.Singleton.gameUI.Players[targetId].RefreshCardCount();
+        GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, new List<CardFS>() { card });
 
         if (playerId == GameManager.SelfPlayerId)
         {
@@ -163,9 +164,9 @@ public class UserSkill_JieDaoShaRen : SkillBase
         else if(targetId == GameManager.SelfPlayerId)
         {
             GameManager.Singleton.cardsHand.Remove(card.id);
-            var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
-            GameManager.Singleton.gameUI.Cards.Remove(card.id);
-            GameObject.Destroy(cardUI.gameObject);
+            //var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
+            //GameManager.Singleton.gameUI.Cards.Remove(card.id);
+            //GameObject.Destroy(cardUI.gameObject);
         }
 
         if (playerId != GameManager.SelfPlayerId)
@@ -173,7 +174,6 @@ public class UserSkill_JieDaoShaRen : SkillBase
             GameManager.Singleton.gameUI.ShowHandCard(playerId, new List<CardFS>() { card }, "借刀杀人抽取的牌");
         }
 
-        GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, new List<CardFS>() { card });
 
         string s = string.Format("{0}使用了技能借刀杀人，抽取了{1}的一张牌{2}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, LanguageUtils.GetCardName(card.cardName));
         GameManager.Singleton.gameUI.ShowInfo(s);
@@ -188,6 +188,7 @@ public class UserSkill_JieDaoShaRen : SkillBase
         GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
         GameManager.Singleton.players[targetId].AddMessage(card);
         GameManager.Singleton.gameUI.Players[targetId].RefreshMessage();
+        GameManager.Singleton.gameUI.ShowAddMessage(targetId, card, false, playerId);
 
         if (playerId == GameManager.SelfPlayerId)
         {
@@ -197,12 +198,11 @@ public class UserSkill_JieDaoShaRen : SkillBase
             }
 
             GameManager.Singleton.cardsHand.Remove(card.id);
-            var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
-            GameManager.Singleton.gameUI.Cards.Remove(card.id);
-            GameObject.Destroy(cardUI.gameObject);
+            //var cardUI = GameManager.Singleton.gameUI.Cards[card.id];
+            //GameManager.Singleton.gameUI.Cards.Remove(card.id);
+            //GameObject.Destroy(cardUI.gameObject);
         }
 
-        GameManager.Singleton.gameUI.ShowAddMessage(targetId, card, false, playerId);
 
         string s = string.Format("{0}使用了技能借刀杀人，将{1}置入{2}情报区", GameManager.Singleton.players[playerId].name, LanguageUtils.GetCardName(card.cardName), GameManager.Singleton.players[targetId].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
