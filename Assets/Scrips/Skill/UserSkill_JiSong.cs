@@ -129,6 +129,11 @@ public class UserSkill_JiSong : SkillBase
     {
         if(selectPlayerId > -1)
         {
+            if(selectMessageId == GameManager.Singleton.CurMessagePlayerId)
+            {
+                GameManager.Singleton.gameUI.ShowInfo("情报已经在选择的角色面前");
+                return;
+            }
             if(selectMessageId > 0 && !GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessage(selectMessageId).color.Contains(CardColorEnum.Black))
             {
                 ProtoHelper.SendSkill_JiSong(selectPlayerId, new List<int>(), selectMessageId, GameManager.Singleton.seqId);
