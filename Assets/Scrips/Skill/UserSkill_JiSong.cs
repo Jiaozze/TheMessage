@@ -129,7 +129,7 @@ public class UserSkill_JiSong : SkillBase
     {
         if(selectPlayerId > -1)
         {
-            if(selectMessageId == GameManager.Singleton.CurMessagePlayerId)
+            if(selectPlayerId == GameManager.Singleton.CurMessagePlayerId)
             {
                 GameManager.Singleton.gameUI.ShowInfo("情报已经在选择的角色面前");
                 return;
