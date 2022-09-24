@@ -43,6 +43,17 @@ public class Player
         cardCount = cardCount - count;
     }
 
+    public CardFS GetMessage(int messageId)
+    {
+        foreach(var message in messages)
+        {
+            if(message.id == messageId)
+            {
+                return message;
+            }
+        }
+        return null;
+    }
     public void AddMessage(CardFS card)
     {
         messages.Add(card);

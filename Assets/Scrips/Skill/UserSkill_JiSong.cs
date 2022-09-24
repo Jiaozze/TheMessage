@@ -129,7 +129,7 @@ public class UserSkill_JiSong : SkillBase
     {
         if(selectPlayerId > -1)
         {
-            if(selectMessageId > 0 && !GameManager.Singleton.players[GameManager.SelfPlayerId].messages[selectMessageId].color.Contains(CardColorEnum.Black))
+            if(selectMessageId > 0 && !GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessage(selectMessageId).color.Contains(CardColorEnum.Black))
             {
                 ProtoHelper.SendSkill_JiSong(selectPlayerId, new List<int>(), selectMessageId, GameManager.Singleton.seqId);
             }

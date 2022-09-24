@@ -63,9 +63,9 @@ public class UserSkill_ZhuanJiao : SkillBase
 
     public override void Use()
     {
-        if(selectMessageId != 0 && !GameManager.Singleton.players[GameManager.SelfPlayerId].messages[selectMessageId].color.Contains(CardColorEnum.Black))
+        if(selectMessageId != 0 && !GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessage(selectMessageId).color.Contains(CardColorEnum.Black))
         {
-            var color = GameManager.Singleton.players[GameManager.SelfPlayerId].messages[selectMessageId].color[0];
+            var color = GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessage(selectMessageId).color[0];
             if(selectPlayerId > 0 && GameManager.Singleton.players[selectPlayerId].GetMessageCount(color) < 2)
             {
                 ProtoHelper.SendSkill_ZhuanJiao(true, selectPlayerId, selectMessageId, GameManager.Singleton.seqId);
