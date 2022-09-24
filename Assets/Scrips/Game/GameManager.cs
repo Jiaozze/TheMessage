@@ -900,7 +900,7 @@ public class GameManager
             string cardInfo = "";
             foreach (var card in cards)
             {
-                cardsHand[card.id] = card;
+                //cardsHand[card.id] = card;
                 cardInfo += LanguageUtils.GetCardName(card.cardName) + ",";
             }
             gameUI.ShowHandCard(target, cards);
