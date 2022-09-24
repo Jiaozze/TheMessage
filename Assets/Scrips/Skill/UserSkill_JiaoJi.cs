@@ -197,6 +197,25 @@ public class UserSkill_JiaoJi : SkillBase
         GameManager.Singleton.players[targetId].cardCount -= cardCount;
         GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
         GameManager.Singleton.gameUI.Players[targetId].RefreshCardCount();
+        string cardStr = "";
+        if (cards.Count > 0)
+        {
+            foreach (var card in cards)
+            {
+                cardStr += LanguageUtils.GetCardName(card.cardName);
+            }
+            GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, cards);
+        }
+        else
+        {
+            List<CardFS> unknownCards = new List<CardFS>();
+            for (int i = 0; i < unknowCount; i++)
+            {
+                unknownCards.Add(new CardFS(null));
+            }
+            GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, unknownCards);
+
+        }
 
         if (playerId == GameManager.SelfPlayerId)
         {
@@ -232,25 +251,6 @@ public class UserSkill_JiaoJi : SkillBase
                 GameObject.Destroy(cardUI.gameObject);
             }
         }
-        string cardStr = "";
-        if(cards.Count >0)
-        {
-            foreach(var card in cards)
-            {
-                cardStr += LanguageUtils.GetCardName(card.cardName);
-            }
-            GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, cards);
-        }
-        else
-        {
-            List<CardFS> unknownCards = new List<CardFS>();
-            for (int i = 0; i < unknowCount; i++)
-            {
-                unknownCards.Add(new CardFS(null));
-            }
-            GameManager.Singleton.gameUI.ShowCardsMove(targetId, playerId, unknownCards);
-
-        }
 
         string s = string.Format("{0}对{1}使用了技能交际，抽取了{2}张牌{3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, cardCount, cardStr);
         GameManager.Singleton.gameUI.ShowInfo(s);
@@ -264,6 +264,26 @@ public class UserSkill_JiaoJi : SkillBase
         GameManager.Singleton.players[targetId].cardCount += cardCount;
         GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
         GameManager.Singleton.gameUI.Players[targetId].RefreshCardCount();
+
+        string cardStr = "";
+        if (cards.Count > 0)
+        {
+            foreach (var card in cards)
+            {
+                cardStr += LanguageUtils.GetCardName(card.cardName);
+            }
+            GameManager.Singleton.gameUI.ShowCardsMove(playerId, targetId, cards);
+
+        }
+        else
+        {
+            List<CardFS> unknownCards = new List<CardFS>();
+            for (int i = 0; i < unknowCount; i++)
+            {
+                unknownCards.Add(new CardFS(null));
+            }
+            GameManager.Singleton.gameUI.ShowCardsMove(playerId, targetId, unknownCards);
+        }
 
         if (playerId == GameManager.SelfPlayerId)
         {
@@ -286,27 +306,6 @@ public class UserSkill_JiaoJi : SkillBase
                 GameManager.Singleton.cardsHand[card.id] = card;
             }
             GameManager.Singleton.gameUI.DrawCards(cards);
-        }
-
-        string cardStr = "";
-        if (cards.Count > 0)
-        {
-            foreach (var card in cards)
-            {
-                cardStr += LanguageUtils.GetCardName(card.cardName);
-            }
-            GameManager.Singleton.gameUI.ShowCardsMove(playerId, targetId, cards);
-
-        }
-        else
-        {
-            List<CardFS> unknownCards = new List<CardFS>();
-            for (int i = 0; i < unknowCount; i++)
-            {
-                unknownCards.Add(new CardFS(null));
-            }
-            GameManager.Singleton.gameUI.ShowCardsMove(playerId, targetId, unknownCards);
-
         }
 
         string s = string.Format("{0}向{1}交还了{2}张牌{3}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name, cardCount, cardStr);
