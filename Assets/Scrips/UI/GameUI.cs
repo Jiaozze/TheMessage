@@ -419,14 +419,15 @@ public class GameUI : MonoBehaviour
         textDeckCount.text = "" + num;
     }
 
-    private IEnumerator scrollToBottom () {
+    private IEnumerator scrollToBottom()
+    {
         yield return null;
         scrollRect.verticalNormalizedPosition = 0;
     }
 
     public void AddMsg(string v)
-    {   
-        textInfo.text = textInfo.text + v + "\n" ;
+    {
+        textInfo.text = textInfo.text + v + "\n";
         StartCoroutine(scrollToBottom());
         //Debug.Log(v);
         //throw new NotImplementedException();
@@ -983,15 +984,23 @@ public class GameUI : MonoBehaviour
             if (card.IsUnknown())
             {
                 card.TurnOn(message);
-                StartCoroutine(DoMove(card.transform,
-                card.transform.position,
-                Players[messagePlayerId].transform.position,
-                0.05f,
-                () =>
+                if (GameManager.Singleton.players[messagePlayerId].alive)
                 {
-                    Destroy(card.gameObject);
-                },
-                1f));
+                    StartCoroutine(DoMove(card.transform,
+                        card.transform.position,
+                        Players[messagePlayerId].transform.position,
+                        0.05f,
+                        () =>
+                        {
+                            Destroy(card.gameObject);
+                        },
+                        1f));
+
+                }
+                else
+                {
+                    Destroy(card.gameObject, 1);
+                }
             }
             else
             {

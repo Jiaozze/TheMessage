@@ -625,10 +625,17 @@ public class GameManager
             messageReceived = message;
             if (waitSecond == 0)
             {
-                players[messagePlayerId].AddMessage(message);
-                gameUI.ShowAddMessage(messagePlayerId, message, true);
-                gameUI.Players[messagePlayerId].RefreshMessage();
-                gameUI.AddMsg(string.Format("{0}接收情报", GameManager.Singleton.players[messagePlayerId].name));
+                if(players[messagePlayerId].alive)
+                {
+                    players[messagePlayerId].AddMessage(message);
+                    gameUI.ShowAddMessage(messagePlayerId, message, true);
+                    gameUI.Players[messagePlayerId].RefreshMessage();
+                    gameUI.AddMsg(string.Format("{0}接收情报", GameManager.Singleton.players[messagePlayerId].name));
+                }
+                else
+                {
+                    gameUI.ShowAddMessage(messagePlayerId, message, true);
+                }
             }
             else if (waitingPlayerId == SelfPlayerId)
             {
