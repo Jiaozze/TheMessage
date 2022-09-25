@@ -116,7 +116,7 @@ public class GameUI : MonoBehaviour
         GameManager.Singleton.gameUI.textDesInfo.text = info;
         GameManager.Singleton.gameUI.goDesInfo.gameObject.SetActive(true);
         RectTransform UIRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        RectTransform rect = GameManager.Singleton.gameUI.goDesInfo.GetComponent<RectTransform>();
+        RectTransform rect = GameObject.Find("Bg").GetComponent<RectTransform>();
         float x, y, _x, _y;
         if (position.x < (UIRect.rect.width - UIRect.position.x) / 2)
         {
@@ -141,7 +141,7 @@ public class GameUI : MonoBehaviour
         rect.pivot = new Vector2(_x, _y);
         rect.anchorMax = new Vector2(x, y);
         rect.anchorMin = new Vector2(x, y);
-        GameManager.Singleton.gameUI.goDesInfo.transform.position = position;
+        rect.position = position;
     }
 
     public void ShowChooseRole(
