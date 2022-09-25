@@ -28,11 +28,12 @@ public class RoleSelect : MonoBehaviour
             items.Clear();
         }
     }
-    public void Show(PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<role> roles)
+    public void Show(PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<role> roles, int playerCount)
     {
         gameObject.SetActive(true);
 
-        string s = "你的身份是" + LanguageUtils.GetIdentityName(playerColor);
+        string s = "当前是" + playerCount + "人局，";
+        s += "你的身份是" + LanguageUtils.GetIdentityName(playerColor);
         if (playerColor == PlayerColorEnum.Green)
         {
             s += ",机密任务是" + LanguageUtils.GetTaskName(secretTask);

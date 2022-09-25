@@ -154,7 +154,7 @@ public class UserSkill_JingMeng : SkillBase
         GameManager.Singleton.gameUI.AddMsg(s);
     }
 
-    public static void OnReceiveUseB(int playerId, int targetPlayerId)
+    public static void OnReceiveUseB(int playerId, int targetPlayerId, CardFS card)
     {
         if(playerId == GameManager.SelfPlayerId)
         {
@@ -179,8 +179,8 @@ public class UserSkill_JingMeng : SkillBase
                 GameManager.Singleton.gameUI.ShowPhase();
             }
         }
-
-        string s = string.Format("{0}选择了{1}的一张牌请求弃置", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetPlayerId].name);
+        string cardStr = LanguageUtils.GetCardName(card.cardName);
+        string s = string.Format("{0}选择了{1}的{2}", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetPlayerId].name, cardStr);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
     }
