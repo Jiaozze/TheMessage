@@ -42,7 +42,7 @@ public class PlayerMessagInfo : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-        Debug.LogError(playerId);
+        //Debug.LogError(playerId);
         textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的情报";
 
         foreach (var kv in items)

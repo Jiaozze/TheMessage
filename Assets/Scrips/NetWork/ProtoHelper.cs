@@ -599,6 +599,26 @@ public static class ProtoHelper
             int cardId = (int)skill_ji_song_toc.CardId;
             UserSkill_ZhuanJiao.OnReceiveUse(playerId, cardId, targetId);
         }
+        // 广播使用【妙笔巧辩】A，广播选择第一张牌，并等待选择第二张牌
+        else if (GetIdFromProtoName("skill_miao_bi_qiao_bian_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_miao_bi_qiao_bian_a_toc");
+            skill_miao_bi_qiao_bian_a_toc skill_miao_bi_qiao_bian_a_toc = skill_miao_bi_qiao_bian_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_miao_bi_qiao_bian_a_toc.PlayerId;
+            int targetId = (int)skill_miao_bi_qiao_bian_a_toc.TargetPlayerId;
+            int cardId = (int)skill_miao_bi_qiao_bian_a_toc.CardId;
+            UserSkill_MiaoBiQiaoBian.OnReceiveUseA(playerId, targetId, cardId, (int)skill_miao_bi_qiao_bian_a_toc.WaitingSecond, skill_miao_bi_qiao_bian_a_toc.Seq);
+        }
+        // 连鸢【妙笔巧辩】B，选择第二张牌
+        else if (GetIdFromProtoName("skill_miao_bi_qiao_bian_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_miao_bi_qiao_bian_b_toc");
+            skill_miao_bi_qiao_bian_b_toc skill_miao_bi_qiao_bian_b_toc = skill_miao_bi_qiao_bian_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_miao_bi_qiao_bian_b_toc.PlayerId;
+            int targetId = (int)skill_miao_bi_qiao_bian_b_toc.TargetPlayerId;
+            int cardId = (int)skill_miao_bi_qiao_bian_b_toc.CardId;
+            UserSkill_MiaoBiQiaoBian.OnReceiveUseB(playerId, cardId, targetId);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -995,6 +1015,25 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 连鸢【妙笔巧辩】A：争夺阶段，你可以翻开此角色牌，然后从所有角色的情报区选择合计至多两张不含有相同颜色的情报，将其加入你的手牌。
+    public static void SendSkill_MiaoBiQiaoBianA(int playerId, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_miao_bi_qiao_bian_a_tos, seq:" + seq);
+
+        skill_miao_bi_qiao_bian_a_tos skill_miao_bi_qiao_bian_a_tos = new skill_miao_bi_qiao_bian_a_tos() { TargetPlayerId = (uint)playerId, CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_miao_bi_qiao_bian_a_tos.ToByteArray();
+        SendProto("skill_miao_bi_qiao_bian_a_tos", proto);
+    }
+    // 连鸢【妙笔巧辩】B，选择第二张牌
+    public static void SendSkill_MiaoBiQiaoBianB(bool enable, int playerId, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_miao_bi_qiao_bian_a_tos, seq:" + seq);
+
+        skill_miao_bi_qiao_bian_b_tos skill_miao_bi_qiao_bian_b_tos = new skill_miao_bi_qiao_bian_b_tos() { Enable = enable, TargetPlayerId = (uint)playerId, CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_miao_bi_qiao_bian_b_tos.ToByteArray();
+        SendProto("skill_miao_bi_qiao_bian_b_tos", proto);
+    }
+
     // 白小年【转交】：你使用一张手牌后，可以从你的情报区选择一张非黑色情报，将其置入另一名角色的情报区，然后你摸两张牌。你不能通过此技能让任何角色收集三张或更多同色情报。
     public static void SendSkill_ZhuanJiao(bool enable, int playerId, int cardId, uint seq)
     {
