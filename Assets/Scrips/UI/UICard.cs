@@ -206,7 +206,7 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void PointerUp()
     {
 #if UNITY_ANDROID
-        GameUI.HideDesInfo();
+        //GameUI.HideDesInfo();
         if(showInfoCorout!=null)
         {
             StopCoroutine(showInfoCorout);
@@ -217,7 +217,8 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void PointerDown()
     {
 #if UNITY_ANDROID
-        if(cardId > 0)
+        GameUI.HideDesInfo();
+        if (cardId > 0)
         {
             showInfoCorout = StartCoroutine(ShowInfo());
         }
@@ -227,7 +228,7 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private IEnumerator ShowInfo()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         GameUI.ShowDesInfo(cardDes, transform.position);
     }
 }

@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class GameUI : MonoBehaviour
+public class GameUI : MonoBehaviour, IPointerDownHandler
 {
     public InfoShow infoShow;
     public Text textPhase;
@@ -105,6 +106,12 @@ public class GameUI : MonoBehaviour
         playerMessagInfo.gameObject.SetActive(false);
     }
 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+#if UNITY_ANDROID
+        HideDesInfo();
+#endif
+    }
     internal static void HideDesInfo()
     {
         //Debug.Log("0");
@@ -1177,4 +1184,5 @@ public class GameUI : MonoBehaviour
     {
         ProtoHelper.SendTuoGuan(!GameManager.Singleton.isTuoGuan);
     }
+
 }
