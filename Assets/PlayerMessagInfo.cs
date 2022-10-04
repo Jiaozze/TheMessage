@@ -42,6 +42,7 @@ public class PlayerMessagInfo : MonoBehaviour
         }
 
         gameObject.SetActive(true);
+        cardId = 0;
         //Debug.LogError(playerId);
         textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的情报";
 
@@ -103,7 +104,8 @@ public class PlayerMessagInfo : MonoBehaviour
     {
         isShowHand = true;
         gameObject.SetActive(true);
-        if(string.IsNullOrEmpty(title))
+        cardId = 0;
+        if (string.IsNullOrEmpty(title))
         {
             textTittle.text = "" + GameManager.Singleton.players[playerId].name + "的手牌";
         }
