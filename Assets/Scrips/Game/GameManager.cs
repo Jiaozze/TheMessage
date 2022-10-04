@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -1175,8 +1176,8 @@ public class GameManager
         seqId = seq;
         OnWait(userId, waitingSeconds);
 
-        if(diePlayerId == 0 || cards.Count != 0){
-            gameUI.ShowCardsMove(diePlayerId, userId, cards);
+        if(diePlayerId == 0){
+            gameUI.ShowCardsMove(diePlayerId, userId, cardsHand.Values.ToList());
         }else{
             List<CardFS> unknownCards = new List<CardFS>();
             for(int i=0 ;i < players[diePlayerId].cardCount; i++){
