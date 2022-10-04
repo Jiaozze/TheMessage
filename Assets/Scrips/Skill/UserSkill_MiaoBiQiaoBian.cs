@@ -187,7 +187,10 @@ public class UserSkill_MiaoBiQiaoBian : SkillBase
         GameManager.Singleton.gameUI.Players[target].RefreshMessage();
         GameManager.Singleton.players[playerId].cardCount += 1;
         GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
-        GameManager.Singleton.gameUI.ShowCardsMove(target, playerId, new List<CardFS>() { message });
+        if (target != GameManager.SelfPlayerId)
+        {
+            GameManager.Singleton.gameUI.ShowCardsMove(target, playerId, new List<CardFS>() { message });
+        }
 
         if (playerId == GameManager.SelfPlayerId)
         {

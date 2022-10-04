@@ -28,6 +28,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject goDie;
     public GameObject goLose;
     public GameObject goLock;
+    public GameObject goJin;
     public GameObject goCard;
     public GameObject goMask;
 
@@ -45,6 +46,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         goMask.SetActive(false);
         goDie.SetActive(false);
         goLock.SetActive(false);
+        goJin.SetActive(false);
         slider.gameObject.SetActive(false);
         button.onClick.AddListener(() => { GameManager.Singleton.SelectPlayerId = playerId; });
     }
@@ -225,6 +227,10 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void SetLock(bool isLock)
     {
         goLock.SetActive(isLock);
+    }
+    public void SetJinBi(bool isLock)
+    {
+        goJin.SetActive(isLock);
     }
 
     public void SetPhase(PhaseEnum phase)

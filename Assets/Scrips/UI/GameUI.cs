@@ -581,6 +581,7 @@ public class GameUI : MonoBehaviour
         foreach (var id_player in Players)
         {
             id_player.Value.SetLock(false);
+            id_player.Value.SetJinBi(false);
         }
     }
 

@@ -619,6 +619,29 @@ public static class ProtoHelper
             int cardId = (int)skill_miao_bi_qiao_bian_b_toc.CardId;
             UserSkill_MiaoBiQiaoBian.OnReceiveUseB(playerId, cardId, targetId);
         }
+        // 王田香【禁闭】A：出牌阶段限一次，你可以指定一名角色。
+        // 王田香【禁闭】B：除非其交给你两张手牌，否则其本回合不能使用手牌，且所有角色技能无效。
+        else if (GetIdFromProtoName("skill_jin_bi_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jin_bi_a_toc");
+            skill_jin_bi_a_toc skill_jin_bi_a_toc = skill_jin_bi_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jin_bi_a_toc.PlayerId;
+            int targetId = (int)skill_jin_bi_a_toc.TargetPlayerId;
+            UserSkill_JinBi.OnReceiveUseA(playerId, targetId, (int)skill_jin_bi_a_toc.WaitingSecond, skill_jin_bi_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_jin_bi_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jin_bi_b_toc");
+            skill_jin_bi_b_toc skill_jin_bi_b_toc = skill_jin_bi_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jin_bi_b_toc.PlayerId;
+            int targetId = (int)skill_jin_bi_b_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach(var card in skill_jin_bi_b_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            UserSkill_JinBi.OnReceiveUseB(playerId, targetId, cards, (int)skill_jin_bi_b_toc.UnknownCardCount);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -1015,6 +1038,30 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 王田香【禁闭】A：出牌阶段限一次，你可以指定一名角色。
+    public static void SendSkill_JinBiA(int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jin_bi_a_tos, seq:" + seq);
+
+        skill_jin_bi_a_tos skill_jin_bi_a_tos = new skill_jin_bi_a_tos() { TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_jin_bi_a_tos.ToByteArray();
+        SendProto("skill_jin_bi_a_tos", proto);
+    }
+    public static void SendSkill_JinBiB(List<int> cardIds, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jin_bi_b_tos, seq:" + seq);
+
+        skill_jin_bi_b_tos skill_jin_bi_b_tos = new skill_jin_bi_b_tos() {Seq = seq };
+        foreach(var id in cardIds)
+        {
+            skill_jin_bi_b_tos.CardIds.Add((uint)id);
+        }
+        byte[] proto = skill_jin_bi_b_tos.ToByteArray();
+        SendProto("skill_jin_bi_b_tos", proto);
+    }
+
+    // 王田香【禁闭】B：除非其交给你两张手牌，否则其本回合不能使用手牌，且所有角色技能无效。
+
     // 连鸢【妙笔巧辩】A：争夺阶段，你可以翻开此角色牌，然后从所有角色的情报区选择合计至多两张不含有相同颜色的情报，将其加入你的手牌。
     public static void SendSkill_MiaoBiQiaoBianA(int playerId, int cardId, uint seq)
     {
