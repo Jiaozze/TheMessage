@@ -23,7 +23,7 @@ public class UserSkill_YiXin : SkillBase
         base.PrepareUse();
         GameManager.Singleton.IsUsingSkill = true;
         GameManager.Singleton.selectSkill = this;
-        GameManager.Singleton.gameUI.ShowPhase("触发技能遗信，可以将一张手牌置入当前回合角色的情报区中");
+        GameManager.Singleton.gameUI.ShowPhase("触发技能遗信，可以将一张手牌置入另一名角色的情报区中");
     }
     public override void OnCardSelect(int cardId)
     {
