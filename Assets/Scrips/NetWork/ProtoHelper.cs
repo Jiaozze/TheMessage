@@ -708,8 +708,12 @@ public static class ProtoHelper
             int playerId = (int)skill_ji_ban_b_toc.PlayerId;
             int targetId = (int)skill_ji_ban_b_toc.TargetPlayerId;
             List<CardFS> cards = new List<CardFS>();
-            cards.Add(new CardFS(skill_ji_ban_b_toc.Card));
-            UserSkill_BoAi.OnReceiveUseB(playerId, targetId, cards, 1);
+            if (skill_ji_ban_b_toc.Card != null) {
+                cards.Add(new CardFS(skill_ji_ban_b_toc.Card));
+                UserSkill_BoAi.OnReceiveUseB(playerId, targetId, cards, 0);
+            } else {
+                UserSkill_BoAi.OnReceiveUseB(playerId, targetId, cards, 1);
+            }
         }
 
         #endregion
