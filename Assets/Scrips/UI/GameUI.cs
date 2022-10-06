@@ -984,6 +984,11 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
             canCancel = false;
             canSure = false;
         }
+        else if(GameManager.Singleton.IsUsingSkill)
+        {
+            canCancel = true;
+            canSure = true;
+        }
         else if (GameManager.Singleton.IsWaitSaving != -1)
         {
             canCancel = true;
