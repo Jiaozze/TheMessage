@@ -684,6 +684,14 @@ public static class ProtoHelper
             }
             UserSkill_JiBan.OnReceiveUseB(playerId, targetId, cards, (int)skill_ji_ban_b_toc.UnknownCardCount);
         }
+        // 广播使用【诱导】：你使用【误导】后，摸一张牌。
+        else if (GetIdFromProtoName("skill_you_dao_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_you_dao_toc");
+            skill_you_dao_toc skill_you_dao_toc = skill_you_dao_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_you_dao_toc.PlayerId;
+            UserSkill_YouDao.OnReceiveUse(playerId);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）

@@ -2,6 +2,7 @@
 
 public enum CardNameEnum
 {
+    None = -1,
     ChengQing = 0, // 澄清
     ShiTan = 1, // 试探
     WeiBi = 2, // 威逼

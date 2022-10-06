@@ -17,6 +17,6 @@ public class Role_LiNingYuSP : RoleBase
     public Role_LiNingYuSP(int id)
     {
         playerId = id;
-        skills = new List<SkillBase>() { new UserSkill_JiBan(id)   };
+        skills = new List<SkillBase>() { new UserSkill_YingBian(id), new UserSkill_YouDao(id)   };
     }
 }

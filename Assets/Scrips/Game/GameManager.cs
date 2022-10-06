@@ -328,10 +328,13 @@ public class GameManager
         }
         return id;
     }
-    public void OnCardUse(int user, CardFS cardUsed, int target = -1)
+    public void OnCardUse(int user, CardFS cardUsed, int target = -1, CardNameEnum realUsedAs = CardNameEnum.None)
     {
-        if(cardUsed != null)
+        if (cardUsed != null)
         {
+            CardNameEnum realUseCardName = realUsedAs == CardNameEnum.None ? cardUsed.cardName : realUsedAs;
+            string extra = realUsedAs == CardNameEnum.None ? "" : string.Format("({0}转化)", LanguageUtils.GetCardName(cardUsed.cardName));
+
             if (players.ContainsKey(user))
             {
                 players[user].DisCard(1);
@@ -348,8 +351,8 @@ public class GameManager
             gameUI.OnUseCard(user, target, cardUsed);
             string targetInfo;
             targetInfo = target == -1 ? "" : "对" + GameManager.Singleton.players[target].name;
-            gameUI.AddMsg(string.Format("{0}{1}使用了{2};", GameManager.Singleton.players[user].name, targetInfo, LanguageUtils.GetCardName(cardUsed.cardName)));
-            SoundManager.PlaySound(cardUsed.cardName, players[user].role.isWoman);
+            gameUI.AddMsg(string.Format("{0}{1}使用了{2}{3};", GameManager.Singleton.players[user].name, targetInfo, LanguageUtils.GetCardName(realUseCardName), extra));
+            SoundManager.PlaySound(realUseCardName, players[user].role.isWoman);
         }
     }
 
@@ -650,7 +653,14 @@ public class GameManager
 
     public void OnReceiveUseWuDao(int user, int target, CardFS cardUsed)
     {
-        OnCardUse(user, cardUsed, target);
+        if(cardUsed!=null && cardUsed.cardName != CardNameEnum.WuDao)
+        {
+            OnCardUse(user, cardUsed, target, CardNameEnum.WuDao);
+        }
+        else
+        {
+            OnCardUse(user, cardUsed, target);
+        }
     }
 
     public void OnReceiveUseJieHuo(int user, CardFS cardUsed)
