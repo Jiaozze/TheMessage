@@ -172,10 +172,10 @@ public static partial class RoleReflection {
           "ZXEYASABKA0iSwoRc2tpbGxfYm9fYWlfYV90b2MSEQoJcGxheWVyX2lkGAEg",
           "ASgNEhYKDndhaXRpbmdfc2Vjb25kGAIgASgNEgsKA3NlcRgDIAEoDSJLChFz",
           "a2lsbF9ib19haV9iX3RvcxIYChB0YXJnZXRfcGxheWVyX2lkGAEgASgNEg8K",
-          "B2NhcmRfaWQYAiABKA0SCwoDc2VxGAMgASgNIlYKEXNraWxsX2JvX2FpX2Jf",
+          "B2NhcmRfaWQYAiABKA0SCwoDc2VxGAMgASgNIlUKEXNraWxsX2JvX2FpX2Jf",
           "dG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIg",
-          "ASgNEhQKBWNhcmRzGAMgASgLMgUuY2FyZEIWChRjb20uZmVuZ3NoZW5nLnBy",
-          "b3Rvc2IGcHJvdG8z"));
+          "ASgNEhMKBGNhcmQYAyABKAsyBS5jYXJkQhYKFGNvbS5mZW5nc2hlbmcucHJv",
+          "dG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -263,7 +263,7 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_bo_ai_a_tos), global::skill_bo_ai_a_tos.Parser, new[]{ "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_bo_ai_a_toc), global::skill_bo_ai_a_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_bo_ai_b_tos), global::skill_bo_ai_b_tos.Parser, new[]{ "TargetPlayerId", "CardId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_bo_ai_b_toc), global::skill_bo_ai_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_bo_ai_b_toc), global::skill_bo_ai_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Card" }, null, null, null, null)
         }));
   }
   #endregion
@@ -15750,7 +15750,7 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
   public skill_bo_ai_b_toc(skill_bo_ai_b_toc other) : this() {
     playerId_ = other.playerId_;
     targetPlayerId_ = other.targetPlayerId_;
-    cards_ = other.cards_ != null ? other.cards_.Clone() : null;
+    card_ = other.card_ != null ? other.card_.Clone() : null;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -15781,17 +15781,17 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
     }
   }
 
-  /// <summary>Field number for the "cards" field.</summary>
-  public const int CardsFieldNumber = 3;
-  private global::card cards_;
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 3;
+  private global::card card_;
   /// <summary>
   /// 给的牌，只有白沧浪和给的那个人能看到
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public global::card Cards {
-    get { return cards_; }
+  public global::card Card {
+    get { return card_; }
     set {
-      cards_ = value;
+      card_ = value;
     }
   }
 
@@ -15810,7 +15810,7 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
     }
     if (PlayerId != other.PlayerId) return false;
     if (TargetPlayerId != other.TargetPlayerId) return false;
-    if (!object.Equals(Cards, other.Cards)) return false;
+    if (!object.Equals(Card, other.Card)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -15819,7 +15819,7 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
     int hash = 1;
     if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
-    if (cards_ != null) hash ^= Cards.GetHashCode();
+    if (card_ != null) hash ^= Card.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -15841,9 +15841,9 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
       output.WriteRawTag(16);
       output.WriteUInt32(TargetPlayerId);
     }
-    if (cards_ != null) {
+    if (card_ != null) {
       output.WriteRawTag(26);
-      output.WriteMessage(Cards);
+      output.WriteMessage(Card);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -15859,8 +15859,8 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
     if (TargetPlayerId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
     }
-    if (cards_ != null) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Cards);
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -15879,11 +15879,11 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
     if (other.TargetPlayerId != 0) {
       TargetPlayerId = other.TargetPlayerId;
     }
-    if (other.cards_ != null) {
-      if (cards_ == null) {
-        Cards = new global::card();
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
       }
-      Cards.MergeFrom(other.Cards);
+      Card.MergeFrom(other.Card);
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -15905,10 +15905,10 @@ public sealed partial class skill_bo_ai_b_toc : pb::IMessage<skill_bo_ai_b_toc> 
           break;
         }
         case 26: {
-          if (cards_ == null) {
-            Cards = new global::card();
+          if (card_ == null) {
+            Card = new global::card();
           }
-          input.ReadMessage(Cards);
+          input.ReadMessage(Card);
           break;
         }
       }

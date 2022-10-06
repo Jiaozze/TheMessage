@@ -684,13 +684,32 @@ public static class ProtoHelper
             }
             UserSkill_JiBan.OnReceiveUseB(playerId, targetId, cards, (int)skill_ji_ban_b_toc.UnknownCardCount);
         }
-        // 广播使用【诱导】：你使用【误导】后，摸一张牌。
+        // SP李宁玉 广播使用【诱导】：你使用【误导】后，摸一张牌。
         else if (GetIdFromProtoName("skill_you_dao_toc") == id)
         {
             Debug.Log(" _______receive________ skill_you_dao_toc");
             skill_you_dao_toc skill_you_dao_toc = skill_you_dao_toc.Parser.ParseFrom(contont);
             int playerId = (int)skill_you_dao_toc.PlayerId;
             UserSkill_YouDao.OnReceiveUse(playerId);
+        }
+        // 白沧浪【博爱】A：出牌阶段限一次，你可以摸一张牌。
+        // 白沧浪【博爱】B：然后可以将一张手牌交给另一名角色，若交给了女性角色，则你再摸一张牌。
+        else if (GetIdFromProtoName("skill_bo_ai_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_bo_ai_a_toc");
+            skill_bo_ai_a_toc skill_bo_ai_a_toc = skill_bo_ai_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_bo_ai_a_toc.PlayerId;
+            UserSkill_BoAi.OnReceiveUseA(playerId, (int)skill_bo_ai_a_toc.WaitingSecond, skill_bo_ai_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_bo_ai_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_bo_ai_b_toc");
+            skill_bo_ai_b_toc skill_ji_ban_b_toc = skill_bo_ai_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_ji_ban_b_toc.PlayerId;
+            int targetId = (int)skill_ji_ban_b_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            cards.Add(new CardFS(skill_ji_ban_b_toc.Card));
+            UserSkill_BoAi.OnReceiveUseB(playerId, targetId, cards, 1);
         }
 
         #endregion
@@ -1089,6 +1108,26 @@ public static class ProtoHelper
         end_receive_phase_tos end_Receive_Phase_Tos = new end_receive_phase_tos() { Seq = seq };
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
+    }
+    // 白沧浪【博爱】A：出牌阶段限一次，你可以摸一张牌。
+    // 白沧浪【博爱】B：然后可以将一张手牌交给另一名角色，若交给了女性角色，则你再摸一张牌。
+    public static void SendSkill_BoAiA(uint seq)
+    {
+        Debug.Log("____send___________________ skill_bo_ai_a_tos, seq:" + seq);
+
+        skill_bo_ai_a_tos skill_bo_ai_a_tos = new skill_bo_ai_a_tos() { Seq = seq };
+        byte[] proto = skill_bo_ai_a_tos.ToByteArray();
+        SendProto("skill_bo_ai_a_tos", proto);
+    }
+
+    public static void SendSkill_BoAiB(int cardId, int targetId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_bo_ai_b_tos, seq:" + seq);
+
+        skill_bo_ai_b_tos skill_bo_ai_b_tos = new skill_bo_ai_b_tos() { CardId = (uint)cardId, TargetPlayerId = (uint)targetId, Seq = seq };
+
+        byte[] proto = skill_bo_ai_b_tos.ToByteArray();
+        SendProto("skill_bo_ai_b_tos", proto);
     }
     // SP顾小梦【羁绊】A：出牌阶段限一次，可以摸两张牌。
     // SP顾小梦【羁绊】B：然后将至少一张手牌交给另一名角色。
