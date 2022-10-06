@@ -13,6 +13,7 @@ public class RoomUI : MonoBehaviour
     public GameObject goRecord;
     public InputField recordId;
     public InputField playerName;
+    public Text textOnlineCount;
 
     private List<GameObject> items = new List<GameObject>();
 
@@ -105,5 +106,10 @@ public class RoomUI : MonoBehaviour
         var go = items[index];
         items.RemoveAt(index);
         Destroy(go);
+    }
+
+    public void SetOnlineCount(int count)
+    {
+        textOnlineCount.text = "当前在线人数：" + count;
     }
 }

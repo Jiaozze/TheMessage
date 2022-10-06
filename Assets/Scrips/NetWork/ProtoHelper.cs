@@ -742,6 +742,8 @@ public static class ProtoHelper
                 names.Add(name);
             }
             GameManager.Singleton.OnReceiveRoomInfo(names, (int)get_Room_Info_Toc.MyPosition);
+            GameManager.Singleton.roomUI.SetOnlineCount((int)get_Room_Info_Toc.OnlineCount);
+
         }
         // 通知谁加入了房间
         else if (GetIdFromProtoName("join_room_toc") == id)
@@ -819,8 +821,8 @@ public static class ProtoHelper
         {
             //Debug.Log(" _______receive________ heart_toc ");
 
-            //auto_play_toc auto_play_toc = auto_play_toc.Parser.ParseFrom(contont);
-            //GameManager.Singleton.OnReceiveTuoGuan(auto_play_toc.Enable);
+            heart_toc heart_toc = heart_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.roomUI.SetOnlineCount((int)heart_toc.OnlineCount);
         }
 
         //errorCode

@@ -132,36 +132,36 @@ public static partial class RoleReflection {
           "dG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIg",
           "ASgNEhYKDndhaXRpbmdfc2Vjb25kGAMgASgNEgsKA3NlcRgEIAEoDSIzChJz",
           "a2lsbF9qaW5fYmlfYl90b3MSEAoIY2FyZF9pZHMYASADKA0SCwoDc2VxGAIg",
-          "ASgNIoABChJza2lsbF9qaW5fYmlfYl90b2MSEQoJcGxheWVyX2lkGAEgASgN",
-          "EhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SFAoFY2FyZHMYAyADKAsyBS5j",
-          "YXJkEhoKEnVua25vd25fY2FyZF9jb3VudBgEIAEoDRILCgNzZXEYBSABKA0i",
-          "PgoVc2tpbGxfbWlhb19zaG91X2FfdG9zEhgKEHRhcmdldF9wbGF5ZXJfaWQY",
-          "ASABKA0SCwoDc2VxGAIgASgNIn8KFXNraWxsX21pYW9fc2hvdV9hX3RvYxIR",
-          "CglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIU",
-          "CgVjYXJkcxgDIAMoCzIFLmNhcmQSFgoOd2FpdGluZ19zZWNvbmQYBCABKA0S",
-          "CwoDc2VxGAUgASgNImgKFXNraWxsX21pYW9fc2hvdV9iX3RvcxIPCgdjYXJk",
-          "X2lkGAEgASgNEhcKD21lc3NhZ2VfY2FyZF9pZBgCIAEoDRIYChB0YXJnZXRf",
-          "cGxheWVyX2lkGAMgASgNEgsKA3NlcRgEIAEoDSKKAQoVc2tpbGxfbWlhb19z",
-          "aG91X2JfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIWCg5mcm9tX3BsYXllcl9p",
-          "ZBgCIAEoDRITCgRjYXJkGAMgASgLMgUuY2FyZBIXCg9tZXNzYWdlX2NhcmRf",
-          "aWQYBCABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgFIAEoDSIpChpza2lsbF9q",
-          "aW5fa291X3lpX2thaV9hX3RvcxILCgNzZXEYASABKA0iaQoac2tpbGxfamlu",
-          "X2tvdV95aV9rYWlfYV90b2MSEQoJcGxheWVyX2lkGAEgASgNEhMKBGNhcmQY",
-          "AiABKAsyBS5jYXJkEhYKDndhaXRpbmdfc2Vjb25kGAMgASgNEgsKA3NlcRgE",
-          "IAEoDSI7Chpza2lsbF9qaW5fa291X3lpX2thaV9iX3RvcxIQCghleGNoYW5n",
-          "ZRgBIAEoCBILCgNzZXEYAiABKA0iQQoac2tpbGxfamluX2tvdV95aV9rYWlf",
-          "Yl90b2MSEQoJcGxheWVyX2lkGAEgASgNEhAKCGV4Y2hhbmdlGAIgASgIIlwK",
-          "InNraWxsX3dhaXRfZm9yX2ppYW5nX2h1X2xpbmdfYV90b2MSEQoJcGxheWVy",
-          "X2lkGAEgASgNEhYKDndhaXRpbmdfc2Vjb25kGAIgASgNEgsKA3NlcRgDIAEo",
-          "DSI/Chlza2lsbF9qaWFuZ19odV9saW5nX2FfdG9zEhUKBWNvbG9yGAEgASgO",
-          "MgYuY29sb3ISCwoDc2VxGAIgASgNIkUKGXNraWxsX2ppYW5nX2h1X2xpbmdf",
-          "YV90b2MSEQoJcGxheWVyX2lkGAEgASgNEhUKBWNvbG9yGAIgASgOMgYuY29s",
-          "b3Iicwoic2tpbGxfd2FpdF9mb3JfamlhbmdfaHVfbGluZ19iX3RvYxIRCglw",
-          "bGF5ZXJfaWQYASABKA0SFQoFY29sb3IYAiABKA4yBi5jb2xvchIWCg53YWl0",
-          "aW5nX3NlY29uZBgDIAEoDRILCgNzZXEYBCABKA0iOQoZc2tpbGxfamlhbmdf",
-          "aHVfbGluZ19iX3RvcxIPCgdjYXJkX2lkGAEgASgNEgsKA3NlcRgCIAEoDSIs",
-          "Chlza2lsbF9qaWFuZ19odV9saW5nX2JfdG9jEg8KB2NhcmRfaWQYASABKA1C",
-          "FgoUY29tLmZlbmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
+          "ASgNInMKEnNraWxsX2ppbl9iaV9iX3RvYxIRCglwbGF5ZXJfaWQYASABKA0S",
+          "GAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIUCgVjYXJkcxgDIAMoCzIFLmNh",
+          "cmQSGgoSdW5rbm93bl9jYXJkX2NvdW50GAQgASgNIj4KFXNraWxsX21pYW9f",
+          "c2hvdV9hX3RvcxIYChB0YXJnZXRfcGxheWVyX2lkGAEgASgNEgsKA3NlcRgC",
+          "IAEoDSJ/ChVza2lsbF9taWFvX3Nob3VfYV90b2MSEQoJcGxheWVyX2lkGAEg",
+          "ASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SFAoFY2FyZHMYAyADKAsy",
+          "BS5jYXJkEhYKDndhaXRpbmdfc2Vjb25kGAQgASgNEgsKA3NlcRgFIAEoDSJo",
+          "ChVza2lsbF9taWFvX3Nob3VfYl90b3MSDwoHY2FyZF9pZBgBIAEoDRIXCg9t",
+          "ZXNzYWdlX2NhcmRfaWQYAiABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEo",
+          "DRILCgNzZXEYBCABKA0iigEKFXNraWxsX21pYW9fc2hvdV9iX3RvYxIRCglw",
+          "bGF5ZXJfaWQYASABKA0SFgoOZnJvbV9wbGF5ZXJfaWQYAiABKA0SEwoEY2Fy",
+          "ZBgDIAEoCzIFLmNhcmQSFwoPbWVzc2FnZV9jYXJkX2lkGAQgASgNEhgKEHRh",
+          "cmdldF9wbGF5ZXJfaWQYBSABKA0iKQoac2tpbGxfamluX2tvdV95aV9rYWlf",
+          "YV90b3MSCwoDc2VxGAEgASgNImkKGnNraWxsX2ppbl9rb3VfeWlfa2FpX2Ff",
+          "dG9jEhEKCXBsYXllcl9pZBgBIAEoDRITCgRjYXJkGAIgASgLMgUuY2FyZBIW",
+          "Cg53YWl0aW5nX3NlY29uZBgDIAEoDRILCgNzZXEYBCABKA0iOwoac2tpbGxf",
+          "amluX2tvdV95aV9rYWlfYl90b3MSEAoIZXhjaGFuZ2UYASABKAgSCwoDc2Vx",
+          "GAIgASgNIkEKGnNraWxsX2ppbl9rb3VfeWlfa2FpX2JfdG9jEhEKCXBsYXll",
+          "cl9pZBgBIAEoDRIQCghleGNoYW5nZRgCIAEoCCJcCiJza2lsbF93YWl0X2Zv",
+          "cl9qaWFuZ19odV9saW5nX2FfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIWCg53",
+          "YWl0aW5nX3NlY29uZBgCIAEoDRILCgNzZXEYAyABKA0iPwoZc2tpbGxfamlh",
+          "bmdfaHVfbGluZ19hX3RvcxIVCgVjb2xvchgBIAEoDjIGLmNvbG9yEgsKA3Nl",
+          "cRgCIAEoDSJFChlza2lsbF9qaWFuZ19odV9saW5nX2FfdG9jEhEKCXBsYXll",
+          "cl9pZBgBIAEoDRIVCgVjb2xvchgCIAEoDjIGLmNvbG9yInMKInNraWxsX3dh",
+          "aXRfZm9yX2ppYW5nX2h1X2xpbmdfYl90b2MSEQoJcGxheWVyX2lkGAEgASgN",
+          "EhUKBWNvbG9yGAIgASgOMgYuY29sb3ISFgoOd2FpdGluZ19zZWNvbmQYAyAB",
+          "KA0SCwoDc2VxGAQgASgNIjkKGXNraWxsX2ppYW5nX2h1X2xpbmdfYl90b3MS",
+          "DwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0iLAoZc2tpbGxfamlhbmdf",
+          "aHVfbGluZ19iX3RvYxIPCgdjYXJkX2lkGAEgASgNQhYKFGNvbS5mZW5nc2hl",
+          "bmcucHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -226,7 +226,7 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_bi_a_tos), global::skill_jin_bi_a_tos.Parser, new[]{ "TargetPlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_bi_a_toc), global::skill_jin_bi_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_bi_b_tos), global::skill_jin_bi_b_tos.Parser, new[]{ "CardIds", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_bi_b_toc), global::skill_jin_bi_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "UnknownCardCount", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_bi_b_toc), global::skill_jin_bi_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "UnknownCardCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_miao_shou_a_tos), global::skill_miao_shou_a_tos.Parser, new[]{ "TargetPlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_miao_shou_a_toc), global::skill_miao_shou_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_miao_shou_b_tos), global::skill_miao_shou_b_tos.Parser, new[]{ "CardId", "MessageCardId", "TargetPlayerId", "Seq" }, null, null, null, null),
@@ -11560,7 +11560,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
     targetPlayerId_ = other.targetPlayerId_;
     cards_ = other.cards_.Clone();
     unknownCardCount_ = other.unknownCardCount_;
-    seq_ = other.seq_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -11624,17 +11623,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
     }
   }
 
-  /// <summary>Field number for the "seq" field.</summary>
-  public const int SeqFieldNumber = 5;
-  private uint seq_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public uint Seq {
-    get { return seq_; }
-    set {
-      seq_ = value;
-    }
-  }
-
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as skill_jin_bi_b_toc);
@@ -11652,7 +11640,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
     if (TargetPlayerId != other.TargetPlayerId) return false;
     if(!cards_.Equals(other.cards_)) return false;
     if (UnknownCardCount != other.UnknownCardCount) return false;
-    if (Seq != other.Seq) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -11663,7 +11650,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
     if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
     hash ^= cards_.GetHashCode();
     if (UnknownCardCount != 0) hash ^= UnknownCardCount.GetHashCode();
-    if (Seq != 0) hash ^= Seq.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -11690,10 +11676,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
       output.WriteRawTag(32);
       output.WriteUInt32(UnknownCardCount);
     }
-    if (Seq != 0) {
-      output.WriteRawTag(40);
-      output.WriteUInt32(Seq);
-    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -11711,9 +11693,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
     size += cards_.CalculateSize(_repeated_cards_codec);
     if (UnknownCardCount != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnknownCardCount);
-    }
-    if (Seq != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -11735,9 +11714,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
     cards_.Add(other.cards_);
     if (other.UnknownCardCount != 0) {
       UnknownCardCount = other.UnknownCardCount;
-    }
-    if (other.Seq != 0) {
-      Seq = other.Seq;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -11764,10 +11740,6 @@ public sealed partial class skill_jin_bi_b_toc : pb::IMessage<skill_jin_bi_b_toc
         }
         case 32: {
           UnknownCardCount = input.ReadUInt32();
-          break;
-        }
-        case 40: {
-          Seq = input.ReadUInt32();
           break;
         }
       }
