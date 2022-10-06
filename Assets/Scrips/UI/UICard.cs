@@ -109,6 +109,11 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SetInfo(CardFS cardInfo)
     {
+        if(cardInfo == null)
+        {
+            goUnknown.SetActive(true);
+            return;
+        }
         cardId = cardInfo.id;
         cardName = cardInfo.cardName;
         shiTanColor = cardInfo.shiTanColor;

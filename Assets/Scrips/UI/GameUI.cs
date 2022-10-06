@@ -155,12 +155,15 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     internal void ShowExchangeMessageAndTop()
     {
         var uiCard = GameObject.Instantiate(itemCardUI, transCardsDised);
+        uiCard.SetInfo(null);
+        uiCard.transform.localScale = new Vector3(0.5f, 0.5f);
         uiCard.transform.position = textDeckCount.transform.position;
+        uiCard.gameObject.SetActive(true);
         Vector3 to = messageCard.transform.position;
         StartCoroutine(DoMove(uiCard.transform,
         messageCard.transform.position,
         to,
-        0.1f,
+        0.2f,
         () =>
         {
             Destroy(uiCard.gameObject);
