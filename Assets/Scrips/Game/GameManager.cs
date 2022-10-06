@@ -428,13 +428,15 @@ public class GameManager
         gameUI.SetTask(task);
     }
     // 等待客户端选角色
-    public void OnReceiveChooseRole(int playerCount, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<role> roles)
+    public void OnReceiveChooseRole(int playerCount, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<role> roles, int waitingSecond)
     {
         gameUI.gameObject.SetActive(true);
         roomUI.gameObject.SetActive(false);
 
         gameUI.InitPlayers(playerCount);
         gameUI.ShowChooseRole(playerColor, secretTask, roles, playerCount);
+        OnWait(SelfPlayerId, waitingSecond);
+        
     }
     public  void OnReceiveChooseRoleSuccess(role role)
     {

@@ -867,7 +867,7 @@ public static class ProtoHelper
             {
                 roles.Add(role);
             }
-            GameManager.Singleton.OnReceiveChooseRole(playerCount, playerColor, secretTask, roles);
+            GameManager.Singleton.OnReceiveChooseRole(playerCount, playerColor, secretTask, roles, (int)wait_for_select_role_toc.WaitingSecond);
         }
         // 通知客户端选角色成功了
         else if (GetIdFromProtoName("select_role_toc") == id)
