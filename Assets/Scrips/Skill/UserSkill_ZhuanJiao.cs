@@ -93,11 +93,14 @@ public class UserSkill_ZhuanJiao : SkillBase
             GameManager.Singleton.gameUI.Players[selectPlayerId].OnSelect(false);
             selectPlayerId = -1;
         }
+        if(GameManager.Singleton.IsUsingSkill)
+        {
+            ProtoHelper.SendSkill_ZhuanJiao(false, 0, 0, GameManager.Singleton.seqId);
+        }
         GameManager.Singleton.IsUsingSkill = false;
         GameManager.Singleton.selectSkill = null;
         GameManager.Singleton.gameUI.HidePlayerMessageInfo();
         GameManager.Singleton.gameUI.ShowPhase();
-        ProtoHelper.SendSkill_ZhuanJiao(false, 0, 0, GameManager.Singleton.seqId);
         if (selectPlayerId > -1)
         {
             GameManager.Singleton.gameUI.Players[selectPlayerId].OnSelect(false);
