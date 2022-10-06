@@ -152,6 +152,36 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         rect.position = position;
     }
 
+    internal void ShowExchangeMessageAndTop()
+    {
+        var uiCard = GameObject.Instantiate(itemCardUI, transCardsDised);
+        uiCard.transform.position = transCardsDised.position;
+        Vector3 to = messageCard.transform.position;
+        StartCoroutine(DoMove(uiCard.transform,
+        messageCard.transform.position,
+        to,
+        0.1f,
+        () =>
+        {
+            Destroy(uiCard.gameObject);
+        }
+        ));
+
+        var uiCardMessage = GameObject.Instantiate(messageCard, transCardsDised);
+        uiCardMessage.transform.position = messageCard.transform.position;
+        Vector3 to1 = transCardsDised.position;
+        StartCoroutine(DoMove(uiCardMessage.transform,
+        messageCard.transform.position,
+        to1,
+        0.1f,
+        () =>
+        {
+            Destroy(uiCardMessage.gameObject);
+        },
+        0.3f));
+
+    }
+
     public void ShowChooseRole(
         PlayerColorEnum playerColor,
         SecretTaskEnum secretTask,

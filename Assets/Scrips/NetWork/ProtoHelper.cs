@@ -642,6 +642,26 @@ public static class ProtoHelper
             }
             UserSkill_JinBi.OnReceiveUseB(playerId, targetId, cards, (int)skill_jin_bi_b_toc.UnknownCardCount);
         }
+        // 玄青子【金口一开】A：你的回合的争夺阶段限一次，你可以查看牌堆顶的一张牌。
+        // 玄青子【金口一开】B：然后选择一项：
+        // ♦ 你摸一张牌。
+        // ♦ 将牌堆顶的一张牌和待接收情报面朝下互换
+        // false-摸一张牌，true-互换
+        else if (GetIdFromProtoName("skill_jin_kou_yi_kai_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jin_kou_yi_kai_a_toc");
+            skill_jin_kou_yi_kai_a_toc skill_jin_bi_a_toc = skill_jin_kou_yi_kai_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jin_bi_a_toc.PlayerId;
+            CardFS card = new CardFS(skill_jin_bi_a_toc.Card);
+            UserSkill_JinKouYiKai.OnReceiveUseA(playerId, card, (int)skill_jin_bi_a_toc.WaitingSecond, skill_jin_bi_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_jin_kou_yi_kai_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jin_kou_yi_kai_b_toc");
+            skill_jin_kou_yi_kai_b_toc skill_jin_kou_yi_kai_b_toc = skill_jin_kou_yi_kai_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jin_kou_yi_kai_b_toc.PlayerId;
+            UserSkill_JinKouYiKai.OnReceiveUseB(playerId, skill_jin_kou_yi_kai_b_toc.Exchange);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -1040,6 +1060,28 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 玄青子【金口一开】A：你的回合的争夺阶段限一次，你可以查看牌堆顶的一张牌。
+    // 玄青子【金口一开】B：然后选择一项：
+    // ♦ 你摸一张牌。
+    // ♦ 将牌堆顶的一张牌和待接收情报面朝下互换
+    // false-摸一张牌，true-互换
+    public static void SendSkill_JinKouYiKaiA(uint seq)
+    {
+        Debug.Log("____send___________________ skill_jin_kou_yi_kai_a_tos, seq:" + seq);
+
+        skill_jin_kou_yi_kai_a_tos skill_jin_kou_yi_kai_a_tos = new skill_jin_kou_yi_kai_a_tos() { Seq = seq };
+        byte[] proto = skill_jin_kou_yi_kai_a_tos.ToByteArray();
+        SendProto("skill_jin_kou_yi_kai_a_tos", proto);
+    }
+    public static void SendSkill_JinKouYiKaiB(bool exchange, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jin_kou_yi_kai_b_tos, seq:" + seq);
+
+        skill_jin_kou_yi_kai_b_tos skill_jin_kou_yi_kai_b_tos = new skill_jin_kou_yi_kai_b_tos() { Exchange = exchange, Seq = seq };
+        byte[] proto = skill_jin_kou_yi_kai_b_tos.ToByteArray();
+        SendProto("skill_jin_kou_yi_kai_b_tos", proto);
+    }
+
     // 王田香【禁闭】A：出牌阶段限一次，你可以指定一名角色。
     public static void SendSkill_JinBiA(int playerId, uint seq)
     {
