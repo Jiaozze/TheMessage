@@ -662,6 +662,28 @@ public static class ProtoHelper
             int playerId = (int)skill_jin_kou_yi_kai_b_toc.PlayerId;
             UserSkill_JinKouYiKai.OnReceiveUseB(playerId, skill_jin_kou_yi_kai_b_toc.Exchange);
         }
+        // SP顾小梦【羁绊】A：出牌阶段限一次，可以摸两张牌。
+        // SP顾小梦【羁绊】B：然后将至少一张手牌交给另一名角色。
+        else if (GetIdFromProtoName("skill_ji_ban_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_ji_ban_a_toc");
+            skill_ji_ban_a_toc skill_ji_ban_a_toc = skill_ji_ban_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_ji_ban_a_toc.PlayerId;
+            UserSkill_JiBan.OnReceiveUseA(playerId, (int)skill_ji_ban_a_toc.WaitingSecond, skill_ji_ban_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_ji_ban_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_ji_ban_b_toc");
+            skill_ji_ban_b_toc skill_ji_ban_b_toc = skill_ji_ban_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_ji_ban_b_toc.PlayerId;
+            int targetId = (int)skill_ji_ban_b_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in skill_ji_ban_b_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            UserSkill_JiBan.OnReceiveUseB(playerId, targetId, cards, (int)skill_ji_ban_b_toc.UnknownCardCount);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -1060,6 +1082,31 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // SP顾小梦【羁绊】A：出牌阶段限一次，可以摸两张牌。
+    // SP顾小梦【羁绊】B：然后将至少一张手牌交给另一名角色。
+    public static void SendSkill_JiBanA(uint seq)
+    {
+        Debug.Log("____send___________________ skill_ji_ban_a_tos, seq:" + seq);
+
+        skill_ji_ban_a_tos skill_ji_ban_a_tos = new skill_ji_ban_a_tos() { Seq = seq };
+        byte[] proto = skill_ji_ban_a_tos.ToByteArray();
+        SendProto("skill_ji_ban_a_tos", proto);
+    }
+
+    public static void SendSkill_JiBanB(List<int> cardsId, int targetId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_ji_ban_b_tos, seq:" + seq);
+
+        skill_ji_ban_b_tos skill_ji_ban_b_tos = new skill_ji_ban_b_tos() { TargetPlayerId = (uint)targetId, Seq = seq };
+        foreach (var id in cardsId)
+        {
+            skill_ji_ban_b_tos.CardIds.Add((uint)id);
+        }
+
+        byte[] proto = skill_ji_ban_b_tos.ToByteArray();
+        SendProto("skill_ji_ban_b_tos", proto);
+    }
+
     // 玄青子【金口一开】A：你的回合的争夺阶段限一次，你可以查看牌堆顶的一张牌。
     // 玄青子【金口一开】B：然后选择一项：
     // ♦ 你摸一张牌。
