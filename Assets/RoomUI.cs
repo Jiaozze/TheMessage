@@ -59,7 +59,7 @@ public class RoomUI : MonoBehaviour
     {
         ProtoHelper.SendAddPosition();
     }
-    public void OnRoomInfo(List<string> names, int index)
+    public void OnRoomInfo(List<string> names, int index, List<uint> winCounts, List<uint> allCounts)
     {
         goRoomInfo.SetActive(true);
         goLoginButton.SetActive(false);
@@ -72,25 +72,39 @@ public class RoomUI : MonoBehaviour
             }
         }
         items.Clear();
-        foreach(var name in names)
+        for (int i = 0; i < names.Count; i ++)
         {
             var go = GameObject.Instantiate(goRoomItem, goRoomItem.transform.parent);
             go.SetActive(true);
-            go.transform.Find("Text").GetComponent<Text>().text = name;
+            go.transform.Find("Text").GetComponent<Text>().text = names[i];
+            if(!string.IsNullOrEmpty(names[i]))
+            {
+                uint p = allCounts[i] > 0 ? winCounts[i] * 1000 / allCounts[i] : 0;
+                float f = (float)p / 10;
+                go.transform.Find("WinInfo").GetComponent<Text>().text = "" + "胜率：" + f + "%" + " 胜场：" + winCounts[i]; // + " 总场数：" + gameCount;
+            }
+            else
+            {
+                go.transform.Find("WinInfo").GetComponent<Text>().text = "";
+            }
             items.Add(go);
         }
         items[index].transform.Find("Image").GetComponent<Image>().color = Color.cyan;
         Debug.Log(items.Count);
     }
 
-    public void OnAddPlayer(string name, int index)
+    public void OnAddPlayer(string name, int index, uint winCount, uint gameCount)
     {
         items[index].transform.Find("Text").GetComponent<Text>().text = name;
+        uint p = gameCount > 0 ? winCount * 1000 / gameCount : 0;
+        float f = (float)p / 10;
+        items[index].transform.Find("WinInfo").GetComponent<Text>().text = "" + "胜率：" + f + "%" + " 胜场：" + winCount; // + " 总场数：" + gameCount;
     }
 
     public void OnPlayerLeave(int index)
     {
         items[index].transform.Find("Text").GetComponent<Text>().text = "";
+        items[index].transform.Find("WinInfo").GetComponent<Text>().text = "";
     }
 
     public void OnAddPositon()
@@ -98,6 +112,7 @@ public class RoomUI : MonoBehaviour
         var go = GameObject.Instantiate(goRoomItem, goRoomItem.transform.parent);
         go.SetActive(true);
         go.transform.Find("Text").GetComponent<Text>().text = "";
+        go.transform.Find("WinInfo").GetComponent<Text>().text = "";
         items.Add(go);
     }
 

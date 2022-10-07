@@ -810,11 +810,22 @@ public static class ProtoHelper
 
             get_room_info_toc get_Room_Info_Toc = get_room_info_toc.Parser.ParseFrom(contont);
             List<string> names = new List<string>();
+            List<uint> winCounts = new List<uint>();
+            List<uint> allCounts = new List<uint>();
             foreach (var name in get_Room_Info_Toc.Names)
             {
                 names.Add(name);
             }
-            GameManager.Singleton.OnReceiveRoomInfo(names, (int)get_Room_Info_Toc.MyPosition);
+            foreach (var winCount in get_Room_Info_Toc.WinCounts)
+            {
+                winCounts.Add(winCount);
+            }
+            foreach (var winCount in get_Room_Info_Toc.GameCounts)
+            {
+                allCounts.Add(winCount);
+            }
+
+            GameManager.Singleton.OnReceiveRoomInfo(names, (int)get_Room_Info_Toc.MyPosition, winCounts, allCounts);
             GameManager.Singleton.roomUI.SetOnlineCount((int)get_Room_Info_Toc.OnlineCount);
 
         }
@@ -824,7 +835,7 @@ public static class ProtoHelper
             join_room_toc join_room_toc = join_room_toc.Parser.ParseFrom(contont);
             Debug.Log(" _______receive________ join_room_toc " + join_room_toc.Position);
 
-            GameManager.Singleton.OnAddPlayer(join_room_toc.Name, (int)join_room_toc.Position);
+            GameManager.Singleton.OnAddPlayer(join_room_toc.Name, (int)join_room_toc.Position, join_room_toc.WinCount, join_room_toc.GameCount);
 
         }
         // 通知谁离开的房间

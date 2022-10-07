@@ -409,13 +409,13 @@ public class GameManager
 
     }
     #region 服务器消息处理
-    public void OnReceiveRoomInfo(List<string> names, int myPosition)
+    public void OnReceiveRoomInfo(List<string> names, int myPosition, List<uint> winCounts, List<uint> allCounts)
     {
-        roomUI.OnRoomInfo(names, myPosition);
+        roomUI.OnRoomInfo(names, myPosition, winCounts, allCounts);
     }
-    public void OnAddPlayer(string name, int index)
+    public void OnAddPlayer(string name, int index, uint winCount, uint gameCount)
     {
-        roomUI.OnAddPlayer(name, index);
+        roomUI.OnAddPlayer(name, index, winCount, gameCount);
     }
     public void OnPlayerLeave(int position)
     {
