@@ -859,6 +859,19 @@ public static class ProtoHelper
 
             GameManager.Singleton.roomUI.OnRemovePosition((int)remove_one_position_toc.Position);
         }
+        // 返回获取预约
+        else if (GetIdFromProtoName("get_orders_toc") == id)
+        {
+            get_orders_toc get_orders_toc = get_orders_toc.Parser.ParseFrom(contont);
+
+            List<pb_order> orders = new List<pb_order>();
+            foreach(var order in get_orders_toc.Orders)
+            {
+                orders.Add(order);
+            }
+            GameManager.Singleton.roomUI.OnReceiveOrder(orders);
+        }
+
         //通知客户端录像存好了
         else if (GetIdFromProtoName("save_record_success_toc") == id)
         {
@@ -1516,6 +1529,34 @@ public static class ProtoHelper
         auto_play_tos auto_play_tos = new auto_play_tos() { Enable = enable };
         byte[] proto = auto_play_tos.ToByteArray();
         SendProto("auto_play_tos", proto);
+    }
+
+    public static void SendGetOrders()
+    {
+        Debug.Log("____send___________________ get_orders_tos");
+
+        get_orders_tos get_orders_tos = new get_orders_tos() {  };
+        byte[] proto = get_orders_tos.ToByteArray();
+        SendProto("get_orders_tos", proto);
+    }
+
+    public static void SendAddOrders(uint time)
+    {
+        Debug.Log("____send___________________ add_order_tos");
+
+        add_order_tos auto_play_tos = new add_order_tos() { Time = time };
+        byte[] proto = auto_play_tos.ToByteArray();
+        SendProto("add_order_tos", proto);
+    }
+
+    public static void SendRemoveOrder(uint id)
+    {
+        Debug.Log("____send___________________ remove_order_tos");
+
+        remove_order_tos remove_order_tos = new remove_order_tos() { Id = id  };
+        byte[] proto = remove_order_tos.ToByteArray();
+        SendProto("remove_order_tos", proto);
+
     }
     public static void SendHeart()
     {

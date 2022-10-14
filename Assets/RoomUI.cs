@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,11 @@ public class RoomUI : MonoBehaviour
     public InputField recordId;
     public InputField playerName;
     public Text textOnlineCount;
+    public DatePickerControl datePicker;
+    public GameObject goOrder;
+    public Text textOrder;
+    public RectTransform content;
+    public RectTransform rectText;
 
     private List<GameObject> items = new List<GameObject>();
 
@@ -24,6 +30,10 @@ public class RoomUI : MonoBehaviour
         goRoomItem.SetActive(false);
     }
 
+    private void Update()
+    {
+        content.sizeDelta = rectText.sizeDelta;
+    }
     private void OnDestroy()
     {
         NetWork.Dispose();
@@ -31,15 +41,28 @@ public class RoomUI : MonoBehaviour
     public void OnClickJoinRoom()
     {
         PlayerPrefs.SetString("PlayerName", playerName.text);
-        NetWork.Init(ip, () => {
+        NetWork.Init(ip, () =>
+        {
             ProtoHelper.SendAddRoom(playerName.text, SystemInfo.deviceUniqueIdentifier);
         });
         //ProtoHelper.SendGetRoomInfo();
     }
 
     public void OnClickRecord()
-    {       
-        NetWork.Init(ip, () =>{ ProtoHelper.SendPlayRecord(recordId.text); });        
+    {
+        NetWork.Init(ip, () => { ProtoHelper.SendPlayRecord(recordId.text); });
+    }
+
+    public void OnClickSeeOrder()
+    {
+        ProtoHelper.SendGetOrders();
+    }
+    public void OnClickAddOrder()
+    {
+        var t = (datePicker.fecha.Ticks - 621355968000000000) / 10000000;
+        //Debug.Log(t);
+        //Debug.Log(new DateTime(t * 10000000 + 621355968000000000).ToString());
+        ProtoHelper.SendAddOrders((uint)t);
     }
 
     public void OnClickAddAI()
@@ -64,20 +87,20 @@ public class RoomUI : MonoBehaviour
         goRoomInfo.SetActive(true);
         goLoginButton.SetActive(false);
         goRecord.SetActive(false);
-        if(items.Count > 0)
+        if (items.Count > 0)
         {
-            foreach(var go in items)
+            foreach (var go in items)
             {
                 Destroy(go);
             }
         }
         items.Clear();
-        for (int i = 0; i < names.Count; i ++)
+        for (int i = 0; i < names.Count; i++)
         {
             var go = GameObject.Instantiate(goRoomItem, goRoomItem.transform.parent);
             go.SetActive(true);
             go.transform.Find("Text").GetComponent<Text>().text = names[i];
-            if(!string.IsNullOrEmpty(names[i]))
+            if (!string.IsNullOrEmpty(names[i]))
             {
                 //uint p = allCounts[i] > 0 ? winCounts[i] * 1000 / allCounts[i] : 0;
                 //float f = (float)p / 10;
@@ -126,5 +149,16 @@ public class RoomUI : MonoBehaviour
     public void SetOnlineCount(int count)
     {
         textOnlineCount.text = "当前在线人数：" + count;
+    }
+
+    internal void OnReceiveOrder(List<pb_order> orders)
+    {
+        string s = "";
+        foreach (var order in orders)
+        {
+            s += order.Name + " ： " + new DateTime((long)(order.Time * 10000000 + 621355968000000000)).ToString() + "\n";
+        }
+        textOrder.text = s;
+        goOrder.SetActive(true);
     }
 }

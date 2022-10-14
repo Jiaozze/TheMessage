@@ -24,13 +24,13 @@ public static partial class ErrcodeReflection {
         string.Concat(
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
-          "cmFtcxgDIAMoCSrzAQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
+          "cmFtcxgDIAMoCSr0AQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
           "b3RfbWF0Y2gQABIQCgxub19tb3JlX3Jvb20QARIVChFyZWNvcmRfbm90X2V4",
           "aXN0cxACEhYKEmxvYWRfcmVjb3JkX2ZhaWxlZBADEhwKGHJlY29yZF92ZXJz",
           "aW9uX25vdF9tYXRjaBAEEhEKDW5hbWVfdG9vX2xvbmcQBRIWChJqb2luX3Jv",
           "b21fdG9vX2Zhc3QQBhIVChFyb2JvdF9ub3RfYWxsb3dlZBAHEhIKDmFscmVh",
-          "ZHlfb25saW5lEAgSEgoOdG9vX21hbnlfb3JkZXIQCUIWChRjb20uZmVuZ3No",
-          "ZW5nLnByb3Rvc2IGcHJvdG8z"));
+          "ZHlfb25saW5lEAgSEwoPdG9vX21hbnlfb3JkZXJzEAlCFgoUY29tLmZlbmdz",
+          "aGVuZy5wcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -81,7 +81,7 @@ public enum error_code {
   /// <summary>
   /// 你的预约太多了
   /// </summary>
-  [pbr::OriginalName("too_many_order")] TooManyOrder = 9,
+  [pbr::OriginalName("too_many_orders")] TooManyOrders = 9,
 }
 
 #endregion
