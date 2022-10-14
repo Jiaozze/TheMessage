@@ -61,8 +61,8 @@ public class UserSkill_GuangFaBao : SkillBase
                     GameManager.Singleton.gameUI.ShowInfo("你不能通过此技能让任何角色收集三张或更多的同色情报");
                     return;
                 }
-                ProtoHelper.SendSkill_GuangFaBaoB(true, selectCardId, selectPlayerId, GameManager.Singleton.seqId);
             }
+            ProtoHelper.SendSkill_GuangFaBaoB(true, selectCardId, selectPlayerId, GameManager.Singleton.seqId);
         }
         else if( selectCardId == 0)
         {
