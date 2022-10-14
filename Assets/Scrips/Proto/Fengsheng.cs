@@ -22,123 +22,134 @@ public static partial class FengshengReflection {
   static FengshengReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg9mZW5nc2hlbmcucHJvdG8aDGNvbW1vbi5wcm90byILCgloZWFydF90b3Mi",
-          "IQoJaGVhcnRfdG9jEhQKDG9ubGluZV9jb3VudBgBIAEoDSIWChRhZGRfb25l",
-          "X3Bvc2l0aW9uX3RvcyIWChRhZGRfb25lX3Bvc2l0aW9uX3RvYyIZChdyZW1v",
-          "dmVfb25lX3Bvc2l0aW9uX3RvcyIrChdyZW1vdmVfb25lX3Bvc2l0aW9uX3Rv",
-          "YxIQCghwb3NpdGlvbhgBIAEoDSI4ChJkaXNwbGF5X3JlY29yZF90b3MSDwoH",
-          "dmVyc2lvbhgBIAEoDRIRCglyZWNvcmRfaWQYAiABKAkiGAoWZGlzcGxheV9y",
-          "ZWNvcmRfZW5kX3RvYyIsChdzYXZlX3JlY29yZF9zdWNjZXNzX3RvYxIRCgly",
-          "ZWNvcmRfaWQYASABKAkiPgoNam9pbl9yb29tX3RvcxIPCgd2ZXJzaW9uGAEg",
-          "ASgNEgwKBG5hbWUYAiABKAkSDgoGZGV2aWNlGAMgASgJInYKEWdldF9yb29t",
-          "X2luZm9fdG9jEg0KBW5hbWVzGAEgAygJEhMKC215X3Bvc2l0aW9uGAIgASgN",
-          "EhQKDG9ubGluZV9jb3VudBgDIAEoDRISCgp3aW5fY291bnRzGAQgAygNEhMK",
-          "C2dhbWVfY291bnRzGAUgAygNIg8KDWFkZF9yb2JvdF90b3MiEgoQcmVtb3Zl",
-          "X3JvYm90X3RvcyJWCg1qb2luX3Jvb21fdG9jEgwKBG5hbWUYASABKAkSEAoI",
-          "cG9zaXRpb24YAiABKA0SEQoJd2luX2NvdW50GAMgASgNEhIKCmdhbWVfY291",
-          "bnQYBCABKA0iIgoObGVhdmVfcm9vbV90b2MSEAoIcG9zaXRpb24YASABKA0i",
-          "mwEKGHdhaXRfZm9yX3NlbGVjdF9yb2xlX3RvYxIUCgxwbGF5ZXJfY291bnQY",
-          "ASABKA0SGAoIaWRlbnRpdHkYAiABKA4yBi5jb2xvchIhCgtzZWNyZXRfdGFz",
-          "axgDIAEoDjIMLnNlY3JldF90YXNrEhQKBXJvbGVzGAQgAygOMgUucm9sZRIW",
-          "Cg53YWl0aW5nX3NlY29uZBgFIAEoDSIfCg1hdXRvX3BsYXlfdG9zEg4KBmVu",
-          "YWJsZRgBIAEoCCIfCg1hdXRvX3BsYXlfdG9jEg4KBmVuYWJsZRgBIAEoCCIm",
-          "Cg9zZWxlY3Rfcm9sZV90b3MSEwoEcm9sZRgBIAEoDjIFLnJvbGUiJgoPc2Vs",
-          "ZWN0X3JvbGVfdG9jEhMKBHJvbGUYASABKA4yBS5yb2xlIoIBCghpbml0X3Rv",
-          "YxIUCgxwbGF5ZXJfY291bnQYASABKA0SGAoIaWRlbnRpdHkYAiABKA4yBi5j",
-          "b2xvchIhCgtzZWNyZXRfdGFzaxgDIAEoDjIMLnNlY3JldF90YXNrEhQKBXJv",
-          "bGVzGAQgAygOMgUucm9sZRINCgVuYW1lcxgFIAMoCSJAChZub3RpZnlfcm9s",
-          "ZV91cGRhdGVfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRITCgRyb2xlGAIgASgO",
-          "MgUucm9sZSJTCgxhZGRfY2FyZF90b2MSEQoJcGxheWVyX2lkGAEgASgNEhoK",
-          "EnVua25vd25fY2FyZF9jb3VudBgCIAEoDRIUCgVjYXJkcxgDIAMoCzIFLmNh",
-          "cmQiQgoPdXNlX3NoaV90YW5fdG9zEg8KB2NhcmRfaWQYASABKA0SEQoJcGxh",
-          "eWVyX2lkGAIgASgNEgsKA3NlcRgDIAEoDSJPCg91c2Vfc2hpX3Rhbl90b2MS",
-          "EQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0S",
-          "DwoHY2FyZF9pZBgDIAEoDSJ5ChBzaG93X3NoaV90YW5fdG9jEhEKCXBsYXll",
-          "cl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEhMKBGNhcmQY",
-          "AyABKAsyBS5jYXJkEhYKDndhaXRpbmdfc2Vjb25kGAQgASgNEgsKA3NlcRgF",
-          "IAEoDSIzChNleGVjdXRlX3NoaV90YW5fdG9zEg8KB2NhcmRfaWQYASADKA0S",
-          "CwoDc2VxGAIgASgNIj4KE2V4ZWN1dGVfc2hpX3Rhbl90b2MSEQoJcGxheWVy",
-          "X2lkGAEgASgNEhQKDGlzX2RyYXdfY2FyZBgCIAEoCCIyChFzeW5jX2RlY2tf",
-          "bnVtX3RvYxILCgNudW0YASABKA0SEAoIc2h1ZmZsZWQYAiABKAgiOwoQZGlz",
-          "Y2FyZF9jYXJkX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SFAoFY2FyZHMYAiAD",
-          "KAsyBS5jYXJkIuoBChBub3RpZnlfcGhhc2VfdG9jEhkKEWN1cnJlbnRfcGxh",
-          "eWVyX2lkGAEgASgNEh0KDWN1cnJlbnRfcGhhc2UYAiABKA4yBi5waGFzZRIZ",
-          "ChFtZXNzYWdlX3BsYXllcl9pZBgDIAEoDRIkChBtZXNzYWdlX2NhcmRfZGly",
-          "GAQgASgOMgouZGlyZWN0aW9uEhsKDG1lc3NhZ2VfY2FyZBgFIAEoCzIFLmNh",
-          "cmQSGQoRd2FpdGluZ19wbGF5ZXJfaWQYBiABKA0SFgoOd2FpdGluZ19zZWNv",
-          "bmQYByABKA0SCwoDc2VxGAggASgNIiEKEmVuZF9tYWluX3BoYXNlX3RvcxIL",
-          "CgNzZXEYASABKA0iQQoOdXNlX2xpX3lvdV90b3MSDwoHY2FyZF9pZBgBIAEo",
-          "DRIRCglwbGF5ZXJfaWQYAiABKA0SCwoDc2VxGAMgASgNIo4BCg51c2VfbGlf",
-          "eW91X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9p",
-          "ZBgCIAEoDRIaCgtsaV95b3VfY2FyZBgDIAEoCzIFLmNhcmQSGwoMbWVzc2Fn",
-          "ZV9jYXJkGAQgASgLMgUuY2FyZBIWCg5qb2luX2ludG9faGFuZBgFIAEoCCJE",
-          "ChF1c2VfcGluZ19oZW5nX3RvcxIPCgdjYXJkX2lkGAEgASgNEhEKCXBsYXll",
-          "cl9pZBgCIAEoDRILCgNzZXEYAyABKA0iXwoRdXNlX3BpbmdfaGVuZ190b2MS",
-          "EQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0S",
-          "HQoOcGluZ19oZW5nX2NhcmQYAyABKAsyBS5jYXJkImAKDnVzZV93ZWlfYmlf",
-          "dG9zEg8KB2NhcmRfaWQYASABKA0SEQoJcGxheWVyX2lkGAIgASgNEh0KCXdh",
-          "bnRfdHlwZRgDIAEoDjIKLmNhcmRfdHlwZRILCgNzZXEYBCABKA0ipQEKHXdl",
-          "aV9iaV93YWl0X2Zvcl9naXZlX2NhcmRfdG9jEhMKBGNhcmQYASABKAsyBS5j",
-          "YXJkEhEKCXBsYXllcl9pZBgCIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAMg",
-          "ASgNEh0KCXdhbnRfdHlwZRgEIAEoDjIKLmNhcmRfdHlwZRIWCg53YWl0aW5n",
-          "X3NlY29uZBgFIAEoDRILCgNzZXEYBiABKA0iNAoUd2VpX2JpX2dpdmVfY2Fy",
-          "ZF90b3MSDwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0iWAoUd2VpX2Jp",
-          "X2dpdmVfY2FyZF90b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9w",
-          "bGF5ZXJfaWQYAiABKA0SEwoEY2FyZBgDIAEoCzIFLmNhcmQikgEKGXdlaV9i",
-          "aV9zaG93X2hhbmRfY2FyZF90b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJ",
-          "cGxheWVyX2lkGAIgASgNEh0KCXdhbnRfdHlwZRgDIAEoDjIKLmNhcmRfdHlw",
-          "ZRIYChB0YXJnZXRfcGxheWVyX2lkGAQgASgNEhQKBWNhcmRzGAUgAygLMgUu",
-          "Y2FyZCJdChJ1c2VfY2hlbmdfcWluZ190b3MSDwoHY2FyZF9pZBgBIAEoDRIR",
-          "CglwbGF5ZXJfaWQYAiABKA0SFgoOdGFyZ2V0X2NhcmRfaWQYAyABKA0SCwoD",
-          "c2VxGAQgASgNIm4KEnVzZV9jaGVuZ19xaW5nX3RvYxITCgRjYXJkGAEgASgL",
-          "MgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0SGAoQdGFyZ2V0X3BsYXllcl9p",
-          "ZBgDIAEoDRIWCg50YXJnZXRfY2FyZF9pZBgEIAEoDSKFAQoVc2VuZF9tZXNz",
-          "YWdlX2NhcmRfdG9zEg8KB2NhcmRfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXll",
-          "cl9pZBgCIAEoDRIWCg5sb2NrX3BsYXllcl9pZBgDIAMoDRIcCghjYXJkX2Rp",
-          "chgEIAEoDjIKLmRpcmVjdGlvbhILCgNzZXEYBSABKA0ijAEKFXNlbmRfbWVz",
-          "c2FnZV9jYXJkX3RvYxIPCgdjYXJkX2lkGAEgASgNEhEKCXBsYXllcl9pZBgC",
-          "IAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAMgASgNEhcKD2xvY2tfcGxheWVy",
-          "X2lkcxgEIAMoDRIcCghjYXJkX2RpchgFIAEoDjIKLmRpcmVjdGlvbiI6Chpj",
-          "aG9vc2Vfd2hldGhlcl9yZWNlaXZlX3RvcxIPCgdyZWNlaXZlGAEgASgIEgsK",
-          "A3NlcRgCIAEoDSInChJjaG9vc2VfcmVjZWl2ZV90b2MSEQoJcGxheWVyX2lk",
-          "GAEgASgNIiIKE2VuZF9maWdodF9waGFzZV90b3MSCwoDc2VxGAEgASgNIjgK",
-          "EG5vdGlmeV9keWluZ190b2MSEQoJcGxheWVyX2lkGAEgASgNEhEKCWxvc2Vf",
-          "Z2FtZRgCIAEoCCIjCg5ub3RpZnlfZGllX3RvYxIRCglwbGF5ZXJfaWQYASAB",
-          "KA0igQEKEW5vdGlmeV93aW5uZXJfdG9jEhoKEmRlY2xhcmVfcGxheWVyX2lk",
-          "cxgBIAMoDRISCgp3aW5uZXJfaWRzGAIgAygNEhgKCGlkZW50aXR5GAMgAygO",
-          "MgYuY29sb3ISIgoMc2VjcmV0X3Rhc2tzGAQgAygOMgwuc2VjcmV0X3Rhc2si",
-          "cAoXd2FpdF9mb3JfY2hlbmdfcWluZ190b2MSFQoNZGllX3BsYXllcl9pZBgB",
-          "IAEoDRIZChF3YWl0aW5nX3BsYXllcl9pZBgCIAEoDRIWCg53YWl0aW5nX3Nl",
-          "Y29uZBgDIAEoDRILCgNzZXEYBCABKA0iXAoXY2hlbmdfcWluZ19zYXZlX2Rp",
-          "ZV90b3MSCwoDdXNlGAEgASgIEg8KB2NhcmRfaWQYAiABKA0SFgoOdGFyZ2V0",
-          "X2NhcmRfaWQYAyABKA0SCwoDc2VxGAQgASgNIlQKGndhaXRfZm9yX2RpZV9n",
-          "aXZlX2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIWCg53YWl0aW5nX3Nl",
-          "Y29uZBgCIAEoDRILCgNzZXEYAyABKA0iSwoRZGllX2dpdmVfY2FyZF90b3MS",
-          "GAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoDRIPCgdjYXJkX2lkGAIgAygNEgsK",
-          "A3NlcRgDIAEoDSJ4Chhub3RpZnlfZGllX2dpdmVfY2FyZF90b2MSEQoJcGxh",
-          "eWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SEwoEY2Fy",
-          "ZBgDIAMoCzIFLmNhcmQSGgoSdW5rbm93bl9jYXJkX2NvdW50GAQgASgNIi0K",
-          "DXVzZV9wb195aV90b3MSDwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0i",
-          "eQoNdXNlX3BvX3lpX3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5",
-          "ZXJfaWQYAiABKA0SGwoMbWVzc2FnZV9jYXJkGAMgASgLMgUuY2FyZBIWCg53",
-          "YWl0aW5nX3NlY29uZBgEIAEoDRILCgNzZXEYBSABKA0iKwoOcG9feWlfc2hv",
-          "d190b3MSDAoEc2hvdxgBIAEoCBILCgNzZXEYAiABKA0iTgoOcG9feWlfc2hv",
-          "d190b2MSEQoJcGxheWVyX2lkGAEgASgNEgwKBHNob3cYAiABKAgSGwoMbWVz",
-          "c2FnZV9jYXJkGAMgASgLMgUuY2FyZCIvCg91c2VfamllX2h1b190b3MSDwoH",
-          "Y2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0iOQoPdXNlX2ppZV9odW9fdG9j",
-          "EhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgCIAEoDSIwChB1",
-          "c2VfZGlhb19iYW9fdG9zEg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgN",
-          "IlcKEHVzZV9kaWFvX2Jhb190b2MSDwoHY2FyZF9pZBgBIAEoDRIfChBvbGRf",
-          "bWVzc2FnZV9jYXJkGAIgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAyABKA0i",
-          "SAoOdXNlX3d1X2Rhb190b3MSDwoHY2FyZF9pZBgBIAEoDRIYChB0YXJnZXRf",
-          "cGxheWVyX2lkGAIgASgNEgsKA3NlcRgDIAEoDSJSCg51c2Vfd3VfZGFvX3Rv",
-          "YxITCgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0SGAoQ",
-          "dGFyZ2V0X3BsYXllcl9pZBgDIAEoDSIkChVlbmRfcmVjZWl2ZV9waGFzZV90",
-          "b3MSCwoDc2VxGAEgASgNQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90",
-          "bzM="));
+          "Cg9mZW5nc2hlbmcucHJvdG8aDGNvbW1vbi5wcm90byIdCg1hZGRfb3JkZXJf",
+          "dG9zEgwKBHRpbWUYASABKA0iDwoNYWRkX29yZGVyX3RvYyJDCghwYl9vcmRl",
+          "chIKCgJpZBgBIAEoDRIMCgR0aW1lGAIgASgEEgwKBG5hbWUYAyABKAkSDwoH",
+          "aXNfbWluZRgEIAEoCCIQCg5nZXRfb3JkZXJzX3RvcyIrCg5nZXRfb3JkZXJz",
+          "X3RvYxIZCgZvcmRlcnMYASADKAsyCS5wYl9vcmRlciIeChByZW1vdmVfb3Jk",
+          "ZXJfdG9zEgoKAmlkGAEgASgNIhIKEHJlbW92ZV9vcmRlcl90b2MiCwoJaGVh",
+          "cnRfdG9zIiEKCWhlYXJ0X3RvYxIUCgxvbmxpbmVfY291bnQYASABKA0iFgoU",
+          "YWRkX29uZV9wb3NpdGlvbl90b3MiFgoUYWRkX29uZV9wb3NpdGlvbl90b2Mi",
+          "GQoXcmVtb3ZlX29uZV9wb3NpdGlvbl90b3MiKwoXcmVtb3ZlX29uZV9wb3Np",
+          "dGlvbl90b2MSEAoIcG9zaXRpb24YASABKA0iOAoSZGlzcGxheV9yZWNvcmRf",
+          "dG9zEg8KB3ZlcnNpb24YASABKA0SEQoJcmVjb3JkX2lkGAIgASgJIhgKFmRp",
+          "c3BsYXlfcmVjb3JkX2VuZF90b2MiLAoXc2F2ZV9yZWNvcmRfc3VjY2Vzc190",
+          "b2MSEQoJcmVjb3JkX2lkGAEgASgJIj4KDWpvaW5fcm9vbV90b3MSDwoHdmVy",
+          "c2lvbhgBIAEoDRIMCgRuYW1lGAIgASgJEg4KBmRldmljZRgDIAEoCSJhChFn",
+          "ZXRfcm9vbV9pbmZvX3RvYxINCgVuYW1lcxgBIAMoCRITCgtteV9wb3NpdGlv",
+          "bhgCIAEoDRIUCgxvbmxpbmVfY291bnQYAyABKA0SEgoKd2luX2NvdW50cxgE",
+          "IAMoDSIPCg1hZGRfcm9ib3RfdG9zIhIKEHJlbW92ZV9yb2JvdF90b3MiVgoN",
+          "am9pbl9yb29tX3RvYxIMCgRuYW1lGAEgASgJEhAKCHBvc2l0aW9uGAIgASgN",
+          "EhEKCXdpbl9jb3VudBgDIAEoDRISCgpnYW1lX2NvdW50GAQgASgNIiIKDmxl",
+          "YXZlX3Jvb21fdG9jEhAKCHBvc2l0aW9uGAEgASgNIpsBChh3YWl0X2Zvcl9z",
+          "ZWxlY3Rfcm9sZV90b2MSFAoMcGxheWVyX2NvdW50GAEgASgNEhgKCGlkZW50",
+          "aXR5GAIgASgOMgYuY29sb3ISIQoLc2VjcmV0X3Rhc2sYAyABKA4yDC5zZWNy",
+          "ZXRfdGFzaxIUCgVyb2xlcxgEIAMoDjIFLnJvbGUSFgoOd2FpdGluZ19zZWNv",
+          "bmQYBSABKA0iHwoNYXV0b19wbGF5X3RvcxIOCgZlbmFibGUYASABKAgiHwoN",
+          "YXV0b19wbGF5X3RvYxIOCgZlbmFibGUYASABKAgiJgoPc2VsZWN0X3JvbGVf",
+          "dG9zEhMKBHJvbGUYASABKA4yBS5yb2xlIiYKD3NlbGVjdF9yb2xlX3RvYxIT",
+          "CgRyb2xlGAEgASgOMgUucm9sZSKCAQoIaW5pdF90b2MSFAoMcGxheWVyX2Nv",
+          "dW50GAEgASgNEhgKCGlkZW50aXR5GAIgASgOMgYuY29sb3ISIQoLc2VjcmV0",
+          "X3Rhc2sYAyABKA4yDC5zZWNyZXRfdGFzaxIUCgVyb2xlcxgEIAMoDjIFLnJv",
+          "bGUSDQoFbmFtZXMYBSADKAkiQAoWbm90aWZ5X3JvbGVfdXBkYXRlX3RvYxIR",
+          "CglwbGF5ZXJfaWQYASABKA0SEwoEcm9sZRgCIAEoDjIFLnJvbGUiUwoMYWRk",
+          "X2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIaChJ1bmtub3duX2NhcmRf",
+          "Y291bnQYAiABKA0SFAoFY2FyZHMYAyADKAsyBS5jYXJkIkIKD3VzZV9zaGlf",
+          "dGFuX3RvcxIPCgdjYXJkX2lkGAEgASgNEhEKCXBsYXllcl9pZBgCIAEoDRIL",
+          "CgNzZXEYAyABKA0iTwoPdXNlX3NoaV90YW5fdG9jEhEKCXBsYXllcl9pZBgB",
+          "IAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEg8KB2NhcmRfaWQYAyAB",
+          "KA0ieQoQc2hvd19zaGlfdGFuX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQ",
+          "dGFyZ2V0X3BsYXllcl9pZBgCIAEoDRITCgRjYXJkGAMgASgLMgUuY2FyZBIW",
+          "Cg53YWl0aW5nX3NlY29uZBgEIAEoDRILCgNzZXEYBSABKA0iMwoTZXhlY3V0",
+          "ZV9zaGlfdGFuX3RvcxIPCgdjYXJkX2lkGAEgAygNEgsKA3NlcRgCIAEoDSI+",
+          "ChNleGVjdXRlX3NoaV90YW5fdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIUCgxp",
+          "c19kcmF3X2NhcmQYAiABKAgiMgoRc3luY19kZWNrX251bV90b2MSCwoDbnVt",
+          "GAEgASgNEhAKCHNodWZmbGVkGAIgASgIIjsKEGRpc2NhcmRfY2FyZF90b2MS",
+          "EQoJcGxheWVyX2lkGAEgASgNEhQKBWNhcmRzGAIgAygLMgUuY2FyZCLqAQoQ",
+          "bm90aWZ5X3BoYXNlX3RvYxIZChFjdXJyZW50X3BsYXllcl9pZBgBIAEoDRId",
+          "Cg1jdXJyZW50X3BoYXNlGAIgASgOMgYucGhhc2USGQoRbWVzc2FnZV9wbGF5",
+          "ZXJfaWQYAyABKA0SJAoQbWVzc2FnZV9jYXJkX2RpchgEIAEoDjIKLmRpcmVj",
+          "dGlvbhIbCgxtZXNzYWdlX2NhcmQYBSABKAsyBS5jYXJkEhkKEXdhaXRpbmdf",
+          "cGxheWVyX2lkGAYgASgNEhYKDndhaXRpbmdfc2Vjb25kGAcgASgNEgsKA3Nl",
+          "cRgIIAEoDSIhChJlbmRfbWFpbl9waGFzZV90b3MSCwoDc2VxGAEgASgNIkEK",
+          "DnVzZV9saV95b3VfdG9zEg8KB2NhcmRfaWQYASABKA0SEQoJcGxheWVyX2lk",
+          "GAIgASgNEgsKA3NlcRgDIAEoDSKOAQoOdXNlX2xpX3lvdV90b2MSEQoJcGxh",
+          "eWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SGgoLbGlf",
+          "eW91X2NhcmQYAyABKAsyBS5jYXJkEhsKDG1lc3NhZ2VfY2FyZBgEIAEoCzIF",
+          "LmNhcmQSFgoOam9pbl9pbnRvX2hhbmQYBSABKAgiRAoRdXNlX3BpbmdfaGVu",
+          "Z190b3MSDwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiABKA0SCwoD",
+          "c2VxGAMgASgNIl8KEXVzZV9waW5nX2hlbmdfdG9jEhEKCXBsYXllcl9pZBgB",
+          "IAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEh0KDnBpbmdfaGVuZ19j",
+          "YXJkGAMgASgLMgUuY2FyZCJgCg51c2Vfd2VpX2JpX3RvcxIPCgdjYXJkX2lk",
+          "GAEgASgNEhEKCXBsYXllcl9pZBgCIAEoDRIdCgl3YW50X3R5cGUYAyABKA4y",
+          "Ci5jYXJkX3R5cGUSCwoDc2VxGAQgASgNIqUBCh13ZWlfYmlfd2FpdF9mb3Jf",
+          "Z2l2ZV9jYXJkX3RvYxITCgRjYXJkGAEgASgLMgUuY2FyZBIRCglwbGF5ZXJf",
+          "aWQYAiABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoDRIdCgl3YW50X3R5",
+          "cGUYBCABKA4yCi5jYXJkX3R5cGUSFgoOd2FpdGluZ19zZWNvbmQYBSABKA0S",
+          "CwoDc2VxGAYgASgNIjQKFHdlaV9iaV9naXZlX2NhcmRfdG9zEg8KB2NhcmRf",
+          "aWQYASABKA0SCwoDc2VxGAIgASgNIlgKFHdlaV9iaV9naXZlX2NhcmRfdG9j",
+          "EhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgN",
+          "EhMKBGNhcmQYAyABKAsyBS5jYXJkIpIBChl3ZWlfYmlfc2hvd19oYW5kX2Nh",
+          "cmRfdG9jEhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgCIAEo",
+          "DRIdCgl3YW50X3R5cGUYAyABKA4yCi5jYXJkX3R5cGUSGAoQdGFyZ2V0X3Bs",
+          "YXllcl9pZBgEIAEoDRIUCgVjYXJkcxgFIAMoCzIFLmNhcmQiXQoSdXNlX2No",
+          "ZW5nX3FpbmdfdG9zEg8KB2NhcmRfaWQYASABKA0SEQoJcGxheWVyX2lkGAIg",
+          "ASgNEhYKDnRhcmdldF9jYXJkX2lkGAMgASgNEgsKA3NlcRgEIAEoDSJuChJ1",
+          "c2VfY2hlbmdfcWluZ190b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJcGxh",
+          "eWVyX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKA0SFgoOdGFy",
+          "Z2V0X2NhcmRfaWQYBCABKA0ihQEKFXNlbmRfbWVzc2FnZV9jYXJkX3RvcxIP",
+          "CgdjYXJkX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SFgoO",
+          "bG9ja19wbGF5ZXJfaWQYAyADKA0SHAoIY2FyZF9kaXIYBCABKA4yCi5kaXJl",
+          "Y3Rpb24SCwoDc2VxGAUgASgNIowBChVzZW5kX21lc3NhZ2VfY2FyZF90b2MS",
+          "DwoHY2FyZF9pZBgBIAEoDRIRCglwbGF5ZXJfaWQYAiABKA0SGAoQdGFyZ2V0",
+          "X3BsYXllcl9pZBgDIAEoDRIXCg9sb2NrX3BsYXllcl9pZHMYBCADKA0SHAoI",
+          "Y2FyZF9kaXIYBSABKA4yCi5kaXJlY3Rpb24iOgoaY2hvb3NlX3doZXRoZXJf",
+          "cmVjZWl2ZV90b3MSDwoHcmVjZWl2ZRgBIAEoCBILCgNzZXEYAiABKA0iJwoS",
+          "Y2hvb3NlX3JlY2VpdmVfdG9jEhEKCXBsYXllcl9pZBgBIAEoDSIiChNlbmRf",
+          "ZmlnaHRfcGhhc2VfdG9zEgsKA3NlcRgBIAEoDSI4ChBub3RpZnlfZHlpbmdf",
+          "dG9jEhEKCXBsYXllcl9pZBgBIAEoDRIRCglsb3NlX2dhbWUYAiABKAgiIwoO",
+          "bm90aWZ5X2RpZV90b2MSEQoJcGxheWVyX2lkGAEgASgNIoEBChFub3RpZnlf",
+          "d2lubmVyX3RvYxIaChJkZWNsYXJlX3BsYXllcl9pZHMYASADKA0SEgoKd2lu",
+          "bmVyX2lkcxgCIAMoDRIYCghpZGVudGl0eRgDIAMoDjIGLmNvbG9yEiIKDHNl",
+          "Y3JldF90YXNrcxgEIAMoDjIMLnNlY3JldF90YXNrInAKF3dhaXRfZm9yX2No",
+          "ZW5nX3FpbmdfdG9jEhUKDWRpZV9wbGF5ZXJfaWQYASABKA0SGQoRd2FpdGlu",
+          "Z19wbGF5ZXJfaWQYAiABKA0SFgoOd2FpdGluZ19zZWNvbmQYAyABKA0SCwoD",
+          "c2VxGAQgASgNIlwKF2NoZW5nX3Fpbmdfc2F2ZV9kaWVfdG9zEgsKA3VzZRgB",
+          "IAEoCBIPCgdjYXJkX2lkGAIgASgNEhYKDnRhcmdldF9jYXJkX2lkGAMgASgN",
+          "EgsKA3NlcRgEIAEoDSJUChp3YWl0X2Zvcl9kaWVfZ2l2ZV9jYXJkX3RvYxIR",
+          "CglwbGF5ZXJfaWQYASABKA0SFgoOd2FpdGluZ19zZWNvbmQYAiABKA0SCwoD",
+          "c2VxGAMgASgNIksKEWRpZV9naXZlX2NhcmRfdG9zEhgKEHRhcmdldF9wbGF5",
+          "ZXJfaWQYASABKA0SDwoHY2FyZF9pZBgCIAMoDRILCgNzZXEYAyABKA0ieAoY",
+          "bm90aWZ5X2RpZV9naXZlX2NhcmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIY",
+          "ChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEhMKBGNhcmQYAyADKAsyBS5jYXJk",
+          "EhoKEnVua25vd25fY2FyZF9jb3VudBgEIAEoDSItCg11c2VfcG9feWlfdG9z",
+          "Eg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgNInkKDXVzZV9wb195aV90",
+          "b2MSEwoEY2FyZBgBIAEoCzIFLmNhcmQSEQoJcGxheWVyX2lkGAIgASgNEhsK",
+          "DG1lc3NhZ2VfY2FyZBgDIAEoCzIFLmNhcmQSFgoOd2FpdGluZ19zZWNvbmQY",
+          "BCABKA0SCwoDc2VxGAUgASgNIisKDnBvX3lpX3Nob3dfdG9zEgwKBHNob3cY",
+          "ASABKAgSCwoDc2VxGAIgASgNIk4KDnBvX3lpX3Nob3dfdG9jEhEKCXBsYXll",
+          "cl9pZBgBIAEoDRIMCgRzaG93GAIgASgIEhsKDG1lc3NhZ2VfY2FyZBgDIAEo",
+          "CzIFLmNhcmQiLwoPdXNlX2ppZV9odW9fdG9zEg8KB2NhcmRfaWQYASABKA0S",
+          "CwoDc2VxGAIgASgNIjkKD3VzZV9qaWVfaHVvX3RvYxITCgRjYXJkGAEgASgL",
+          "MgUuY2FyZBIRCglwbGF5ZXJfaWQYAiABKA0iMAoQdXNlX2RpYW9fYmFvX3Rv",
+          "cxIPCgdjYXJkX2lkGAEgASgNEgsKA3NlcRgCIAEoDSJXChB1c2VfZGlhb19i",
+          "YW9fdG9jEg8KB2NhcmRfaWQYASABKA0SHwoQb2xkX21lc3NhZ2VfY2FyZBgC",
+          "IAEoCzIFLmNhcmQSEQoJcGxheWVyX2lkGAMgASgNIkgKDnVzZV93dV9kYW9f",
+          "dG9zEg8KB2NhcmRfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEo",
+          "DRILCgNzZXEYAyABKA0iUgoOdXNlX3d1X2Rhb190b2MSEwoEY2FyZBgBIAEo",
+          "CzIFLmNhcmQSEQoJcGxheWVyX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJf",
+          "aWQYAyABKA0iJAoVZW5kX3JlY2VpdmVfcGhhc2VfdG9zEgsKA3NlcRgBIAEo",
+          "DUIWChRjb20uZmVuZ3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(typeof(global::add_order_tos), global::add_order_tos.Parser, new[]{ "Time" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::add_order_toc), global::add_order_toc.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::pb_order), global::pb_order.Parser, new[]{ "Id", "Time", "Name", "IsMine" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::get_orders_tos), global::get_orders_tos.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::get_orders_toc), global::get_orders_toc.Parser, new[]{ "Orders" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::remove_order_tos), global::remove_order_tos.Parser, new[]{ "Id" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::remove_order_toc), global::remove_order_toc.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::heart_tos), global::heart_tos.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::heart_toc), global::heart_toc.Parser, new[]{ "OnlineCount" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::add_one_position_tos), global::add_one_position_tos.Parser, null, null, null, null, null),
@@ -149,7 +160,7 @@ public static partial class FengshengReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::display_record_end_toc), global::display_record_end_toc.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::save_record_success_toc), global::save_record_success_toc.Parser, new[]{ "RecordId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::join_room_tos), global::join_room_tos.Parser, new[]{ "Version", "Name", "Device" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::get_room_info_toc), global::get_room_info_toc.Parser, new[]{ "Names", "MyPosition", "OnlineCount", "WinCounts", "GameCounts" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::get_room_info_toc), global::get_room_info_toc.Parser, new[]{ "Names", "MyPosition", "OnlineCount", "WinCounts" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::add_robot_tos), global::add_robot_tos.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::remove_robot_tos), global::remove_robot_tos.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::join_room_toc), global::join_room_toc.Parser, new[]{ "Name", "Position", "WinCount", "GameCount" }, null, null, null, null),
@@ -213,6 +224,925 @@ public static partial class FengshengReflection {
 }
 #region Messages
 /// <summary>
+/// 增加一个预约
+/// </summary>
+public sealed partial class add_order_tos : pb::IMessage<add_order_tos> {
+  private static readonly pb::MessageParser<add_order_tos> _parser = new pb::MessageParser<add_order_tos>(() => new add_order_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<add_order_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[0]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public add_order_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public add_order_tos(add_order_tos other) : this() {
+    time_ = other.time_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public add_order_tos Clone() {
+    return new add_order_tos(this);
+  }
+
+  /// <summary>Field number for the "time" field.</summary>
+  public const int TimeFieldNumber = 1;
+  private uint time_;
+  /// <summary>
+  /// 时间戳
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Time {
+    get { return time_; }
+    set {
+      time_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as add_order_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(add_order_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Time != other.Time) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Time != 0) hash ^= Time.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Time != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Time);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Time != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Time);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(add_order_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Time != 0) {
+      Time = other.Time;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Time = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 返回增加预约成功的消息
+/// </summary>
+public sealed partial class add_order_toc : pb::IMessage<add_order_toc> {
+  private static readonly pb::MessageParser<add_order_toc> _parser = new pb::MessageParser<add_order_toc>(() => new add_order_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<add_order_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public add_order_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public add_order_toc(add_order_toc other) : this() {
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public add_order_toc Clone() {
+    return new add_order_toc(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as add_order_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(add_order_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(add_order_toc other) {
+    if (other == null) {
+      return;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+      }
+    }
+  }
+
+}
+
+public sealed partial class pb_order : pb::IMessage<pb_order> {
+  private static readonly pb::MessageParser<pb_order> _parser = new pb::MessageParser<pb_order>(() => new pb_order());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<pb_order> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[2]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb_order() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb_order(pb_order other) : this() {
+    id_ = other.id_;
+    time_ = other.time_;
+    name_ = other.name_;
+    isMine_ = other.isMine_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pb_order Clone() {
+    return new pb_order(this);
+  }
+
+  /// <summary>Field number for the "id" field.</summary>
+  public const int IdFieldNumber = 1;
+  private uint id_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Id {
+    get { return id_; }
+    set {
+      id_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "time" field.</summary>
+  public const int TimeFieldNumber = 2;
+  private ulong time_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public ulong Time {
+    get { return time_; }
+    set {
+      time_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "name" field.</summary>
+  public const int NameFieldNumber = 3;
+  private string name_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Name {
+    get { return name_; }
+    set {
+      name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "is_mine" field.</summary>
+  public const int IsMineFieldNumber = 4;
+  private bool isMine_;
+  /// <summary>
+  /// 是不是我的，是就可以删除
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool IsMine {
+    get { return isMine_; }
+    set {
+      isMine_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as pb_order);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(pb_order other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Id != other.Id) return false;
+    if (Time != other.Time) return false;
+    if (Name != other.Name) return false;
+    if (IsMine != other.IsMine) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Id != 0) hash ^= Id.GetHashCode();
+    if (Time != 0UL) hash ^= Time.GetHashCode();
+    if (Name.Length != 0) hash ^= Name.GetHashCode();
+    if (IsMine != false) hash ^= IsMine.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Id != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Id);
+    }
+    if (Time != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Time);
+    }
+    if (Name.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Name);
+    }
+    if (IsMine != false) {
+      output.WriteRawTag(32);
+      output.WriteBool(IsMine);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Id != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
+    }
+    if (Time != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Time);
+    }
+    if (Name.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+    }
+    if (IsMine != false) {
+      size += 1 + 1;
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb_order other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Id != 0) {
+      Id = other.Id;
+    }
+    if (other.Time != 0UL) {
+      Time = other.Time;
+    }
+    if (other.Name.Length != 0) {
+      Name = other.Name;
+    }
+    if (other.IsMine != false) {
+      IsMine = other.IsMine;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Id = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Time = input.ReadUInt64();
+          break;
+        }
+        case 26: {
+          Name = input.ReadString();
+          break;
+        }
+        case 32: {
+          IsMine = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 请求获取所有预约
+/// </summary>
+public sealed partial class get_orders_tos : pb::IMessage<get_orders_tos> {
+  private static readonly pb::MessageParser<get_orders_tos> _parser = new pb::MessageParser<get_orders_tos>(() => new get_orders_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<get_orders_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public get_orders_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public get_orders_tos(get_orders_tos other) : this() {
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public get_orders_tos Clone() {
+    return new get_orders_tos(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as get_orders_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(get_orders_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(get_orders_tos other) {
+    if (other == null) {
+      return;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 返回获取预约
+/// </summary>
+public sealed partial class get_orders_toc : pb::IMessage<get_orders_toc> {
+  private static readonly pb::MessageParser<get_orders_toc> _parser = new pb::MessageParser<get_orders_toc>(() => new get_orders_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<get_orders_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[4]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public get_orders_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public get_orders_toc(get_orders_toc other) : this() {
+    orders_ = other.orders_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public get_orders_toc Clone() {
+    return new get_orders_toc(this);
+  }
+
+  /// <summary>Field number for the "orders" field.</summary>
+  public const int OrdersFieldNumber = 1;
+  private static readonly pb::FieldCodec<global::pb_order> _repeated_orders_codec
+      = pb::FieldCodec.ForMessage(10, global::pb_order.Parser);
+  private readonly pbc::RepeatedField<global::pb_order> orders_ = new pbc::RepeatedField<global::pb_order>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::pb_order> Orders {
+    get { return orders_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as get_orders_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(get_orders_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if(!orders_.Equals(other.orders_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= orders_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    orders_.WriteTo(output, _repeated_orders_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += orders_.CalculateSize(_repeated_orders_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(get_orders_toc other) {
+    if (other == null) {
+      return;
+    }
+    orders_.Add(other.orders_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10: {
+          orders_.AddEntriesFrom(input, _repeated_orders_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 请求删除预约
+/// </summary>
+public sealed partial class remove_order_tos : pb::IMessage<remove_order_tos> {
+  private static readonly pb::MessageParser<remove_order_tos> _parser = new pb::MessageParser<remove_order_tos>(() => new remove_order_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<remove_order_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[5]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public remove_order_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public remove_order_tos(remove_order_tos other) : this() {
+    id_ = other.id_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public remove_order_tos Clone() {
+    return new remove_order_tos(this);
+  }
+
+  /// <summary>Field number for the "id" field.</summary>
+  public const int IdFieldNumber = 1;
+  private uint id_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Id {
+    get { return id_; }
+    set {
+      id_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as remove_order_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(remove_order_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Id != other.Id) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Id != 0) hash ^= Id.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Id != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Id);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Id != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(remove_order_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Id != 0) {
+      Id = other.Id;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Id = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 返回删除预约成功的消息
+/// </summary>
+public sealed partial class remove_order_toc : pb::IMessage<remove_order_toc> {
+  private static readonly pb::MessageParser<remove_order_toc> _parser = new pb::MessageParser<remove_order_toc>(() => new remove_order_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<remove_order_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[6]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public remove_order_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public remove_order_toc(remove_order_toc other) : this() {
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public remove_order_toc Clone() {
+    return new remove_order_toc(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as remove_order_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(remove_order_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(remove_order_toc other) {
+    if (other == null) {
+      return;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+      }
+    }
+  }
+
+}
+
+/// <summary>
 /// 心跳：客户端发给服务器
 /// </summary>
 public sealed partial class heart_tos : pb::IMessage<heart_tos> {
@@ -223,7 +1153,7 @@ public sealed partial class heart_tos : pb::IMessage<heart_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[0]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -327,7 +1257,7 @@ public sealed partial class heart_toc : pb::IMessage<heart_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[1]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -462,7 +1392,7 @@ public sealed partial class add_one_position_tos : pb::IMessage<add_one_position
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[2]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -566,7 +1496,7 @@ public sealed partial class add_one_position_toc : pb::IMessage<add_one_position
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[3]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[10]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -670,7 +1600,7 @@ public sealed partial class remove_one_position_tos : pb::IMessage<remove_one_po
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[4]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -774,7 +1704,7 @@ public sealed partial class remove_one_position_toc : pb::IMessage<remove_one_po
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[5]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -909,7 +1839,7 @@ public sealed partial class display_record_tos : pb::IMessage<display_record_tos
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[6]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1075,7 +2005,7 @@ public sealed partial class display_record_end_toc : pb::IMessage<display_record
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[7]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[14]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1179,7 +2109,7 @@ public sealed partial class save_record_success_toc : pb::IMessage<save_record_s
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[8]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[15]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1311,7 +2241,7 @@ public sealed partial class join_room_tos : pb::IMessage<join_room_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[9]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[16]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1508,7 +2438,7 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[10]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[17]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1529,7 +2459,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
     myPosition_ = other.myPosition_;
     onlineCount_ = other.onlineCount_;
     winCounts_ = other.winCounts_.Clone();
-    gameCounts_ = other.gameCounts_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1589,19 +2518,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
     get { return winCounts_; }
   }
 
-  /// <summary>Field number for the "game_counts" field.</summary>
-  public const int GameCountsFieldNumber = 5;
-  private static readonly pb::FieldCodec<uint> _repeated_gameCounts_codec
-      = pb::FieldCodec.ForUInt32(42);
-  private readonly pbc::RepeatedField<uint> gameCounts_ = new pbc::RepeatedField<uint>();
-  /// <summary>
-  /// 所有人的总场数
-  /// </summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<uint> GameCounts {
-    get { return gameCounts_; }
-  }
-
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as get_room_info_toc);
@@ -1619,7 +2535,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
     if (MyPosition != other.MyPosition) return false;
     if (OnlineCount != other.OnlineCount) return false;
     if(!winCounts_.Equals(other.winCounts_)) return false;
-    if(!gameCounts_.Equals(other.gameCounts_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1630,7 +2545,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
     if (MyPosition != 0) hash ^= MyPosition.GetHashCode();
     if (OnlineCount != 0) hash ^= OnlineCount.GetHashCode();
     hash ^= winCounts_.GetHashCode();
-    hash ^= gameCounts_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1654,7 +2568,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
       output.WriteUInt32(OnlineCount);
     }
     winCounts_.WriteTo(output, _repeated_winCounts_codec);
-    gameCounts_.WriteTo(output, _repeated_gameCounts_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -1671,7 +2584,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OnlineCount);
     }
     size += winCounts_.CalculateSize(_repeated_winCounts_codec);
-    size += gameCounts_.CalculateSize(_repeated_gameCounts_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -1691,7 +2603,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
       OnlineCount = other.OnlineCount;
     }
     winCounts_.Add(other.winCounts_);
-    gameCounts_.Add(other.gameCounts_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -1720,11 +2631,6 @@ public sealed partial class get_room_info_toc : pb::IMessage<get_room_info_toc> 
           winCounts_.AddEntriesFrom(input, _repeated_winCounts_codec);
           break;
         }
-        case 42:
-        case 40: {
-          gameCounts_.AddEntriesFrom(input, _repeated_gameCounts_codec);
-          break;
-        }
       }
     }
   }
@@ -1742,7 +2648,7 @@ public sealed partial class add_robot_tos : pb::IMessage<add_robot_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[11]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[18]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1846,7 +2752,7 @@ public sealed partial class remove_robot_tos : pb::IMessage<remove_robot_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[12]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[19]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1950,7 +2856,7 @@ public sealed partial class join_room_toc : pb::IMessage<join_room_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[13]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[20]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2166,7 +3072,7 @@ public sealed partial class leave_room_toc : pb::IMessage<leave_room_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[14]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[21]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2298,7 +3204,7 @@ public sealed partial class wait_for_select_role_toc : pb::IMessage<wait_for_sel
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[15]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[22]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2550,7 +3456,7 @@ public sealed partial class auto_play_tos : pb::IMessage<auto_play_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[16]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[23]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2682,7 +3588,7 @@ public sealed partial class auto_play_toc : pb::IMessage<auto_play_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[17]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[24]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2814,7 +3720,7 @@ public sealed partial class select_role_tos : pb::IMessage<select_role_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[18]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[25]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2946,7 +3852,7 @@ public sealed partial class select_role_toc : pb::IMessage<select_role_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[19]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[26]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3078,7 +3984,7 @@ public sealed partial class init_toc : pb::IMessage<init_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[20]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[27]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3322,7 +4228,7 @@ public sealed partial class notify_role_update_toc : pb::IMessage<notify_role_up
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[21]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[28]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3485,7 +4391,7 @@ public sealed partial class add_card_toc : pb::IMessage<add_card_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[22]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[29]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3674,7 +4580,7 @@ public sealed partial class use_shi_tan_tos : pb::IMessage<use_shi_tan_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[23]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[30]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3865,7 +4771,7 @@ public sealed partial class use_shi_tan_toc : pb::IMessage<use_shi_tan_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[24]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[31]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4062,7 +4968,7 @@ public sealed partial class show_shi_tan_toc : pb::IMessage<show_shi_tan_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[25]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[32]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4324,7 +5230,7 @@ public sealed partial class execute_shi_tan_tos : pb::IMessage<execute_shi_tan_t
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[26]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[33]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4477,7 +5383,7 @@ public sealed partial class execute_shi_tan_toc : pb::IMessage<execute_shi_tan_t
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[27]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[34]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4643,7 +5549,7 @@ public sealed partial class sync_deck_num_toc : pb::IMessage<sync_deck_num_toc> 
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[28]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[35]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4809,7 +5715,7 @@ public sealed partial class discard_card_toc : pb::IMessage<discard_card_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[29]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[36]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4961,7 +5867,7 @@ public sealed partial class notify_phase_toc : pb::IMessage<notify_phase_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[30]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[37]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5319,7 +6225,7 @@ public sealed partial class end_main_phase_tos : pb::IMessage<end_main_phase_tos
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[31]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[38]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5451,7 +6357,7 @@ public sealed partial class use_li_you_tos : pb::IMessage<use_li_you_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[32]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[39]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5642,7 +6548,7 @@ public sealed partial class use_li_you_toc : pb::IMessage<use_li_you_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[33]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[40]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5913,7 +6819,7 @@ public sealed partial class use_ping_heng_tos : pb::IMessage<use_ping_heng_tos> 
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[34]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[41]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6104,7 +7010,7 @@ public sealed partial class use_ping_heng_toc : pb::IMessage<use_ping_heng_toc> 
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[35]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[42]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6307,7 +7213,7 @@ public sealed partial class use_wei_bi_tos : pb::IMessage<use_wei_bi_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[36]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[43]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6529,7 +7435,7 @@ public sealed partial class wei_bi_wait_for_give_card_toc : pb::IMessage<wei_bi_
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[37]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[44]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6816,7 +7722,7 @@ public sealed partial class wei_bi_give_card_tos : pb::IMessage<wei_bi_give_card
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[38]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[45]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6979,7 +7885,7 @@ public sealed partial class wei_bi_give_card_toc : pb::IMessage<wei_bi_give_card
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[39]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[46]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7176,7 +8082,7 @@ public sealed partial class wei_bi_show_hand_card_toc : pb::IMessage<wei_bi_show
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[40]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[47]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7427,7 +8333,7 @@ public sealed partial class use_cheng_qing_tos : pb::IMessage<use_cheng_qing_tos
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[41]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[48]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7646,7 +8552,7 @@ public sealed partial class use_cheng_qing_toc : pb::IMessage<use_cheng_qing_toc
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[42]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[49]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7868,7 +8774,7 @@ public sealed partial class send_message_card_tos : pb::IMessage<send_message_ca
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[43]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[50]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8105,7 +9011,7 @@ public sealed partial class send_message_card_toc : pb::IMessage<send_message_ca
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[44]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[51]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8357,7 +9263,7 @@ public sealed partial class choose_whether_receive_tos : pb::IMessage<choose_whe
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[45]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[52]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8517,7 +9423,7 @@ public sealed partial class choose_receive_toc : pb::IMessage<choose_receive_toc
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[46]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[53]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8652,7 +9558,7 @@ public sealed partial class end_fight_phase_tos : pb::IMessage<end_fight_phase_t
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[47]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[54]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8784,7 +9690,7 @@ public sealed partial class notify_dying_toc : pb::IMessage<notify_dying_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[48]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[55]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8947,7 +9853,7 @@ public sealed partial class notify_die_toc : pb::IMessage<notify_die_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[49]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[56]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9079,7 +9985,7 @@ public sealed partial class notify_winner_toc : pb::IMessage<notify_winner_toc> 
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[50]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[57]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9273,7 +10179,7 @@ public sealed partial class wait_for_cheng_qing_toc : pb::IMessage<wait_for_chen
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[51]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[58]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9498,7 +10404,7 @@ public sealed partial class cheng_qing_save_die_tos : pb::IMessage<cheng_qing_sa
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[52]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[59]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9723,7 +10629,7 @@ public sealed partial class wait_for_die_give_card_toc : pb::IMessage<wait_for_d
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[53]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[60]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9911,7 +10817,7 @@ public sealed partial class die_give_card_tos : pb::IMessage<die_give_card_tos> 
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[54]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[61]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10095,7 +11001,7 @@ public sealed partial class notify_die_give_card_toc : pb::IMessage<notify_die_g
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[55]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[62]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10312,7 +11218,7 @@ public sealed partial class use_po_yi_tos : pb::IMessage<use_po_yi_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[56]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[63]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10475,7 +11381,7 @@ public sealed partial class use_po_yi_toc : pb::IMessage<use_po_yi_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[57]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[64]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10737,7 +11643,7 @@ public sealed partial class po_yi_show_tos : pb::IMessage<po_yi_show_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[58]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[65]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10897,7 +11803,7 @@ public sealed partial class po_yi_show_toc : pb::IMessage<po_yi_show_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[59]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[66]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11100,7 +12006,7 @@ public sealed partial class use_jie_huo_tos : pb::IMessage<use_jie_huo_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[60]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[67]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11263,7 +12169,7 @@ public sealed partial class use_jie_huo_toc : pb::IMessage<use_jie_huo_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[61]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[68]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11435,7 +12341,7 @@ public sealed partial class use_diao_bao_tos : pb::IMessage<use_diao_bao_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[62]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[69]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11598,7 +12504,7 @@ public sealed partial class use_diao_bao_toc : pb::IMessage<use_diao_bao_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[63]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[70]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11801,7 +12707,7 @@ public sealed partial class use_wu_dao_tos : pb::IMessage<use_wu_dao_tos> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[64]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[71]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11995,7 +12901,7 @@ public sealed partial class use_wu_dao_toc : pb::IMessage<use_wu_dao_toc> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[65]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[72]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12198,7 +13104,7 @@ public sealed partial class end_receive_phase_tos : pb::IMessage<end_receive_pha
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::FengshengReflection.Descriptor.MessageTypes[66]; }
+    get { return global::FengshengReflection.Descriptor.MessageTypes[73]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

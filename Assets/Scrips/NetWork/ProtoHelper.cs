@@ -820,10 +820,10 @@ public static class ProtoHelper
             {
                 winCounts.Add(winCount);
             }
-            foreach (var winCount in get_Room_Info_Toc.GameCounts)
-            {
-                allCounts.Add(winCount);
-            }
+            //foreach (var winCount in get_Room_Info_Toc.GameCounts)
+            //{
+            //    allCounts.Add(winCount);
+            //}
 
             GameManager.Singleton.OnReceiveRoomInfo(names, (int)get_Room_Info_Toc.MyPosition, winCounts, allCounts);
             GameManager.Singleton.roomUI.SetOnlineCount((int)get_Room_Info_Toc.OnlineCount);
