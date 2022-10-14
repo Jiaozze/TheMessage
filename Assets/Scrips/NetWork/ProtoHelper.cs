@@ -715,6 +715,41 @@ public static class ProtoHelper
                 UserSkill_BoAi.OnReceiveUseB(playerId, targetId, cards, 1);
             }
         }
+        // 广播使用【广发报】A
+        else if (GetIdFromProtoName("skill_guang_fa_bao_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_guang_fa_bao_a_toc");
+            skill_guang_fa_bao_a_toc skill_guang_fa_bao_a_toc = skill_guang_fa_bao_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_guang_fa_bao_a_toc.PlayerId;
+            UserSkill_GuangFaBao.OnReceiveUseA(playerId);
+        }
+        //广播询问客户端使用【广发报】B
+        else if (GetIdFromProtoName("skill_wait_for_guang_fa_bao_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_guang_fa_bao_b_toc");
+            skill_wait_for_guang_fa_bao_b_toc skill_wait_for_guang_fa_bao_b_toc = skill_wait_for_guang_fa_bao_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_wait_for_guang_fa_bao_b_toc.PlayerId;
+            UserSkill_GuangFaBao.OnReceiveWaitUse(playerId, (int)skill_wait_for_guang_fa_bao_b_toc.WaitingSecond, skill_wait_for_guang_fa_bao_b_toc.Seq);
+        }
+        // 广播使用【广发报】B
+        else if (GetIdFromProtoName("skill_guang_fa_bao_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_guang_fa_bao_b_toc");
+            skill_guang_fa_bao_b_toc skill_wait_for_guang_fa_bao_b_toc = skill_guang_fa_bao_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_wait_for_guang_fa_bao_b_toc.PlayerId;
+            if(skill_wait_for_guang_fa_bao_b_toc.Enable)
+            {
+                foreach (var c in skill_wait_for_guang_fa_bao_b_toc.Cards)
+                {
+                    CardFS card = new CardFS(c);
+                    UserSkill_GuangFaBao.OnReceiveUseB(playerId, skill_wait_for_guang_fa_bao_b_toc.Enable, (int)skill_wait_for_guang_fa_bao_b_toc.TargetPlayerId, card);
+                }
+            }
+            else
+            {
+                UserSkill_GuangFaBao.OnReceiveUseB(playerId, skill_wait_for_guang_fa_bao_b_toc.Enable, (int)skill_wait_for_guang_fa_bao_b_toc.TargetPlayerId, null);
+            }
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -871,7 +906,11 @@ public static class ProtoHelper
             }
             GameManager.Singleton.roomUI.OnReceiveOrder(orders);
         }
+        //返回增加预约成功的消息
+        else if (GetIdFromProtoName("add_order_toc") == id)
+        {
 
+        }
         //通知客户端录像存好了
         else if (GetIdFromProtoName("save_record_success_toc") == id)
         {
@@ -1136,6 +1175,27 @@ public static class ProtoHelper
         end_receive_phase_tos end_Receive_Phase_Tos = new end_receive_phase_tos() { Seq = seq };
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
+    }
+    // 小九【广发报】A：争夺阶段，你可以翻开此角色牌，然后摸三张牌。
+    // 小九【广发报】B：并且你可以将你的任意张手牌置入任意名角色的情报区。你不能通过此技能让任何角色收集三张或更多的同色情报。
+    public static void SendSkill_GuangFaBaoA(uint seq)
+    {
+        Debug.Log("____send___________________ skill_guang_fa_bao_a_tos, seq:" + seq);
+
+        skill_guang_fa_bao_a_tos skill_guang_fa_bao_a_tos = new skill_guang_fa_bao_a_tos() { Seq = seq };
+        byte[] proto = skill_guang_fa_bao_a_tos.ToByteArray();
+        SendProto("skill_guang_fa_bao_a_tos", proto);
+
+    }
+    public static void SendSkill_GuangFaBaoB(bool enable, int cardId, int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_guang_fa_bao_b_tos, seq:" + seq);
+
+        skill_guang_fa_bao_b_tos skill_guang_fa_bao_b_tos = new skill_guang_fa_bao_b_tos() { Enable = enable,TargetPlayerId = (uint)playerId,  Seq = seq };
+        skill_guang_fa_bao_b_tos.CardIds.Add((uint)cardId);
+        byte[] proto = skill_guang_fa_bao_b_tos.ToByteArray();
+        SendProto("skill_guang_fa_bao_b_tos", proto);
+
     }
     // 白沧浪【博爱】A：出牌阶段限一次，你可以摸一张牌。
     // 白沧浪【博爱】B：然后可以将一张手牌交给另一名角色，若交给了女性角色，则你再摸一张牌。
@@ -1549,15 +1609,15 @@ public static class ProtoHelper
         SendProto("add_order_tos", proto);
     }
 
-    public static void SendRemoveOrder(uint id)
-    {
-        Debug.Log("____send___________________ remove_order_tos");
+    //public static void SendRemoveOrder(uint id)
+    //{
+    //    Debug.Log("____send___________________ remove_order_tos");
 
-        remove_order_tos remove_order_tos = new remove_order_tos() { Id = id  };
-        byte[] proto = remove_order_tos.ToByteArray();
-        SendProto("remove_order_tos", proto);
+    //    remove_order_tos remove_order_tos = new remove_order_tos() { Id = id  };
+    //    byte[] proto = remove_order_tos.ToByteArray();
+    //    SendProto("remove_order_tos", proto);
 
-    }
+    //}
     public static void SendHeart()
     {
         Debug.Log("heart_tos");
