@@ -220,7 +220,7 @@ public class UserSkill_GuangFaBao : SkillBase
             UserSkill_GuangFaBao skill_GuangFaBao = GameManager.Singleton.selectSkill as UserSkill_GuangFaBao;
             skill_GuangFaBao.selectCardId = 0;
         }
-        string s = string.Format("{0}使用了技能移花接木,将{1}置入{2}情报区", GameManager.Singleton.players[playerId].name, card.GetCardInfo(), GameManager.Singleton.players[targetPlayerId].name);
+        string s = string.Format("{0}使用了技能广发报,将{1}置入{2}情报区", GameManager.Singleton.players[playerId].name, card.GetCardInfo(), GameManager.Singleton.players[targetPlayerId].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
         GameManager.Singleton.gameUI.AddMsg(s);
 
