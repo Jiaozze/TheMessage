@@ -107,7 +107,12 @@ public class UserSkill_YingBian : SkillBase
     }
     public override void Use()
     {
-        if(selectCardId > 0 && selectPlayerId > -1)
+        if(UserSkill_QiangLing.cardTypes.Contains(CardNameEnum.WuDao))
+        {
+            GameManager.Singleton.gameUI.ShowInfo("被强令禁用的卡牌无法使用");
+            return;
+        }
+        if (selectCardId > 0 && selectPlayerId > -1)
         {
             ProtoHelper.SendUseCardMessage_WuDao(selectCardId, selectPlayerId, GameManager.Singleton.seqId);
         }

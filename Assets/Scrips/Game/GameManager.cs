@@ -596,6 +596,8 @@ public class GameManager
                     skill.OnTurnEnd();
                 }
             }
+            UserSkill_QiangLing.cardTypes.Clear();
+            gameUI.RefreshQiangLingInfo();
         }
         if (phase == PhaseEnum.Send_Start_Phase)
         {
@@ -1247,6 +1249,7 @@ public class GameManager
             if (curPhase == PhaseEnum.Main_Phase)
             {
                 CardNameEnum card = cardsHand[SelectCardId].cardName;
+
                 switch (card)
                 {
                     //使用试探

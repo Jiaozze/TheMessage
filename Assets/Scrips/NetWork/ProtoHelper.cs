@@ -750,6 +750,29 @@ public static class ProtoHelper
                 UserSkill_GuangFaBao.OnReceiveUseB(playerId, skill_wait_for_guang_fa_bao_b_toc.Enable, (int)skill_wait_for_guang_fa_bao_b_toc.TargetPlayerId, null);
             }
         }
+        // 广播询问客户端使用【强令】
+        else if (GetIdFromProtoName("skill_wait_for_qiang_ling_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_qiang_ling_toc");
+            skill_wait_for_qiang_ling_toc skill_wait_for_qiang_ling_toc = skill_wait_for_qiang_ling_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_wait_for_qiang_ling_toc.PlayerId;
+            UserSkill_QiangLing.OnReceiveWaitUse(playerId, (int)skill_wait_for_qiang_ling_toc.WaitingSecond, skill_wait_for_qiang_ling_toc.Seq);
+        }
+        // 广播使用【强令】，不发动就没有这条协议
+        else if (GetIdFromProtoName("skill_qiang_ling_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_qiang_ling_toc");
+            skill_qiang_ling_toc skill_qiang_ling_toc = skill_qiang_ling_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_qiang_ling_toc.PlayerId;
+            List<CardNameEnum> cards = new List<CardNameEnum>();
+            foreach(var type in skill_qiang_ling_toc.Types_)
+            {
+                cards.Add((CardNameEnum)type);
+            }
+            Debug.LogError(skill_qiang_ling_toc.Types_.Count);
+
+            UserSkill_QiangLing.OnReceiveUse(playerId, cards);
+        }
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -1176,6 +1199,20 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 张一挺【强令】：你传出情报后，或你决定接收情报后，可以宣言至多两个卡牌名称。本回合中，所有角色均不能使用被宣言的卡牌。
+    public static void SendSkill_QiangLing(bool enable, List<CardNameEnum> cardTypes, uint seq)
+    {
+        Debug.Log("____send___________________ skill_qiang_ling_tos, seq:" + seq);
+
+        skill_qiang_ling_tos skill_qiang_ling_tos = new skill_qiang_ling_tos() { Enable = enable, Seq = seq };
+        foreach(var name in cardTypes)
+        {
+            skill_qiang_ling_tos.Types_.Add((card_type)name);
+        }
+        byte[] proto = skill_qiang_ling_tos.ToByteArray();
+        SendProto("skill_qiang_ling_tos", proto);
+    }
+
     // 小九【广发报】A：争夺阶段，你可以翻开此角色牌，然后摸三张牌。
     // 小九【广发报】B：并且你可以将你的任意张手牌置入任意名角色的情报区。你不能通过此技能让任何角色收集三张或更多的同色情报。
     public static void SendSkill_GuangFaBaoA(uint seq)

@@ -15,6 +15,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public Text textTask;
 
+    public Text QiangLingInfo;
+
     public PoYiResult poYiResult;
 
     public ShiTanInfo shiTanInfo;
@@ -30,6 +32,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     public WinInfo winInfo;
 
     public RoleSelect roleSelect;
+
+    public QiangLingSelect QiangLingSelect;
 
     public UIPlayer itemPlayerUI;
 
@@ -89,6 +93,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        QiangLingSelect.gameObject.SetActive(false);
         roleSelect.gameObject.SetActive(false);
         goDesInfo.SetActive(false);
         directSelect.gameObject.SetActive(false);
@@ -490,6 +495,12 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         if (GameManager.Singleton.IsWaitGiveCard)
         {
             GameManager.Singleton.SendDieGiveCards();
+            return;
+        }
+
+        if (GameManager.Singleton.GetCardSelect() != null && UserSkill_QiangLing.cardTypes.Contains(GameManager.Singleton.GetCardSelect().cardName))
+        {
+            GameManager.Singleton.gameUI.ShowInfo("被强令禁用的卡牌无法使用");
             return;
         }
 
@@ -1223,4 +1234,25 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         ProtoHelper.SendTuoGuan(!GameManager.Singleton.isTuoGuan);
     }
 
+    public void ShowQiangLingSelect(bool show)
+    {
+        QiangLingSelect.gameObject.SetActive(show);
+    }
+
+    public void RefreshQiangLingInfo()
+    {
+        if(UserSkill_QiangLing.cardTypes.Count > 0)
+        {
+            string s = "强令禁用卡牌：";
+            foreach(var card in UserSkill_QiangLing.cardTypes)
+            {
+                s += LanguageUtils.GetCardName(card) + " ";
+            }
+            QiangLingInfo.text = s;
+        }
+        else
+        {
+            QiangLingInfo.text = "";
+        }
+    }
 }
