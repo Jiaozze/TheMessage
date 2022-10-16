@@ -769,7 +769,6 @@ public static class ProtoHelper
             {
                 cards.Add((CardNameEnum)type);
             }
-            Debug.LogError(skill_qiang_ling_toc.Types_.Count);
 
             UserSkill_QiangLing.OnReceiveUse(playerId, cards);
         }
