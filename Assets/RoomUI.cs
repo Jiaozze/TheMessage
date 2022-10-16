@@ -20,6 +20,7 @@ public class RoomUI : MonoBehaviour
     public Text textOrder;
     public RectTransform content;
     public RectTransform rectText;
+    public Text textInfo;
 
     private List<GameObject> items = new List<GameObject>();
 
@@ -28,6 +29,7 @@ public class RoomUI : MonoBehaviour
         playerName.text = PlayerPrefs.GetString("PlayerName", "");
         GameManager.Singleton.Init();
         goRoomItem.SetActive(false);
+        textInfo.text = "";
     }
 
     private void Update()
@@ -105,6 +107,7 @@ public class RoomUI : MonoBehaviour
                 //uint p = allCounts[i] > 0 ? winCounts[i] * 1000 / allCounts[i] : 0;
                 //float f = (float)p / 10;
                 go.transform.Find("WinInfo").GetComponent<Text>().text = "" + " 胜场：" + winCounts[i]; // + " 总场数：" + gameCount;
+                textInfo.text += names[i] + "加入房间\n";
             }
             else
             {
@@ -122,12 +125,14 @@ public class RoomUI : MonoBehaviour
         //uint p = gameCount > 0 ? winCount * 1000 / gameCount : 0;
         //float f = (float)p / 10;
         items[index].transform.Find("WinInfo").GetComponent<Text>().text = "" + " 胜场：" + winCount; // + " 总场数：" + gameCount;
+        textInfo.text += name + "加入房间\n";
     }
 
     public void OnPlayerLeave(int index)
     {
         items[index].transform.Find("Text").GetComponent<Text>().text = "";
         items[index].transform.Find("WinInfo").GetComponent<Text>().text = "";
+        textInfo.text += name + "离开房间\n";
     }
 
     public void OnAddPositon()
