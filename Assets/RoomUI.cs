@@ -130,6 +130,7 @@ public class RoomUI : MonoBehaviour
 
     public void OnPlayerLeave(int index)
     {
+        string name = items[index].transform.Find("Text").GetComponent<Text>().text;
         items[index].transform.Find("Text").GetComponent<Text>().text = "";
         items[index].transform.Find("WinInfo").GetComponent<Text>().text = "";
         textInfo.text += name + "Àë¿ª·¿¼ä\n";
