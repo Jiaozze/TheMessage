@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
     public AudioSource musicAudio;
     public AudioSource soundAudio;
+    public Toggle toggleMusic;
     private static SoundManager soundManager;
 
     private void Awake()
@@ -15,6 +17,14 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int isOn = PlayerPrefs.GetInt("music", 1);
+        musicAudio.enabled = isOn == 1;
+        toggleMusic.isOn = isOn == 1;
+    }
+
+    public void SaveState(bool isOn)
+    {
+        PlayerPrefs.SetInt("music", isOn ? 1 : 0);
     }
 
     public static void Play()
