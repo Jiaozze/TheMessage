@@ -436,9 +436,9 @@ public class GameManager
         gameUI.InitPlayers(playerCount);
         gameUI.ShowChooseRole(playerColor, secretTask, roles, playerCount);
         OnWait(SelfPlayerId, waitingSecond);
-        
+
     }
-    public  void OnReceiveChooseRoleSuccess(role role)
+    public void OnReceiveChooseRoleSuccess(role role)
     {
         gameUI.roleSelect.OnRoleSelect(role);
     }
@@ -447,7 +447,7 @@ public class GameManager
     public void OnReceiveGameStart(int player_num, PlayerColorEnum playerColor, SecretTaskEnum secretTask, List<RoleBase> roles, List<string> names)
     {
         gameUI.gameObject.SetActive(true);
-        roomUI.gameObject.SetActive(false); 
+        roomUI.gameObject.SetActive(false);
         gameUI.HideChooseRole();
 
         task = secretTask;
@@ -480,7 +480,7 @@ public class GameManager
         //SetDeckNum(DeckNum);
         int total = players[SelfPlayerId].DrawCard(cards.Count);
         gameUI.DrawCards(cards);
-        if (gameUI.Players[SelfPlayerId] != null) gameUI.Players[SelfPlayerId].OnDrawCard(total, cards.Count);
+        if (gameUI.Players[SelfPlayerId] != null) gameUI.Players[SelfPlayerId].OnDrawCard(cards.Count);
         gameUI.AddMsg(string.Format("你摸了{0}张牌; {1}", cards.Count, cardInfo));
 
     }
@@ -521,7 +521,7 @@ public class GameManager
         int total = players[id].DrawCard(num);
         if (gameUI.Players[id] != null)
         {
-            gameUI.Players[id].OnDrawCard(total, num);
+            gameUI.Players[id].OnDrawCard(num);
         }
         gameUI.AddMsg(string.Format("{0}摸了{1}张牌", GameManager.Singleton.players[id].name, num));
     }
@@ -536,7 +536,7 @@ public class GameManager
     public void OnReceiveTurn(int playerId, int messagePlayerId, int waitingPlayerId, PhaseEnum phase, int waitSecond, DirectionEnum messageCardDir, CardFS message, uint seqId)
     {
         //Debug.Log(" playerId " + playerId + " messagePlayerId " + messagePlayerId + " waitingPlayerId " + waitingPlayerId + " phase " + phase.ToString());
-        if(IsUsingSkill || selectSkill != null)
+        if (IsUsingSkill || selectSkill != null)
         {
             IsUsingSkill = false;
             selectSkill.Cancel();
@@ -602,7 +602,7 @@ public class GameManager
         if (phase == PhaseEnum.Send_Start_Phase)
         {
             gameUI.InitMessageSenderPos(playerId);
-            if(CurTurnPlayerId == SelfPlayerId)
+            if (CurTurnPlayerId == SelfPlayerId)
             {
                 gameUI.CheckTargetAvailable();
             }
@@ -633,7 +633,7 @@ public class GameManager
             messageReceived = message;
             if (waitSecond == 0)
             {
-                if(players[messagePlayerId].alive)
+                if (players[messagePlayerId].alive)
                 {
                     players[messagePlayerId].AddMessage(message);
                     gameUI.ShowAddMessage(messagePlayerId, message, true);
@@ -657,7 +657,7 @@ public class GameManager
 
     public void OnReceiveUseWuDao(int user, int target, CardFS cardUsed)
     {
-        if(cardUsed!=null && cardUsed.cardName != CardNameEnum.WuDao)
+        if (cardUsed != null && cardUsed.cardName != CardNameEnum.WuDao)
         {
             OnCardUse(user, cardUsed, target, CardNameEnum.WuDao);
         }
@@ -1119,14 +1119,19 @@ public class GameManager
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
             }
             gameUI.DrawCards(cards);
-        } else  if (SelfPlayerId == playerId) {
+        }
+        else if (SelfPlayerId == playerId)
+        {
             foreach (var cardGiven in cards)
             {
                 cardsHand.Remove(cardGiven.id);
                 cardsInfo += LanguageUtils.GetCardName(cardGiven.cardName) + " ";
             }
-        } else {
-            for(int i=0 ;i < cardCount; i++){
+        }
+        else
+        {
+            for (int i = 0; i < cardCount; i++)
+            {
                 cards.Add(new CardFS(null));
             }
         }
@@ -1190,11 +1195,15 @@ public class GameManager
         seqId = seq;
         OnWait(userId, waitingSeconds);
 
-        if(diePlayerId == 0){
+        if (diePlayerId == 0)
+        {
             gameUI.ShowCardsMove(diePlayerId, userId, cardsHand.Values.ToList());
-        }else{
+        }
+        else
+        {
             List<CardFS> unknownCards = new List<CardFS>();
-            for(int i=0 ;i < players[diePlayerId].cardCount; i++){
+            for (int i = 0; i < players[diePlayerId].cardCount; i++)
+            {
                 unknownCards.Add(new CardFS(null));
             }
             gameUI.ShowCardsMove(diePlayerId, userId, unknownCards);
@@ -1346,7 +1355,7 @@ public class GameManager
                 }
 
                 DirectionEnum direction = cardsHand[SelectCardId].direction;
-                if(players[SelfPlayerId].role is Role_LaoBie)
+                if (players[SelfPlayerId].role is Role_LaoBie)
                 {
                     var role = players[SelfPlayerId].role as Role_LaoBie;
                     direction = role.direction;

@@ -136,7 +136,7 @@ public class UIPlayer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
     }
-    public void OnDrawCard(int totalCount, int count)
+    public void OnDrawCard(int count)
     {
         textCardCount.text = "" + GameManager.Singleton.players[playerId].cardCount;
         if (playerId != GameManager.SelfPlayerId)

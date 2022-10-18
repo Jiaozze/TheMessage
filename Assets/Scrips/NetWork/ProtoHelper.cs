@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class ProtoHelper
 {
-    private const uint PROTO_VERSION = 14;
+    private const uint PROTO_VERSION = 15;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //GetIdFromProtoName("wait_for_select_role_toc");
@@ -772,6 +772,26 @@ public static class ProtoHelper
 
             UserSkill_QiangLing.OnReceiveUse(playerId, cards);
         }
+        // 吴志国【坚韧】A：你接收黑色情报后，可以展示牌堆顶的一张牌，若是黑色牌，则将展示的牌加入你的手牌。
+        // 吴志国【坚韧】B：并从一名角色的情报区弃置一张黑色情报。
+        else if (GetIdFromProtoName("skill_jian_ren_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jian_ren_a_toc");
+            skill_jian_ren_a_toc skill_jian_ren_a_toc = skill_jian_ren_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jian_ren_a_toc.PlayerId;
+            CardFS card = new CardFS(skill_jian_ren_a_toc.Card);
+            UserSkill_JianRen.OnReceiveUseA(playerId, card, (int)skill_jian_ren_a_toc.WaitingSecond, skill_jian_ren_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_jian_ren_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jian_ren_b_toc");
+            skill_jian_ren_b_toc skill_jian_ren_b_toc = skill_jian_ren_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jian_ren_b_toc.PlayerId;
+            int targetId = (int)skill_jian_ren_b_toc.TargetPlayerId;
+            int cardId = (int)skill_jian_ren_b_toc.CardId;
+            UserSkill_JianRen.OnReceiveUseB(playerId, cardId, targetId);
+        }
+
 
         #endregion
         // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
@@ -1198,6 +1218,25 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 吴志国【坚韧】A：你接收黑色情报后，可以展示牌堆顶的一张牌，若是黑色牌，则将展示的牌加入你的手牌。
+    // 吴志国【坚韧】B：并从一名角色的情报区弃置一张黑色情报。
+    public static void SendSkill_JianRenA(uint seq)
+    {
+        Debug.Log("____send___________________ skill_jian_ren_a_tos, seq:" + seq);
+
+        skill_jian_ren_a_tos skill_jian_ren_a_tos = new skill_jian_ren_a_tos() { Seq = seq };
+        byte[] proto = skill_jian_ren_a_tos.ToByteArray();
+        SendProto("skill_jian_ren_a_tos", proto);
+    }
+    public static void SendSkill_JianRenB(int playerId, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_miao_bi_qiao_bian_a_tos, seq:" + seq);
+
+        skill_jian_ren_b_tos skill_jian_ren_b_tos = new skill_jian_ren_b_tos() { TargetPlayerId = (uint)playerId, CardId = (uint)cardId, Seq = seq };
+        byte[] proto = skill_jian_ren_b_tos.ToByteArray();
+        SendProto("skill_jian_ren_b_tos", proto);
+    }
+
     // 张一挺【强令】：你传出情报后，或你决定接收情报后，可以宣言至多两个卡牌名称。本回合中，所有角色均不能使用被宣言的卡牌。
     public static void SendSkill_QiangLing(bool enable, List<CardNameEnum> cardTypes, uint seq)
     {

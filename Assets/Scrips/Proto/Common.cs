@@ -25,28 +25,29 @@ public static partial class CommonReflection {
           "Cgxjb21tb24ucHJvdG8ioQEKBGNhcmQSDwoHY2FyZF9pZBgBIAEoDRIaCgpj",
           "YXJkX2NvbG9yGAIgAygOMgYuY29sb3ISHAoIY2FyZF9kaXIYAyABKA4yCi5k",
           "aXJlY3Rpb24SHQoJY2FyZF90eXBlGAQgASgOMgouY2FyZF90eXBlEh0KDXdo",
-          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCrx",
-          "AwoEcm9sZRILCgd1bmtub3duEAASEgoOY2hlbmdfeGlhb19kaWUQAhINCgls",
-          "aWFuX3l1YW4QAxINCgltYW9fYnVfYmEQBBIRCg16aGFuZ195aV90aW5nEAUS",
-          "EQoNYmFpX2NhbmdfbGFuZxAGEhcKE2ZlaV95dWFuX2xvbmdfY2h1YW4QBxIM",
-          "CghwZWlfbGluZxAIEhMKD3dhbmdfdGlhbl94aWFuZxAKEgwKCHdhbmdfa3Vp",
-          "EAwSDwoLYV9mdV9sdW9fbGEQDRILCgdoYW5fbWVpEA4SEgoOemhlbmdfd2Vu",
-          "X3hpYW4QDxIQCgx4dWFuX3FpbmdfemkQEBIMCghndWlfamlhbxAREgwKCHNo",
-          "YW9feGl1EBISEQoNamluX3NoZW5nX2h1bxATEhAKDGd1X3hpYW9fbWVuZxAU",
-          "Eg8KC2JhaV9mZWlfZmVpEBUSEAoMZHVhbl9tdV9qaW5nEBYSDwoLd2FuZ19m",
-          "dV9ndWkQFxILCgdsYW9faGFuEBgSEQoNYmFpX3hpYW9fbmlhbhAZEgsKB2xh",
-          "b19iaWUQGhIMCgh4aWFvX2ppdRAbEg4KCmxpX25pbmdfeXUQHBIMCghzaGFu",
-          "Z195dRAeEhQKD3NwX2d1X3hpYW9fbWVuZxD8BxISCg1zcF9saV9uaW5nX3l1",
-          "EIQIKnEKBXBoYXNlEg4KCkRyYXdfUGhhc2UQABIOCgpNYWluX1BoYXNlEAES",
-          "FAoQU2VuZF9TdGFydF9QaGFzZRACEg4KClNlbmRfUGhhc2UQAxIPCgtGaWdo",
-          "dF9QaGFzZRAEEhEKDVJlY2VpdmVfUGhhc2UQBSqBAQoJY2FyZF90eXBlEg4K",
-          "CkNoZW5nX1FpbmcQABILCgdTaGlfVGFuEAESCgoGV2VpX0JpEAISCgoGTGlf",
-          "WW91EAMSDQoJUGluZ19IZW5nEAQSCQoFUG9fWWkQBRILCgdKaWVfSHVvEAYS",
-          "DAoIRGlhb19CYW8QBxIKCgZXdV9EYW8QCCo6CgVjb2xvchIJCgVCbGFjaxAA",
-          "EgcKA1JlZBABEggKBEJsdWUQAhITCg9IYXNfTm9fSWRlbnRpdHkQAyo1Cgtz",
-          "ZWNyZXRfdGFzaxIKCgZLaWxsZXIQABILCgdTdGVhbGVyEAESDQoJQ29sbGVj",
-          "dG9yEAIqKAoJZGlyZWN0aW9uEgYKAlVwEAASCAoETGVmdBABEgkKBVJpZ2h0",
-          "EAJCFgoUY29tLmZlbmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
+          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCqB",
+          "BAoEcm9sZRILCgd1bmtub3duEAASDgoKd3VfemhpX2d1bxABEhIKDmNoZW5n",
+          "X3hpYW9fZGllEAISDQoJbGlhbl95dWFuEAMSDQoJbWFvX2J1X2JhEAQSEQoN",
+          "emhhbmdfeWlfdGluZxAFEhEKDWJhaV9jYW5nX2xhbmcQBhIXChNmZWlfeXVh",
+          "bl9sb25nX2NodWFuEAcSDAoIcGVpX2xpbmcQCBITCg93YW5nX3RpYW5feGlh",
+          "bmcQChIMCgh3YW5nX2t1aRAMEg8KC2FfZnVfbHVvX2xhEA0SCwoHaGFuX21l",
+          "aRAOEhIKDnpoZW5nX3dlbl94aWFuEA8SEAoMeHVhbl9xaW5nX3ppEBASDAoI",
+          "Z3VpX2ppYW8QERIMCghzaGFvX3hpdRASEhEKDWppbl9zaGVuZ19odW8QExIQ",
+          "CgxndV94aWFvX21lbmcQFBIPCgtiYWlfZmVpX2ZlaRAVEhAKDGR1YW5fbXVf",
+          "amluZxAWEg8KC3dhbmdfZnVfZ3VpEBcSCwoHbGFvX2hhbhAYEhEKDWJhaV94",
+          "aWFvX25pYW4QGRILCgdsYW9fYmllEBoSDAoIeGlhb19qaXUQGxIOCgpsaV9u",
+          "aW5nX3l1EBwSDAoIc2hhbmdfeXUQHhIUCg9zcF9ndV94aWFvX21lbmcQ/AcS",
+          "EgoNc3BfbGlfbmluZ195dRCECCpxCgVwaGFzZRIOCgpEcmF3X1BoYXNlEAAS",
+          "DgoKTWFpbl9QaGFzZRABEhQKEFNlbmRfU3RhcnRfUGhhc2UQAhIOCgpTZW5k",
+          "X1BoYXNlEAMSDwoLRmlnaHRfUGhhc2UQBBIRCg1SZWNlaXZlX1BoYXNlEAUq",
+          "gQEKCWNhcmRfdHlwZRIOCgpDaGVuZ19RaW5nEAASCwoHU2hpX1RhbhABEgoK",
+          "BldlaV9CaRACEgoKBkxpX1lvdRADEg0KCVBpbmdfSGVuZxAEEgkKBVBvX1lp",
+          "EAUSCwoHSmllX0h1bxAGEgwKCERpYW9fQmFvEAcSCgoGV3VfRGFvEAgqOgoF",
+          "Y29sb3ISCQoFQmxhY2sQABIHCgNSZWQQARIICgRCbHVlEAISEwoPSGFzX05v",
+          "X0lkZW50aXR5EAMqNQoLc2VjcmV0X3Rhc2sSCgoGS2lsbGVyEAASCwoHU3Rl",
+          "YWxlchABEg0KCUNvbGxlY3RvchACKigKCWRpcmVjdGlvbhIGCgJVcBAAEggK",
+          "BExlZnQQARIJCgVSaWdodBACQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZw",
+          "cm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -62,6 +63,10 @@ public enum role {
   /// 未知角色
   /// </summary>
   [pbr::OriginalName("unknown")] Unknown = 0,
+  /// <summary>
+  /// 吴志国
+  /// </summary>
+  [pbr::OriginalName("wu_zhi_guo")] WuZhiGuo = 1,
   /// <summary>
   /// 程小蝶
   /// </summary>
