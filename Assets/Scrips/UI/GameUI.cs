@@ -35,6 +35,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public QiangLingSelect QiangLingSelect;
 
+    public MiaoShouSelect miaoShouSelect;
+
     public UIPlayer itemPlayerUI;
 
     public UICard itemCardUI;
@@ -93,6 +95,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        miaoShouSelect.gameObject.SetActive(false);
         QiangLingSelect.gameObject.SetActive(false);
         roleSelect.gameObject.SetActive(false);
         goDesInfo.SetActive(false);
@@ -188,6 +191,15 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         },
         0.3f));
 
+    }
+
+    public void ShowMiaoShouSelect(int targetId, List<CardFS> cards)
+    {
+        miaoShouSelect.Show(targetId, cards);
+    }
+    public void HideMiaoShouSelect()
+    {
+        miaoShouSelect.gameObject.SetActive(false);
     }
 
     public void ShowChooseRole(
@@ -379,17 +391,20 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void ShowCardsMove(int from, int to, List<CardFS> cards)
+    public void ShowCardsMove(int from, int to, List<CardFS> cards, bool toMessageSend = false)
     {
         for (int i = 0; i < cards.Count; i++)
         {
             UICard uICard;
             Vector3 fromPos;
             Vector3 toPos = Players[to].transform.position;
-            if (from == GameManager.SelfPlayerId)
+            if(toMessageSend)
+            {
+                toPos = GetMessagePos(to);
+            }
+            if (from == GameManager.SelfPlayerId && Cards.ContainsKey(cards[i].id))
             {
                 int cardId = cards[i].id;
-
                 uICard = Cards[cardId];
                 Cards.Remove(cardId);
                 uICard.transform.SetParent(transCardsUsed);
@@ -401,8 +416,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
             {
                 uICard = GameObject.Instantiate(itemCardUI, transCardsUsed);
                 uICard.transform.localScale = new Vector3(0.5f, 0.5f);
-                fromPos =
-                    Players[from].transform.position + new Vector3(i * 20, 0);
+                fromPos = Players[from].transform.position + new Vector3(i * 20, 0);
             }
             uICard.SetInfo(cards[i]);
             uICard.gameObject.SetActive(true);
