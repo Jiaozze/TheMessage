@@ -37,6 +37,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public MiaoShouSelect miaoShouSelect;
 
+    public SouJiSelect souJiSelect;
+
     public UIPlayer itemPlayerUI;
 
     public UICard itemCardUI;
@@ -95,6 +97,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        souJiSelect.gameObject.SetActive(false);
         miaoShouSelect.gameObject.SetActive(false);
         QiangLingSelect.gameObject.SetActive(false);
         roleSelect.gameObject.SetActive(false);
@@ -202,6 +205,15 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         miaoShouSelect.gameObject.SetActive(false);
     }
 
+    public void ShowSouJiSelect(int targetId, List<CardFS> cards, CardFS message)
+    {
+        souJiSelect.Show(targetId, cards, message);
+    }
+    public void HideSouJiSelect()
+    {
+        souJiSelect.gameObject.SetActive(false);
+    }
+
     public void ShowChooseRole(
         PlayerColorEnum playerColor,
         SecretTaskEnum secretTask,
@@ -283,6 +295,30 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
                 ) /
                 topNum,
                 0);
+    }
+
+    internal void ShowCardAndGet(List<CardFS> cardShow, int playerId)
+    {
+        int count = cardShow.Count;
+        for(int i = 0; i < count; i++)
+        {
+            UICard uICard;
+            Vector3 fromPos;
+            Vector3 toPos = playerId == GameManager.SelfPlayerId? transCards.position : Players[playerId].transform.position;
+
+            uICard = GameObject.Instantiate(itemCardUI, transCardsUsed);
+            uICard.Init(i, cardShow[i]);
+            uICard.transform.localScale = new Vector3(0.5f, 0.5f);
+            uICard.transform.localPosition = uICard.transform.localPosition + new Vector3((i - count / 2) * 150, 0);
+            fromPos = uICard.transform.position;
+            StartCoroutine(
+                DoMove(uICard.transform, fromPos, toPos, 0.1f,
+                () => {
+                    Destroy(uICard.gameObject);
+                },
+                0.8f)
+                );
+        }
     }
 
     private Vector3 GetMessagePos(int playerId)

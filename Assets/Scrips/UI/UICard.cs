@@ -22,6 +22,7 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Transform transContainer;
     public GameObject goUnknown;
 
+    public bool isSelect = false;
     private int cardId;
     private CardNameEnum cardName;
     private List<PlayerColorEnum> shiTanColor;
@@ -161,6 +162,7 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnSelect(bool select)
     {
+        isSelect = select;
         float y = select ? 30 : 0;
         transContainer.localPosition = new Vector3(0, y);
     }

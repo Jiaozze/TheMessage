@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class ProtoHelper
 {
-    private const uint PROTO_VERSION = 16;
+    private const uint PROTO_VERSION = 17;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //GetIdFromProtoName("wait_for_select_role_toc");
@@ -821,6 +821,40 @@ public static class ProtoHelper
             }
             UserSkill_MiaoShou.OnReceiveUseB(playerId, fromId,  targetId, card, messageId);
         }
+        // 李醒【搜辑】A：争夺阶段，你可以翻开此角色牌，然后查看一名角色的手牌和待收情报。
+        // 李醒【搜辑】B：并且你可以选择其中任意张黑色牌，展示并加入你的手牌。
+        else if (GetIdFromProtoName("skill_sou_ji_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_sou_ji_a_toc");
+            skill_sou_ji_a_toc skill_sou_ji_a_toc = skill_sou_ji_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_sou_ji_a_toc.PlayerId;
+            int targetId = (int)skill_sou_ji_a_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in skill_sou_ji_a_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            CardFS messageCard = new CardFS(skill_sou_ji_a_toc.MessageCard);
+            UserSkill_SouJi.OnReceiveUseA(playerId, targetId, cards, messageCard, (int)skill_sou_ji_a_toc.WaitingSecond, skill_sou_ji_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_sou_ji_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_sou_ji_b_toc");
+            skill_sou_ji_b_toc skill_sou_ji_b_toc = skill_sou_ji_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_sou_ji_b_toc.PlayerId;
+            int targetId = (int)skill_sou_ji_b_toc.TargetPlayerId;
+            List<CardFS> cards = new List<CardFS>();
+            foreach (var card in skill_sou_ji_b_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            CardFS messageCard = null;
+            if(skill_sou_ji_b_toc.MessageCard != null)
+            {
+                messageCard = new CardFS(skill_sou_ji_b_toc.MessageCard);
+            }
+            UserSkill_SouJi.OnReceiveUseB(playerId, targetId, cards, messageCard);
+        }
 
 
         #endregion
@@ -1248,6 +1282,29 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 李醒【搜辑】A：争夺阶段，你可以翻开此角色牌，然后查看一名角色的手牌和待收情报。
+    // 李醒【搜辑】B：并且你可以选择其中任意张黑色牌，展示并加入你的手牌。
+    public static void SendSkill_SouJiA(int playerId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_sou_ji_a_tos, seq:" + seq);
+
+        skill_sou_ji_a_tos skill_sou_ji_a_tos = new skill_sou_ji_a_tos() { TargetPlayerId = (uint)playerId, Seq = seq };
+        byte[] proto = skill_sou_ji_a_tos.ToByteArray();
+        SendProto("skill_sou_ji_a_tos", proto);
+    }
+    public static void SendSkill_SouJiB(bool message, List<int> cardIds, uint seq)
+    {
+        Debug.Log("____send___________________ skill_sou_ji_b_tos, seq:" + seq);
+
+        skill_sou_ji_b_tos skill_sou_ji_b_tos = new skill_sou_ji_b_tos() { MessageCard = message, Seq = seq };
+        foreach(var card in cardIds)
+        {
+            skill_sou_ji_b_tos.CardIds.Add((uint)card);
+        }
+        byte[] proto = skill_sou_ji_b_tos.ToByteArray();
+        SendProto("skill_sou_ji_b_tos", proto);
+    }
+
     // 阿芙罗拉【妙手】A：争夺阶段，你可以翻开此角色牌，然后弃置待接收情报，并查看一名角色的手牌和情报区。
     // 阿芙罗拉【妙手】B：从中选择一张牌作为待收情报，面朝上移至一名角色的面前。
     public static void SendSkill_MiaoShouA(int playerId, uint seq)
