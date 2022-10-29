@@ -494,8 +494,9 @@ message skill_wait_for_jiang_hu_ling_a_toc {
 
 // 王富贵【江湖令】A：你传出情报后，可以宣言一个颜色。
 message skill_jiang_hu_ling_a_tos {
-  color color = 1;
-  uint32 seq = 2;
+  bool enable = 1;
+  color color = 2;
+  uint32 seq = 3;
 }
 
 // 广播使用【江湖令】A
