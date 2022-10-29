@@ -115,6 +115,7 @@ public class GameManager
         IsWaitSaving = -1;
         cardsToGive = new List<int>();
         gameManager = null;
+        UserSkill_QiangLing.cardTypes.Clear();
     }
 
     private int _SelectCardId = -1;
