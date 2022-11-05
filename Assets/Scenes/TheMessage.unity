@@ -1743,11 +1743,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6884264201640572663, guid: 09a1554ae8cf79d4796f811d3bb2809a,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8770410990168346547, guid: 09a1554ae8cf79d4796f811d3bb2809a,
         type: 3}
       propertyPath: m_AnchorMax.y
