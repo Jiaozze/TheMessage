@@ -152,60 +152,60 @@ public static partial class RoleReflection {
           "GAIgASgNIkEKGnNraWxsX2ppbl9rb3VfeWlfa2FpX2JfdG9jEhEKCXBsYXll",
           "cl9pZBgBIAEoDRIQCghleGNoYW5nZRgCIAEoCCJcCiJza2lsbF93YWl0X2Zv",
           "cl9qaWFuZ19odV9saW5nX2FfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIWCg53",
-          "YWl0aW5nX3NlY29uZBgCIAEoDRILCgNzZXEYAyABKA0iPwoZc2tpbGxfamlh",
-          "bmdfaHVfbGluZ19hX3RvcxIVCgVjb2xvchgBIAEoDjIGLmNvbG9yEgsKA3Nl",
-          "cRgCIAEoDSJFChlza2lsbF9qaWFuZ19odV9saW5nX2FfdG9jEhEKCXBsYXll",
-          "cl9pZBgBIAEoDRIVCgVjb2xvchgCIAEoDjIGLmNvbG9yInMKInNraWxsX3dh",
-          "aXRfZm9yX2ppYW5nX2h1X2xpbmdfYl90b2MSEQoJcGxheWVyX2lkGAEgASgN",
-          "EhUKBWNvbG9yGAIgASgOMgYuY29sb3ISFgoOd2FpdGluZ19zZWNvbmQYAyAB",
-          "KA0SCwoDc2VxGAQgASgNIjkKGXNraWxsX2ppYW5nX2h1X2xpbmdfYl90b3MS",
-          "DwoHY2FyZF9pZBgBIAEoDRILCgNzZXEYAiABKA0iLAoZc2tpbGxfamlhbmdf",
-          "aHVfbGluZ19iX3RvYxIPCgdjYXJkX2lkGAEgASgNIiEKEnNraWxsX2ppX2Jh",
-          "bl9hX3RvcxILCgNzZXEYASABKA0iTAoSc2tpbGxfamlfYmFuX2FfdG9jEhEK",
-          "CXBsYXllcl9pZBgBIAEoDRIWCg53YWl0aW5nX3NlY29uZBgCIAEoDRILCgNz",
-          "ZXEYAyABKA0iTQoSc2tpbGxfamlfYmFuX2JfdG9zEhgKEHRhcmdldF9wbGF5",
-          "ZXJfaWQYASABKA0SEAoIY2FyZF9pZHMYAiADKA0SCwoDc2VxGAMgASgNInMK",
-          "EnNraWxsX2ppX2Jhbl9iX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFy",
-          "Z2V0X3BsYXllcl9pZBgCIAEoDRIUCgVjYXJkcxgDIAMoCzIFLmNhcmQSGgoS",
-          "dW5rbm93bl9jYXJkX2NvdW50GAQgASgNIiYKEXNraWxsX3lvdV9kYW9fdG9j",
-          "EhEKCXBsYXllcl9pZBgBIAEoDSIgChFza2lsbF9ib19haV9hX3RvcxILCgNz",
-          "ZXEYASABKA0iSwoRc2tpbGxfYm9fYWlfYV90b2MSEQoJcGxheWVyX2lkGAEg",
-          "ASgNEhYKDndhaXRpbmdfc2Vjb25kGAIgASgNEgsKA3NlcRgDIAEoDSJLChFz",
-          "a2lsbF9ib19haV9iX3RvcxIYChB0YXJnZXRfcGxheWVyX2lkGAEgASgNEg8K",
-          "B2NhcmRfaWQYAiABKA0SCwoDc2VxGAMgASgNIlUKEXNraWxsX2JvX2FpX2Jf",
-          "dG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIg",
-          "ASgNEhMKBGNhcmQYAyABKAsyBS5jYXJkIicKGHNraWxsX2d1YW5nX2ZhX2Jh",
-          "b19hX3RvcxILCgNzZXEYASABKA0iLQoYc2tpbGxfZ3VhbmdfZmFfYmFvX2Ff",
-          "dG9jEhEKCXBsYXllcl9pZBgBIAEoDSJbCiFza2lsbF93YWl0X2Zvcl9ndWFu",
-          "Z19mYV9iYW9fYl90b2MSEQoJcGxheWVyX2lkGAEgASgNEhYKDndhaXRpbmdf",
-          "c2Vjb25kGAIgASgNEgsKA3NlcRgDIAEoDSJjChhza2lsbF9ndWFuZ19mYV9i",
-          "YW9fYl90b3MSDgoGZW5hYmxlGAEgASgIEhgKEHRhcmdldF9wbGF5ZXJfaWQY",
-          "AiABKA0SEAoIY2FyZF9pZHMYAyADKA0SCwoDc2VxGAQgASgNIm0KGHNraWxs",
-          "X2d1YW5nX2ZhX2Jhb19iX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SDgoGZW5h",
-          "YmxlGAIgASgIEhgKEHRhcmdldF9wbGF5ZXJfaWQYAyABKA0SFAoFY2FyZHMY",
-          "BCADKAsyBS5jYXJkIlcKHXNraWxsX3dhaXRfZm9yX3FpYW5nX2xpbmdfdG9j",
-          "EhEKCXBsYXllcl9pZBgBIAEoDRIWCg53YWl0aW5nX3NlY29uZBgCIAEoDRIL",
-          "CgNzZXEYAyABKA0iTgoUc2tpbGxfcWlhbmdfbGluZ190b3MSDgoGZW5hYmxl",
-          "GAEgASgIEhkKBXR5cGVzGAIgAygOMgouY2FyZF90eXBlEgsKA3NlcRgDIAEo",
-          "DSJEChRza2lsbF9xaWFuZ19saW5nX3RvYxIRCglwbGF5ZXJfaWQYASABKA0S",
-          "GQoFdHlwZXMYAiADKA4yCi5jYXJkX3R5cGUiIwoUc2tpbGxfamlhbl9yZW5f",
-          "YV90b3MSCwoDc2VxGAEgASgNImMKFHNraWxsX2ppYW5fcmVuX2FfdG9jEhEK",
-          "CXBsYXllcl9pZBgBIAEoDRITCgRjYXJkGAIgASgLMgUuY2FyZBIWCg53YWl0",
-          "aW5nX3NlY29uZBgDIAEoDRILCgNzZXEYBCABKA0iTgoUc2tpbGxfamlhbl9y",
-          "ZW5fYl90b3MSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEoDRIPCgdjYXJkX2lk",
-          "GAIgASgNEgsKA3NlcRgDIAEoDSJUChRza2lsbF9qaWFuX3Jlbl9iX3RvYxIR",
-          "CglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIP",
-          "CgdjYXJkX2lkGAMgASgNIjsKEnNraWxsX3NvdV9qaV9hX3RvcxIYChB0YXJn",
-          "ZXRfcGxheWVyX2lkGAEgASgNEgsKA3NlcRgCIAEoDSKZAQoSc2tpbGxfc291",
-          "X2ppX2FfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVy",
-          "X2lkGAIgASgNEhQKBWNhcmRzGAMgAygLMgUuY2FyZBIbCgxtZXNzYWdlX2Nh",
-          "cmQYBCABKAsyBS5jYXJkEhYKDndhaXRpbmdfc2Vjb25kGAUgASgNEgsKA3Nl",
-          "cRgGIAEoDSJJChJza2lsbF9zb3VfamlfYl90b3MSEAoIY2FyZF9pZHMYASAD",
-          "KA0SFAoMbWVzc2FnZV9jYXJkGAIgASgIEgsKA3NlcRgDIAEoDSJ0ChJza2ls",
-          "bF9zb3VfamlfYl90b2MSEQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9w",
-          "bGF5ZXJfaWQYAiABKA0SFAoFY2FyZHMYAyADKAsyBS5jYXJkEhsKDG1lc3Nh",
-          "Z2VfY2FyZBgEIAEoCzIFLmNhcmRCFgoUY29tLmZlbmdzaGVuZy5wcm90b3Ni",
-          "BnByb3RvMw=="));
+          "YWl0aW5nX3NlY29uZBgCIAEoDRILCgNzZXEYAyABKA0iTwoZc2tpbGxfamlh",
+          "bmdfaHVfbGluZ19hX3RvcxIOCgZlbmFibGUYASABKAgSFQoFY29sb3IYAiAB",
+          "KA4yBi5jb2xvchILCgNzZXEYAyABKA0iRQoZc2tpbGxfamlhbmdfaHVfbGlu",
+          "Z19hX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SFQoFY29sb3IYAiABKA4yBi5j",
+          "b2xvciJzCiJza2lsbF93YWl0X2Zvcl9qaWFuZ19odV9saW5nX2JfdG9jEhEK",
+          "CXBsYXllcl9pZBgBIAEoDRIVCgVjb2xvchgCIAEoDjIGLmNvbG9yEhYKDndh",
+          "aXRpbmdfc2Vjb25kGAMgASgNEgsKA3NlcRgEIAEoDSI5Chlza2lsbF9qaWFu",
+          "Z19odV9saW5nX2JfdG9zEg8KB2NhcmRfaWQYASABKA0SCwoDc2VxGAIgASgN",
+          "Ij8KGXNraWxsX2ppYW5nX2h1X2xpbmdfYl90b2MSEQoJcGxheWVyX2lkGAEg",
+          "ASgNEg8KB2NhcmRfaWQYAiABKA0iIQoSc2tpbGxfamlfYmFuX2FfdG9zEgsK",
+          "A3NlcRgBIAEoDSJMChJza2lsbF9qaV9iYW5fYV90b2MSEQoJcGxheWVyX2lk",
+          "GAEgASgNEhYKDndhaXRpbmdfc2Vjb25kGAIgASgNEgsKA3NlcRgDIAEoDSJN",
+          "ChJza2lsbF9qaV9iYW5fYl90b3MSGAoQdGFyZ2V0X3BsYXllcl9pZBgBIAEo",
+          "DRIQCghjYXJkX2lkcxgCIAMoDRILCgNzZXEYAyABKA0icwoSc2tpbGxfamlf",
+          "YmFuX2JfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVy",
+          "X2lkGAIgASgNEhQKBWNhcmRzGAMgAygLMgUuY2FyZBIaChJ1bmtub3duX2Nh",
+          "cmRfY291bnQYBCABKA0iJgoRc2tpbGxfeW91X2Rhb190b2MSEQoJcGxheWVy",
+          "X2lkGAEgASgNIiAKEXNraWxsX2JvX2FpX2FfdG9zEgsKA3NlcRgBIAEoDSJL",
+          "ChFza2lsbF9ib19haV9hX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SFgoOd2Fp",
+          "dGluZ19zZWNvbmQYAiABKA0SCwoDc2VxGAMgASgNIksKEXNraWxsX2JvX2Fp",
+          "X2JfdG9zEhgKEHRhcmdldF9wbGF5ZXJfaWQYASABKA0SDwoHY2FyZF9pZBgC",
+          "IAEoDRILCgNzZXEYAyABKA0iVQoRc2tpbGxfYm9fYWlfYl90b2MSEQoJcGxh",
+          "eWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SEwoEY2Fy",
+          "ZBgDIAEoCzIFLmNhcmQiJwoYc2tpbGxfZ3VhbmdfZmFfYmFvX2FfdG9zEgsK",
+          "A3NlcRgBIAEoDSItChhza2lsbF9ndWFuZ19mYV9iYW9fYV90b2MSEQoJcGxh",
+          "eWVyX2lkGAEgASgNIlsKIXNraWxsX3dhaXRfZm9yX2d1YW5nX2ZhX2Jhb19i",
+          "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SFgoOd2FpdGluZ19zZWNvbmQYAiAB",
+          "KA0SCwoDc2VxGAMgASgNImMKGHNraWxsX2d1YW5nX2ZhX2Jhb19iX3RvcxIO",
+          "CgZlbmFibGUYASABKAgSGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIQCghj",
+          "YXJkX2lkcxgDIAMoDRILCgNzZXEYBCABKA0ibQoYc2tpbGxfZ3VhbmdfZmFf",
+          "YmFvX2JfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIOCgZlbmFibGUYAiABKAgS",
+          "GAoQdGFyZ2V0X3BsYXllcl9pZBgDIAEoDRIUCgVjYXJkcxgEIAMoCzIFLmNh",
+          "cmQiVwodc2tpbGxfd2FpdF9mb3JfcWlhbmdfbGluZ190b2MSEQoJcGxheWVy",
+          "X2lkGAEgASgNEhYKDndhaXRpbmdfc2Vjb25kGAIgASgNEgsKA3NlcRgDIAEo",
+          "DSJOChRza2lsbF9xaWFuZ19saW5nX3RvcxIOCgZlbmFibGUYASABKAgSGQoF",
+          "dHlwZXMYAiADKA4yCi5jYXJkX3R5cGUSCwoDc2VxGAMgASgNIkQKFHNraWxs",
+          "X3FpYW5nX2xpbmdfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIZCgV0eXBlcxgC",
+          "IAMoDjIKLmNhcmRfdHlwZSIjChRza2lsbF9qaWFuX3Jlbl9hX3RvcxILCgNz",
+          "ZXEYASABKA0iYwoUc2tpbGxfamlhbl9yZW5fYV90b2MSEQoJcGxheWVyX2lk",
+          "GAEgASgNEhMKBGNhcmQYAiABKAsyBS5jYXJkEhYKDndhaXRpbmdfc2Vjb25k",
+          "GAMgASgNEgsKA3NlcRgEIAEoDSJOChRza2lsbF9qaWFuX3Jlbl9iX3RvcxIY",
+          "ChB0YXJnZXRfcGxheWVyX2lkGAEgASgNEg8KB2NhcmRfaWQYAiABKA0SCwoD",
+          "c2VxGAMgASgNIlQKFHNraWxsX2ppYW5fcmVuX2JfdG9jEhEKCXBsYXllcl9p",
+          "ZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEg8KB2NhcmRfaWQY",
+          "AyABKA0iOwoSc2tpbGxfc291X2ppX2FfdG9zEhgKEHRhcmdldF9wbGF5ZXJf",
+          "aWQYASABKA0SCwoDc2VxGAIgASgNIpkBChJza2lsbF9zb3VfamlfYV90b2MS",
+          "EQoJcGxheWVyX2lkGAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0S",
+          "FAoFY2FyZHMYAyADKAsyBS5jYXJkEhsKDG1lc3NhZ2VfY2FyZBgEIAEoCzIF",
+          "LmNhcmQSFgoOd2FpdGluZ19zZWNvbmQYBSABKA0SCwoDc2VxGAYgASgNIkkK",
+          "EnNraWxsX3NvdV9qaV9iX3RvcxIQCghjYXJkX2lkcxgBIAMoDRIUCgxtZXNz",
+          "YWdlX2NhcmQYAiABKAgSCwoDc2VxGAMgASgNInQKEnNraWxsX3NvdV9qaV9i",
+          "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgC",
+          "IAEoDRIUCgVjYXJkcxgDIAMoCzIFLmNhcmQSGwoMbWVzc2FnZV9jYXJkGAQg",
+          "ASgLMgUuY2FyZEIWChRjb20uZmVuZ3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -280,11 +280,11 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_kou_yi_kai_b_tos), global::skill_jin_kou_yi_kai_b_tos.Parser, new[]{ "Exchange", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jin_kou_yi_kai_b_toc), global::skill_jin_kou_yi_kai_b_toc.Parser, new[]{ "PlayerId", "Exchange" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_wait_for_jiang_hu_ling_a_toc), global::skill_wait_for_jiang_hu_ling_a_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiang_hu_ling_a_tos), global::skill_jiang_hu_ling_a_tos.Parser, new[]{ "Color", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiang_hu_ling_a_tos), global::skill_jiang_hu_ling_a_tos.Parser, new[]{ "Enable", "Color", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiang_hu_ling_a_toc), global::skill_jiang_hu_ling_a_toc.Parser, new[]{ "PlayerId", "Color" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_wait_for_jiang_hu_ling_b_toc), global::skill_wait_for_jiang_hu_ling_b_toc.Parser, new[]{ "PlayerId", "Color", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiang_hu_ling_b_tos), global::skill_jiang_hu_ling_b_tos.Parser, new[]{ "CardId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiang_hu_ling_b_toc), global::skill_jiang_hu_ling_b_toc.Parser, new[]{ "CardId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_jiang_hu_ling_b_toc), global::skill_jiang_hu_ling_b_toc.Parser, new[]{ "PlayerId", "CardId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_ji_ban_a_tos), global::skill_ji_ban_a_tos.Parser, new[]{ "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_ji_ban_a_toc), global::skill_ji_ban_a_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_ji_ban_b_tos), global::skill_ji_ban_b_tos.Parser, new[]{ "TargetPlayerId", "CardIds", "Seq" }, null, null, null, null),
@@ -13607,6 +13607,7 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public skill_jiang_hu_ling_a_tos(skill_jiang_hu_ling_a_tos other) : this() {
+    enable_ = other.enable_;
     color_ = other.color_;
     seq_ = other.seq_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -13617,8 +13618,19 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
     return new skill_jiang_hu_ling_a_tos(this);
   }
 
+  /// <summary>Field number for the "enable" field.</summary>
+  public const int EnableFieldNumber = 1;
+  private bool enable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Enable {
+    get { return enable_; }
+    set {
+      enable_ = value;
+    }
+  }
+
   /// <summary>Field number for the "color" field.</summary>
-  public const int ColorFieldNumber = 1;
+  public const int ColorFieldNumber = 2;
   private global::color color_ = global::color.Black;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public global::color Color {
@@ -13629,7 +13641,7 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
   }
 
   /// <summary>Field number for the "seq" field.</summary>
-  public const int SeqFieldNumber = 2;
+  public const int SeqFieldNumber = 3;
   private uint seq_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public uint Seq {
@@ -13652,6 +13664,7 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (Enable != other.Enable) return false;
     if (Color != other.Color) return false;
     if (Seq != other.Seq) return false;
     return Equals(_unknownFields, other._unknownFields);
@@ -13660,6 +13673,7 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
+    if (Enable != false) hash ^= Enable.GetHashCode();
     if (Color != global::color.Black) hash ^= Color.GetHashCode();
     if (Seq != 0) hash ^= Seq.GetHashCode();
     if (_unknownFields != null) {
@@ -13675,12 +13689,16 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
-    if (Color != global::color.Black) {
+    if (Enable != false) {
       output.WriteRawTag(8);
+      output.WriteBool(Enable);
+    }
+    if (Color != global::color.Black) {
+      output.WriteRawTag(16);
       output.WriteEnum((int) Color);
     }
     if (Seq != 0) {
-      output.WriteRawTag(16);
+      output.WriteRawTag(24);
       output.WriteUInt32(Seq);
     }
     if (_unknownFields != null) {
@@ -13691,6 +13709,9 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
+    if (Enable != false) {
+      size += 1 + 1;
+    }
     if (Color != global::color.Black) {
       size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Color);
     }
@@ -13707,6 +13728,9 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
   public void MergeFrom(skill_jiang_hu_ling_a_tos other) {
     if (other == null) {
       return;
+    }
+    if (other.Enable != false) {
+      Enable = other.Enable;
     }
     if (other.Color != global::color.Black) {
       Color = other.Color;
@@ -13726,10 +13750,14 @@ public sealed partial class skill_jiang_hu_ling_a_tos : pb::IMessage<skill_jiang
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
-          Color = (global::color) input.ReadEnum();
+          Enable = input.ReadBool();
           break;
         }
         case 16: {
+          Color = (global::color) input.ReadEnum();
+          break;
+        }
+        case 24: {
           Seq = input.ReadUInt32();
           break;
         }
@@ -14116,7 +14144,7 @@ public sealed partial class skill_wait_for_jiang_hu_ling_b_toc : pb::IMessage<sk
 }
 
 /// <summary>
-/// 王富贵【江湖令】B：本回合，当情报被接收后，你可以从接收者的情报区弃置一张被宣言颜色的情报，若弃置的是黑色情报，则你摸一张牌。
+/// 王富贵【江湖令】B：本回合中，当情报被接收后，你可以从接收者的情报区弃置一张被宣言颜色的情报，若弃置的是黑色情报，则你摸一张牌。
 /// 如果不发动，则直接发 end_receive_phase_toc 即可
 /// </summary>
 public sealed partial class skill_jiang_hu_ling_b_tos : pb::IMessage<skill_jiang_hu_ling_b_tos> {
@@ -14304,6 +14332,7 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public skill_jiang_hu_ling_b_toc(skill_jiang_hu_ling_b_toc other) : this() {
+    playerId_ = other.playerId_;
     cardId_ = other.cardId_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -14313,8 +14342,19 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
     return new skill_jiang_hu_ling_b_toc(this);
   }
 
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
   /// <summary>Field number for the "card_id" field.</summary>
-  public const int CardIdFieldNumber = 1;
+  public const int CardIdFieldNumber = 2;
   private uint cardId_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public uint CardId {
@@ -14337,6 +14377,7 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (PlayerId != other.PlayerId) return false;
     if (CardId != other.CardId) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -14344,6 +14385,7 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (CardId != 0) hash ^= CardId.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -14358,8 +14400,12 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
-    if (CardId != 0) {
+    if (PlayerId != 0) {
       output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (CardId != 0) {
+      output.WriteRawTag(16);
       output.WriteUInt32(CardId);
     }
     if (_unknownFields != null) {
@@ -14370,6 +14416,9 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
     if (CardId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardId);
     }
@@ -14383,6 +14432,9 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
   public void MergeFrom(skill_jiang_hu_ling_b_toc other) {
     if (other == null) {
       return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
     }
     if (other.CardId != 0) {
       CardId = other.CardId;
@@ -14399,6 +14451,10 @@ public sealed partial class skill_jiang_hu_ling_b_toc : pb::IMessage<skill_jiang
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
         case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
           CardId = input.ReadUInt32();
           break;
         }

@@ -855,6 +855,38 @@ public static class ProtoHelper
             }
             UserSkill_SouJi.OnReceiveUseB(playerId, targetId, cards, messageCard);
         }
+        // 王富贵【江湖令】A：你传出情报后，可以宣言一个颜色。
+        // 王富贵【江湖令】B：本回合中，当情报被接收后，你可以从接收者的情报区弃置一张被宣言颜色的情报，若弃置的是黑色情报，则你摸一张牌。
+        else if (GetIdFromProtoName("skill_wait_for_jiang_hu_ling_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_jiang_hu_ling_a_toc");
+            skill_wait_for_jiang_hu_ling_a_toc skill_wait_for_jiang_hu_ling_a_toc = skill_wait_for_jiang_hu_ling_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_wait_for_jiang_hu_ling_a_toc.PlayerId;
+            UserSkill_JiangHuLing.OnReceiveWaitUseA(playerId, (int)skill_wait_for_jiang_hu_ling_a_toc.WaitingSecond, skill_wait_for_jiang_hu_ling_a_toc.Seq);
+        }
+
+        else if (GetIdFromProtoName("skill_jiang_hu_ling_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jiang_hu_ling_a_toc");
+            skill_jiang_hu_ling_a_toc skill_jiang_hu_ling_a_toc = skill_jiang_hu_ling_a_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_jiang_hu_ling_a_toc.PlayerId;
+            UserSkill_JiangHuLing.OnReceiveUseA(playerId, (CardColorEnum)skill_jiang_hu_ling_a_toc.Color);
+        }
+        else if (GetIdFromProtoName("skill_wait_for_jiang_hu_ling_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_jiang_hu_ling_b_toc");
+            skill_wait_for_jiang_hu_ling_b_toc skill_wait_for_jiang_hu_ling_b_toc = skill_wait_for_jiang_hu_ling_b_toc.Parser.ParseFrom(contont);
+            int playerId = (int)skill_wait_for_jiang_hu_ling_b_toc.PlayerId;
+            UserSkill_JiangHuLing.OnReceiveWaitUseB(playerId,(CardColorEnum)skill_wait_for_jiang_hu_ling_b_toc.Color,(int)skill_wait_for_jiang_hu_ling_b_toc.WaitingSecond, skill_wait_for_jiang_hu_ling_b_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_jiang_hu_ling_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_jiang_hu_ling_b_toc");
+            skill_jiang_hu_ling_b_toc skill_jiang_hu_ling_b_toc = skill_jiang_hu_ling_b_toc.Parser.ParseFrom(contont);
+            //int playerId = (int)skill_jiang_hu_ling_b_toc.CardId;
+            UserSkill_JiangHuLing.OnReceiveUseB((int)skill_jiang_hu_ling_b_toc.PlayerId, (int)skill_jiang_hu_ling_b_toc.CardId);
+        }
+
 
 
         #endregion
@@ -1282,6 +1314,25 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 王富贵【江湖令】A：你传出情报后，可以宣言一个颜色。
+    // 王富贵【江湖令】B：本回合中，当情报被接收后，你可以从接收者的情报区弃置一张被宣言颜色的情报，若弃置的是黑色情报，则你摸一张牌。
+    public static void SendSkill_JiangHuLingA(bool enable, CardColorEnum color, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jiang_hu_ling_a_tos, seq:" + seq);
+
+        skill_jiang_hu_ling_a_tos skill_sou_ji_a_tos = new skill_jiang_hu_ling_a_tos() { Enable = enable, Color = (color)color, Seq = seq };
+        byte[] proto = skill_sou_ji_a_tos.ToByteArray();
+        SendProto("skill_jiang_hu_ling_a_tos", proto);
+    }
+    public static void SendSkill_JiangHuLingB(int messageId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_jiang_hu_ling_b_tos, seq:" + seq);
+
+        skill_jiang_hu_ling_b_tos skill_sou_ji_b_tos = new skill_jiang_hu_ling_b_tos() { CardId = (uint)messageId, Seq = seq };
+        byte[] proto = skill_sou_ji_b_tos.ToByteArray();
+        SendProto("skill_jiang_hu_ling_b_tos", proto);
+    }
+
     // 李醒【搜辑】A：争夺阶段，你可以翻开此角色牌，然后查看一名角色的手牌和待收情报。
     // 李醒【搜辑】B：并且你可以选择其中任意张黑色牌，展示并加入你的手牌。
     public static void SendSkill_SouJiA(int playerId, uint seq)

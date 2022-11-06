@@ -38,6 +38,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     public MiaoShouSelect miaoShouSelect;
 
     public SouJiSelect souJiSelect;
+    public JiangHuLingSelect jiangHuLingSelect;
 
     public UIPlayer itemPlayerUI;
 
@@ -97,6 +98,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        jiangHuLingSelect.gameObject.SetActive(false);
         souJiSelect.gameObject.SetActive(false);
         miaoShouSelect.gameObject.SetActive(false);
         QiangLingSelect.gameObject.SetActive(false);
@@ -213,7 +215,14 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     {
         souJiSelect.gameObject.SetActive(false);
     }
-
+    public void ShowJiangHuLingSelect()
+    {
+        jiangHuLingSelect.gameObject.SetActive(true);
+    }
+    public void HideJiangHuLingSelect()
+    {
+        jiangHuLingSelect.gameObject.SetActive(false);
+    }
     public void ShowChooseRole(
         PlayerColorEnum playerColor,
         SecretTaskEnum secretTask,
