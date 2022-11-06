@@ -93,6 +93,7 @@ public class UserSkill_JiangHuLing : SkillBase
         GameManager.Singleton.selectSkill = null;
         GameManager.Singleton.gameUI.ShowPhase();
         GameManager.Singleton.gameUI.HideJiangHuLingSelect();
+        GameManager.Singleton.gameUI.HidePlayerMessageInfo();
     }
 
     public override void OnUse()
@@ -102,6 +103,7 @@ public class UserSkill_JiangHuLing : SkillBase
         GameManager.Singleton.selectSkill = null;
         GameManager.Singleton.gameUI.ShowPhase();
         GameManager.Singleton.gameUI.HideJiangHuLingSelect();
+        GameManager.Singleton.gameUI.HidePlayerMessageInfo();
     }
 
     public static void OnReceiveWaitUseA(int playerId, int waitSeconds, uint seq)
