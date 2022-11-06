@@ -33,6 +33,14 @@ public class WinInfo : MonoBehaviour
                 item.Show(id, false, playerColers[id], playerTasks[id], playerId.Contains(id));
             }
         }
+        if(winners.Contains(GameManager.SelfPlayerId))
+        {
+            SoundManager.PlaySound(SoundPath.win);
+        }
+        else
+        {
+            SoundManager.PlaySound(SoundPath.lost);
+        }
     }
 
     private void ClearItems()

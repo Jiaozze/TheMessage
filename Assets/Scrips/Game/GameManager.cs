@@ -353,7 +353,8 @@ public class GameManager
             string targetInfo;
             targetInfo = target == -1 ? "" : "对" + GameManager.Singleton.players[target].name;
             gameUI.AddMsg(string.Format("{0}{1}使用了{2}{3};", GameManager.Singleton.players[user].name, targetInfo, LanguageUtils.GetCardName(realUseCardName), extra));
-            SoundManager.PlaySound(realUseCardName, players[user].role.isWoman);
+            SoundManager.PlaySound(SoundPath.cardout);
+            SoundManager.PlaySoundCard(realUseCardName, players[user].role.isWoman);
         }
     }
 
@@ -483,7 +484,7 @@ public class GameManager
         gameUI.DrawCards(cards);
         if (gameUI.Players[SelfPlayerId] != null) gameUI.Players[SelfPlayerId].OnDrawCard(cards.Count);
         gameUI.AddMsg(string.Format("你摸了{0}张牌; {1}", cards.Count, cardInfo));
-
+        //SoundManager.PlaySound(SoundPath.deal);
     }
     //玩家弃牌
     public void OnReceiveDiscards(int playerId, List<CardFS> cards)
@@ -525,12 +526,14 @@ public class GameManager
             gameUI.Players[id].OnDrawCard(num);
         }
         gameUI.AddMsg(string.Format("{0}摸了{1}张牌", GameManager.Singleton.players[id].name, num));
+        //SoundManager.PlaySound(SoundPath.deal);
     }
 
     public void OnReceivePlayerUpDate(int playerId, role role)
     {
         players[playerId].UpdateRole(role);
         gameUI.Players[playerId].OnTurnBack(players[playerId].role.isBack);
+        SoundManager.PlaySound(SoundPath.trunrole);
     }
 
     // 通知客户端，到谁的哪个阶段了
@@ -640,6 +643,7 @@ public class GameManager
                     gameUI.ShowAddMessage(messagePlayerId, message, true);
                     gameUI.Players[messagePlayerId].RefreshMessage();
                     gameUI.AddMsg(string.Format("{0}接收情报", GameManager.Singleton.players[messagePlayerId].name));
+                    SoundManager.PlaySoundMessage(!message.color.Contains(CardColorEnum.Black), players[messagePlayerId].role.isWoman);
                 }
                 else
                 {
@@ -839,7 +843,7 @@ public class GameManager
         string s = string.Format("{0}对{1}使用了试探;{2}", GameManager.Singleton.players[user].name, GameManager.Singleton.players[targetUser].name, cardInfo);
         gameUI.AddMsg(s);
         gameUI.ShowInfo(s);
-        SoundManager.PlaySound(CardNameEnum.ShiTan, players[user].role.isWoman);
+        SoundManager.PlaySoundCard(CardNameEnum.ShiTan, players[user].role.isWoman);
     }
     // 向被试探者展示试探，并等待回应
     public void OnReceiveShowShiTan(int user, int targetUser, CardFS card, int waitingTime, uint seqId)
@@ -1076,6 +1080,7 @@ public class GameManager
         players[playerId].messages.Clear();
         gameUI.Players[playerId].RefreshMessage();
         gameUI.OnPlayerMessageRemove(playerId, messages);
+        SoundManager.PlaySound(SoundPath.dead);
     }
 
     public void OnReceiveDieGiveingCard(int playerId, int waitingSecond, uint seq)
