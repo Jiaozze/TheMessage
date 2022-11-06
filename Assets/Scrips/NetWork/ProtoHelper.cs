@@ -9,9 +9,17 @@ public static class ProtoHelper
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //GetIdFromProtoName("wait_for_select_role_toc");
-            //Debug.LogError(id);
-            // 通知客户端：某个玩家摸了一张卡
-        if (GetIdFromProtoName("add_card_toc") == id)
+        //Debug.LogError(id);
+        // 心跳：服务器回复客户端
+        if (GetIdFromProtoName("heart_toc") == id)
+        {
+            //Debug.Log(" _______receive________ heart_toc ");
+
+            heart_toc heart_toc = heart_toc.Parser.ParseFrom(contont);
+            GameManager.Singleton.roomUI.SetOnlineCount((int)heart_toc.OnlineCount);
+        }
+        // 通知客户端：某个玩家摸了一张卡
+        else if (GetIdFromProtoName("add_card_toc") == id)
         {
             //Debug.LogError("add_card_toc");
             add_card_toc add_card_toc = add_card_toc.Parser.ParseFrom(contont);
@@ -1090,13 +1098,18 @@ public static class ProtoHelper
             auto_play_toc auto_play_toc = auto_play_toc.Parser.ParseFrom(contont);
             GameManager.Singleton.OnReceiveTuoGuan(auto_play_toc.Enable);
         }
-        // 心跳：服务器回复客户端
-        else if (GetIdFromProtoName("heart_toc") == id)
-        {
-            //Debug.Log(" _______receive________ heart_toc ");
 
-            heart_toc heart_toc = heart_toc.Parser.ParseFrom(contont);
-            GameManager.Singleton.roomUI.SetOnlineCount((int)heart_toc.OnlineCount);
+        else if (GetIdFromProtoName("get_record_list_toc") == id)
+        {
+            Debug.Log(" _______receive________ get_record_list_toc ");
+
+            get_record_list_toc auto_play_toc = get_record_list_toc.Parser.ParseFrom(contont);
+            List<string> records = new List<string>();
+            foreach(var s in auto_play_toc.Records)
+            {
+                records.Add(s);
+            }
+            GameManager.Singleton.roomUI.OnReceiveRecords(records);
         }
 
         //errorCode
@@ -1113,6 +1126,7 @@ public static class ProtoHelper
             Debug.LogError("undefine proto:" + id);
         }
     }
+
 
     #region 出牌阶段协议
     public static void SendEndWaiting(uint seq)
@@ -1789,6 +1803,15 @@ public static class ProtoHelper
         remove_robot_tos remove_robot_tos = new remove_robot_tos();
         byte[] proto = remove_robot_tos.ToByteArray();
         SendProto("remove_robot_tos", proto);
+    }
+
+    public static void SendGetRecords()
+    {
+        Debug.Log("____send___________________ get_record_list_tos");
+
+        get_record_list_tos get_record_list_tos = new get_record_list_tos() { Version = PROTO_VERSION };
+        byte[] proto = get_record_list_tos.ToByteArray();
+        SendProto("get_record_list_tos", proto);
     }
     public static void SendPlayRecord(string recordId)
     {

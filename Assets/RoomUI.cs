@@ -12,6 +12,7 @@ public class RoomUI : MonoBehaviour
     public GameObject goRoomItem;
     public GameObject goLoginButton;
     public GameObject goRecord;
+    public Records RecordList;
     public InputField recordId;
     public InputField playerName;
     public Text textOnlineCount;
@@ -52,7 +53,8 @@ public class RoomUI : MonoBehaviour
 
     public void OnClickRecord()
     {
-        NetWork.Init(ip, () => { ProtoHelper.SendPlayRecord(recordId.text); });
+        NetWork.Init(ip, () => { ProtoHelper.SendGetRecords(); });
+        //NetWork.Init(ip, () => { ProtoHelper.SendPlayRecord(recordId.text); });
     }
 
     public void OnClickSeeOrder()
@@ -89,6 +91,7 @@ public class RoomUI : MonoBehaviour
         goRoomInfo.SetActive(true);
         goLoginButton.SetActive(false);
         goRecord.SetActive(false);
+        RecordList.gameObject.SetActive(false);
         if (items.Count > 0)
         {
             foreach (var go in items)
@@ -166,5 +169,10 @@ public class RoomUI : MonoBehaviour
         }
         textOrder.text = s;
         goOrder.SetActive(true);
+    }
+
+    internal void OnReceiveRecords(List<string> records)
+    {
+        RecordList.Refresh(records);
     }
 }
