@@ -60,6 +60,11 @@ public class UserSkill_JiangHuLing : SkillBase
         {
             if(selectMessageId != 0)
             {
+                if(!GameManager.Singleton.players[GameManager.Singleton.CurMessagePlayerId].GetMessage(selectMessageId).color.Contains(color))
+                {
+                    GameManager.Singleton.gameUI.ShowInfo("请选择一张" + LanguageUtils.GetColorName(color) + "情报弃掉，或取消");
+                    return;
+                }
                 ProtoHelper.SendSkill_JiangHuLingB(selectMessageId, GameManager.Singleton.seqId);
             }
             else
