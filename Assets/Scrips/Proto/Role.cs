@@ -205,7 +205,34 @@ public static partial class RoleReflection {
           "YWdlX2NhcmQYAiABKAgSCwoDc2VxGAMgASgNInQKEnNraWxsX3NvdV9qaV9i",
           "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgC",
           "IAEoDRIUCgVjYXJkcxgDIAMoCzIFLmNhcmQSGwoMbWVzc2FnZV9jYXJkGAQg",
-          "ASgLMgUuY2FyZEIWChRjb20uZmVuZ3NoZW5nLnByb3Rvc2IGcHJvdG8z"));
+          "ASgLMgUuY2FyZCIsCh1za2lsbF9kdWlfemhlbmdfeGlhX3lhb19hX3RvcxIL",
+          "CgNzZXEYASABKA0iVwodc2tpbGxfZHVpX3poZW5nX3hpYV95YW9fYV90b2MS",
+          "EQoJcGxheWVyX2lkGAEgASgNEhYKDndhaXRpbmdfc2Vjb25kGAIgASgNEgsK",
+          "A3NlcRgDIAEoDSJOCh1za2lsbF9kdWlfemhlbmdfeGlhX3lhb19iX3RvcxIO",
+          "CgZlbmFibGUYASABKAgSEAoIY2FyZF9pZHMYAiADKA0SCwoDc2VxGAMgASgN",
+          "In0KHXNraWxsX2R1aV96aGVuZ194aWFfeWFvX2JfdG9jEhEKCXBsYXllcl9p",
+          "ZBgBIAEoDRIOCgZlbmFibGUYAiABKAgSFAoFY2FyZHMYAyADKAsyBS5jYXJk",
+          "EhYKDndhaXRpbmdfc2Vjb25kGAQgASgNEgsKA3NlcRgFIAEoDSJfCh1za2ls",
+          "bF9kdWlfemhlbmdfeGlhX3lhb19jX3RvcxIYChB0YXJnZXRfcGxheWVyX2lk",
+          "GAEgASgNEhcKD21lc3NhZ2VfY2FyZF9pZBgCIAEoDRILCgNzZXEYAyABKA0i",
+          "ZQodc2tpbGxfZHVpX3poZW5nX3hpYV95YW9fY190b2MSEQoJcGxheWVyX2lk",
+          "GAEgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQYAiABKA0SFwoPbWVzc2FnZV9j",
+          "YXJkX2lkGAMgASgNIjsKEXNraWxsX2R1X2ppX2FfdG9zEhkKEXRhcmdldF9w",
+          "bGF5ZXJfaWRzGAEgAygNEgsKA3NlcRgCIAEoDSJXChFza2lsbF9kdV9qaV9h",
+          "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGQoRdGFyZ2V0X3BsYXllcl9pZHMY",
+          "AiADKA0SFAoFY2FyZHMYAyADKAsyBS5jYXJkIoEBChpza2lsbF93YWl0X2Zv",
+          "cl9kdV9qaV9iX3RvcxIRCglwbGF5ZXJfaWQYASABKA0SGQoRdGFyZ2V0X3Bs",
+          "YXllcl9pZHMYAiADKA0SEAoIY2FyZF9pZHMYAyADKA0SFgoOd2FpdGluZ19z",
+          "ZWNvbmQYBCABKA0SCwoDc2VxGAUgASgNIkEKEXNraWxsX2R1X2ppX2JfdG9z",
+          "Eg4KBmVuYWJsZRgBIAEoCBIPCgdjYXJkX2lkGAIgASgNEgsKA3NlcRgDIAEo",
+          "DSKLAQoRc2tpbGxfZHVfamlfYl90b2MSEQoJcGxheWVyX2lkGAEgASgNEg4K",
+          "BmVuYWJsZRgCIAEoCBIZChF3YWl0aW5nX3BsYXllcl9pZBgDIAEoDRITCgRj",
+          "YXJkGAQgASgLMgUuY2FyZBIWCg53YWl0aW5nX3NlY29uZBgFIAEoDRILCgNz",
+          "ZXEYBiABKA0iOAoRc2tpbGxfZHVfamlfY190b3MSFgoOaW5fZnJvbnRfb2Zf",
+          "bWUYASABKAgSCwoDc2VxGAIgASgNInAKEXNraWxsX2R1X2ppX2NfdG9jEhEK",
+          "CXBsYXllcl9pZBgBIAEoDRIZChF3YWl0aW5nX3BsYXllcl9pZBgCIAEoDRIY",
+          "ChB0YXJnZXRfcGxheWVyX2lkGAMgASgNEhMKBGNhcmQYBCABKAsyBS5jYXJk",
+          "QhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -309,7 +336,20 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_sou_ji_a_tos), global::skill_sou_ji_a_tos.Parser, new[]{ "TargetPlayerId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_sou_ji_a_toc), global::skill_sou_ji_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "MessageCard", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_sou_ji_b_tos), global::skill_sou_ji_b_tos.Parser, new[]{ "CardIds", "MessageCard", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_sou_ji_b_toc), global::skill_sou_ji_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "MessageCard" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_sou_ji_b_toc), global::skill_sou_ji_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Cards", "MessageCard" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_a_tos), global::skill_dui_zheng_xia_yao_a_tos.Parser, new[]{ "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_a_toc), global::skill_dui_zheng_xia_yao_a_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_b_tos), global::skill_dui_zheng_xia_yao_b_tos.Parser, new[]{ "Enable", "CardIds", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_b_toc), global::skill_dui_zheng_xia_yao_b_toc.Parser, new[]{ "PlayerId", "Enable", "Cards", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_c_tos), global::skill_dui_zheng_xia_yao_c_tos.Parser, new[]{ "TargetPlayerId", "MessageCardId", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_c_toc), global::skill_dui_zheng_xia_yao_c_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "MessageCardId" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_a_tos), global::skill_du_ji_a_tos.Parser, new[]{ "TargetPlayerIds", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_a_toc), global::skill_du_ji_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerIds", "Cards" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_wait_for_du_ji_b_tos), global::skill_wait_for_du_ji_b_tos.Parser, new[]{ "PlayerId", "TargetPlayerIds", "CardIds", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_b_tos), global::skill_du_ji_b_tos.Parser, new[]{ "Enable", "CardId", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_b_toc), global::skill_du_ji_b_toc.Parser, new[]{ "PlayerId", "Enable", "WaitingPlayerId", "Card", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_c_tos), global::skill_du_ji_c_tos.Parser, new[]{ "InFrontOfMe", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_c_toc), global::skill_du_ji_c_toc.Parser, new[]{ "PlayerId", "WaitingPlayerId", "TargetPlayerId", "Card" }, null, null, null, null)
         }));
   }
   #endregion
@@ -19008,6 +19048,2549 @@ public sealed partial class skill_sou_ji_b_toc : pb::IMessage<skill_sou_ji_b_toc
             MessageCard = new global::card();
           }
           input.ReadMessage(MessageCard);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 黄济仁【对症下药】A：争夺阶段，你可以翻开此角色牌，然后摸三张牌。
+/// </summary>
+public sealed partial class skill_dui_zheng_xia_yao_a_tos : pb::IMessage<skill_dui_zheng_xia_yao_a_tos> {
+  private static readonly pb::MessageParser<skill_dui_zheng_xia_yao_a_tos> _parser = new pb::MessageParser<skill_dui_zheng_xia_yao_a_tos>(() => new skill_dui_zheng_xia_yao_a_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_dui_zheng_xia_yao_a_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[101]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_a_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_a_tos(skill_dui_zheng_xia_yao_a_tos other) : this() {
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_a_tos Clone() {
+    return new skill_dui_zheng_xia_yao_a_tos(this);
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 1;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_dui_zheng_xia_yao_a_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_dui_zheng_xia_yao_a_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Seq != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_dui_zheng_xia_yao_a_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播使用【对症下药】A
+/// </summary>
+public sealed partial class skill_dui_zheng_xia_yao_a_toc : pb::IMessage<skill_dui_zheng_xia_yao_a_toc> {
+  private static readonly pb::MessageParser<skill_dui_zheng_xia_yao_a_toc> _parser = new pb::MessageParser<skill_dui_zheng_xia_yao_a_toc>(() => new skill_dui_zheng_xia_yao_a_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_dui_zheng_xia_yao_a_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[102]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_a_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_a_toc(skill_dui_zheng_xia_yao_a_toc other) : this() {
+    playerId_ = other.playerId_;
+    waitingSecond_ = other.waitingSecond_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_a_toc Clone() {
+    return new skill_dui_zheng_xia_yao_a_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "waiting_second" field.</summary>
+  public const int WaitingSecondFieldNumber = 2;
+  private uint waitingSecond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingSecond {
+    get { return waitingSecond_; }
+    set {
+      waitingSecond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 3;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_dui_zheng_xia_yao_a_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_dui_zheng_xia_yao_a_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (WaitingSecond != other.WaitingSecond) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (WaitingSecond != 0) hash ^= WaitingSecond.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (WaitingSecond != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(WaitingSecond);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (WaitingSecond != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingSecond);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_dui_zheng_xia_yao_a_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.WaitingSecond != 0) {
+      WaitingSecond = other.WaitingSecond;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          WaitingSecond = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 黄济仁【对症下药】B：并且你可以展示两张含有相同颜色的手牌。
+/// </summary>
+public sealed partial class skill_dui_zheng_xia_yao_b_tos : pb::IMessage<skill_dui_zheng_xia_yao_b_tos> {
+  private static readonly pb::MessageParser<skill_dui_zheng_xia_yao_b_tos> _parser = new pb::MessageParser<skill_dui_zheng_xia_yao_b_tos>(() => new skill_dui_zheng_xia_yao_b_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_dui_zheng_xia_yao_b_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[103]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_b_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_b_tos(skill_dui_zheng_xia_yao_b_tos other) : this() {
+    enable_ = other.enable_;
+    cardIds_ = other.cardIds_.Clone();
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_b_tos Clone() {
+    return new skill_dui_zheng_xia_yao_b_tos(this);
+  }
+
+  /// <summary>Field number for the "enable" field.</summary>
+  public const int EnableFieldNumber = 1;
+  private bool enable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Enable {
+    get { return enable_; }
+    set {
+      enable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card_ids" field.</summary>
+  public const int CardIdsFieldNumber = 2;
+  private static readonly pb::FieldCodec<uint> _repeated_cardIds_codec
+      = pb::FieldCodec.ForUInt32(18);
+  private readonly pbc::RepeatedField<uint> cardIds_ = new pbc::RepeatedField<uint>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<uint> CardIds {
+    get { return cardIds_; }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 3;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_dui_zheng_xia_yao_b_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_dui_zheng_xia_yao_b_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Enable != other.Enable) return false;
+    if(!cardIds_.Equals(other.cardIds_)) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Enable != false) hash ^= Enable.GetHashCode();
+    hash ^= cardIds_.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Enable != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Enable);
+    }
+    cardIds_.WriteTo(output, _repeated_cardIds_codec);
+    if (Seq != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Enable != false) {
+      size += 1 + 1;
+    }
+    size += cardIds_.CalculateSize(_repeated_cardIds_codec);
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_dui_zheng_xia_yao_b_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Enable != false) {
+      Enable = other.Enable;
+    }
+    cardIds_.Add(other.cardIds_);
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Enable = input.ReadBool();
+          break;
+        }
+        case 18:
+        case 16: {
+          cardIds_.AddEntriesFrom(input, _repeated_cardIds_codec);
+          break;
+        }
+        case 24: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播使用【对症下药】B
+/// </summary>
+public sealed partial class skill_dui_zheng_xia_yao_b_toc : pb::IMessage<skill_dui_zheng_xia_yao_b_toc> {
+  private static readonly pb::MessageParser<skill_dui_zheng_xia_yao_b_toc> _parser = new pb::MessageParser<skill_dui_zheng_xia_yao_b_toc>(() => new skill_dui_zheng_xia_yao_b_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_dui_zheng_xia_yao_b_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[104]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_b_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_b_toc(skill_dui_zheng_xia_yao_b_toc other) : this() {
+    playerId_ = other.playerId_;
+    enable_ = other.enable_;
+    cards_ = other.cards_.Clone();
+    waitingSecond_ = other.waitingSecond_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_b_toc Clone() {
+    return new skill_dui_zheng_xia_yao_b_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "enable" field.</summary>
+  public const int EnableFieldNumber = 2;
+  private bool enable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Enable {
+    get { return enable_; }
+    set {
+      enable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "cards" field.</summary>
+  public const int CardsFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::card> _repeated_cards_codec
+      = pb::FieldCodec.ForMessage(26, global::card.Parser);
+  private readonly pbc::RepeatedField<global::card> cards_ = new pbc::RepeatedField<global::card>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::card> Cards {
+    get { return cards_; }
+  }
+
+  /// <summary>Field number for the "waiting_second" field.</summary>
+  public const int WaitingSecondFieldNumber = 4;
+  private uint waitingSecond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingSecond {
+    get { return waitingSecond_; }
+    set {
+      waitingSecond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 5;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_dui_zheng_xia_yao_b_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_dui_zheng_xia_yao_b_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (Enable != other.Enable) return false;
+    if(!cards_.Equals(other.cards_)) return false;
+    if (WaitingSecond != other.WaitingSecond) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (Enable != false) hash ^= Enable.GetHashCode();
+    hash ^= cards_.GetHashCode();
+    if (WaitingSecond != 0) hash ^= WaitingSecond.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (Enable != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Enable);
+    }
+    cards_.WriteTo(output, _repeated_cards_codec);
+    if (WaitingSecond != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(WaitingSecond);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (Enable != false) {
+      size += 1 + 1;
+    }
+    size += cards_.CalculateSize(_repeated_cards_codec);
+    if (WaitingSecond != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingSecond);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_dui_zheng_xia_yao_b_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.Enable != false) {
+      Enable = other.Enable;
+    }
+    cards_.Add(other.cards_);
+    if (other.WaitingSecond != 0) {
+      WaitingSecond = other.WaitingSecond;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Enable = input.ReadBool();
+          break;
+        }
+        case 26: {
+          cards_.AddEntriesFrom(input, _repeated_cards_codec);
+          break;
+        }
+        case 32: {
+          WaitingSecond = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 黄济仁【对症下药】C：然后从一名角色的情报区，弃置一张对应颜色情报。
+/// </summary>
+public sealed partial class skill_dui_zheng_xia_yao_c_tos : pb::IMessage<skill_dui_zheng_xia_yao_c_tos> {
+  private static readonly pb::MessageParser<skill_dui_zheng_xia_yao_c_tos> _parser = new pb::MessageParser<skill_dui_zheng_xia_yao_c_tos>(() => new skill_dui_zheng_xia_yao_c_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_dui_zheng_xia_yao_c_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[105]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_c_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_c_tos(skill_dui_zheng_xia_yao_c_tos other) : this() {
+    targetPlayerId_ = other.targetPlayerId_;
+    messageCardId_ = other.messageCardId_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_c_tos Clone() {
+    return new skill_dui_zheng_xia_yao_c_tos(this);
+  }
+
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 1;
+  private uint targetPlayerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "message_card_id" field.</summary>
+  public const int MessageCardIdFieldNumber = 2;
+  private uint messageCardId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint MessageCardId {
+    get { return messageCardId_; }
+    set {
+      messageCardId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 3;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_dui_zheng_xia_yao_c_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_dui_zheng_xia_yao_c_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (MessageCardId != other.MessageCardId) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (MessageCardId != 0) hash ^= MessageCardId.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(TargetPlayerId);
+    }
+    if (MessageCardId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(MessageCardId);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (MessageCardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageCardId);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_dui_zheng_xia_yao_c_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
+    }
+    if (other.MessageCardId != 0) {
+      MessageCardId = other.MessageCardId;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          MessageCardId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播使用【对症下药】C
+/// </summary>
+public sealed partial class skill_dui_zheng_xia_yao_c_toc : pb::IMessage<skill_dui_zheng_xia_yao_c_toc> {
+  private static readonly pb::MessageParser<skill_dui_zheng_xia_yao_c_toc> _parser = new pb::MessageParser<skill_dui_zheng_xia_yao_c_toc>(() => new skill_dui_zheng_xia_yao_c_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_dui_zheng_xia_yao_c_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[106]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_c_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_c_toc(skill_dui_zheng_xia_yao_c_toc other) : this() {
+    playerId_ = other.playerId_;
+    targetPlayerId_ = other.targetPlayerId_;
+    messageCardId_ = other.messageCardId_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_dui_zheng_xia_yao_c_toc Clone() {
+    return new skill_dui_zheng_xia_yao_c_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 2;
+  private uint targetPlayerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "message_card_id" field.</summary>
+  public const int MessageCardIdFieldNumber = 3;
+  private uint messageCardId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint MessageCardId {
+    get { return messageCardId_; }
+    set {
+      messageCardId_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_dui_zheng_xia_yao_c_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_dui_zheng_xia_yao_c_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (MessageCardId != other.MessageCardId) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (MessageCardId != 0) hash ^= MessageCardId.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TargetPlayerId);
+    }
+    if (MessageCardId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(MessageCardId);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (MessageCardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MessageCardId);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_dui_zheng_xia_yao_c_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
+    }
+    if (other.MessageCardId != 0) {
+      MessageCardId = other.MessageCardId;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          MessageCardId = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 白昆山【毒计】A：争夺阶段，你可以翻开此角色牌，然后指定两名角色，令他们相互抽取对方的一张手牌并展示之，你将展示的牌加入你的手牌。
+/// </summary>
+public sealed partial class skill_du_ji_a_tos : pb::IMessage<skill_du_ji_a_tos> {
+  private static readonly pb::MessageParser<skill_du_ji_a_tos> _parser = new pb::MessageParser<skill_du_ji_a_tos>(() => new skill_du_ji_a_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_du_ji_a_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[107]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_a_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_a_tos(skill_du_ji_a_tos other) : this() {
+    targetPlayerIds_ = other.targetPlayerIds_.Clone();
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_a_tos Clone() {
+    return new skill_du_ji_a_tos(this);
+  }
+
+  /// <summary>Field number for the "target_player_ids" field.</summary>
+  public const int TargetPlayerIdsFieldNumber = 1;
+  private static readonly pb::FieldCodec<uint> _repeated_targetPlayerIds_codec
+      = pb::FieldCodec.ForUInt32(10);
+  private readonly pbc::RepeatedField<uint> targetPlayerIds_ = new pbc::RepeatedField<uint>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<uint> TargetPlayerIds {
+    get { return targetPlayerIds_; }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 2;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_du_ji_a_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_du_ji_a_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if(!targetPlayerIds_.Equals(other.targetPlayerIds_)) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= targetPlayerIds_.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    targetPlayerIds_.WriteTo(output, _repeated_targetPlayerIds_codec);
+    if (Seq != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += targetPlayerIds_.CalculateSize(_repeated_targetPlayerIds_codec);
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_du_ji_a_tos other) {
+    if (other == null) {
+      return;
+    }
+    targetPlayerIds_.Add(other.targetPlayerIds_);
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 10:
+        case 8: {
+          targetPlayerIds_.AddEntriesFrom(input, _repeated_targetPlayerIds_codec);
+          break;
+        }
+        case 16: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播使用【毒计】A
+/// </summary>
+public sealed partial class skill_du_ji_a_toc : pb::IMessage<skill_du_ji_a_toc> {
+  private static readonly pb::MessageParser<skill_du_ji_a_toc> _parser = new pb::MessageParser<skill_du_ji_a_toc>(() => new skill_du_ji_a_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_du_ji_a_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[108]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_a_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_a_toc(skill_du_ji_a_toc other) : this() {
+    playerId_ = other.playerId_;
+    targetPlayerIds_ = other.targetPlayerIds_.Clone();
+    cards_ = other.cards_.Clone();
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_a_toc Clone() {
+    return new skill_du_ji_a_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_ids" field.</summary>
+  public const int TargetPlayerIdsFieldNumber = 2;
+  private static readonly pb::FieldCodec<uint> _repeated_targetPlayerIds_codec
+      = pb::FieldCodec.ForUInt32(18);
+  private readonly pbc::RepeatedField<uint> targetPlayerIds_ = new pbc::RepeatedField<uint>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<uint> TargetPlayerIds {
+    get { return targetPlayerIds_; }
+  }
+
+  /// <summary>Field number for the "cards" field.</summary>
+  public const int CardsFieldNumber = 3;
+  private static readonly pb::FieldCodec<global::card> _repeated_cards_codec
+      = pb::FieldCodec.ForMessage(26, global::card.Parser);
+  private readonly pbc::RepeatedField<global::card> cards_ = new pbc::RepeatedField<global::card>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::card> Cards {
+    get { return cards_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_du_ji_a_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_du_ji_a_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if(!targetPlayerIds_.Equals(other.targetPlayerIds_)) return false;
+    if(!cards_.Equals(other.cards_)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    hash ^= targetPlayerIds_.GetHashCode();
+    hash ^= cards_.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    targetPlayerIds_.WriteTo(output, _repeated_targetPlayerIds_codec);
+    cards_.WriteTo(output, _repeated_cards_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    size += targetPlayerIds_.CalculateSize(_repeated_targetPlayerIds_codec);
+    size += cards_.CalculateSize(_repeated_cards_codec);
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_du_ji_a_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    targetPlayerIds_.Add(other.targetPlayerIds_);
+    cards_.Add(other.cards_);
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 18:
+        case 16: {
+          targetPlayerIds_.AddEntriesFrom(input, _repeated_targetPlayerIds_codec);
+          break;
+        }
+        case 26: {
+          cards_.AddEntriesFrom(input, _repeated_cards_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播询问客户端使用【毒计】B
+/// </summary>
+public sealed partial class skill_wait_for_du_ji_b_tos : pb::IMessage<skill_wait_for_du_ji_b_tos> {
+  private static readonly pb::MessageParser<skill_wait_for_du_ji_b_tos> _parser = new pb::MessageParser<skill_wait_for_du_ji_b_tos>(() => new skill_wait_for_du_ji_b_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_wait_for_du_ji_b_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[109]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_wait_for_du_ji_b_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_wait_for_du_ji_b_tos(skill_wait_for_du_ji_b_tos other) : this() {
+    playerId_ = other.playerId_;
+    targetPlayerIds_ = other.targetPlayerIds_.Clone();
+    cardIds_ = other.cardIds_.Clone();
+    waitingSecond_ = other.waitingSecond_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_wait_for_du_ji_b_tos Clone() {
+    return new skill_wait_for_du_ji_b_tos(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_ids" field.</summary>
+  public const int TargetPlayerIdsFieldNumber = 2;
+  private static readonly pb::FieldCodec<uint> _repeated_targetPlayerIds_codec
+      = pb::FieldCodec.ForUInt32(18);
+  private readonly pbc::RepeatedField<uint> targetPlayerIds_ = new pbc::RepeatedField<uint>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<uint> TargetPlayerIds {
+    get { return targetPlayerIds_; }
+  }
+
+  /// <summary>Field number for the "card_ids" field.</summary>
+  public const int CardIdsFieldNumber = 3;
+  private static readonly pb::FieldCodec<uint> _repeated_cardIds_codec
+      = pb::FieldCodec.ForUInt32(26);
+  private readonly pbc::RepeatedField<uint> cardIds_ = new pbc::RepeatedField<uint>();
+  /// <summary>
+  /// 能选的卡牌ID，只有白昆山能看见，上面的target_player_ids对应的是这张牌会给谁选择
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<uint> CardIds {
+    get { return cardIds_; }
+  }
+
+  /// <summary>Field number for the "waiting_second" field.</summary>
+  public const int WaitingSecondFieldNumber = 4;
+  private uint waitingSecond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingSecond {
+    get { return waitingSecond_; }
+    set {
+      waitingSecond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 5;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_wait_for_du_ji_b_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_wait_for_du_ji_b_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if(!targetPlayerIds_.Equals(other.targetPlayerIds_)) return false;
+    if(!cardIds_.Equals(other.cardIds_)) return false;
+    if (WaitingSecond != other.WaitingSecond) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    hash ^= targetPlayerIds_.GetHashCode();
+    hash ^= cardIds_.GetHashCode();
+    if (WaitingSecond != 0) hash ^= WaitingSecond.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    targetPlayerIds_.WriteTo(output, _repeated_targetPlayerIds_codec);
+    cardIds_.WriteTo(output, _repeated_cardIds_codec);
+    if (WaitingSecond != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(WaitingSecond);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    size += targetPlayerIds_.CalculateSize(_repeated_targetPlayerIds_codec);
+    size += cardIds_.CalculateSize(_repeated_cardIds_codec);
+    if (WaitingSecond != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingSecond);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_wait_for_du_ji_b_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    targetPlayerIds_.Add(other.targetPlayerIds_);
+    cardIds_.Add(other.cardIds_);
+    if (other.WaitingSecond != 0) {
+      WaitingSecond = other.WaitingSecond;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 18:
+        case 16: {
+          targetPlayerIds_.AddEntriesFrom(input, _repeated_targetPlayerIds_codec);
+          break;
+        }
+        case 26:
+        case 24: {
+          cardIds_.AddEntriesFrom(input, _repeated_cardIds_codec);
+          break;
+        }
+        case 32: {
+          WaitingSecond = input.ReadUInt32();
+          break;
+        }
+        case 40: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 白昆山【毒计】B：若展示的是黑色牌，你可以改为令抽取者选择一项。
+/// </summary>
+public sealed partial class skill_du_ji_b_tos : pb::IMessage<skill_du_ji_b_tos> {
+  private static readonly pb::MessageParser<skill_du_ji_b_tos> _parser = new pb::MessageParser<skill_du_ji_b_tos>(() => new skill_du_ji_b_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_du_ji_b_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[110]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_b_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_b_tos(skill_du_ji_b_tos other) : this() {
+    enable_ = other.enable_;
+    cardId_ = other.cardId_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_b_tos Clone() {
+    return new skill_du_ji_b_tos(this);
+  }
+
+  /// <summary>Field number for the "enable" field.</summary>
+  public const int EnableFieldNumber = 1;
+  private bool enable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Enable {
+    get { return enable_; }
+    set {
+      enable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card_id" field.</summary>
+  public const int CardIdFieldNumber = 2;
+  private uint cardId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint CardId {
+    get { return cardId_; }
+    set {
+      cardId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 3;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_du_ji_b_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_du_ji_b_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Enable != other.Enable) return false;
+    if (CardId != other.CardId) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Enable != false) hash ^= Enable.GetHashCode();
+    if (CardId != 0) hash ^= CardId.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Enable != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Enable);
+    }
+    if (CardId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(CardId);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Enable != false) {
+      size += 1 + 1;
+    }
+    if (CardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardId);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_du_ji_b_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Enable != false) {
+      Enable = other.Enable;
+    }
+    if (other.CardId != 0) {
+      CardId = other.CardId;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Enable = input.ReadBool();
+          break;
+        }
+        case 16: {
+          CardId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播使用【毒计】B
+/// </summary>
+public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> {
+  private static readonly pb::MessageParser<skill_du_ji_b_toc> _parser = new pb::MessageParser<skill_du_ji_b_toc>(() => new skill_du_ji_b_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_du_ji_b_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[111]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_b_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_b_toc(skill_du_ji_b_toc other) : this() {
+    playerId_ = other.playerId_;
+    enable_ = other.enable_;
+    waitingPlayerId_ = other.waitingPlayerId_;
+    card_ = other.card_ != null ? other.card_.Clone() : null;
+    waitingSecond_ = other.waitingSecond_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_b_toc Clone() {
+    return new skill_du_ji_b_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  /// <summary>
+  /// 白昆山的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "enable" field.</summary>
+  public const int EnableFieldNumber = 2;
+  private bool enable_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Enable {
+    get { return enable_; }
+    set {
+      enable_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "waiting_player_id" field.</summary>
+  public const int WaitingPlayerIdFieldNumber = 3;
+  private uint waitingPlayerId_;
+  /// <summary>
+  /// 读秒的玩家ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingPlayerId {
+    get { return waitingPlayerId_; }
+    set {
+      waitingPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 4;
+  private global::card card_;
+  /// <summary>
+  /// 做选择的卡牌的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::card Card {
+    get { return card_; }
+    set {
+      card_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "waiting_second" field.</summary>
+  public const int WaitingSecondFieldNumber = 5;
+  private uint waitingSecond_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingSecond {
+    get { return waitingSecond_; }
+    set {
+      waitingSecond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 6;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_du_ji_b_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_du_ji_b_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (Enable != other.Enable) return false;
+    if (WaitingPlayerId != other.WaitingPlayerId) return false;
+    if (!object.Equals(Card, other.Card)) return false;
+    if (WaitingSecond != other.WaitingSecond) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (Enable != false) hash ^= Enable.GetHashCode();
+    if (WaitingPlayerId != 0) hash ^= WaitingPlayerId.GetHashCode();
+    if (card_ != null) hash ^= Card.GetHashCode();
+    if (WaitingSecond != 0) hash ^= WaitingSecond.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (Enable != false) {
+      output.WriteRawTag(16);
+      output.WriteBool(Enable);
+    }
+    if (WaitingPlayerId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(WaitingPlayerId);
+    }
+    if (card_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Card);
+    }
+    if (WaitingSecond != 0) {
+      output.WriteRawTag(40);
+      output.WriteUInt32(WaitingSecond);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(48);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (Enable != false) {
+      size += 1 + 1;
+    }
+    if (WaitingPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingPlayerId);
+    }
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
+    }
+    if (WaitingSecond != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingSecond);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_du_ji_b_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.Enable != false) {
+      Enable = other.Enable;
+    }
+    if (other.WaitingPlayerId != 0) {
+      WaitingPlayerId = other.WaitingPlayerId;
+    }
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
+      }
+      Card.MergeFrom(other.Card);
+    }
+    if (other.WaitingSecond != 0) {
+      WaitingSecond = other.WaitingSecond;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          Enable = input.ReadBool();
+          break;
+        }
+        case 24: {
+          WaitingPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 34: {
+          if (card_ == null) {
+            Card = new global::card();
+          }
+          input.ReadMessage(Card);
+          break;
+        }
+        case 40: {
+          WaitingSecond = input.ReadUInt32();
+          break;
+        }
+        case 48: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 白昆山【毒计】C：
+/// ♦ 将其置入自己的情报区
+/// ♦ 将其置入对方的情报区
+/// </summary>
+public sealed partial class skill_du_ji_c_tos : pb::IMessage<skill_du_ji_c_tos> {
+  private static readonly pb::MessageParser<skill_du_ji_c_tos> _parser = new pb::MessageParser<skill_du_ji_c_tos>(() => new skill_du_ji_c_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_du_ji_c_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[112]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_c_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_c_tos(skill_du_ji_c_tos other) : this() {
+    inFrontOfMe_ = other.inFrontOfMe_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_c_tos Clone() {
+    return new skill_du_ji_c_tos(this);
+  }
+
+  /// <summary>Field number for the "in_front_of_me" field.</summary>
+  public const int InFrontOfMeFieldNumber = 1;
+  private bool inFrontOfMe_;
+  /// <summary>
+  /// true-放入自己的情报区，false-放入对方的情报区
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool InFrontOfMe {
+    get { return inFrontOfMe_; }
+    set {
+      inFrontOfMe_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 2;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_du_ji_c_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_du_ji_c_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (InFrontOfMe != other.InFrontOfMe) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (InFrontOfMe != false) hash ^= InFrontOfMe.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (InFrontOfMe != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(InFrontOfMe);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (InFrontOfMe != false) {
+      size += 1 + 1;
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_du_ji_c_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.InFrontOfMe != false) {
+      InFrontOfMe = other.InFrontOfMe;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          InFrontOfMe = input.ReadBool();
+          break;
+        }
+        case 16: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 广播使用【毒计】C
+/// </summary>
+public sealed partial class skill_du_ji_c_toc : pb::IMessage<skill_du_ji_c_toc> {
+  private static readonly pb::MessageParser<skill_du_ji_c_toc> _parser = new pb::MessageParser<skill_du_ji_c_toc>(() => new skill_du_ji_c_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<skill_du_ji_c_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::RoleReflection.Descriptor.MessageTypes[113]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_c_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_c_toc(skill_du_ji_c_toc other) : this() {
+    playerId_ = other.playerId_;
+    waitingPlayerId_ = other.waitingPlayerId_;
+    targetPlayerId_ = other.targetPlayerId_;
+    card_ = other.card_ != null ? other.card_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public skill_du_ji_c_toc Clone() {
+    return new skill_du_ji_c_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  /// <summary>
+  /// 白昆山的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "waiting_player_id" field.</summary>
+  public const int WaitingPlayerIdFieldNumber = 2;
+  private uint waitingPlayerId_;
+  /// <summary>
+  /// 做选择的玩家的ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingPlayerId {
+    get { return waitingPlayerId_; }
+    set {
+      waitingPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 3;
+  private uint targetPlayerId_;
+  /// <summary>
+  /// 放在谁的面前
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 4;
+  private global::card card_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::card Card {
+    get { return card_; }
+    set {
+      card_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as skill_du_ji_c_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(skill_du_ji_c_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (WaitingPlayerId != other.WaitingPlayerId) return false;
+    if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (!object.Equals(Card, other.Card)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (WaitingPlayerId != 0) hash ^= WaitingPlayerId.GetHashCode();
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (card_ != null) hash ^= Card.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (WaitingPlayerId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(WaitingPlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(TargetPlayerId);
+    }
+    if (card_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Card);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (WaitingPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingPlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(skill_du_ji_c_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.WaitingPlayerId != 0) {
+      WaitingPlayerId = other.WaitingPlayerId;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
+    }
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
+      }
+      Card.MergeFrom(other.Card);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          WaitingPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 34: {
+          if (card_ == null) {
+            Card = new global::card();
+          }
+          input.ReadMessage(Card);
           break;
         }
       }

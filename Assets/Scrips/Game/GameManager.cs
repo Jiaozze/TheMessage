@@ -773,7 +773,9 @@ public class GameManager
             case error_code.RobotNotAllowed:
                 gameUI.ShowInfo("禁止添加机器人");
                 break;
-
+            case error_code.NoColorMessageCard:
+                gameUI.ShowInfo("场上没有该颜色的情报");
+                break;
             default:
                 gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;

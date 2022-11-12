@@ -25,29 +25,30 @@ public static partial class CommonReflection {
           "Cgxjb21tb24ucHJvdG8ioQEKBGNhcmQSDwoHY2FyZF9pZBgBIAEoDRIaCgpj",
           "YXJkX2NvbG9yGAIgAygOMgYuY29sb3ISHAoIY2FyZF9kaXIYAyABKA4yCi5k",
           "aXJlY3Rpb24SHQoJY2FyZF90eXBlGAQgASgOMgouY2FyZF90eXBlEh0KDXdo",
-          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCqO",
+          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCqy",
           "BAoEcm9sZRILCgd1bmtub3duEAASDgoKd3VfemhpX2d1bxABEhIKDmNoZW5n",
           "X3hpYW9fZGllEAISDQoJbGlhbl95dWFuEAMSDQoJbWFvX2J1X2JhEAQSEQoN",
           "emhhbmdfeWlfdGluZxAFEhEKDWJhaV9jYW5nX2xhbmcQBhIXChNmZWlfeXVh",
-          "bl9sb25nX2NodWFuEAcSDAoIcGVpX2xpbmcQCBITCg93YW5nX3RpYW5feGlh",
-          "bmcQChILCgdsaV94aW5nEAsSDAoId2FuZ19rdWkQDBIPCgthX2Z1X2x1b19s",
-          "YRANEgsKB2hhbl9tZWkQDhISCg56aGVuZ193ZW5feGlhbhAPEhAKDHh1YW5f",
-          "cWluZ196aRAQEgwKCGd1aV9qaWFvEBESDAoIc2hhb194aXUQEhIRCg1qaW5f",
-          "c2hlbmdfaHVvEBMSEAoMZ3VfeGlhb19tZW5nEBQSDwoLYmFpX2ZlaV9mZWkQ",
-          "FRIQCgxkdWFuX211X2ppbmcQFhIPCgt3YW5nX2Z1X2d1aRAXEgsKB2xhb19o",
-          "YW4QGBIRCg1iYWlfeGlhb19uaWFuEBkSCwoHbGFvX2JpZRAaEgwKCHhpYW9f",
-          "aml1EBsSDgoKbGlfbmluZ195dRAcEgwKCHNoYW5nX3l1EB4SFAoPc3BfZ3Vf",
-          "eGlhb19tZW5nEPwHEhIKDXNwX2xpX25pbmdfeXUQhAgqcQoFcGhhc2USDgoK",
-          "RHJhd19QaGFzZRAAEg4KCk1haW5fUGhhc2UQARIUChBTZW5kX1N0YXJ0X1Bo",
-          "YXNlEAISDgoKU2VuZF9QaGFzZRADEg8KC0ZpZ2h0X1BoYXNlEAQSEQoNUmVj",
-          "ZWl2ZV9QaGFzZRAFKoEBCgljYXJkX3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsK",
-          "B1NoaV9UYW4QARIKCgZXZWlfQmkQAhIKCgZMaV9Zb3UQAxINCglQaW5nX0hl",
-          "bmcQBBIJCgVQb19ZaRAFEgsKB0ppZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoK",
-          "Bld1X0RhbxAIKjoKBWNvbG9yEgkKBUJsYWNrEAASBwoDUmVkEAESCAoEQmx1",
-          "ZRACEhMKD0hhc19Ob19JZGVudGl0eRADKjUKC3NlY3JldF90YXNrEgoKBktp",
-          "bGxlchAAEgsKB1N0ZWFsZXIQARINCglDb2xsZWN0b3IQAiooCglkaXJlY3Rp",
-          "b24SBgoCVXAQABIICgRMZWZ0EAESCQoFUmlnaHQQAkIWChRjb20uZmVuZ3No",
-          "ZW5nLnByb3Rvc2IGcHJvdG8z"));
+          "bl9sb25nX2NodWFuEAcSDAoIcGVpX2xpbmcQCBIQCgxodWFuZ19qaV9yZW4Q",
+          "CRITCg93YW5nX3RpYW5feGlhbmcQChILCgdsaV94aW5nEAsSDAoId2FuZ19r",
+          "dWkQDBIPCgthX2Z1X2x1b19sYRANEgsKB2hhbl9tZWkQDhISCg56aGVuZ193",
+          "ZW5feGlhbhAPEhAKDHh1YW5fcWluZ196aRAQEgwKCGd1aV9qaWFvEBESDAoI",
+          "c2hhb194aXUQEhIRCg1qaW5fc2hlbmdfaHVvEBMSEAoMZ3VfeGlhb19tZW5n",
+          "EBQSDwoLYmFpX2ZlaV9mZWkQFRIQCgxkdWFuX211X2ppbmcQFhIPCgt3YW5n",
+          "X2Z1X2d1aRAXEgsKB2xhb19oYW4QGBIRCg1iYWlfeGlhb19uaWFuEBkSCwoH",
+          "bGFvX2JpZRAaEgwKCHhpYW9faml1EBsSDgoKbGlfbmluZ195dRAcEhAKDGJh",
+          "aV9rdW5fc2hhbhAdEgwKCHNoYW5nX3l1EB4SFAoPc3BfZ3VfeGlhb19tZW5n",
+          "EPwHEhIKDXNwX2xpX25pbmdfeXUQhAgqcQoFcGhhc2USDgoKRHJhd19QaGFz",
+          "ZRAAEg4KCk1haW5fUGhhc2UQARIUChBTZW5kX1N0YXJ0X1BoYXNlEAISDgoK",
+          "U2VuZF9QaGFzZRADEg8KC0ZpZ2h0X1BoYXNlEAQSEQoNUmVjZWl2ZV9QaGFz",
+          "ZRAFKoEBCgljYXJkX3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsKB1NoaV9UYW4Q",
+          "ARIKCgZXZWlfQmkQAhIKCgZMaV9Zb3UQAxINCglQaW5nX0hlbmcQBBIJCgVQ",
+          "b19ZaRAFEgsKB0ppZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoKBld1X0RhbxAI",
+          "KjoKBWNvbG9yEgkKBUJsYWNrEAASBwoDUmVkEAESCAoEQmx1ZRACEhMKD0hh",
+          "c19Ob19JZGVudGl0eRADKjUKC3NlY3JldF90YXNrEgoKBktpbGxlchAAEgsK",
+          "B1N0ZWFsZXIQARINCglDb2xsZWN0b3IQAiooCglkaXJlY3Rpb24SBgoCVXAQ",
+          "ABIICgRMZWZ0EAESCQoFUmlnaHQQAkIWChRjb20uZmVuZ3NoZW5nLnByb3Rv",
+          "c2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -95,6 +96,10 @@ public enum role {
   /// 裴玲
   /// </summary>
   [pbr::OriginalName("pei_ling")] PeiLing = 8,
+  /// <summary>
+  /// 黄济仁
+  /// </summary>
+  [pbr::OriginalName("huang_ji_ren")] HuangJiRen = 9,
   /// <summary>
   /// 王田香
   /// </summary>
@@ -171,6 +176,10 @@ public enum role {
   /// 李宁玉
   /// </summary>
   [pbr::OriginalName("li_ning_yu")] LiNingYu = 28,
+  /// <summary>
+  /// 白昆山
+  /// </summary>
+  [pbr::OriginalName("bai_kun_shan")] BaiKunShan = 29,
   /// <summary>
   /// 商玉
   /// </summary>

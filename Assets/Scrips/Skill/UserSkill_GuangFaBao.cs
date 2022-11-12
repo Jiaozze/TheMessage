@@ -170,6 +170,8 @@ public class UserSkill_GuangFaBao : SkillBase
     public static void OnReceiveUseA(int playerId)
     {
         string s = string.Format("{0}使用了技能广发报", GameManager.Singleton.players[playerId].name);
+        GameManager.Singleton.gameUI.ShowInfo(s);
+        GameManager.Singleton.gameUI.AddMsg(s);
     }
 
     public static void OnReceiveWaitUse(int playerId, int waitSeconds, uint seq)

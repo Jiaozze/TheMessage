@@ -894,7 +894,31 @@ public static class ProtoHelper
             //int playerId = (int)skill_jiang_hu_ling_b_toc.CardId;
             UserSkill_JiangHuLing.OnReceiveUseB((int)skill_jiang_hu_ling_b_toc.PlayerId, (int)skill_jiang_hu_ling_b_toc.CardId);
         }
-
+        else if (GetIdFromProtoName("skill_dui_zheng_xia_yao_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_dui_zheng_xia_yao_a_toc");
+            skill_dui_zheng_xia_yao_a_toc skill_dui_zheng_xia_yao_a_toc = skill_dui_zheng_xia_yao_a_toc.Parser.ParseFrom(contont);
+            //int playerId = (int)skill_jiang_hu_ling_b_toc.CardId;
+            UserSkill_DuiZhengXiaYao.OnReceiveUseA((int)skill_dui_zheng_xia_yao_a_toc.PlayerId, (int)skill_dui_zheng_xia_yao_a_toc.WaitingSecond, skill_dui_zheng_xia_yao_a_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_dui_zheng_xia_yao_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_dui_zheng_xia_yao_b_toc");
+            skill_dui_zheng_xia_yao_b_toc skill_dui_zheng_xia_yao_b_toc = skill_dui_zheng_xia_yao_b_toc.Parser.ParseFrom(contont);
+            List<CardFS> cards = new List<CardFS>();
+            foreach(var card in skill_dui_zheng_xia_yao_b_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            UserSkill_DuiZhengXiaYao.OnReceiveUseB(skill_dui_zheng_xia_yao_b_toc.Enable,(int)skill_dui_zheng_xia_yao_b_toc.PlayerId, cards, (int)skill_dui_zheng_xia_yao_b_toc.WaitingSecond, skill_dui_zheng_xia_yao_b_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_dui_zheng_xia_yao_c_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_dui_zheng_xia_yao_c_toc");
+            skill_dui_zheng_xia_yao_c_toc skill_dui_zheng_xia_yao_c_toc = skill_dui_zheng_xia_yao_c_toc.Parser.ParseFrom(contont);
+            //int playerId = (int)skill_jiang_hu_ling_b_toc.CardId;
+            UserSkill_DuiZhengXiaYao.OnReceiveUseC((int)skill_dui_zheng_xia_yao_c_toc.PlayerId, (int)skill_dui_zheng_xia_yao_c_toc.TargetPlayerId,(int)skill_dui_zheng_xia_yao_c_toc.MessageCardId);
+        }
 
 
         #endregion
@@ -1328,6 +1352,38 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 黄济仁【对症下药】A：争夺阶段，你可以翻开此角色牌，然后摸三张牌。
+    // 黄济仁【对症下药】B：并且你可以展示两张含有相同颜色的手牌。
+    // 黄济仁【对症下药】C：然后从一名角色的情报区，弃置一张对应颜色情报。
+    public static void SendSkill_DuiZhengXiaYaoA( uint seq)
+    {
+        Debug.Log("____send___________________ skill_dui_zheng_xia_yao_a_tos, seq:" + seq);
+
+        skill_dui_zheng_xia_yao_a_tos skill_dui_zheng_xia_yao_a_tos = new skill_dui_zheng_xia_yao_a_tos() {Seq = seq };
+        byte[] proto = skill_dui_zheng_xia_yao_a_tos.ToByteArray();
+        SendProto("skill_dui_zheng_xia_yao_a_tos", proto);
+    }
+    public static void SendSkill_DuiZhengXiaYaoB(bool enable, List<int> cardIds, uint seq)
+    {
+        Debug.Log("____send___________________ skill_dui_zheng_xia_yao_b_tos, seq:" + seq);
+
+        skill_dui_zheng_xia_yao_b_tos skill_dui_zheng_xia_yao_b_tos = new skill_dui_zheng_xia_yao_b_tos() { Enable = enable, Seq = seq };
+        foreach(var id in cardIds)
+        {
+            skill_dui_zheng_xia_yao_b_tos.CardIds.Add((uint)id);
+        }
+        byte[] proto = skill_dui_zheng_xia_yao_b_tos.ToByteArray();
+        SendProto("skill_dui_zheng_xia_yao_b_tos", proto);
+    }
+    public static void SendSkill_DuiZhengXiaYaoC(int targetId, int messageId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_dui_zheng_xia_yao_c_tos, seq:" + seq);
+
+        skill_dui_zheng_xia_yao_c_tos skill_dui_zheng_xia_yao_c_tos = new skill_dui_zheng_xia_yao_c_tos() { TargetPlayerId = (uint)targetId, MessageCardId = (uint)messageId, Seq = seq };
+        byte[] proto = skill_dui_zheng_xia_yao_c_tos.ToByteArray();
+        SendProto("skill_dui_zheng_xia_yao_c_tos", proto);
+    }
+
     // 王富贵【江湖令】A：你传出情报后，可以宣言一个颜色。
     // 王富贵【江湖令】B：本回合中，当情报被接收后，你可以从接收者的情报区弃置一张被宣言颜色的情报，若弃置的是黑色情报，则你摸一张牌。
     public static void SendSkill_JiangHuLingA(bool enable, CardColorEnum color, uint seq)
