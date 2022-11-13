@@ -79,7 +79,7 @@ public enum error_code {
   /// </summary>
   [pbr::OriginalName("already_online")] AlreadyOnline = 8,
   /// <summary>
-  /// 场上
+  /// 场上没有这种颜色的情报
   /// </summary>
   [pbr::OriginalName("no_color_message_card")] NoColorMessageCard = 9,
 }

@@ -34,11 +34,10 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     public RoleSelect roleSelect;
 
     public QiangLingSelect QiangLingSelect;
-
     public MiaoShouSelect miaoShouSelect;
-
     public SouJiSelect souJiSelect;
     public JiangHuLingSelect jiangHuLingSelect;
+    public DuJiSelect duJiSelect;
 
     public UIPlayer itemPlayerUI;
 
@@ -98,6 +97,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        duJiSelect.gameObject.SetActive(false);
         jiangHuLingSelect.gameObject.SetActive(false);
         souJiSelect.gameObject.SetActive(false);
         miaoShouSelect.gameObject.SetActive(false);
@@ -436,7 +436,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void ShowCardsMove(int from, int to, List<CardFS> cards, bool toMessageSend = false)
+    public void ShowCardsMove(int from, int to, List<CardFS> cards, bool toMessageSend = false, float delay = 0f)
     {
         for (int i = 0; i < cards.Count; i++)
         {
@@ -472,7 +472,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
             () =>
             {
                 Destroy(uICard.gameObject);
-            }));
+            },
+            delay));
         }
     }
 

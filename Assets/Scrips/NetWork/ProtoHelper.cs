@@ -919,6 +919,54 @@ public static class ProtoHelper
             //int playerId = (int)skill_jiang_hu_ling_b_toc.CardId;
             UserSkill_DuiZhengXiaYao.OnReceiveUseC((int)skill_dui_zheng_xia_yao_c_toc.PlayerId, (int)skill_dui_zheng_xia_yao_c_toc.TargetPlayerId,(int)skill_dui_zheng_xia_yao_c_toc.MessageCardId);
         }
+        // 白昆山【毒计】A：争夺阶段，你可以翻开此角色牌，然后指定两名角色，令他们相互抽取对方的一张手牌并展示之，你将展示的牌加入你的手牌。
+        // 白昆山【毒计】B：若展示的是黑色牌，你可以改为令抽取者选择一项。
+        // 白昆山【毒计】C：
+        // ♦ 将其置入自己的情报区
+        // ♦ 将其置入对方的情报区
+        else if (GetIdFromProtoName("skill_du_ji_a_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_du_ji_a_toc");
+            skill_du_ji_a_toc skill_du_ji_a_toc = skill_du_ji_a_toc.Parser.ParseFrom(contont);
+            List<CardFS> cards = new List<CardFS>();
+            foreach(var card in skill_du_ji_a_toc.Cards)
+            {
+                cards.Add(new CardFS(card));
+            }
+            //int playerId = (int)skill_jiang_hu_ling_b_toc.CardId;
+            UserSkill_DuJi.OnReceiveUseA((int)skill_du_ji_a_toc.PlayerId, (int)skill_du_ji_a_toc.TargetPlayerIds[0], cards[0], (int)skill_du_ji_a_toc.TargetPlayerIds[1], cards[1]);
+        }
+        else if (GetIdFromProtoName("skill_wait_for_du_ji_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_wait_for_du_ji_b_toc");
+            skill_wait_for_du_ji_b_toc skill_wait_for_du_ji_b_toc = skill_wait_for_du_ji_b_toc.Parser.ParseFrom(contont);
+            List<int> targets = new List<int>();
+            foreach(var targetId in skill_wait_for_du_ji_b_toc.TargetPlayerIds)
+            {
+                targets.Add((int)targetId);
+            }
+            List<int> cards = new List<int>();
+            foreach (var cardId in skill_wait_for_du_ji_b_toc.CardIds)
+            {
+                cards.Add((int)cardId);
+            }
+
+            UserSkill_DuJi.OnReceiveWaitingUseB((int)skill_wait_for_du_ji_b_toc.PlayerId, targets, cards, (int)skill_wait_for_du_ji_b_toc.WaitingSecond, skill_wait_for_du_ji_b_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_du_ji_b_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_du_ji_b_toc");
+            skill_du_ji_b_toc skill_du_ji_b_toc = skill_du_ji_b_toc.Parser.ParseFrom(contont);
+            CardFS card = new CardFS(skill_du_ji_b_toc.Card);
+            UserSkill_DuJi.OnReceiveUseB(skill_du_ji_b_toc.Enable, (int)skill_du_ji_b_toc.PlayerId, card, (int)skill_du_ji_b_toc.TargetPlayerId,(int)skill_du_ji_b_toc.WaitingPlayerId, (int)skill_du_ji_b_toc.WaitingSecond, skill_du_ji_b_toc.Seq);
+        }
+        else if (GetIdFromProtoName("skill_du_ji_c_toc") == id)
+        {
+            Debug.Log(" _______receive________ skill_du_ji_c_toc");
+            skill_du_ji_c_toc skill_du_ji_c_toc = skill_du_ji_c_toc.Parser.ParseFrom(contont);
+            CardFS card = new CardFS(skill_du_ji_c_toc.Card);
+            UserSkill_DuJi.OnReceiveUseC((int)skill_du_ji_c_toc.PlayerId, card, (int)skill_du_ji_c_toc.TargetPlayerId, (int)skill_du_ji_c_toc.WaitingPlayerId);
+        }
 
 
         #endregion
@@ -1352,6 +1400,41 @@ public static class ProtoHelper
         byte[] proto = end_Receive_Phase_Tos.ToByteArray();
         SendProto("end_receive_phase_tos", proto);
     }
+    // 白昆山【毒计】A：争夺阶段，你可以翻开此角色牌，然后指定两名角色，令他们相互抽取对方的一张手牌并展示之，你将展示的牌加入你的手牌。
+    // 白昆山【毒计】B：若展示的是黑色牌，你可以改为令抽取者选择一项。
+    // 白昆山【毒计】C：
+    // ♦ 将其置入自己的情报区
+    // ♦ 将其置入对方的情报区
+    public static void SendSkill_DuJiA(List<int> targetIds, uint seq)
+    {
+        Debug.Log("____send___________________ skill_du_ji_a_tos, seq:" + seq);
+
+        skill_du_ji_a_tos skill_du_ji_a_tos = new skill_du_ji_a_tos() { Seq = seq };
+        foreach(var id in targetIds)
+        {
+            skill_du_ji_a_tos.TargetPlayerIds.Add((uint)id);
+        }
+        byte[] proto = skill_du_ji_a_tos.ToByteArray();
+        SendProto("skill_du_ji_a_tos", proto);
+    }
+    public static void SendSkill_DuJiB(bool enable, int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ skill_du_ji_b_tos, seq:" + seq);
+
+        skill_du_ji_b_tos skill_du_ji_b_tos = new skill_du_ji_b_tos() { Enable = enable, CardId = (uint)cardId,  Seq = seq };
+        byte[] proto = skill_du_ji_b_tos.ToByteArray();
+        SendProto("skill_du_ji_b_tos", proto);
+    }
+    public static void SendSkill_DuJiC(bool isSelf, uint seq)
+    {
+        Debug.Log("____send___________________ skill_du_ji_c_tos, seq:" + seq);
+
+        skill_du_ji_c_tos skill_du_ji_c_tos = new skill_du_ji_c_tos() { InFrontOfMe = isSelf, Seq = seq };
+        byte[] proto = skill_du_ji_c_tos.ToByteArray();
+        SendProto("skill_du_ji_c_tos", proto);
+    }
+
+
     // 黄济仁【对症下药】A：争夺阶段，你可以翻开此角色牌，然后摸三张牌。
     // 黄济仁【对症下药】B：并且你可以展示两张含有相同颜色的手牌。
     // 黄济仁【对症下药】C：然后从一名角色的情报区，弃置一张对应颜色情报。

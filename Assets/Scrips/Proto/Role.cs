@@ -221,18 +221,19 @@ public static partial class RoleReflection {
           "bGF5ZXJfaWRzGAEgAygNEgsKA3NlcRgCIAEoDSJXChFza2lsbF9kdV9qaV9h",
           "X3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGQoRdGFyZ2V0X3BsYXllcl9pZHMY",
           "AiADKA0SFAoFY2FyZHMYAyADKAsyBS5jYXJkIoEBChpza2lsbF93YWl0X2Zv",
-          "cl9kdV9qaV9iX3RvcxIRCglwbGF5ZXJfaWQYASABKA0SGQoRdGFyZ2V0X3Bs",
+          "cl9kdV9qaV9iX3RvYxIRCglwbGF5ZXJfaWQYASABKA0SGQoRdGFyZ2V0X3Bs",
           "YXllcl9pZHMYAiADKA0SEAoIY2FyZF9pZHMYAyADKA0SFgoOd2FpdGluZ19z",
           "ZWNvbmQYBCABKA0SCwoDc2VxGAUgASgNIkEKEXNraWxsX2R1X2ppX2JfdG9z",
           "Eg4KBmVuYWJsZRgBIAEoCBIPCgdjYXJkX2lkGAIgASgNEgsKA3NlcRgDIAEo",
-          "DSKLAQoRc2tpbGxfZHVfamlfYl90b2MSEQoJcGxheWVyX2lkGAEgASgNEg4K",
-          "BmVuYWJsZRgCIAEoCBIZChF3YWl0aW5nX3BsYXllcl9pZBgDIAEoDRITCgRj",
-          "YXJkGAQgASgLMgUuY2FyZBIWCg53YWl0aW5nX3NlY29uZBgFIAEoDRILCgNz",
-          "ZXEYBiABKA0iOAoRc2tpbGxfZHVfamlfY190b3MSFgoOaW5fZnJvbnRfb2Zf",
-          "bWUYASABKAgSCwoDc2VxGAIgASgNInAKEXNraWxsX2R1X2ppX2NfdG9jEhEK",
-          "CXBsYXllcl9pZBgBIAEoDRIZChF3YWl0aW5nX3BsYXllcl9pZBgCIAEoDRIY",
-          "ChB0YXJnZXRfcGxheWVyX2lkGAMgASgNEhMKBGNhcmQYBCABKAsyBS5jYXJk",
-          "QhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90bzM="));
+          "DSKlAQoRc2tpbGxfZHVfamlfYl90b2MSEQoJcGxheWVyX2lkGAEgASgNEg4K",
+          "BmVuYWJsZRgCIAEoCBIZChF3YWl0aW5nX3BsYXllcl9pZBgDIAEoDRIYChB0",
+          "YXJnZXRfcGxheWVyX2lkGAQgASgNEhMKBGNhcmQYBSABKAsyBS5jYXJkEhYK",
+          "DndhaXRpbmdfc2Vjb25kGAYgASgNEgsKA3NlcRgHIAEoDSI4ChFza2lsbF9k",
+          "dV9qaV9jX3RvcxIWCg5pbl9mcm9udF9vZl9tZRgBIAEoCBILCgNzZXEYAiAB",
+          "KA0icAoRc2tpbGxfZHVfamlfY190b2MSEQoJcGxheWVyX2lkGAEgASgNEhkK",
+          "EXdhaXRpbmdfcGxheWVyX2lkGAIgASgNEhgKEHRhcmdldF9wbGF5ZXJfaWQY",
+          "AyABKA0SEwoEY2FyZBgEIAEoCzIFLmNhcmRCFgoUY29tLmZlbmdzaGVuZy5w",
+          "cm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -345,9 +346,9 @@ public static partial class RoleReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_dui_zheng_xia_yao_c_toc), global::skill_dui_zheng_xia_yao_c_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "MessageCardId" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_a_tos), global::skill_du_ji_a_tos.Parser, new[]{ "TargetPlayerIds", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_a_toc), global::skill_du_ji_a_toc.Parser, new[]{ "PlayerId", "TargetPlayerIds", "Cards" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_wait_for_du_ji_b_tos), global::skill_wait_for_du_ji_b_tos.Parser, new[]{ "PlayerId", "TargetPlayerIds", "CardIds", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_wait_for_du_ji_b_toc), global::skill_wait_for_du_ji_b_toc.Parser, new[]{ "PlayerId", "TargetPlayerIds", "CardIds", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_b_tos), global::skill_du_ji_b_tos.Parser, new[]{ "Enable", "CardId", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_b_toc), global::skill_du_ji_b_toc.Parser, new[]{ "PlayerId", "Enable", "WaitingPlayerId", "Card", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_b_toc), global::skill_du_ji_b_toc.Parser, new[]{ "PlayerId", "Enable", "WaitingPlayerId", "TargetPlayerId", "Card", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_c_tos), global::skill_du_ji_c_tos.Parser, new[]{ "InFrontOfMe", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::skill_du_ji_c_toc), global::skill_du_ji_c_toc.Parser, new[]{ "PlayerId", "WaitingPlayerId", "TargetPlayerId", "Card" }, null, null, null, null)
         }));
@@ -20170,7 +20171,7 @@ public sealed partial class skill_dui_zheng_xia_yao_c_toc : pb::IMessage<skill_d
 }
 
 /// <summary>
-/// 白昆山【毒计】A：争夺阶段，你可以翻开此角色牌，然后指定两名角色，令他们相互抽取对方的一张手牌并展示之，你将展示的牌加入你的手牌。
+/// 白昆山【毒计】A：争夺阶段，你可以翻开此角色牌，然后指定两名其他角色，令他们相互抽取对方的一张手牌并展示之，你将展示的牌加入你的手牌。
 /// </summary>
 public sealed partial class skill_du_ji_a_tos : pb::IMessage<skill_du_ji_a_tos> {
   private static readonly pb::MessageParser<skill_du_ji_a_tos> _parser = new pb::MessageParser<skill_du_ji_a_tos>(() => new skill_du_ji_a_tos());
@@ -20498,11 +20499,11 @@ public sealed partial class skill_du_ji_a_toc : pb::IMessage<skill_du_ji_a_toc> 
 /// <summary>
 /// 广播询问客户端使用【毒计】B
 /// </summary>
-public sealed partial class skill_wait_for_du_ji_b_tos : pb::IMessage<skill_wait_for_du_ji_b_tos> {
-  private static readonly pb::MessageParser<skill_wait_for_du_ji_b_tos> _parser = new pb::MessageParser<skill_wait_for_du_ji_b_tos>(() => new skill_wait_for_du_ji_b_tos());
+public sealed partial class skill_wait_for_du_ji_b_toc : pb::IMessage<skill_wait_for_du_ji_b_toc> {
+  private static readonly pb::MessageParser<skill_wait_for_du_ji_b_toc> _parser = new pb::MessageParser<skill_wait_for_du_ji_b_toc>(() => new skill_wait_for_du_ji_b_toc());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<skill_wait_for_du_ji_b_tos> Parser { get { return _parser; } }
+  public static pb::MessageParser<skill_wait_for_du_ji_b_toc> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -20515,14 +20516,14 @@ public sealed partial class skill_wait_for_du_ji_b_tos : pb::IMessage<skill_wait
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public skill_wait_for_du_ji_b_tos() {
+  public skill_wait_for_du_ji_b_toc() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public skill_wait_for_du_ji_b_tos(skill_wait_for_du_ji_b_tos other) : this() {
+  public skill_wait_for_du_ji_b_toc(skill_wait_for_du_ji_b_toc other) : this() {
     playerId_ = other.playerId_;
     targetPlayerIds_ = other.targetPlayerIds_.Clone();
     cardIds_ = other.cardIds_.Clone();
@@ -20532,8 +20533,8 @@ public sealed partial class skill_wait_for_du_ji_b_tos : pb::IMessage<skill_wait
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public skill_wait_for_du_ji_b_tos Clone() {
-    return new skill_wait_for_du_ji_b_tos(this);
+  public skill_wait_for_du_ji_b_toc Clone() {
+    return new skill_wait_for_du_ji_b_toc(this);
   }
 
   /// <summary>Field number for the "player_id" field.</summary>
@@ -20594,11 +20595,11 @@ public sealed partial class skill_wait_for_du_ji_b_tos : pb::IMessage<skill_wait
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as skill_wait_for_du_ji_b_tos);
+    return Equals(other as skill_wait_for_du_ji_b_toc);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(skill_wait_for_du_ji_b_tos other) {
+  public bool Equals(skill_wait_for_du_ji_b_toc other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -20674,7 +20675,7 @@ public sealed partial class skill_wait_for_du_ji_b_tos : pb::IMessage<skill_wait
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(skill_wait_for_du_ji_b_tos other) {
+  public void MergeFrom(skill_wait_for_du_ji_b_toc other) {
     if (other == null) {
       return;
     }
@@ -20947,6 +20948,7 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
     playerId_ = other.playerId_;
     enable_ = other.enable_;
     waitingPlayerId_ = other.waitingPlayerId_;
+    targetPlayerId_ = other.targetPlayerId_;
     card_ = other.card_ != null ? other.card_.Clone() : null;
     waitingSecond_ = other.waitingSecond_;
     seq_ = other.seq_;
@@ -20997,11 +20999,25 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
     }
   }
 
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 4;
+  private uint targetPlayerId_;
+  /// <summary>
+  /// 对方的玩家ID
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
   /// <summary>Field number for the "card" field.</summary>
-  public const int CardFieldNumber = 4;
+  public const int CardFieldNumber = 5;
   private global::card card_;
   /// <summary>
-  /// 做选择的卡牌的ID
+  /// 做选择的卡牌
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public global::card Card {
@@ -21012,7 +21028,7 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
   }
 
   /// <summary>Field number for the "waiting_second" field.</summary>
-  public const int WaitingSecondFieldNumber = 5;
+  public const int WaitingSecondFieldNumber = 6;
   private uint waitingSecond_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public uint WaitingSecond {
@@ -21023,7 +21039,7 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
   }
 
   /// <summary>Field number for the "seq" field.</summary>
-  public const int SeqFieldNumber = 6;
+  public const int SeqFieldNumber = 7;
   private uint seq_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public uint Seq {
@@ -21049,6 +21065,7 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
     if (PlayerId != other.PlayerId) return false;
     if (Enable != other.Enable) return false;
     if (WaitingPlayerId != other.WaitingPlayerId) return false;
+    if (TargetPlayerId != other.TargetPlayerId) return false;
     if (!object.Equals(Card, other.Card)) return false;
     if (WaitingSecond != other.WaitingSecond) return false;
     if (Seq != other.Seq) return false;
@@ -21061,6 +21078,7 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
     if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
     if (Enable != false) hash ^= Enable.GetHashCode();
     if (WaitingPlayerId != 0) hash ^= WaitingPlayerId.GetHashCode();
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
     if (card_ != null) hash ^= Card.GetHashCode();
     if (WaitingSecond != 0) hash ^= WaitingSecond.GetHashCode();
     if (Seq != 0) hash ^= Seq.GetHashCode();
@@ -21089,16 +21107,20 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
       output.WriteRawTag(24);
       output.WriteUInt32(WaitingPlayerId);
     }
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(TargetPlayerId);
+    }
     if (card_ != null) {
-      output.WriteRawTag(34);
+      output.WriteRawTag(42);
       output.WriteMessage(Card);
     }
     if (WaitingSecond != 0) {
-      output.WriteRawTag(40);
+      output.WriteRawTag(48);
       output.WriteUInt32(WaitingSecond);
     }
     if (Seq != 0) {
-      output.WriteRawTag(48);
+      output.WriteRawTag(56);
       output.WriteUInt32(Seq);
     }
     if (_unknownFields != null) {
@@ -21117,6 +21139,9 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
     }
     if (WaitingPlayerId != 0) {
       size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingPlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
     }
     if (card_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
@@ -21146,6 +21171,9 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
     }
     if (other.WaitingPlayerId != 0) {
       WaitingPlayerId = other.WaitingPlayerId;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
     }
     if (other.card_ != null) {
       if (card_ == null) {
@@ -21182,18 +21210,22 @@ public sealed partial class skill_du_ji_b_toc : pb::IMessage<skill_du_ji_b_toc> 
           WaitingPlayerId = input.ReadUInt32();
           break;
         }
-        case 34: {
+        case 32: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 42: {
           if (card_ == null) {
             Card = new global::card();
           }
           input.ReadMessage(Card);
           break;
         }
-        case 40: {
+        case 48: {
           WaitingSecond = input.ReadUInt32();
           break;
         }
-        case 48: {
+        case 56: {
           Seq = input.ReadUInt32();
           break;
         }
