@@ -78,7 +78,7 @@ public static class NetWork
         {
             try
             {
-                byte[] buffer = new byte[2048];
+                byte[] buffer = new byte[20480];
                 SocketReadWithLength(receiveSocket, buffer, 2);
                 int len1 = (buffer[1] << 8) | buffer[0];
                 SocketReadWithLength(receiveSocket, buffer, len1);
