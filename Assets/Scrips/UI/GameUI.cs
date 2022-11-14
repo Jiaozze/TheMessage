@@ -843,7 +843,12 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public void ShowTopCard(CardFS card)
     {
-        Debug.Log("展示了牌堆顶的牌，" + card.cardName);
+        var ui = GameObject.Instantiate(itemCardUI, textDeckCount.transform);
+        ui.transform.position = Vector3.zero;
+        ui.gameObject.SetActive(true);
+        ui.SetInfo(card);
+        Destroy(ui.gameObject, 1f);
+        //Debug.Log("展示了牌堆顶的牌，" + card.cardName);
     }
 
     public void ShowWeiBiSelect(bool show)
