@@ -87,6 +87,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public ScrollRect scrollRect;
 
+    public GameObject goStopRecordBut;
+
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
 
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
@@ -97,6 +99,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        goStopRecordBut.SetActive(false);
         duJiSelect.gameObject.SetActive(false);
         jiangHuLingSelect.gameObject.SetActive(false);
         souJiSelect.gameObject.SetActive(false);

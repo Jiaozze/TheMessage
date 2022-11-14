@@ -15,6 +15,7 @@ public class Records : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+        items.Clear();
 
         Dictionary<string, Dictionary<string, string>> dic_time_s = new Dictionary<string, Dictionary<string, string>>();
         foreach(var record in records)

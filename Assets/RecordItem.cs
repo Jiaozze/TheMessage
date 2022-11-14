@@ -18,7 +18,9 @@ public class RecordItem : MonoBehaviour
             but.gameObject.SetActive(true);
             but.transform.Find("Text").GetComponent<Text>().text = name_id.Key;
             but.onClick.AddListener(() => {
-                ProtoHelper.SendPlayRecord(name_id.Value); ;
+                ProtoHelper.SendPlayRecord(name_id.Value);
+                GameManager.Singleton.gameUI.gameObject.SetActive(true);
+                GameManager.Singleton.gameUI.goStopRecordBut.SetActive(true);
             });
         }
     }
