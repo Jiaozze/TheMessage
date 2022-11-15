@@ -847,7 +847,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     public void ShowTopCard(CardFS card)
     {
         var ui = GameObject.Instantiate(itemCardUI, textDeckCount.transform);
-        ui.transform.position = Vector3.zero;
+        ui.transform.localPosition = Vector3.zero;
+        ui.transform.localScale = new Vector3(0.5f, 0.5f);
         ui.gameObject.SetActive(true);
         ui.SetInfo(card);
         Destroy(ui.gameObject, 1f);
