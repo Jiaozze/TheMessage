@@ -185,8 +185,9 @@ public class UserSkill_DuJi : SkillBase
             }
             GameManager.Singleton.cardsHand.Add(cardFS1.id, cardFS1);
             GameManager.Singleton.cardsHand.Add(cardFS2.id, cardFS2);
+            GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { cardFS1, cardFS2 });
         }
-        if(targetId1 == GameManager.SelfPlayerId || targetId2 == GameManager.SelfPlayerId)
+        if (targetId1 == GameManager.SelfPlayerId || targetId2 == GameManager.SelfPlayerId)
         {
             int cardId = targetId1 == GameManager.SelfPlayerId ? cardFS1.id : cardFS2.id;
             if(GameManager.Singleton.cardsHand.ContainsKey(cardId))
@@ -196,7 +197,6 @@ public class UserSkill_DuJi : SkillBase
         }
         GameManager.Singleton.gameUI.ShowCardsMove(targetId1, playerId, new List<CardFS>() { cardFS1 });
         GameManager.Singleton.gameUI.ShowCardsMove(targetId2, playerId, new List<CardFS>() { cardFS2 }, false, 0.8f);
-        GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { cardFS1, cardFS2 });
         GameManager.Singleton.gameUI.Players[playerId].RefreshCardCount();
         GameManager.Singleton.gameUI.Players[targetId1].RefreshCardCount();
         GameManager.Singleton.gameUI.Players[targetId2].RefreshCardCount();
