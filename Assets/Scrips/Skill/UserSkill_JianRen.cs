@@ -163,6 +163,10 @@ public class UserSkill_JianRen : SkillBase
         GameManager.Singleton.seqId = seq;
         GameManager.Singleton.OnWait(playerId, waitingSecond);
         string draw = "";
+        if (playerId != GameManager.SelfPlayerId)
+        {
+            GameManager.Singleton.gameUI.ShowHandCard(playerId, new List<CardFS>() { card }, "坚韧展示的牌");
+        }
         GameManager.Singleton.gameUI.ShowTopCard(card);
 
         if (card.color.Contains(CardColorEnum.Black))
@@ -173,7 +177,7 @@ public class UserSkill_JianRen : SkillBase
             if (playerId == GameManager.SelfPlayerId)
             {
                 GameManager.Singleton.cardsHand.Add(card.id, card);
-                GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { card});
+                GameManager.Singleton.gameUI.DrawCards(new List<CardFS>() { card });
                 UserSkill_JianRen.isUsingB = true;
                 GameManager.Singleton.gameUI.ShowPhase("请选择一名角色弃置其一张黑色情报");
             }

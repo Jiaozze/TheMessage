@@ -807,12 +807,13 @@ public static class ProtoHelper
             skill_miao_shou_a_toc skill_miao_shou_a_toc = skill_miao_shou_a_toc.Parser.ParseFrom(contont);
             int playerId = (int)skill_miao_shou_a_toc.PlayerId;
             int targetId = (int)skill_miao_shou_a_toc.TargetPlayerId;
+            CardFS message = new CardFS(skill_miao_shou_a_toc.MessageCard) ;
             List<CardFS> cards = new List<CardFS>();
             foreach(var card in skill_miao_shou_a_toc.Cards)
             {
                 cards.Add(new CardFS(card));
             }
-            UserSkill_MiaoShou.OnReceiveUseA(playerId,targetId, cards, (int)skill_miao_shou_a_toc.WaitingSecond, skill_miao_shou_a_toc.Seq);
+            UserSkill_MiaoShou.OnReceiveUseA(playerId,targetId, cards, message, (int)skill_miao_shou_a_toc.WaitingSecond, skill_miao_shou_a_toc.Seq);
         }
         else if (GetIdFromProtoName("skill_miao_shou_b_toc") == id)
         {

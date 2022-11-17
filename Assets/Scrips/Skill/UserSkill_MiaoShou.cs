@@ -152,7 +152,7 @@ public class UserSkill_MiaoShou : SkillBase
         GameManager.Singleton.gameUI.ShowPhase();
     }
 
-    public static void OnReceiveUseA(int playerId, int targetId, List<CardFS> cards, int waitingSecond, uint seq)
+    public static void OnReceiveUseA(int playerId, int targetId, List<CardFS> cards, CardFS message, int waitingSecond, uint seq)
     {
         GameManager.Singleton.seqId = seq;
 
@@ -176,8 +176,7 @@ public class UserSkill_MiaoShou : SkillBase
             GameManager.Singleton.gameUI.ShowMiaoShouSelect(targetId, cards);
             GameManager.Singleton.gameUI.ShowPhase("请选择一张牌作为待收情报，面朝上移至一名角色的面前");
         }
-        GameManager.Singleton.gameUI.ShowMessagingDiaoBao(new CardFS(null));
-        GameManager.Singleton.gameUI.HideMessagingCard();
+        GameManager.Singleton.gameUI.ShowMessagingDiaoBao(message);
 
         string s = string.Format("{0}使用了技能妙手,弃置待接收情报,并查看了{1}的手牌和情报区", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[targetId].name);
         GameManager.Singleton.gameUI.ShowInfo(s);
