@@ -87,6 +87,8 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public ScrollRect scrollRect;
 
+    public GameObject goStopRecordBut;
+
     public Dictionary<int, UICard> Cards = new Dictionary<int, UICard>();
 
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
@@ -97,6 +99,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
+        goStopRecordBut.SetActive(false);
         duJiSelect.gameObject.SetActive(false);
         jiangHuLingSelect.gameObject.SetActive(false);
         souJiSelect.gameObject.SetActive(false);
@@ -843,7 +846,13 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public void ShowTopCard(CardFS card)
     {
-        Debug.Log("展示了牌堆顶的牌，" + card.cardName);
+        var ui = GameObject.Instantiate(itemCardUI, textDeckCount.transform);
+        ui.transform.localPosition = Vector3.zero;
+        ui.transform.localScale = new Vector3(0.5f, 0.5f);
+        ui.gameObject.SetActive(true);
+        ui.SetInfo(card);
+        Destroy(ui.gameObject, 1f);
+        //Debug.Log("展示了牌堆顶的牌，" + card.cardName);
     }
 
     public void ShowWeiBiSelect(bool show)

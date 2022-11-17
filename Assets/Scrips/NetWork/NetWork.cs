@@ -19,6 +19,14 @@ public static class NetWork
 
     public static void Init(string ipStr = "", Action callback = null)
     {
+        if(socket != null)
+        {
+            if(callback != null)
+            {
+                callback.Invoke();
+            }
+            return;
+        }
 #if UNITY_EDITOR
         //ipStr = "192.168.124.3";
 #endif
@@ -62,6 +70,7 @@ public static class NetWork
             {
                 //GameManager.Singleton.gameWindow.SetEnterUI(true);
                 GameManager.Singleton.OnNetWorkErr();
+                socket = null;
                 Debug.LogError("连接服务器失败！" + e);
             }
         }
@@ -91,6 +100,7 @@ public static class NetWork
             {
                 easyThread.mainRemote.Send(EVENT_NNET_ERR);
                 //GameManager.Singleton.OnNetWorkErr();
+                socket = null;
                 Debug.LogError(ex);
                 break;
             }
