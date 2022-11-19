@@ -12120,6 +12120,9 @@ public sealed partial class skill_miao_shou_a_toc : pb::IMessage<skill_miao_shou
   /// <summary>Field number for the "message_card" field.</summary>
   public const int MessageCardFieldNumber = 6;
   private global::card messageCard_;
+  /// <summary>
+  /// 被弃掉的待收情报，所有人都能看见
+  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public global::card MessageCard {
     get { return messageCard_; }

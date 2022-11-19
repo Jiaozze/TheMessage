@@ -56,6 +56,13 @@ public class RoomUI : MonoBehaviour
         NetWork.Init(ip, () => { ProtoHelper.SendGetRecords(); });
         //NetWork.Init(ip, () => { ProtoHelper.SendPlayRecord(recordId.text); });
     }
+    public void OnClickRecordById()
+    {
+        //NetWork.Init(ip, () => { ProtoHelper.SendGetRecords(); });
+        NetWork.Init(ip, () => { ProtoHelper.SendPlayRecord(recordId.text); });
+        GameManager.Singleton.gameUI.gameObject.SetActive(true);
+        GameManager.Singleton.gameUI.goStopRecordBut.SetActive(true);
+    }
 
     public void OnClickSeeOrder()
     {

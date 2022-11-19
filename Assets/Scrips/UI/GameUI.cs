@@ -1325,4 +1325,9 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
             QiangLingInfo.text = "";
         }
     }
+
+    public void OnClickRecordPause(bool pause)
+    {
+        ProtoHelper.SendRecordPause(pause);
+    }
 }

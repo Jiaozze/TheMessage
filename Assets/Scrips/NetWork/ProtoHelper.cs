@@ -1961,6 +1961,14 @@ public static class ProtoHelper
         byte[] proto = display_record_tos.ToByteArray();
         SendProto("display_record_tos", proto);
     }
+    public static void SendRecordPause(bool pause)
+    {
+        Debug.Log("____send___________________ pause_record_tos");
+
+        pause_record_tos pause_record_tos = new pause_record_tos() { Pause = pause };
+        byte[] proto = pause_record_tos.ToByteArray();
+        SendProto("pause_record_tos", proto);
+    }
 
     public static void SendAddRoom(string name = "", string deviceId = "")
     {
