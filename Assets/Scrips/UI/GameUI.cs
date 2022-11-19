@@ -577,6 +577,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
             )
             {
                 ShowPlayerMessageInfo(GameManager.Singleton.IsWaitSaving, true);
+                return;
             }
         } 
         //自己出牌阶段
