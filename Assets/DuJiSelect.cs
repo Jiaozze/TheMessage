@@ -41,11 +41,19 @@ public class DuJiSelect : MonoBehaviour
                 item.SetClickAction(() => { 
                     if(selectCardId != 0 && items.ContainsKey(selectCardId))
                     {
+                        if (GameManager.Singleton.gameUI.Cards.ContainsKey(selectCardId))
+                        {
+                            GameManager.Singleton.gameUI.Cards[selectCardId].OnSelect(false);
+                        }
                         items[selectCardId].OnSelect(false);
                         selectCardId = 0;
                     }
                     if(items.ContainsKey(cardId))
                     {
+                        if (GameManager.Singleton.gameUI.Cards.ContainsKey(cardId))
+                        {
+                            GameManager.Singleton.gameUI.Cards[cardId].OnSelect(true);
+                        }
                         items[cardId].OnSelect(true);
                         selectCardId = cardId;
                         textTittleHand.text = "让" + GameManager.Singleton.players[dic_cardId_PlayerId[cardId]].name + "选择置入自己的情报区/置入对方的情报区， 或点取消将牌留在你的手中";
@@ -96,5 +104,32 @@ public class DuJiSelect : MonoBehaviour
         items.Add(card.id, item);
 
         textTittleHand.text = "点确定将该牌置入自己情报区，或点取消将该牌置入" + GameManager.Singleton.players[targetId].name + "情报区";
+    }
+
+    public void OnCardSelect(int cardId)
+    {
+        if(items.ContainsKey(cardId))
+        {
+            if (selectCardId != 0 && items.ContainsKey(selectCardId))
+            {
+                if (GameManager.Singleton.gameUI.Cards.ContainsKey(selectCardId))
+                {
+                    GameManager.Singleton.gameUI.Cards[selectCardId].OnSelect(false);
+                }
+
+                items[selectCardId].OnSelect(false);
+                selectCardId = 0;
+            }
+            if (items.ContainsKey(cardId))
+            {
+                if (GameManager.Singleton.gameUI.Cards.ContainsKey(cardId))
+                {
+                    GameManager.Singleton.gameUI.Cards[cardId].OnSelect(true);
+                }
+                items[cardId].OnSelect(true);
+                selectCardId = cardId;
+                textTittleHand.text = "让" + GameManager.Singleton.players[dic_cardId_PlayerId[cardId]].name + "选择置入自己的情报区/置入对方的情报区， 或点取消将牌留在你的手中";
+            }
+        }
     }
 }

@@ -88,6 +88,12 @@ public class UserSkill_DuJi : SkillBase
 
         }
     }
+
+    public override void OnCardSelect(int cardId)
+    {
+        base.OnCardSelect(cardId);
+        GameManager.Singleton.gameUI.duJiSelect.OnCardSelect(cardId);
+    }
     public override void Use()
     {
         if (state == SkillState_DuJi.isUsingA)
