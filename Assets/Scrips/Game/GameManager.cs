@@ -1357,8 +1357,9 @@ public class GameManager
             {
                 if (SelectPlayerId < 1)
                 {
-                    SelectCardId = -1;
-                    SelectPlayerId = -1;
+                    //SelectCardId = -1;
+                    //SelectPlayerId = -1;
+                    gameUI.ShowInfo("选择情报传递的目标");
                     return;
                 }
 
@@ -1375,8 +1376,9 @@ public class GameManager
             {
                 if (SelectPlayerId < 1)
                 {
-                    SelectCardId = -1;
-                    SelectPlayerId = -1;
+                    //SelectCardId = -1;
+                    //SelectPlayerId = -1;
+                    gameUI.ShowInfo("选择情报传递的目标");
                     return;
                 }
 
