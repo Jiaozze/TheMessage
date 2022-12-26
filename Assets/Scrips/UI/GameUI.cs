@@ -915,7 +915,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
         messageCard.SetInfo(message);
         if (messagePlayerId != -1)
         {
-            if (move)
+            if (move && messageCard.transform.position != GetMessagePos(messagePlayerId))
             {
                 Vector3 from = messageCard.transform.position;
                 Vector3 to = GetMessagePos(messagePlayerId);
