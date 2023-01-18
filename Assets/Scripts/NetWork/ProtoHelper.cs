@@ -1185,6 +1185,14 @@ public static class ProtoHelper
             GameManager.Singleton.roomUI.OnReceiveRecords(records);
         }
 
+        // 录像播放暂停（恢复）
+        else if(GetIdFromProtoName("pause_record_toc") == id)
+        {
+            Debug.Log(" _______receive________ pause_record_toc ");
+
+
+        }
+
         //errorCode
         else if (GetIdFromProtoName("error_code_toc") == id)
         {

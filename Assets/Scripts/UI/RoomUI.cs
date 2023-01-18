@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class RoomUI : MonoBehaviour
 {
-    private string ip = "127.0.0.1";
+    public string ip = "127.0.0.1";
 
     public GameObject goRoomInfo;
     public GameObject goRoomItem;
