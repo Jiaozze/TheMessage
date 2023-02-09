@@ -1408,7 +1408,7 @@ public class GameManager
                 }
                 else if (cardsHand[SelectCardId].direction == DirectionEnum.Right)
                 {
-                    messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
+                    messageTarget = Singleton.GetPlayerAliveRight(SelfPlayerId);
                 }
                 else
                 {
@@ -1489,7 +1489,7 @@ public enum SecretTaskEnum
     Stealer = 1, // 你的回合中，有人宣胜，则你代替他胜利
     Collector = 2, // 你获得3张红色情报或者3张蓝色情报
     Mutator = 3, // 当一名角色收集了三张红色或三张蓝色情报后，若其没有宣告胜利，则你胜利
-    Pioneer = 4  //你死亡时，已收集了至少一张红色情报或蓝色情报
+    Pioneer = 4,  //你死亡时，已收集了至少一张红色情报或蓝色情报
 }
 
 public enum PhaseEnum
