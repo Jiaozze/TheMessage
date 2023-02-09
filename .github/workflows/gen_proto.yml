@@ -1,0 +1,28 @@
+name: GenProto
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.proto'
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate protos
+        run: ./protoToCsharp.bat
+
+      - name: git push
+        if: github.repository_owner == 'Jiaozze'
+        continue-on-error: true
+        run: |
+          git config --local user.name 'github-actions[bot]'
+          git config --local user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git commit -m "auto generate proto"
+          git push

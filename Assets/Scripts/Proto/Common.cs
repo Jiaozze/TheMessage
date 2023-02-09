@@ -45,10 +45,10 @@ public static partial class CommonReflection {
           "ARIKCgZXZWlfQmkQAhIKCgZMaV9Zb3UQAxINCglQaW5nX0hlbmcQBBIJCgVQ",
           "b19ZaRAFEgsKB0ppZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoKBld1X0RhbxAI",
           "KjoKBWNvbG9yEgkKBUJsYWNrEAASBwoDUmVkEAESCAoEQmx1ZRACEhMKD0hh",
-          "c19Ob19JZGVudGl0eRADKjUKC3NlY3JldF90YXNrEgoKBktpbGxlchAAEgsK",
-          "B1N0ZWFsZXIQARINCglDb2xsZWN0b3IQAiooCglkaXJlY3Rpb24SBgoCVXAQ",
-          "ABIICgRMZWZ0EAESCQoFUmlnaHQQAkIWChRjb20uZmVuZ3NoZW5nLnByb3Rv",
-          "c2IGcHJvdG8z"));
+          "c19Ob19JZGVudGl0eRADKk8KC3NlY3JldF90YXNrEgoKBktpbGxlchAAEgsK",
+          "B1N0ZWFsZXIQARINCglDb2xsZWN0b3IQAhILCgdNdXRhdG9yEAMSCwoHUGlv",
+          "bmVlchAEKigKCWRpcmVjdGlvbhIGCgJVcBAAEggKBExlZnQQARIJCgVSaWdo",
+          "dBACQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -295,6 +295,14 @@ public enum secret_task {
   /// 你获得3张红色情报或者3张蓝色情报
   /// </summary>
   [pbr::OriginalName("Collector")] Collector = 2,
+  /// <summary>
+  /// 当一名角色收集了三张红色情报或三张蓝色情报后，若其没有宣告胜利，则你胜利
+  /// </summary>
+  [pbr::OriginalName("Mutator")] Mutator = 3,
+  /// <summary>
+  /// 你死亡时，已收集了至少一张红色情报或蓝色情报
+  /// </summary>
+  [pbr::OriginalName("Pioneer")] Pioneer = 4,
 }
 
 public enum direction {
