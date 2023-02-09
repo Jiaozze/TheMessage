@@ -1361,35 +1361,62 @@ public class GameManager
         {
             if (!cardsHand[SelectCardId].canLock)
             {
-                if (SelectPlayerId < 1)
+                if (SelectPlayerId < 1 && cardsHand[SelectCardId].direction == DirectionEnum.Up)
                 {
                     //SelectCardId = -1;
                     //SelectPlayerId = -1;
-                    gameUI.ShowInfo("选择情报传递的目标");
+                    gameUI.ShowInfo("请选择此直达情报传递的目标");
                     return;
+                }
+                else if (cardsHand[SelectCardId].direction == DirectionEnum.Left)
+                {
+                    messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
+                }
+                else if(cardsHand[SelectCardId].direction == DirectionEnum.Right)
+                {
+                    messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
+                }
+                else
+                {
+                    messageTarget = SelectPlayerId;
                 }
 
                 DirectionEnum direction = cardsHand[SelectCardId].direction;
+
+
+
                 if (players[SelfPlayerId].role is Role_LaoBie)
                 {
                     var role = players[SelfPlayerId].role as Role_LaoBie;
                     direction = role.direction;
-                }
-                ProtoHelper.SendMessageCard(SelectCardId, SelectPlayerId, new List<int>(), direction, seqId);
+                } 
+                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>(), direction, seqId);
                 SelectCardId = -1;
             }
             else if (!IsWaitLock)
             {
-                if (SelectPlayerId < 1)
+                if (SelectPlayerId < 1 && cardsHand[SelectCardId].direction == DirectionEnum.Up)
                 {
                     //SelectCardId = -1;
                     //SelectPlayerId = -1;
-                    gameUI.ShowInfo("选择情报传递的目标");
+                    gameUI.ShowInfo("请选择此直达情报传递的目标");
                     return;
+                }
+                else if (cardsHand[SelectCardId].direction == DirectionEnum.Left)
+                {
+                    messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
+                }
+                else if (cardsHand[SelectCardId].direction == DirectionEnum.Right)
+                {
+                    messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
+                }
+                else
+                {
+                    messageTarget = SelectPlayerId;
                 }
 
                 IsWaitLock = true;
-                messageTarget = SelectPlayerId;
+                //messageTarget = SelectPlayerId;
                 SelectPlayerId = -1;
                 gameUI.ShowPhase();
                 gameUI.CheckTargetAvailable();
@@ -1461,6 +1488,8 @@ public enum SecretTaskEnum
     Killer = 0, // 你的回合中，一名红色和蓝色情报合计不少于2张的人死亡
     Stealer = 1, // 你的回合中，有人宣胜，则你代替他胜利
     Collector = 2, // 你获得3张红色情报或者3张蓝色情报
+    Mutator = 3, // 当一名角色收集了三张红色或三张蓝色情报后，若其没有宣告胜利，则你胜利
+    Pioneer = 4  //你死亡时，已收集了至少一张红色情报或蓝色情报
 }
 
 public enum PhaseEnum

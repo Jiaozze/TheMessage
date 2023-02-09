@@ -36,11 +36,15 @@ public class LanguageUtils
         switch(secretTaskEnum)
         {
             case SecretTaskEnum.Collector:
-                return "你获得3张红色情报或者3张蓝色情报";
+                return "你获得3张<color=\"red\">红色情报</color>或者3张<color=\"blue\">蓝色情报</color>";
             case SecretTaskEnum.Killer:
-                return "你的回合中，一名红色和蓝色情报合计不少于2张的人死亡";
+                return "你的回合中，一名<color=\"red\">红色情报</color>和<color=\"blue\">蓝色情报</color>合计不少于2张的人死亡";
             case SecretTaskEnum.Stealer:
                 return "你的回合中，有人宣胜，则你代替他胜利";
+            case SecretTaskEnum.Mutator:
+                return "当一名角色收集了三张<color=\"red\">红色情报</color>或三张<color=\"blue\">蓝色情报</color>后，若其没有宣告胜利，则你胜利";
+            case SecretTaskEnum.Pioneer:
+                return "你死亡时，已收集了至少一张<color=\"red\">红色情报</color>或<color=\"blue\">蓝色情报</color>";
             default:
                 return "undifined";
         }
