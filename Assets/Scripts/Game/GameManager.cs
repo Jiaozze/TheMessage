@@ -757,12 +757,18 @@ public class GameManager
                 break;
             case error_code.RecordNotExists:
                 gameUI.ShowInfo("录像不存在");
+                gameUI.gameObject.SetActive(false);
+                gameUI.goStopRecordBut.SetActive(false);
                 break;
             case error_code.LoadRecordFailed:
                 gameUI.ShowInfo("读取录像失败了");
+                gameUI.gameObject.SetActive(false);
+                gameUI.goStopRecordBut.SetActive(false);
                 break;
             case error_code.RecordVersionNotMatch:
                 gameUI.ShowInfo("录像的版本号不匹配");
+                gameUI.gameObject.SetActive(false);
+                gameUI.goStopRecordBut.SetActive(false);
                 break;
             case error_code.NameTooLong:
                 gameUI.ShowInfo("玩家名字太长了");
