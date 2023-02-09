@@ -3,6 +3,9 @@ name: GenProto
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**.proto'
+  workflow_dispatch:
 
 jobs:
 
@@ -14,7 +17,7 @@ jobs:
       - name: Generate protos
         run: ./protoToCsharp.bat
 
-      - name: gofmt
+      - name: git push
         if: github.repository_owner == 'Jiaozze'
         continue-on-error: true
         run: |
