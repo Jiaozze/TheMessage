@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Security.Cryptography;
-using static UnityEditor.Progress;
 using System.Text;
 
 public class RoomUI : MonoBehaviour
@@ -53,7 +52,7 @@ public class RoomUI : MonoBehaviour
         if (playerPassword.text == "") playerPassword.text = "nopassword"; 
         NetWork.Init(ip, () =>
         {
-            ProtoHelper.SendAddRoom(playerName.text, SystemInfo.deviceUniqueIdentifier);
+            ProtoHelper.SendAddRoom(playerName.text, SystemInfo.deviceUniqueIdentifier, StringToMD5(playerPassword.text));
         });
         Debug.Log(StringToMD5(playerPassword.text));
         //ProtoHelper.SendGetRoomInfo();

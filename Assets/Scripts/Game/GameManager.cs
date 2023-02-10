@@ -783,6 +783,7 @@ public class GameManager
                 gameUI.ShowInfo("场上没有该颜色的情报");
                 break;
             default:
+                if((int)code == 10) { gameUI.ShowInfo("加入房间失败，可能是密码错误");}
                 gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;
         }

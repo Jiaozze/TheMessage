@@ -1978,9 +1978,9 @@ public static class ProtoHelper
         SendProto("pause_record_tos", proto);
     }
 
-    public static void SendAddRoom(string name = "", string deviceId = "")
+    public static void SendAddRoom(string name = "", string deviceId = "", string passwordmd5 = "")
     {
-        join_room_tos join_Room_Tos = new join_room_tos() { Name = name, Device = deviceId};
+        join_room_tos join_Room_Tos = new join_room_tos() { Name = name, Device = deviceId, Password = passwordmd5};
         join_Room_Tos.Version = PROTO_VERSION;
         byte[] proto = join_Room_Tos.ToByteArray();
         SendProto("join_room_tos", proto);
