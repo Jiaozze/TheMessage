@@ -41,14 +41,15 @@ public static partial class CommonReflection {
           "EPwHEhIKDXNwX2xpX25pbmdfeXUQhAgqcQoFcGhhc2USDgoKRHJhd19QaGFz",
           "ZRAAEg4KCk1haW5fUGhhc2UQARIUChBTZW5kX1N0YXJ0X1BoYXNlEAISDgoK",
           "U2VuZF9QaGFzZRADEg8KC0ZpZ2h0X1BoYXNlEAQSEQoNUmVjZWl2ZV9QaGFz",
-          "ZRAFKoEBCgljYXJkX3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsKB1NoaV9UYW4Q",
+          "ZRAFKpkBCgljYXJkX3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsKB1NoaV9UYW4Q",
           "ARIKCgZXZWlfQmkQAhIKCgZMaV9Zb3UQAxINCglQaW5nX0hlbmcQBBIJCgVQ",
           "b19ZaRAFEgsKB0ppZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoKBld1X0RhbxAI",
-          "KjoKBWNvbG9yEgkKBUJsYWNrEAASBwoDUmVkEAESCAoEQmx1ZRACEhMKD0hh",
-          "c19Ob19JZGVudGl0eRADKk8KC3NlY3JldF90YXNrEgoKBktpbGxlchAAEgsK",
-          "B1N0ZWFsZXIQARINCglDb2xsZWN0b3IQAhILCgdNdXRhdG9yEAMSCwoHUGlv",
-          "bmVlchAEKigKCWRpcmVjdGlvbhIGCgJVcBAAEggKBExlZnQQARIJCgVSaWdo",
-          "dBACQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90bzM="));
+          "EhYKEkZlbmdfWXVuX0JpYW5fSHVhbhAJKjoKBWNvbG9yEgkKBUJsYWNrEAAS",
+          "BwoDUmVkEAESCAoEQmx1ZRACEhMKD0hhc19Ob19JZGVudGl0eRADKk8KC3Nl",
+          "Y3JldF90YXNrEgoKBktpbGxlchAAEgsKB1N0ZWFsZXIQARINCglDb2xsZWN0",
+          "b3IQAhILCgdNdXRhdG9yEAMSCwoHUGlvbmVlchAEKigKCWRpcmVjdGlvbhIG",
+          "CgJVcBAAEggKBExlZnQQARIJCgVSaWdodBACQhYKFGNvbS5mZW5nc2hlbmcu",
+          "cHJvdG9zYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -258,6 +259,7 @@ public enum card_type {
   /// 误导
   /// </summary>
   [pbr::OriginalName("Wu_Dao")] WuDao = 8,
+  [pbr::OriginalName("Feng_Yun_Bian_Huan")] FengYunBianHuan = 9,
 }
 
 public enum color {
