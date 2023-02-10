@@ -144,14 +144,14 @@ public static partial class FengshengReflection {
           "c2VxGAEgASgNIjoKGnVzZV9mZW5nX3l1bl9iaWFuX2h1YW5fdG9zEg8KB2Nh",
           "cmRfaWQYASABKA0SCwoDc2VxGAIgASgNIl8KGnVzZV9mZW5nX3l1bl9iaWFu",
           "X2h1YW5fdG9jEhMKBGNhcmQYASABKAsyBS5jYXJkEhEKCXBsYXllcl9pZBgC",
-          "IAEoDRIZCgpzaG93X2NhcmRzGAMgAygLMgUuY2FyZCJjCilub3RpZnlfZmVu",
-          "Z195dW5fYmlhbl9odWFuX2Nob29zZV9jYXJkX3RvYxIRCglwbGF5ZXJfaWQY",
-          "ASABKA0SFgoOd2FpdGluZ19zZWNvbmQYAiABKA0SCwoDc2VxGAMgASgNIlsK",
-          "ImZlbmdfeXVuX2JpYW5faHVhbl9jaG9vc2VfY2FyZF90b3MSDwoHY2FyZF9p",
-          "ZBgBIAEoDRIXCg9hc19tZXNzYWdlX2NhcmQYAiABKAgSCwoDc2VxGAMgASgN",
-          "ImEKImZlbmdfeXVuX2JpYW5faHVhbl9jaG9vc2VfY2FyZF90b2MSEQoJcGxh",
-          "eWVyX2lkGAEgASgNEg8KB2NhcmRfaWQYAiABKA0SFwoPYXNfbWVzc2FnZV9j",
-          "YXJkGAMgASgIQhYKFGNvbS5mZW5nc2hlbmcucHJvdG9zYgZwcm90bzM="));
+          "IAEoDRIZCgpzaG93X2NhcmRzGAMgAygLMgUuY2FyZCJlCit3YWl0X2Zvcl9m",
+          "ZW5nX3l1bl9iaWFuX2h1YW5fY2hvb3NlX2NhcmRfdG9jEhEKCXBsYXllcl9p",
+          "ZBgBIAEoDRIWCg53YWl0aW5nX3NlY29uZBgCIAEoDRILCgNzZXEYAyABKA0i",
+          "WwoiZmVuZ195dW5fYmlhbl9odWFuX2Nob29zZV9jYXJkX3RvcxIPCgdjYXJk",
+          "X2lkGAEgASgNEhcKD2FzX21lc3NhZ2VfY2FyZBgCIAEoCBILCgNzZXEYAyAB",
+          "KA0iYQoiZmVuZ195dW5fYmlhbl9odWFuX2Nob29zZV9jYXJkX3RvYxIRCglw",
+          "bGF5ZXJfaWQYASABKA0SDwoHY2FyZF9pZBgCIAEoDRIXCg9hc19tZXNzYWdl",
+          "X2NhcmQYAyABKAhCFgoUY29tLmZlbmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -233,7 +233,7 @@ public static partial class FengshengReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::end_receive_phase_tos), global::end_receive_phase_tos.Parser, new[]{ "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_feng_yun_bian_huan_tos), global::use_feng_yun_bian_huan_tos.Parser, new[]{ "CardId", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::use_feng_yun_bian_huan_toc), global::use_feng_yun_bian_huan_toc.Parser, new[]{ "Card", "PlayerId", "ShowCards" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::notify_feng_yun_bian_huan_choose_card_toc), global::notify_feng_yun_bian_huan_choose_card_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::wait_for_feng_yun_bian_huan_choose_card_toc), global::wait_for_feng_yun_bian_huan_choose_card_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::feng_yun_bian_huan_choose_card_tos), global::feng_yun_bian_huan_choose_card_tos.Parser, new[]{ "CardId", "AsMessageCard", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::feng_yun_bian_huan_choose_card_toc), global::feng_yun_bian_huan_choose_card_toc.Parser, new[]{ "PlayerId", "CardId", "AsMessageCard" }, null, null, null, null)
         }));
@@ -13883,11 +13883,11 @@ public sealed partial class use_feng_yun_bian_huan_toc : pb::IMessage<use_feng_y
 /// <summary>
 /// 通知客户端，风云变幻轮到谁选牌了
 /// </summary>
-public sealed partial class notify_feng_yun_bian_huan_choose_card_toc : pb::IMessage<notify_feng_yun_bian_huan_choose_card_toc> {
-  private static readonly pb::MessageParser<notify_feng_yun_bian_huan_choose_card_toc> _parser = new pb::MessageParser<notify_feng_yun_bian_huan_choose_card_toc>(() => new notify_feng_yun_bian_huan_choose_card_toc());
+public sealed partial class wait_for_feng_yun_bian_huan_choose_card_toc : pb::IMessage<wait_for_feng_yun_bian_huan_choose_card_toc> {
+  private static readonly pb::MessageParser<wait_for_feng_yun_bian_huan_choose_card_toc> _parser = new pb::MessageParser<wait_for_feng_yun_bian_huan_choose_card_toc>(() => new wait_for_feng_yun_bian_huan_choose_card_toc());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<notify_feng_yun_bian_huan_choose_card_toc> Parser { get { return _parser; } }
+  public static pb::MessageParser<wait_for_feng_yun_bian_huan_choose_card_toc> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -13900,14 +13900,14 @@ public sealed partial class notify_feng_yun_bian_huan_choose_card_toc : pb::IMes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public notify_feng_yun_bian_huan_choose_card_toc() {
+  public wait_for_feng_yun_bian_huan_choose_card_toc() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public notify_feng_yun_bian_huan_choose_card_toc(notify_feng_yun_bian_huan_choose_card_toc other) : this() {
+  public wait_for_feng_yun_bian_huan_choose_card_toc(wait_for_feng_yun_bian_huan_choose_card_toc other) : this() {
     playerId_ = other.playerId_;
     waitingSecond_ = other.waitingSecond_;
     seq_ = other.seq_;
@@ -13915,8 +13915,8 @@ public sealed partial class notify_feng_yun_bian_huan_choose_card_toc : pb::IMes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public notify_feng_yun_bian_huan_choose_card_toc Clone() {
-    return new notify_feng_yun_bian_huan_choose_card_toc(this);
+  public wait_for_feng_yun_bian_huan_choose_card_toc Clone() {
+    return new wait_for_feng_yun_bian_huan_choose_card_toc(this);
   }
 
   /// <summary>Field number for the "player_id" field.</summary>
@@ -13954,11 +13954,11 @@ public sealed partial class notify_feng_yun_bian_huan_choose_card_toc : pb::IMes
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as notify_feng_yun_bian_huan_choose_card_toc);
+    return Equals(other as wait_for_feng_yun_bian_huan_choose_card_toc);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(notify_feng_yun_bian_huan_choose_card_toc other) {
+  public bool Equals(wait_for_feng_yun_bian_huan_choose_card_toc other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -14026,7 +14026,7 @@ public sealed partial class notify_feng_yun_bian_huan_choose_card_toc : pb::IMes
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(notify_feng_yun_bian_huan_choose_card_toc other) {
+  public void MergeFrom(wait_for_feng_yun_bian_huan_choose_card_toc other) {
     if (other == null) {
       return;
     }
