@@ -24,13 +24,13 @@ public static partial class ErrcodeReflection {
         string.Concat(
           "Cg1lcnJjb2RlLnByb3RvIlMKDmVycm9yX2NvZGVfdG9jEhkKBGNvZGUYASAB",
           "KA4yCy5lcnJvcl9jb2RlEhIKCmludF9wYXJhbXMYAiADKAMSEgoKc3RyX3Bh",
-          "cmFtcxgDIAMoCSr6AQoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
+          "cmFtcxgDIAMoCSqMAgoKZXJyb3JfY29kZRIcChhjbGllbnRfdmVyc2lvbl9u",
           "b3RfbWF0Y2gQABIQCgxub19tb3JlX3Jvb20QARIVChFyZWNvcmRfbm90X2V4",
           "aXN0cxACEhYKEmxvYWRfcmVjb3JkX2ZhaWxlZBADEhwKGHJlY29yZF92ZXJz",
           "aW9uX25vdF9tYXRjaBAEEhEKDW5hbWVfdG9vX2xvbmcQBRIWChJqb2luX3Jv",
           "b21fdG9vX2Zhc3QQBhIVChFyb2JvdF9ub3RfYWxsb3dlZBAHEhIKDmFscmVh",
-          "ZHlfb25saW5lEAgSGQoVbm9fY29sb3JfbWVzc2FnZV9jYXJkEAlCFgoUY29t",
-          "LmZlbmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
+          "ZHlfb25saW5lEAgSGQoVbm9fY29sb3JfbWVzc2FnZV9jYXJkEAkSEAoMbG9n",
+          "aW5fZmFpbGVkEApCFgoUY29tLmZlbmdzaGVuZy5wcm90b3NiBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::error_code), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,6 +82,10 @@ public enum error_code {
   /// 场上没有这种颜色的情报
   /// </summary>
   [pbr::OriginalName("no_color_message_card")] NoColorMessageCard = 9,
+  /// <summary>
+  /// 登录失败
+  /// </summary>
+  [pbr::OriginalName("login_failed")] LoginFailed = 10,
 }
 
 #endregion
