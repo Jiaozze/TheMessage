@@ -782,6 +782,8 @@ public class GameManager
             case error_code.NoColorMessageCard:
                 gameUI.ShowInfo("场上没有该颜色的情报");
                 break;
+            case error_code.LoginFailed:
+                gameUI.ShowInfo("加入房间失败，可能是密码错误")
             default:
                 gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;

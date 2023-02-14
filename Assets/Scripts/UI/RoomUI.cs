@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Security.Cryptography;
+using System.Text;
 
 public class RoomUI : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class RoomUI : MonoBehaviour
     public Records RecordList;
     public InputField recordId;
     public InputField playerName;
+    public InputField playerPassword;
     public Text textOnlineCount;
     public DatePickerControl datePicker;
     public GameObject goOrder;
@@ -28,6 +31,7 @@ public class RoomUI : MonoBehaviour
     private void Awake()
     {
         playerName.text = PlayerPrefs.GetString("PlayerName", "");
+        playerPassword.text = PlayerPrefs.GetString("PlayerPassword", "");
         GameManager.Singleton.Init();
         goRoomItem.SetActive(false);
         textInfo.text = "";
@@ -44,10 +48,13 @@ public class RoomUI : MonoBehaviour
     public void OnClickJoinRoom()
     {
         PlayerPrefs.SetString("PlayerName", playerName.text);
+        PlayerPrefs.SetString("PlayerPassword", playerPassword.text);
+        if (playerPassword.text == "") playerPassword.text = "nopassword"; 
         NetWork.Init(ip, () =>
         {
-            ProtoHelper.SendAddRoom(playerName.text, SystemInfo.deviceUniqueIdentifier);
+            ProtoHelper.SendAddRoom(playerName.text, SystemInfo.deviceUniqueIdentifier, StringToMD5(playerPassword.text));
         });
+        Debug.Log(StringToMD5(playerPassword.text));
         //ProtoHelper.SendGetRoomInfo();
     }
 
@@ -116,8 +123,8 @@ public class RoomUI : MonoBehaviour
             {
                 //uint p = allCounts[i] > 0 ? winCounts[i] * 1000 / allCounts[i] : 0;
                 //float f = (float)p / 10;
-                go.transform.Find("WinInfo").GetComponent<Text>().text = "" + " Ê¤³¡£º" + winCounts[i]; // + " ×Ü³¡Êı£º" + gameCount;
-                textInfo.text += names[i] + "¼ÓÈë·¿¼ä\n";
+                go.transform.Find("WinInfo").GetComponent<Text>().text = "" + " èƒœåœºï¼š" + winCounts[i]; // + " æ€»åœºæ•°ï¼š" + gameCount;
+                textInfo.text += names[i] + "åŠ å…¥æˆ¿é—´\n";
             }
             else
             {
@@ -134,8 +141,8 @@ public class RoomUI : MonoBehaviour
         items[index].transform.Find("Text").GetComponent<Text>().text = name;
         //uint p = gameCount > 0 ? winCount * 1000 / gameCount : 0;
         //float f = (float)p / 10;
-        items[index].transform.Find("WinInfo").GetComponent<Text>().text = "" + " Ê¤³¡£º" + winCount; // + " ×Ü³¡Êı£º" + gameCount;
-        textInfo.text += name + "¼ÓÈë·¿¼ä\n";
+        items[index].transform.Find("WinInfo").GetComponent<Text>().text = "" + " èƒœåœºï¼š" + winCount; // + " æ€»åœºæ•°ï¼š" + gameCount;
+        textInfo.text += name + "åŠ å…¥æˆ¿é—´\n";
     }
 
     public void OnPlayerLeave(int index)
@@ -143,7 +150,7 @@ public class RoomUI : MonoBehaviour
         string name = items[index].transform.Find("Text").GetComponent<Text>().text;
         items[index].transform.Find("Text").GetComponent<Text>().text = "";
         items[index].transform.Find("WinInfo").GetComponent<Text>().text = "";
-        textInfo.text += name + "Àë¿ª·¿¼ä\n";
+        textInfo.text += name + "ç¦»å¼€æˆ¿é—´\n";
     }
 
     public void OnAddPositon()
@@ -164,7 +171,7 @@ public class RoomUI : MonoBehaviour
 
     public void SetOnlineCount(int count)
     {
-        textOnlineCount.text = "µ±Ç°ÔÚÏßÈËÊı£º" + count;
+        textOnlineCount.text = "å½“å‰åœ¨çº¿äººæ•°ï¼š" + count;
     }
 
     internal void OnReceiveOrder(List<pb_order> orders)
@@ -172,7 +179,7 @@ public class RoomUI : MonoBehaviour
         string s = "";
         foreach (var order in orders)
         {
-            s += order.Name + " £º " + new DateTime((long)(order.Time * 10000000 + 621355968000000000)).ToString() + "\n";
+            s += order.Name + " ï¼š " + new DateTime((long)(order.Time * 10000000 + 621355968000000000)).ToString() + "\n";
         }
         textOrder.text = s;
         goOrder.SetActive(true);
@@ -181,5 +188,22 @@ public class RoomUI : MonoBehaviour
     internal void OnReceiveRecords(List<string> records)
     {
         RecordList.Refresh(records);
+    }
+
+    public static string StringToMD5(string str)
+    {
+        //å¾—åˆ°å…¶é™æ€æ–¹æ³•åˆ›å»ºçš„MD5å¯¹è±¡
+        MD5 md5 = MD5.Create();
+        //å­—èŠ‚æ•°ç»„ 
+        byte[] strbuffer = Encoding.Default.GetBytes(str);
+        //åŠ å¯†å¹¶è¿”å›å­—èŠ‚æ•°ç»„
+        strbuffer = md5.ComputeHash(strbuffer);
+        string strNew = "";
+        foreach (byte item in strbuffer)
+        {
+            //å¯¹å­—èŠ‚æ•°ç»„ä¸­å…ƒç´ æ ¼å¼åŒ–åæ‹¼æ¥
+            strNew += item.ToString("x2");
+        }
+        return strNew;
     }
 }
