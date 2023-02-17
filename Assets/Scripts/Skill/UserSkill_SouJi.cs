@@ -210,6 +210,7 @@ public class UserSkill_SouJi : SkillBase
                 cardShow.Add(card);
             }
             GameManager.Singleton.players[targetPlayerId].cardCount -= cards.Count;
+            GameManager.Singleton.gameUI.Players[targetPlayerId].RefreshCardCount();
             if(targetPlayerId == GameManager.SelfPlayerId)
             {
                 foreach(var card in cards)
