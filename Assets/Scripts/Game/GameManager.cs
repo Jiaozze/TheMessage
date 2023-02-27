@@ -751,6 +751,7 @@ public class GameManager
         {
             case error_code.ClientVersionNotMatch:
                 gameUI.ShowInfo("客户端版本号不匹配");
+                NetWork.Dispose();
                 break;
             case error_code.NoMoreRoom:
                 gameUI.ShowInfo("没有更多的房间了");
@@ -783,7 +784,8 @@ public class GameManager
                 gameUI.ShowInfo("场上没有该颜色的情报");
                 break;
             case error_code.LoginFailed:
-                gameUI.ShowInfo("加入房间失败，可能是密码错误")
+                gameUI.ShowInfo("加入房间失败，可能是密码错误");
+                NetWork.Dispose();
             default:
                 gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;
@@ -1357,58 +1359,73 @@ public class GameManager
     }
 
     private int messageTarget = 0;
+    private DirectionEnum direction;
     public void SendMessage()
     {
         if (curPhase == PhaseEnum.Send_Start_Phase && CurWaitingPlayerId == SelfPlayerId)
         {
+            //不带锁的情报传递时传递方向选择 + 情报发送
             if (!cardsHand[SelectCardId].canLock)
             {
-                if (SelectPlayerId < 1 && cardsHand[SelectCardId].direction == DirectionEnum.Up)
+                //老鳖技能-强制覆盖方向
+                if (players[SelfPlayerId].role is Role_LaoBie)
+                {
+                    var role = players[SelfPlayerId].role as Role_LaoBie;
+                    direction = role.direction;
+                }
+                else
+                {
+                    direction = cardsHand[SelectCardId].direction;
+                }
+                
+                if (SelectPlayerId < 1 && direction == DirectionEnum.Up)
                 {
                     //SelectCardId = -1;
                     //SelectPlayerId = -1;
                     gameUI.ShowInfo("请选择此直达情报传递的目标");
                     return;
                 }
-                else if (cardsHand[SelectCardId].direction == DirectionEnum.Left)
+                else if (direction == DirectionEnum.Left)
                 {
                     messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
                 }
-                else if(cardsHand[SelectCardId].direction == DirectionEnum.Right)
+                else if(direction == DirectionEnum.Right)
                 {
-                    messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
+                    messageTarget = Singleton.GetPlayerAliveRight(SelfPlayerId);
                 }
                 else
                 {
                     messageTarget = SelectPlayerId;
                 }
 
-                DirectionEnum direction = cardsHand[SelectCardId].direction;
-
-
-
+                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>(), direction, seqId);
+                SelectCardId = -1;
+            }
+            //带锁的情报传递时传递方向选择
+            else if (!IsWaitLock)
+            {
                 if (players[SelfPlayerId].role is Role_LaoBie)
                 {
                     var role = players[SelfPlayerId].role as Role_LaoBie;
                     direction = role.direction;
-                } 
-                ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>(), direction, seqId);
-                SelectCardId = -1;
-            }
-            else if (!IsWaitLock)
-            {
-                if (SelectPlayerId < 1 && cardsHand[SelectCardId].direction == DirectionEnum.Up)
+                }
+                else
+                {
+                    direction = cardsHand[SelectCardId].direction;
+                }
+                
+                if (SelectPlayerId < 1 && direction == DirectionEnum.Up)
                 {
                     //SelectCardId = -1;
                     //SelectPlayerId = -1;
                     gameUI.ShowInfo("请选择此直达情报传递的目标");
                     return;
                 }
-                else if (cardsHand[SelectCardId].direction == DirectionEnum.Left)
+                else if direction == DirectionEnum.Left)
                 {
                     messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
                 }
-                else if (cardsHand[SelectCardId].direction == DirectionEnum.Right)
+                else if (direction == DirectionEnum.Right)
                 {
                     messageTarget = Singleton.GetPlayerAliveRight(SelfPlayerId);
                 }
@@ -1418,21 +1435,15 @@ public class GameManager
                 }
 
                 IsWaitLock = true;
-                //messageTarget = SelectPlayerId;
                 SelectPlayerId = -1;
                 gameUI.ShowPhase();
                 gameUI.CheckTargetAvailable();
             }
+            //情报锁人选择 + 情报发送
             else
             {
                 IsWaitLock = false;
                 int lockId = SelectPlayerId > 0 ? SelectPlayerId : 0;
-                DirectionEnum direction = cardsHand[SelectCardId].direction;
-                if (players[SelfPlayerId].role is Role_LaoBie)
-                {
-                    var role = players[SelfPlayerId].role as Role_LaoBie;
-                    direction = role.direction;
-                }
                 ProtoHelper.SendMessageCard(SelectCardId, messageTarget, new List<int>() { lockId }, direction, seqId);
                 SelectCardId = -1;
             }
