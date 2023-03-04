@@ -786,6 +786,7 @@ public class GameManager
             case error_code.LoginFailed:
                 gameUI.ShowInfo("加入房间失败，可能是密码错误");
                 NetWork.Dispose();
+                break;
             default:
                 gameUI.ShowInfo("ERROR " + (int)code + "  " + code.ToString());
                 break;
