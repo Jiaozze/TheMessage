@@ -1422,7 +1422,7 @@ public class GameManager
                     gameUI.ShowInfo("请选择此直达情报传递的目标");
                     return;
                 }
-                else if direction == DirectionEnum.Left)
+                else if (direction == DirectionEnum.Left)
                 {
                     messageTarget = Singleton.GetPlayerAliveLeft(SelfPlayerId);
                 }
