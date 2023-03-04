@@ -13,7 +13,7 @@ public class UserSkill_YiHuaJieMu : SkillBase
                 return false;
             }
 
-            if (GameManager.Singleton.curPhase != PhaseEnum.Fight_Phase)
+            if (!GameUtils.IsFightPhase())
             {
                 return false;
             }

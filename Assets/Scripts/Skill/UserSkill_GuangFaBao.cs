@@ -14,7 +14,7 @@ public class UserSkill_GuangFaBao : SkillBase
                 return false;
             }
 
-            if (GameManager.Singleton.curPhase != PhaseEnum.Fight_Phase)
+            if (!GameUtils.IsFightPhase())
             {
                 return false;
             }

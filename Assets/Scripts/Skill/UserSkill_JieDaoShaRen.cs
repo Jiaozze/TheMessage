@@ -13,7 +13,7 @@ public class UserSkill_JieDaoShaRen : SkillBase
             {
                 return false;
             }
-            if (GameManager.Singleton.curPhase != PhaseEnum.Fight_Phase)
+            if (!GameUtils.IsFightPhase())
             {
                 return false;
             }

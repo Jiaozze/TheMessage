@@ -21,7 +21,7 @@ public class UserSkill_YingBian : SkillBase
             {
                 return false;
             }
-            if (GameManager.Singleton.curPhase != PhaseEnum.Fight_Phase)
+            if (!GameUtils.IsFightPhase())
             {
                 return false;
             }

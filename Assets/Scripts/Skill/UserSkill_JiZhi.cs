@@ -11,7 +11,7 @@ public class UserSkill_JiZhi : SkillBase
             {
                 return false;
             }
-            if (GameManager.Singleton.curPhase != PhaseEnum.Fight_Phase && GameManager.Singleton.IsWaitSaving == -1)
+            if (!GameUtils.IsFightPhase() && GameManager.Singleton.IsWaitSaving == -1)
             {
                 return false;
             }
