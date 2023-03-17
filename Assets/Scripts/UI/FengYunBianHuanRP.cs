@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
@@ -12,11 +12,11 @@ public class FengYunBianHuanRP : MonoBehaviour
     public GridLayoutGroup CardsBox;
     public UICard boxCard;
 
-    private fengyunbianhuanModel model;
+    private FengyunbianhuanModel model;
 
     private void Start()
     {
-        //¼àÌıboxcardsÊı×éÔö¼ÓÊ±£¬ÏòUIÖĞÌí¼Ó¿¨ÅÆ
+        //ç›‘å¬boxcardsæ•°ç»„å¢åŠ æ—¶ï¼Œå‘UIä¸­æ·»åŠ å¡ç‰Œ
         model.boxCards
             .ObserveAdd()
             .Subscribe(_ =>
@@ -27,7 +27,7 @@ public class FengYunBianHuanRP : MonoBehaviour
             })
             .AddTo(this);
 
-        //¼àÌıboxcardsÊı×é¼õÉÙÊ±£¬ÒÆ³ıUIÖĞµÄÏàÓ¦¿¨ÅÆ
+        //ç›‘å¬boxcardsæ•°ç»„å‡å°‘æ—¶ï¼Œç§»é™¤UIä¸­çš„ç›¸åº”å¡ç‰Œ
         model.boxCards
             .ObserveRemove()
             .Subscribe(_ =>
@@ -42,7 +42,7 @@ public class FengYunBianHuanRP : MonoBehaviour
             })
             .AddTo(this);
 
-        //¼àÌıÈç¹ûboxcardsÊı×éÎª¿Õ£¬½áÊø·çÔÆ±ä»ÃÁ÷³Ì£¬Ïú»ÙUI
+        //ç›‘å¬å¦‚æœboxcardsæ•°ç»„ä¸ºç©ºï¼Œç»“æŸé£äº‘å˜å¹»æµç¨‹ï¼Œé”€æ¯UI
         model.boxCards
             .ObserveCountChanged()
             .Skip(1)
@@ -53,7 +53,7 @@ public class FengYunBianHuanRP : MonoBehaviour
             })
             .AddTo(this);
 
-        //ÂÖµ½×Ô¼ºÑ¡ÅÆÊ±£¬´ıÑ¡¿¨ÅÆÌí¼Ó¼àÌıÆ÷»ñÈ¡µãÑ¡¿¨Æ¬idºÍÑÕÉ«
+        //è½®åˆ°è‡ªå·±é€‰ç‰Œæ—¶ï¼Œå¾…é€‰å¡ç‰Œæ·»åŠ ç›‘å¬å™¨è·å–ç‚¹é€‰å¡ç‰‡idå’Œé¢œè‰²
         model.isTarget
             .Select(_ => _ == true)
             .Subscribe(_ =>
@@ -90,7 +90,7 @@ public class FengYunBianHuanRP : MonoBehaviour
                 
             }).AddTo(this);
 
-        //¼àÌıchoosecardÔö¼ÓÊ±£¬±ä¸üÁ½¸öÌá½»°´Å¥×´Ì¬
+        //ç›‘å¬choosecardå¢åŠ æ—¶ï¼Œå˜æ›´ä¸¤ä¸ªæäº¤æŒ‰é’®çŠ¶æ€
         model.chooseCardInfo
             .ObserveAdd()           
             .Subscribe(_ =>
@@ -114,10 +114,10 @@ public class FengYunBianHuanRP : MonoBehaviour
             
     }
 
-    //³õÊ¼»¯UIºÍÊı¾İÄ£ĞÍ
+    //åˆå§‹åŒ–UIå’Œæ•°æ®æ¨¡å‹
     public void InitUI(List<CardFS> cards)
     {
-        model = new fengyunbianhuanModel(cards);
+        model = new FengyunbianhuanModel(cards);
     }
 
     public void SetTarget(bool isTarget)
