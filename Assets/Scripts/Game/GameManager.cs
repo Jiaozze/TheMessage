@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager
 {
@@ -1064,6 +1065,60 @@ public class GameManager
         gameUI.AddMsg(string.Format("{0}濒死向{1}请求澄清", GameManager.Singleton.players[playerId].name, GameManager.Singleton.players[waitingPlayer].name));
         gameUI.ShowPhase();
     }
+    public void OnReceiveUseFengYunBianHuan(int user, CardFS originalCard, List<CardFS> showCards)
+    {
+        //发送使用风云变幻的战报
+        gameUI.AddMsg(string.Format("{0}使用了{1}", Singleton.players[user].name, originalCard.cardName));
+        //初始化风云变化UI，将待选牌填入UI
+        gameUI.ShowFengYunBianHuanUI(showCards);
+    }
+
+    public void OnReceiveWaitForFengYunBianHuanChooseCard(int targetPlayer, int waitTime, uint seq)
+    {
+        //检测是否到自己选牌，如果是的话启用选牌流程,并开启计时器
+        if (targetPlayer == SelfPlayerId)
+        {
+            gameUI.fengYunBianHuanRP.SetTarget(true);
+            gameUI.fengYunBianHuanRP.LogText.text = "请从下方待选区选择一张牌，点击按钮选择收入手牌或是情报区";
+            OnWait(targetPlayer, waitTime);
+        }
+        else
+        {
+            gameUI.fengYunBianHuanRP.LogText.text = string.Format("玩家{0}正在选牌，请等待...", Singleton.players[targetPlayer].name);
+            gameUI.fengYunBianHuanRP.SetTarget(false); 
+        }
+    }
+
+    public void OnReceiveFengYunBianHuanChooseCard(int targetPlayer, int chooseCardId, bool asMessageCard)
+    {        
+        //更新风云变幻并返回选中的牌
+        CardFS chooseCard = gameUI.fengYunBianHuanRP.PopCardFromBox(chooseCardId);
+        //更新手牌和情报ui
+        if (asMessageCard)
+        {
+            Singleton.players[targetPlayer].AddMessage(chooseCard);
+            Singleton.gameUI.Players[targetPlayer].RefreshMessage();
+            Singleton.gameUI.ShowAddMessage(targetPlayer, chooseCard, false);
+        }
+        else
+        {
+            Singleton.players[targetPlayer].cardCount += 1;
+            Singleton.gameUI.Players[targetPlayer].RefreshCardCount();
+            if (SelfPlayerId != targetPlayer)
+            {
+                Singleton.gameUI.ShowAddMessage(targetPlayer, chooseCard, false);
+            }
+            if (targetPlayer == GameManager.SelfPlayerId)
+            {
+                Singleton.cardsHand.Add(chooseCardId, chooseCard);
+                Singleton.gameUI.DrawCards(new List<CardFS>() { chooseCard });
+            }
+        }
+        //发送风云变幻选牌的战报
+        if (asMessageCard) { gameUI.AddMsg(string.Format("{0}选择了{1}作为自己的情报", Singleton.players[targetPlayer].name, chooseCard.cardName)); }
+        else { gameUI.AddMsg(string.Format("{0}选择了{1}加入自己的手牌", Singleton.players[targetPlayer].name, chooseCard.cardName)); }
+    }
+
     // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）
     public void OnReceivePlayerDying(int playerId, bool loseGame)
     {
@@ -1325,8 +1380,13 @@ public class GameManager
                             Debug.LogError("请选择正确的平衡目标");
                         }
                         break;
+                    //使用澄清
                     case CardNameEnum.ChengQing:
                         gameUI.playerMessagInfo.OnClickChengQing();
+                        break;
+                    //使用风云变幻
+                    case CardNameEnum.FengYunBianHuan:
+                        ProtoHelper.SendUseCard_FengYunBianHuan(SelectCardId, seqId);
                         break;
                 }
             }
@@ -1494,6 +1554,16 @@ public class GameManager
     public void OnServerConnect()
     {
         ProtoHelper.SendAddRoom();
+    }
+
+    public void SendFengYunBianHuanChooseCardToHandCard(int selfId, int cardId)
+    {
+        ProtoHelper.SendChooseCard_FengYunBianHuan(cardId, false, seqId);
+    }
+
+    public void SengFengyunBianHuanChooseCardToMessage(int selfId, int cardId)
+    {
+        ProtoHelper.SendChooseCard_FengYunBianHuan(cardId, true, seqId);
     }
 }
 

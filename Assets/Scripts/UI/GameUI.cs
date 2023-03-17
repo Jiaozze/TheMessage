@@ -93,9 +93,12 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public Dictionary<int, UIPlayer> Players = new Dictionary<int, UIPlayer>();
 
+    public FengYunBianHuanRP fengYunBianHuanRP;
+
     private int leftNum;
 
     private int topNum;
+
 
     private void Awake()
     {
@@ -1330,5 +1333,12 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
     public void OnClickRecordPause(bool pause)
     {
         ProtoHelper.SendRecordPause(pause);
+    }
+
+    public void ShowFengYunBianHuanUI(List<CardFS> showCards)
+    {
+        GameObject fengYunBianHuanUI = (GameObject)Instantiate(Resources.Load("FengYunBianHuanUI"), transform);
+        fengYunBianHuanRP = fengYunBianHuanUI.GetComponent<FengYunBianHuanRP>();
+        fengYunBianHuanRP.InitUI(showCards);
     }
 }

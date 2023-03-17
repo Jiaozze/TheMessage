@@ -23,7 +23,7 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject goUnknown;
 
     public bool isSelect = false;
-    private int cardId;
+    public int cardId;
     private CardNameEnum cardName;
     private List<PlayerColorEnum> shiTanColor;
 
@@ -63,6 +63,8 @@ public class UICard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                         return "威逼：出牌阶段，选择一名其他角色，声明 【澄清】【截获】【调包】【误导】中的一个卡名，对方必须给你一张你声明的卡。若对方没有，则将所有手牌展示给你。";
                     case CardNameEnum.WuDao:
                         return "误导：争夺阶段，将待接收情报移动至当前角色相邻的角色面前。";
+                    case CardNameEnum.FengYunBianHuan:
+                        return "风云变幻：出牌阶段，你从牌堆顶翻出等同于存活角色数量的牌，从你开始，逆时针顺序,每名角色选择其中一张加入手牌，若其情报区中没有与所选牌同色的情报，则其可以改为将所选牌置入自己的情报区。";
                 }
                 return "";
             }
