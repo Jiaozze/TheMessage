@@ -11,21 +11,14 @@ public class FengYunBianHuanRP : MonoBehaviour
     public Button TakeMessageButton;
     public GridLayoutGroup CardsBox;
     public UICard boxCard;
+    public uint seq;
 
     private FengyunbianhuanModel model;
+    
 
     private void Start()
     {
-        //监听boxcards数组增加时，向UI中添加卡牌
-        model.boxCards
-            .ObserveAdd()
-            .Subscribe(_ =>
-            {
-                UICard card = Instantiate(boxCard, CardsBox.transform);
-                //card.transform.SetParent(CardsBox.transform, false);
-                card.Init(1, _.Value);
-            })
-            .AddTo(this);
+        
 
         //监听boxcards数组减少时，移除UI中的相应卡牌
         model.boxCards
@@ -110,14 +103,29 @@ public class FengYunBianHuanRP : MonoBehaviour
                     }
                 }
             }).AddTo(this);
-
-            
+  
     }
 
     //初始化UI和数据模型
     public void InitUI(List<CardFS> cards)
     {
-        model = new FengyunbianhuanModel(cards);
+        //实例化UI模型
+        model = new FengyunbianhuanModel();
+        //监听boxcards数组增加时，向UI中添加卡牌
+        model.boxCards
+            .ObserveAdd()
+            .Subscribe(_ =>
+            {
+                UICard card = Instantiate(boxCard, CardsBox.transform);
+                //card.transform.SetParent(CardsBox.transform, false);
+                card.Init(1, _.Value);
+            })
+            .AddTo(this);
+        //将card信息填入模型中
+        foreach (CardFS card in cards)
+        {
+            model.boxCards.Add(card);
+        }
     }
 
     public void SetTarget(bool isTarget)
@@ -144,7 +152,7 @@ public class FengYunBianHuanRP : MonoBehaviour
     {
         int selfId = GameManager.SelfPlayerId;
         int cardId = model.chooseCardInfo.Last().Key;
-        GameManager.Singleton.SendFengYunBianHuanChooseCardToHandCard(selfId, cardId);
+        GameManager.Singleton.SendFengYunBianHuanChooseCardToHandCard(selfId, cardId, seq);
         TakeMessageButton.interactable = false;
         TakeHandCardsButton.interactable = false;
     }
@@ -153,7 +161,7 @@ public class FengYunBianHuanRP : MonoBehaviour
     {
         int selfId = GameManager.SelfPlayerId;
         int cardId = model.chooseCardInfo.Last().Key;
-        GameManager.Singleton.SengFengyunBianHuanChooseCardToMessage(selfId, cardId);
+        GameManager.Singleton.SengFengyunBianHuanChooseCardToMessage(selfId, cardId, seq);
         TakeMessageButton.interactable = false;
         TakeHandCardsButton.interactable = false;
     }

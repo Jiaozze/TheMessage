@@ -1337,7 +1337,7 @@ public class GameUI : MonoBehaviour, IPointerDownHandler
 
     public void ShowFengYunBianHuanUI(List<CardFS> showCards)
     {
-        GameObject fengYunBianHuanUI = (GameObject)Instantiate(Resources.Load("FengYunBianHuanUI"), transform);
+        GameObject fengYunBianHuanUI = (GameObject)Instantiate(Resources.Load("Prefabs/UI/FengYunBianHuanUI"), transform);
         fengYunBianHuanRP = fengYunBianHuanUI.GetComponent<FengYunBianHuanRP>();
         fengYunBianHuanRP.InitUI(showCards);
     }

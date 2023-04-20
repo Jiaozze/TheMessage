@@ -27,6 +27,8 @@ public class LanguageUtils
                 return "试探";
             case CardNameEnum.WuDao:
                 return "误导";
+            case CardNameEnum.FengYunBianHuan:
+                return "风云变幻";
         }
         return "undifined";
     }

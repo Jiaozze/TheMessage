@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameManager
 {
@@ -1067,8 +1068,8 @@ public class GameManager
     }
     public void OnReceiveUseFengYunBianHuan(int user, CardFS originalCard, List<CardFS> showCards)
     {
-        //发送使用风云变幻的战报
-        gameUI.AddMsg(string.Format("{0}使用了{1}", Singleton.players[user].name, originalCard.cardName));
+        //打出风云变幻并发送战报
+        OnCardUse(user, originalCard);
         //初始化风云变化UI，将待选牌填入UI
         gameUI.ShowFengYunBianHuanUI(showCards);
     }
@@ -1080,6 +1081,7 @@ public class GameManager
         {
             gameUI.fengYunBianHuanRP.SetTarget(true);
             gameUI.fengYunBianHuanRP.LogText.text = "请从下方待选区选择一张牌，点击按钮选择收入手牌或是情报区";
+            gameUI.fengYunBianHuanRP.seq = seq;
             OnWait(targetPlayer, waitTime);
         }
         else
@@ -1556,14 +1558,14 @@ public class GameManager
         ProtoHelper.SendAddRoom();
     }
 
-    public void SendFengYunBianHuanChooseCardToHandCard(int selfId, int cardId)
+    public void SendFengYunBianHuanChooseCardToHandCard(int selfId, int cardId, uint seq)
     {
-        ProtoHelper.SendChooseCard_FengYunBianHuan(cardId, false, seqId);
+        ProtoHelper.SendChooseCard_FengYunBianHuan(cardId, false, seq);
     }
 
-    public void SengFengyunBianHuanChooseCardToMessage(int selfId, int cardId)
+    public void SengFengyunBianHuanChooseCardToMessage(int selfId, int cardId, uint seq)
     {
-        ProtoHelper.SendChooseCard_FengYunBianHuan(cardId, true, seqId);
+        ProtoHelper.SendChooseCard_FengYunBianHuan(cardId, true, seq);
     }
 }
 

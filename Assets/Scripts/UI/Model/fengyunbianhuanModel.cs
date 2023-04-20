@@ -8,15 +8,11 @@ public class FengyunbianhuanModel
     public ReactiveDictionary<int, CardColorEnum> chooseCardInfo { get; private set; }
 
 
-    public FengyunbianhuanModel(List<CardFS> cards)
+    public FengyunbianhuanModel()
     {
         isTarget = new BoolReactiveProperty(false);
         chooseCardInfo = new ReactiveDictionary<int, CardColorEnum>();
         boxCards = new ReactiveCollection<CardFS>();
-        foreach (CardFS card in cards)
-        {
-            boxCards.Add(card);
-        }
     }
 
 }
