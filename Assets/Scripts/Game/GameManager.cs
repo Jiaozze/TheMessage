@@ -1116,9 +1116,13 @@ public class GameManager
                 Singleton.gameUI.DrawCards(new List<CardFS>() { chooseCard });
             }
         }
+        string messageInfo = LanguageUtils.GetColorsName(chooseCard.color) + LanguageUtils.GetCardName(chooseCard.cardName);
         //发送风云变幻选牌的战报
-        if (asMessageCard) { gameUI.AddMsg(string.Format("{0}选择了{1}作为自己的情报", Singleton.players[targetPlayer].name, chooseCard.cardName)); }
-        else { gameUI.AddMsg(string.Format("{0}选择了{1}加入自己的手牌", Singleton.players[targetPlayer].name, chooseCard.cardName)); }
+        if (asMessageCard) { gameUI.AddMsg(string.Format("{0}选择了{1}作为自己的情报", Singleton.players[targetPlayer].name, messageInfo)); }
+        else { gameUI.AddMsg(string.Format("{0}选择了{1}加入自己的手牌", Singleton.players[targetPlayer].name, messageInfo)); }
+
+        //如果这是最后一个人，那么销毁风云变幻UI
+        gameUI.fengYunBianHuanRP.DestorySelf();
     }
 
     // 通知客户端谁死亡了（通知客户端将其置灰，之后不能再成为目标了）

@@ -14,12 +14,12 @@ public class FengYunBianHuanRP : MonoBehaviour
     public uint seq;
 
     private FengyunbianhuanModel model;
+    private int chooseCardId;
+    
     
 
     private void Start()
     {
-        
-
         //监听boxcards数组减少时，移除UI中的相应卡牌
         model.boxCards
             .ObserveRemove()
@@ -35,17 +35,6 @@ public class FengYunBianHuanRP : MonoBehaviour
             })
             .AddTo(this);
 
-        //监听如果boxcards数组为空，结束风云变幻流程，销毁UI
-        model.boxCards
-            .ObserveCountChanged()
-            .Skip(1)
-            .Select(_ => _ == 0)
-            .Subscribe(_ =>
-            {
-                Destroy(gameObject);
-            })
-            .AddTo(this);
-
         //轮到自己选牌时，待选卡牌添加监听器获取点选卡片id和颜色
         model.isTarget
             .Select(_ => _ == true)
@@ -53,31 +42,23 @@ public class FengYunBianHuanRP : MonoBehaviour
             {
                 foreach (var card in CardsBox.GetComponentsInChildren<UICard>())
                 {
-                    CardColorEnum cardColor = new CardColorEnum();
+                    List<CardColorEnum> cardColor = new List<CardColorEnum>();
                     foreach (var cardfs in model.boxCards)
                     {
                         if(card.cardId == cardfs.id)
                         {
-                            if (cardfs.color.Contains(CardColorEnum.Black))
-                            {
-                                cardColor = CardColorEnum.Black;
-                            }
-                            else
-                            {
-                                if(cardfs.color.Contains(CardColorEnum.Red))
-                                {
-                                    cardColor = CardColorEnum.Red;
-                                }
-                                else
-                                {
-                                    cardColor = CardColorEnum.Blue;
-                                }
-                            }
-                        }
+                            cardColor = cardfs.color;
+                        }                       
                     }
                     card.SetClickAction(() =>
                     {
-                        model.chooseCardInfo.Add(card.cardId, cardColor);
+                        foreach(var acard in CardsBox.GetComponentsInChildren<UICard>())
+                        {
+                            acard.OnSelect(false);
+                        }
+                        card.OnSelect(true);
+                        model.chooseCardInfo.Add(cardColor);
+                        chooseCardId = card.cardId;
                     });
                 }
                 
@@ -91,9 +72,15 @@ public class FengYunBianHuanRP : MonoBehaviour
                 if(model.isTarget.Value == true)
                 {
                     TakeHandCardsButton.interactable = true;
-                    if((_.Value == CardColorEnum.Black && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Black) == 0)
-                    || (_.Value == CardColorEnum.Red && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Red) == 0)
-                    || (_.Value == CardColorEnum.Blue && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Blue) == 0))
+                    if((_.Value.Contains(CardColorEnum.Black) && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Black) == 0)
+                    && ((_.Value.Contains(CardColorEnum.Red) && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Red) == 0)
+                    || (_.Value.Contains(CardColorEnum.Blue) && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Blue) == 0)))
+                    {
+                        TakeMessageButton.interactable = true;
+                    }
+                    else if(_.Value.Count == 1 &&((_.Value.Contains(CardColorEnum.Black) && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Black) == 0)
+                    || (_.Value.Contains(CardColorEnum.Red) && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Red) == 0)
+                    || (_.Value.Contains(CardColorEnum.Blue) && GameManager.Singleton.players[GameManager.SelfPlayerId].GetMessageCount(CardColorEnum.Blue) == 0)))
                     {
                         TakeMessageButton.interactable = true;
                     }
@@ -103,7 +90,6 @@ public class FengYunBianHuanRP : MonoBehaviour
                     }
                 }
             }).AddTo(this);
-  
     }
 
     //初始化UI和数据模型
@@ -151,7 +137,7 @@ public class FengYunBianHuanRP : MonoBehaviour
     public void TakeHandCard()
     {
         int selfId = GameManager.SelfPlayerId;
-        int cardId = model.chooseCardInfo.Last().Key;
+        int cardId = chooseCardId;
         GameManager.Singleton.SendFengYunBianHuanChooseCardToHandCard(selfId, cardId, seq);
         TakeMessageButton.interactable = false;
         TakeHandCardsButton.interactable = false;
@@ -160,9 +146,17 @@ public class FengYunBianHuanRP : MonoBehaviour
     public void TakeMessage()
     {
         int selfId = GameManager.SelfPlayerId;
-        int cardId = model.chooseCardInfo.Last().Key;
+        int cardId = chooseCardId;
         GameManager.Singleton.SengFengyunBianHuanChooseCardToMessage(selfId, cardId, seq);
         TakeMessageButton.interactable = false;
         TakeHandCardsButton.interactable = false;
+    }
+
+    public void DestorySelf()
+    {
+        if(model.boxCards.Count == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
