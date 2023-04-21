@@ -12,6 +12,7 @@ public enum CardNameEnum
     JieHuo = 6, // 截获
     DiaoBao = 7, // 掉包
     WuDao = 8, // 误导
+    FengYunBianHuan = 9, //风云变幻
 }
 
 public enum CardColorEnum

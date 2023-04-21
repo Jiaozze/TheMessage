@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class ProtoHelper
 {
-    private const uint PROTO_VERSION = 21;
+    private const uint PROTO_VERSION = 22;
     public static void OnReceiveMsg(int id, byte[] contont)
     {
         //GetIdFromProtoName("wait_for_select_role_toc");
@@ -298,6 +298,42 @@ public static class ProtoHelper
             CardFS cardUsed = new CardFS(use_wu_dao_toc.Card);
             GameManager.Singleton.OnReceiveUseWuDao(user, target, cardUsed);
         }
+
+        //通知所有人使用风云变幻
+        else if (GetIdFromProtoName("use_feng_yun_bian_huan_toc") == id)
+        {
+            use_feng_yun_bian_huan_toc use_Feng_Yun_Bian_Huan_Toc = use_feng_yun_bian_huan_toc.Parser.ParseFrom(contont);
+            int user = (int)use_Feng_Yun_Bian_Huan_Toc.PlayerId;
+            CardFS originalCard = new CardFS(use_Feng_Yun_Bian_Huan_Toc.Card);
+            List<CardFS> showCards = new List<CardFS>();
+            foreach (var card in use_Feng_Yun_Bian_Huan_Toc.ShowCards)
+            {
+                CardFS cardFS = new CardFS(card);
+                showCards.Add(cardFS);
+            }
+            GameManager.Singleton.OnReceiveUseFengYunBianHuan(user, originalCard, showCards);
+        }
+
+        //通知所有人风云变幻开始选牌
+        else if(GetIdFromProtoName("wait_for_feng_yun_bian_huan_choose_card_toc") == id)
+        {
+            wait_for_feng_yun_bian_huan_choose_card_toc wait_For_Feng_Yun_Bian_Huan_Choose_Card_Toc = wait_for_feng_yun_bian_huan_choose_card_toc.Parser.ParseFrom(contont);
+            int targetPlayer = (int)wait_For_Feng_Yun_Bian_Huan_Choose_Card_Toc.PlayerId;
+            int waitTime = (int)wait_For_Feng_Yun_Bian_Huan_Choose_Card_Toc.WaitingSecond;
+            uint seq = (uint)wait_For_Feng_Yun_Bian_Huan_Choose_Card_Toc.Seq;
+            GameManager.Singleton.OnReceiveWaitForFengYunBianHuanChooseCard(targetPlayer, waitTime, seq);
+        }
+
+        //通知所有人风云变幻选牌结果
+        else if(GetIdFromProtoName("feng_yun_bian_huan_choose_card_toc") == id)
+        {
+            feng_yun_bian_huan_choose_card_toc feng_Yun_Bian_Huan_Choose_Card_Toc = feng_yun_bian_huan_choose_card_toc.Parser.ParseFrom(contont);
+            int targetPlayer = (int)feng_Yun_Bian_Huan_Choose_Card_Toc.PlayerId;
+            int chooseCardId = (int)feng_Yun_Bian_Huan_Choose_Card_Toc.CardId;
+            bool asMessageCard = feng_Yun_Bian_Huan_Choose_Card_Toc.AsMessageCard;
+            GameManager.Singleton.OnReceiveFengYunBianHuanChooseCard(targetPlayer, chooseCardId, asMessageCard);
+        }
+
         // 通知客户端角色变化
         else if (GetIdFromProtoName("notify_role_update_toc") == id)
         {
@@ -1294,6 +1330,22 @@ public static class ProtoHelper
         wei_bi_give_card_tos wei_Bi_Give_Card_Tos = new wei_bi_give_card_tos() { CardId = (uint)cardId, Seq = seq };
         byte[] proto = wei_Bi_Give_Card_Tos.ToByteArray();
         SendProto("wei_bi_give_card_tos", proto);
+    }
+
+    public static void SendUseCard_FengYunBianHuan(int cardId, uint seq)
+    {
+        Debug.Log("____send___________________ use_feng_yun_bian_huan_tos, seq:" + seq);
+        use_feng_yun_bian_huan_tos use_Feng_Yun_Bian_Huan_Tos = new use_feng_yun_bian_huan_tos() { CardId = (uint)cardId, Seq = seq };
+        byte[] proto = use_Feng_Yun_Bian_Huan_Tos.ToByteArray();
+        SendProto("use_feng_yun_bian_huan_tos", proto);
+    }
+
+    public static void SendChooseCard_FengYunBianHuan(int cardId, bool isMessageCard ,uint seq)
+    {
+        Debug.Log("____send___________________ feng_yun_bian_huan_choose_card_tos, seq:" + seq);
+        feng_yun_bian_huan_choose_card_tos feng_yun_bian_huan_choose_card_tos = new feng_yun_bian_huan_choose_card_tos() { CardId = (uint)cardId, AsMessageCard = isMessageCard, Seq = seq };
+        byte[] proto = feng_yun_bian_huan_choose_card_tos.ToByteArray();
+        SendProto("feng_yun_bian_huan_choose_card_tos", proto);
     }
     #endregion
 
