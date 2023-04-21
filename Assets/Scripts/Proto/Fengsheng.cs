@@ -152,8 +152,14 @@ public static partial class FengshengReflection {
           "dG9zEg8KB2NhcmRfaWQYASABKA0SFwoPYXNfbWVzc2FnZV9jYXJkGAIgASgI",
           "EgsKA3NlcRgDIAEoDSJhCiJmZW5nX3l1bl9iaWFuX2h1YW5fY2hvb3NlX2Nh",
           "cmRfdG9jEhEKCXBsYXllcl9pZBgBIAEoDRIPCgdjYXJkX2lkGAIgASgNEhcK",
-          "D2FzX21lc3NhZ2VfY2FyZBgDIAEoCEIWChRjb20uZmVuZ3NoZW5nLnByb3Rv",
-          "c2IGcHJvdG8z"));
+          "D2FzX21lc3NhZ2VfY2FyZBgDIAEoCCJZCg91c2VfbWlfbGluZ190b3MSDwoH",
+          "Y2FyZF9pZBgBIAEoDRIYChB0YXJnZXRfcGxheWVyX2lkGAIgASgNEg4KBnNl",
+          "Y3JldBgDIAEoDRILCgNzZXEYBCABKA0itgEKD3VzZV9taV9saW5nX3RvYxIR",
+          "CglwbGF5ZXJfaWQYASABKA0SGAoQdGFyZ2V0X3BsYXllcl9pZBgCIAEoDRIO",
+          "CgZzZWNyZXQYAyABKA0SEwoEY2FyZBgEIAEoCzIFLmNhcmQSEQoJaGFzX2Nv",
+          "bG9yGAUgASgIEhkKCmhhbmRfY2FyZHMYBiADKAsyBS5jYXJkEhYKDndhaXRp",
+          "bmdfc2Vjb25kGAcgASgNEgsKA3NlcRgIIAEoDUIWChRjb20uZmVuZ3NoZW5n",
+          "LnByb3Rvc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -237,7 +243,9 @@ public static partial class FengshengReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::use_feng_yun_bian_huan_toc), global::use_feng_yun_bian_huan_toc.Parser, new[]{ "Card", "PlayerId", "ShowCards" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::wait_for_feng_yun_bian_huan_choose_card_toc), global::wait_for_feng_yun_bian_huan_choose_card_toc.Parser, new[]{ "PlayerId", "WaitingSecond", "Seq" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::feng_yun_bian_huan_choose_card_tos), global::feng_yun_bian_huan_choose_card_tos.Parser, new[]{ "CardId", "AsMessageCard", "Seq" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::feng_yun_bian_huan_choose_card_toc), global::feng_yun_bian_huan_choose_card_toc.Parser, new[]{ "PlayerId", "CardId", "AsMessageCard" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::feng_yun_bian_huan_choose_card_toc), global::feng_yun_bian_huan_choose_card_toc.Parser, new[]{ "PlayerId", "CardId", "AsMessageCard" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::use_mi_ling_tos), global::use_mi_ling_tos.Parser, new[]{ "CardId", "TargetPlayerId", "Secret", "Seq" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::use_mi_ling_toc), global::use_mi_ling_toc.Parser, new[]{ "PlayerId", "TargetPlayerId", "Secret", "Card", "HasColor", "HandCards", "WaitingSecond", "Seq" }, null, null, null, null)
         }));
   }
   #endregion
@@ -9424,7 +9432,7 @@ public sealed partial class send_message_card_toc : pb::IMessage<send_message_ca
   public const int PlayerIdFieldNumber = 2;
   private uint playerId_;
   /// <summary>
-  /// 传出者
+  /// 当前回合玩家ID
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public uint PlayerId {
@@ -9479,7 +9487,7 @@ public sealed partial class send_message_card_toc : pb::IMessage<send_message_ca
   public const int SenderIdFieldNumber = 6;
   private uint senderId_;
   /// <summary>
-  /// 传出情报的玩家id。有可能不是当前回合玩家传出的情报。
+  /// 传出情报的玩家ID。有可能不是当前回合玩家传出的情报。
   /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public uint SenderId {
@@ -14540,6 +14548,578 @@ public sealed partial class feng_yun_bian_huan_choose_card_toc : pb::IMessage<fe
         }
         case 24: {
           AsMessageCard = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 使用密令
+/// </summary>
+public sealed partial class use_mi_ling_tos : pb::IMessage<use_mi_ling_tos> {
+  private static readonly pb::MessageParser<use_mi_ling_tos> _parser = new pb::MessageParser<use_mi_ling_tos>(() => new use_mi_ling_tos());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<use_mi_ling_tos> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[81]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_mi_ling_tos() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_mi_ling_tos(use_mi_ling_tos other) : this() {
+    cardId_ = other.cardId_;
+    targetPlayerId_ = other.targetPlayerId_;
+    secret_ = other.secret_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_mi_ling_tos Clone() {
+    return new use_mi_ling_tos(this);
+  }
+
+  /// <summary>Field number for the "card_id" field.</summary>
+  public const int CardIdFieldNumber = 1;
+  private uint cardId_;
+  /// <summary>
+  /// 使用者
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint CardId {
+    get { return cardId_; }
+    set {
+      cardId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 2;
+  private uint targetPlayerId_;
+  /// <summary>
+  /// 被使用者，不能没有手牌
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "secret" field.</summary>
+  public const int SecretFieldNumber = 3;
+  private uint secret_;
+  /// <summary>
+  /// 0-东风，1-西风，2-静风
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Secret {
+    get { return secret_; }
+    set {
+      secret_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 4;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as use_mi_ling_tos);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(use_mi_ling_tos other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (CardId != other.CardId) return false;
+    if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (Secret != other.Secret) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (CardId != 0) hash ^= CardId.GetHashCode();
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (Secret != 0) hash ^= Secret.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (CardId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(CardId);
+    }
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TargetPlayerId);
+    }
+    if (Secret != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Secret);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(32);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (CardId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(CardId);
+    }
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (Secret != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Secret);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(use_mi_ling_tos other) {
+    if (other == null) {
+      return;
+    }
+    if (other.CardId != 0) {
+      CardId = other.CardId;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
+    }
+    if (other.Secret != 0) {
+      Secret = other.Secret;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          CardId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Secret = input.ReadUInt32();
+          break;
+        }
+        case 32: {
+          Seq = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+/// <summary>
+/// 通知所有人使用密令，这条协议后会紧接着下面一条协议，客户端接下来应该由使用者(has_color为false)或者被使用者(has_color为true)发 send_message_card_tos
+/// </summary>
+public sealed partial class use_mi_ling_toc : pb::IMessage<use_mi_ling_toc> {
+  private static readonly pb::MessageParser<use_mi_ling_toc> _parser = new pb::MessageParser<use_mi_ling_toc>(() => new use_mi_ling_toc());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<use_mi_ling_toc> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::FengshengReflection.Descriptor.MessageTypes[82]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_mi_ling_toc() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_mi_ling_toc(use_mi_ling_toc other) : this() {
+    playerId_ = other.playerId_;
+    targetPlayerId_ = other.targetPlayerId_;
+    secret_ = other.secret_;
+    card_ = other.card_ != null ? other.card_.Clone() : null;
+    hasColor_ = other.hasColor_;
+    handCards_ = other.handCards_.Clone();
+    waitingSecond_ = other.waitingSecond_;
+    seq_ = other.seq_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public use_mi_ling_toc Clone() {
+    return new use_mi_ling_toc(this);
+  }
+
+  /// <summary>Field number for the "player_id" field.</summary>
+  public const int PlayerIdFieldNumber = 1;
+  private uint playerId_;
+  /// <summary>
+  /// 使用者
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint PlayerId {
+    get { return playerId_; }
+    set {
+      playerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "target_player_id" field.</summary>
+  public const int TargetPlayerIdFieldNumber = 2;
+  private uint targetPlayerId_;
+  /// <summary>
+  /// 被使用者，也就是传情报的人
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint TargetPlayerId {
+    get { return targetPlayerId_; }
+    set {
+      targetPlayerId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "secret" field.</summary>
+  public const int SecretFieldNumber = 3;
+  private uint secret_;
+  /// <summary>
+  /// 0-东风，1-西风，2-静风
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Secret {
+    get { return secret_; }
+    set {
+      secret_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "card" field.</summary>
+  public const int CardFieldNumber = 4;
+  private global::card card_;
+  /// <summary>
+  /// 只有自己是使用者或者被使用者时，这个字段才会有值，否则为null/nil
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::card Card {
+    get { return card_; }
+    set {
+      card_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "has_color" field.</summary>
+  public const int HasColorFieldNumber = 5;
+  private bool hasColor_;
+  /// <summary>
+  /// 为true表示有这个颜色，由被使用者选牌。为false表示没有这个颜色，由使用者选牌。
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool HasColor {
+    get { return hasColor_; }
+    set {
+      hasColor_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "hand_cards" field.</summary>
+  public const int HandCardsFieldNumber = 6;
+  private static readonly pb::FieldCodec<global::card> _repeated_handCards_codec
+      = pb::FieldCodec.ForMessage(50, global::card.Parser);
+  private readonly pbc::RepeatedField<global::card> handCards_ = new pbc::RepeatedField<global::card>();
+  /// <summary>
+  /// 被使用者的手牌，只有has_color为false且自己是使用者时，这个字段才有值
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::card> HandCards {
+    get { return handCards_; }
+  }
+
+  /// <summary>Field number for the "waiting_second" field.</summary>
+  public const int WaitingSecondFieldNumber = 7;
+  private uint waitingSecond_;
+  /// <summary>
+  /// 读多少秒
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint WaitingSecond {
+    get { return waitingSecond_; }
+    set {
+      waitingSecond_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "seq" field.</summary>
+  public const int SeqFieldNumber = 8;
+  private uint seq_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public uint Seq {
+    get { return seq_; }
+    set {
+      seq_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as use_mi_ling_toc);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(use_mi_ling_toc other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (PlayerId != other.PlayerId) return false;
+    if (TargetPlayerId != other.TargetPlayerId) return false;
+    if (Secret != other.Secret) return false;
+    if (!object.Equals(Card, other.Card)) return false;
+    if (HasColor != other.HasColor) return false;
+    if(!handCards_.Equals(other.handCards_)) return false;
+    if (WaitingSecond != other.WaitingSecond) return false;
+    if (Seq != other.Seq) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+    if (TargetPlayerId != 0) hash ^= TargetPlayerId.GetHashCode();
+    if (Secret != 0) hash ^= Secret.GetHashCode();
+    if (card_ != null) hash ^= Card.GetHashCode();
+    if (HasColor != false) hash ^= HasColor.GetHashCode();
+    hash ^= handCards_.GetHashCode();
+    if (WaitingSecond != 0) hash ^= WaitingSecond.GetHashCode();
+    if (Seq != 0) hash ^= Seq.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (PlayerId != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(PlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      output.WriteRawTag(16);
+      output.WriteUInt32(TargetPlayerId);
+    }
+    if (Secret != 0) {
+      output.WriteRawTag(24);
+      output.WriteUInt32(Secret);
+    }
+    if (card_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Card);
+    }
+    if (HasColor != false) {
+      output.WriteRawTag(40);
+      output.WriteBool(HasColor);
+    }
+    handCards_.WriteTo(output, _repeated_handCards_codec);
+    if (WaitingSecond != 0) {
+      output.WriteRawTag(56);
+      output.WriteUInt32(WaitingSecond);
+    }
+    if (Seq != 0) {
+      output.WriteRawTag(64);
+      output.WriteUInt32(Seq);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (PlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
+    }
+    if (TargetPlayerId != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TargetPlayerId);
+    }
+    if (Secret != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Secret);
+    }
+    if (card_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Card);
+    }
+    if (HasColor != false) {
+      size += 1 + 1;
+    }
+    size += handCards_.CalculateSize(_repeated_handCards_codec);
+    if (WaitingSecond != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WaitingSecond);
+    }
+    if (Seq != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Seq);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(use_mi_ling_toc other) {
+    if (other == null) {
+      return;
+    }
+    if (other.PlayerId != 0) {
+      PlayerId = other.PlayerId;
+    }
+    if (other.TargetPlayerId != 0) {
+      TargetPlayerId = other.TargetPlayerId;
+    }
+    if (other.Secret != 0) {
+      Secret = other.Secret;
+    }
+    if (other.card_ != null) {
+      if (card_ == null) {
+        Card = new global::card();
+      }
+      Card.MergeFrom(other.Card);
+    }
+    if (other.HasColor != false) {
+      HasColor = other.HasColor;
+    }
+    handCards_.Add(other.handCards_);
+    if (other.WaitingSecond != 0) {
+      WaitingSecond = other.WaitingSecond;
+    }
+    if (other.Seq != 0) {
+      Seq = other.Seq;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          PlayerId = input.ReadUInt32();
+          break;
+        }
+        case 16: {
+          TargetPlayerId = input.ReadUInt32();
+          break;
+        }
+        case 24: {
+          Secret = input.ReadUInt32();
+          break;
+        }
+        case 34: {
+          if (card_ == null) {
+            Card = new global::card();
+          }
+          input.ReadMessage(Card);
+          break;
+        }
+        case 40: {
+          HasColor = input.ReadBool();
+          break;
+        }
+        case 50: {
+          handCards_.AddEntriesFrom(input, _repeated_handCards_codec);
+          break;
+        }
+        case 56: {
+          WaitingSecond = input.ReadUInt32();
+          break;
+        }
+        case 64: {
+          Seq = input.ReadUInt32();
           break;
         }
       }

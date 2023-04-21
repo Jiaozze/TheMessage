@@ -22,38 +22,39 @@ public static partial class CommonReflection {
   static CommonReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cgxjb21tb24ucHJvdG8ioQEKBGNhcmQSDwoHY2FyZF9pZBgBIAEoDRIaCgpj",
+          "Cgxjb21tb24ucHJvdG8ivwEKBGNhcmQSDwoHY2FyZF9pZBgBIAEoDRIaCgpj",
           "YXJkX2NvbG9yGAIgAygOMgYuY29sb3ISHAoIY2FyZF9kaXIYAyABKA4yCi5k",
           "aXJlY3Rpb24SHQoJY2FyZF90eXBlGAQgASgOMgouY2FyZF90eXBlEh0KDXdo",
-          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCCqy",
-          "BAoEcm9sZRILCgd1bmtub3duEAASDgoKd3VfemhpX2d1bxABEhIKDmNoZW5n",
-          "X3hpYW9fZGllEAISDQoJbGlhbl95dWFuEAMSDQoJbWFvX2J1X2JhEAQSEQoN",
-          "emhhbmdfeWlfdGluZxAFEhEKDWJhaV9jYW5nX2xhbmcQBhIXChNmZWlfeXVh",
-          "bl9sb25nX2NodWFuEAcSDAoIcGVpX2xpbmcQCBIQCgxodWFuZ19qaV9yZW4Q",
-          "CRITCg93YW5nX3RpYW5feGlhbmcQChILCgdsaV94aW5nEAsSDAoId2FuZ19r",
-          "dWkQDBIPCgthX2Z1X2x1b19sYRANEgsKB2hhbl9tZWkQDhISCg56aGVuZ193",
-          "ZW5feGlhbhAPEhAKDHh1YW5fcWluZ196aRAQEgwKCGd1aV9qaWFvEBESDAoI",
-          "c2hhb194aXUQEhIRCg1qaW5fc2hlbmdfaHVvEBMSEAoMZ3VfeGlhb19tZW5n",
-          "EBQSDwoLYmFpX2ZlaV9mZWkQFRIQCgxkdWFuX211X2ppbmcQFhIPCgt3YW5n",
-          "X2Z1X2d1aRAXEgsKB2xhb19oYW4QGBIRCg1iYWlfeGlhb19uaWFuEBkSCwoH",
-          "bGFvX2JpZRAaEgwKCHhpYW9faml1EBsSDgoKbGlfbmluZ195dRAcEhAKDGJh",
-          "aV9rdW5fc2hhbhAdEgwKCHNoYW5nX3l1EB4SFAoPc3BfZ3VfeGlhb19tZW5n",
-          "EPwHEhIKDXNwX2xpX25pbmdfeXUQhAgqcQoFcGhhc2USDgoKRHJhd19QaGFz",
-          "ZRAAEg4KCk1haW5fUGhhc2UQARIUChBTZW5kX1N0YXJ0X1BoYXNlEAISDgoK",
-          "U2VuZF9QaGFzZRADEg8KC0ZpZ2h0X1BoYXNlEAQSEQoNUmVjZWl2ZV9QaGFz",
-          "ZRAFKpkBCgljYXJkX3R5cGUSDgoKQ2hlbmdfUWluZxAAEgsKB1NoaV9UYW4Q",
-          "ARIKCgZXZWlfQmkQAhIKCgZMaV9Zb3UQAxINCglQaW5nX0hlbmcQBBIJCgVQ",
-          "b19ZaRAFEgsKB0ppZV9IdW8QBhIMCghEaWFvX0JhbxAHEgoKBld1X0RhbxAI",
-          "EhYKEkZlbmdfWXVuX0JpYW5fSHVhbhAJKjoKBWNvbG9yEgkKBUJsYWNrEAAS",
-          "BwoDUmVkEAESCAoEQmx1ZRACEhMKD0hhc19Ob19JZGVudGl0eRADKk8KC3Nl",
-          "Y3JldF90YXNrEgoKBktpbGxlchAAEgsKB1N0ZWFsZXIQARINCglDb2xsZWN0",
-          "b3IQAhILCgdNdXRhdG9yEAMSCwoHUGlvbmVlchAEKigKCWRpcmVjdGlvbhIG",
-          "CgJVcBAAEggKBExlZnQQARIJCgVSaWdodBACQhYKFGNvbS5mZW5nc2hlbmcu",
-          "cHJvdG9zYgZwcm90bzM="));
+          "b19kcmF3X2NhcmQYBSADKA4yBi5jb2xvchIQCghjYW5fbG9jaxgGIAEoCBIc",
+          "CgxzZWNyZXRfY29sb3IYByADKA4yBi5jb2xvciqyBAoEcm9sZRILCgd1bmtu",
+          "b3duEAASDgoKd3VfemhpX2d1bxABEhIKDmNoZW5nX3hpYW9fZGllEAISDQoJ",
+          "bGlhbl95dWFuEAMSDQoJbWFvX2J1X2JhEAQSEQoNemhhbmdfeWlfdGluZxAF",
+          "EhEKDWJhaV9jYW5nX2xhbmcQBhIXChNmZWlfeXVhbl9sb25nX2NodWFuEAcS",
+          "DAoIcGVpX2xpbmcQCBIQCgxodWFuZ19qaV9yZW4QCRITCg93YW5nX3RpYW5f",
+          "eGlhbmcQChILCgdsaV94aW5nEAsSDAoId2FuZ19rdWkQDBIPCgthX2Z1X2x1",
+          "b19sYRANEgsKB2hhbl9tZWkQDhISCg56aGVuZ193ZW5feGlhbhAPEhAKDHh1",
+          "YW5fcWluZ196aRAQEgwKCGd1aV9qaWFvEBESDAoIc2hhb194aXUQEhIRCg1q",
+          "aW5fc2hlbmdfaHVvEBMSEAoMZ3VfeGlhb19tZW5nEBQSDwoLYmFpX2ZlaV9m",
+          "ZWkQFRIQCgxkdWFuX211X2ppbmcQFhIPCgt3YW5nX2Z1X2d1aRAXEgsKB2xh",
+          "b19oYW4QGBIRCg1iYWlfeGlhb19uaWFuEBkSCwoHbGFvX2JpZRAaEgwKCHhp",
+          "YW9faml1EBsSDgoKbGlfbmluZ195dRAcEhAKDGJhaV9rdW5fc2hhbhAdEgwK",
+          "CHNoYW5nX3l1EB4SFAoPc3BfZ3VfeGlhb19tZW5nEPwHEhIKDXNwX2xpX25p",
+          "bmdfeXUQhAgqcQoFcGhhc2USDgoKRHJhd19QaGFzZRAAEg4KCk1haW5fUGhh",
+          "c2UQARIUChBTZW5kX1N0YXJ0X1BoYXNlEAISDgoKU2VuZF9QaGFzZRADEg8K",
+          "C0ZpZ2h0X1BoYXNlEAQSEQoNUmVjZWl2ZV9QaGFzZRAFKqYBCgljYXJkX3R5",
+          "cGUSDgoKQ2hlbmdfUWluZxAAEgsKB1NoaV9UYW4QARIKCgZXZWlfQmkQAhIK",
+          "CgZMaV9Zb3UQAxINCglQaW5nX0hlbmcQBBIJCgVQb19ZaRAFEgsKB0ppZV9I",
+          "dW8QBhIMCghEaWFvX0JhbxAHEgoKBld1X0RhbxAIEhYKEkZlbmdfWXVuX0Jp",
+          "YW5fSHVhbhAJEgsKB01pX0xpbmcQCio6CgVjb2xvchIJCgVCbGFjaxAAEgcK",
+          "A1JlZBABEggKBEJsdWUQAhITCg9IYXNfTm9fSWRlbnRpdHkQAypPCgtzZWNy",
+          "ZXRfdGFzaxIKCgZLaWxsZXIQABILCgdTdGVhbGVyEAESDQoJQ29sbGVjdG9y",
+          "EAISCwoHTXV0YXRvchADEgsKB1Bpb25lZXIQBCooCglkaXJlY3Rpb24SBgoC",
+          "VXAQABIICgRMZWZ0EAESCQoFUmlnaHQQAkIWChRjb20uZmVuZ3NoZW5nLnBy",
+          "b3Rvc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(new[] {typeof(global::role), typeof(global::phase), typeof(global::card_type), typeof(global::color), typeof(global::secret_task), typeof(global::direction), }, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::card), global::card.Parser, new[]{ "CardId", "CardColor", "CardDir", "CardType", "WhoDrawCard", "CanLock" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::card), global::card.Parser, new[]{ "CardId", "CardColor", "CardDir", "CardType", "WhoDrawCard", "CanLock", "SecretColor" }, null, null, null, null)
         }));
   }
   #endregion
@@ -259,7 +260,14 @@ public enum card_type {
   /// 误导
   /// </summary>
   [pbr::OriginalName("Wu_Dao")] WuDao = 8,
+  /// <summary>
+  /// 风云变幻
+  /// </summary>
   [pbr::OriginalName("Feng_Yun_Bian_Huan")] FengYunBianHuan = 9,
+  /// <summary>
+  /// 密令
+  /// </summary>
+  [pbr::OriginalName("Mi_Ling")] MiLing = 10,
 }
 
 public enum color {
@@ -359,6 +367,7 @@ public sealed partial class card : pb::IMessage<card> {
     cardType_ = other.cardType_;
     whoDrawCard_ = other.whoDrawCard_.Clone();
     canLock_ = other.canLock_;
+    secretColor_ = other.secretColor_.Clone();
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -449,6 +458,19 @@ public sealed partial class card : pb::IMessage<card> {
     }
   }
 
+  /// <summary>Field number for the "secret_color" field.</summary>
+  public const int SecretColorFieldNumber = 7;
+  private static readonly pb::FieldCodec<global::color> _repeated_secretColor_codec
+      = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::color) x);
+  private readonly pbc::RepeatedField<global::color> secretColor_ = new pbc::RepeatedField<global::color>();
+  /// <summary>
+  /// （密令卡）长度为3的数组，[东风对应颜色，西风对应颜色，静风对应颜色]
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::color> SecretColor {
+    get { return secretColor_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as card);
@@ -468,6 +490,7 @@ public sealed partial class card : pb::IMessage<card> {
     if (CardType != other.CardType) return false;
     if(!whoDrawCard_.Equals(other.whoDrawCard_)) return false;
     if (CanLock != other.CanLock) return false;
+    if(!secretColor_.Equals(other.secretColor_)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -480,6 +503,7 @@ public sealed partial class card : pb::IMessage<card> {
     if (CardType != global::card_type.ChengQing) hash ^= CardType.GetHashCode();
     hash ^= whoDrawCard_.GetHashCode();
     if (CanLock != false) hash ^= CanLock.GetHashCode();
+    hash ^= secretColor_.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -511,6 +535,7 @@ public sealed partial class card : pb::IMessage<card> {
       output.WriteRawTag(48);
       output.WriteBool(CanLock);
     }
+    secretColor_.WriteTo(output, _repeated_secretColor_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -533,6 +558,7 @@ public sealed partial class card : pb::IMessage<card> {
     if (CanLock != false) {
       size += 1 + 1;
     }
+    size += secretColor_.CalculateSize(_repeated_secretColor_codec);
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -558,6 +584,7 @@ public sealed partial class card : pb::IMessage<card> {
     if (other.CanLock != false) {
       CanLock = other.CanLock;
     }
+    secretColor_.Add(other.secretColor_);
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
 
@@ -593,6 +620,11 @@ public sealed partial class card : pb::IMessage<card> {
         }
         case 48: {
           CanLock = input.ReadBool();
+          break;
+        }
+        case 58:
+        case 56: {
+          secretColor_.AddEntriesFrom(input, _repeated_secretColor_codec);
           break;
         }
       }
